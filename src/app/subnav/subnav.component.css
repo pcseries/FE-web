@@ -1,0 +1,8 @@
+.navbar {
+  height: 75px;
+}
+
+.navbar-brand{
+  color: blue;
+  font-size: 23px;
+}
