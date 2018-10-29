@@ -39,6 +39,8 @@ import { SidebarComponent } from './user/shared/layouts/sidebar/sidebar.componen
 import { MenuComponent } from './user/shared/layouts/menu/menu.component';
 import { ProfileComponent } from './user/pages/profile/profile.component';
 import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.component';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import {  UserMNcomponent } from './admin/pages/userMN/user-mn.component';
 
 
 
@@ -59,6 +61,7 @@ import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.com
     MenuComponent,
     ProfileComponent,
     PagesTopComponent,
+    UserMNcomponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.com
     loginDialog,
   ],
   providers: [
-    GlobalService
+    GlobalService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

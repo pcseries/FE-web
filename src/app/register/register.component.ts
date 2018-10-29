@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   userRegister: FormGroup;
   loading: boolean;
-  passhash: string | Int32Array;
+
   public date = new Date();
 
   passwordsMatcher = new RepeatPasswordEStateMatcher;
@@ -58,8 +58,16 @@ export class RegisterComponent implements OnInit {
     this.registerServic.registerUser(this.userRegister.value).subscribe(
        response => {
          console.log('response', response);
-         alert('register successful');
-         this.router.navigate(['/mado']);
+         if (response['msg'] === "Email have been used") {
+          alert(response['msg']);
+          location.reload();
+         } else if (response['msg'] === "Username have been used") {
+          alert(response['msg']);
+          location.reload();
+         } else {
+            alert('register successful');
+           this.router.navigate(['/mado']);
+         }
        },
        error => {
          console.log('error', error);

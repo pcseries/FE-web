@@ -15,6 +15,7 @@ import { tick } from '@angular/core/src/render3';
 export class MainNavComponent implements OnInit {
 
   Islogin = false;
+  Isadmin = false;
   nameUser: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -30,7 +31,11 @@ export class MainNavComponent implements OnInit {
       console.log(localStorage.getItem('user'));
       this.nameUser = localStorage.getItem('user');
       this.Islogin = true;
-      this.router.navigate(['/mado']);
+      if (localStorage.getItem('permission') === "admin") {
+        this.Isadmin = true;
+      } else {
+        this.router.navigate(['/mado']);
+      }
     }
   }
 

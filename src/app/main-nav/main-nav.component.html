@@ -31,7 +31,10 @@
           </a>
         </div>
       </div>
-        <mat-menu #menu="matMenu" >
+        <mat-menu  #menu="matMenu" >
+          <button mat-menu-item *ngIf="Isadmin" class="btAddmin" [routerLink]="['/admin/userMN']">
+            <span>Admin management</span>
+          </button>
           <button mat-menu-item (click)="onProfile()">
             <span>บัญชีของฉัน</span>
           </button>
@@ -41,6 +44,7 @@
           <button mat-menu-item (click)="onLogout()">
             <span>ออกจากระบบ</span>
           </button>
+
         </mat-menu>
     </mat-toolbar>
 

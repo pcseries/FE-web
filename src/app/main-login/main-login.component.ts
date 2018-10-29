@@ -42,7 +42,12 @@ export class MainLoginComponent implements OnInit {
             localStorage.setItem('user', this.userLogin.value.username);
             localStorage.setItem('permission', response['body'][0].permission);
             location.reload();
-            this.router.navigate(['/main-login']);
+            if (localStorage.getItem('permission') === "admin"){
+              this.router.navigate(['/admin/userMN']);
+            } else {
+              this.router.navigate(['/main-login']);
+            }
+
          } else {
            console.log('login invalid');
            alert('login invalid');
@@ -55,15 +60,6 @@ export class MainLoginComponent implements OnInit {
     console.log(this.userLogin.value);
   }
 
-  apiProduct() {
-    this.loginService.getProduct().subscribe(
-      response => {
-        console.log('response', response);
-      },
-      error => {
-        console.log('error', error);
-      }
-    );
-  }
+
 
 }

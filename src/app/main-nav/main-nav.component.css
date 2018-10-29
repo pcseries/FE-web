@@ -49,3 +49,12 @@ a {
   margin-left: 85%;
 }
 
+.btAddmin {
+  background-color: DodgerBlue;
+  color: white;
+  border-radius: 5px;
+}
+.btAddmin:hover {
+  color: black;
+}
+
