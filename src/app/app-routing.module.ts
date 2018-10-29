@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { MainLoginComponent } from './main-login/main-login.component';
 import { MADOComponent } from './mado/mado.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './user/pages/profile/profile.component';
+
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/mado', pathMatch: 'full'},
@@ -13,7 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'main-login', component: MainLoginComponent},
   {path: 'mado', component: MADOComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'user/profile', component: ProfileComponent}
 ];
 
 @NgModule({

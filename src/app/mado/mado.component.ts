@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-mado',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MADOComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+
+
   }
 
 }

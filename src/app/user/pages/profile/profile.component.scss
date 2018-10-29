@@ -1,0 +1,81 @@
+@import '../../shared/theme/conf';
+.pages-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: $body-bg;
+}
+
+.pages-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  background: transparent;
+  overflow-x: hidden;
+  .pages-content {
+    padding: 15px;
+    flex: 1;
+    background: transparent;
+    border-left: 1px solid $border-color;
+    border-top: 1px solid $border-color;
+    color: $fonts-color;
+    overflow-x: hidden;
+  }
+}
+
+.card {
+  margin: 4%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.card .title {
+  margin-bottom: 20px;
+}
+
+.col-xs-12 {
+  width: 100%;
+}
+
+.card .title .main-title {
+  font-weight: 300px;
+  margin: 0;
+  text-align: left;
+}
+.card .title .line {
+  border-color: #e1e1e1;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.my-account-profile {
+  display: flex;
+  align-items: stretch;
+  padding-top: 30px;
+}
+
+.my-account-profile__left {
+  width: 60%;
+  margin: 10px;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+.my-account-profile__right {
+  width: 31%;
+  margin: 10px;
+  font-size: 20px;
+  border-left: 2px solid #efefef;
+}
+
+.card-profile {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin-left: 20px;
+  text-align: center;
+}

@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrlBS: 'http://158.108.207.7:8181/ecom/api/emarket/',
+  apiUrlC: 'http://158.108.207.7:8080/ecom/api/eshop/'
 };
 
 /*

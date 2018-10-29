@@ -1,38 +1,106 @@
-<div style="text-align:center">
-<h1> Register </h1>
-<form (ngSubmit)="onRegister()" [formGroup]="userRegister">
-  <div class="form-group">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Username" formControlName="username">
-        <mat-error *ngIf="userRegister.get('username').hasError('required')">
-          Username is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-  <br>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" formControlName="email">
-        <mat-error *ngIf="userRegister.get('email').hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="userRegister.get('email').hasError('email')">
-          Wrong email format
-        </mat-error>
-      </mat-form-field>
-  <br>
-  <mat-form-field class="example-full-width">
-      <input matInput type="password" placeholder="Password" formControlName="password">
-      <mat-error *ngIf="userRegister.get('password').hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-      <mat-error *ngIf="userRegister.get('password').hasError('minlength')">
-        Password has to be at least 6 chars
-      </mat-error>
-    </mat-form-field>
-<br>
-    <button mat-ripple mat-raised-button type="submit"
-     [disabled]="userRegister.invalid || loading" color="primary">Register</button><br>
+<app-main-nav>
+  <app-subnav></app-subnav>
+  <div class="col-md-6 center">
+    <div class="card">
+      <h1 style="color:#9012fe;"> Register </h1>
+      <form (ngSubmit)="onRegister()" [formGroup]="userRegister">
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username:" formControlName="username">
+            <mat-error *ngIf="userRegister.get('username').hasError('required')">
+              Username is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password:" formControlName="password">
+            <mat-error *ngIf="userRegister.get('password').hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="userRegister.get('password').hasError('minlength')">
+              Password has to be at least 6 chars
+            </mat-error>
+            <mat-error *ngIf="userRegister.get('password').hasError('maxlength')">
+              Password with more than 24 characters.
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Confirm password:" formControlName="cFpassword"
+              [errorStateMatcher]="passwordsMatcher">
+            <mat-error *ngIf="userRegister.hasError('passwordsNotEqual')">Passwords are different. </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email:" formControlName="email">
+            <mat-error *ngIf="userRegister.get('email').hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="userRegister.get('email').hasError('email')">
+              Wrong email format
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name:" formControlName="name">
+            <mat-error *ngIf="userRegister.get('name').hasError('required')">
+              name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Surname:" formControlName="sername">
+            <mat-error *ngIf="userRegister.get('sername').hasError('required')">
+              surname is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Phone:" formControlName="phone">
+            <mat-error *ngIf="userRegister.get('phone').hasError('required')">
+              phone is <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="!(userRegister.get('phone').hasError('minlength') && userRegister.get('phone').hasError('maxlength'))&& !userRegister.get('phone').hasError('required') ">
+              Phone has to be 10 chars
+            </mat-error>
+            <mat-error
+              *ngIf="userRegister.get('phone').hasError('pattern')">
+              Phone must be char 0-9
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width" >
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br><br>
+          <section class="example-section">
+            <label class="example-margin">เพศ:</label>
+            <mat-radio-group formControlName="sex">
+              <mat-radio-button class="example-margin" value="male">ชาย</mat-radio-button>
+              <mat-radio-button class="example-margin" value="female">หญิง</mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <br>
+          <div class="form-actions">
+            <button mat-ripple
+              mat-raised-button
+              type="submit"
+              [disabled]="userRegister.invalid || loading"
+              color="primary">Register
+            </button>
+            <button [routerLink]="['/mado']"
+              mat-raised-button
+              color="accent"
+              style="margin-left: 10px;">Cancel
+            </button>
+          </div>
+          <br>
+        </div>
+      </form>
+      <a [routerLink]="['/main-login']">Do you have an account already? Login in</a>
+    </div>
   </div>
-</form>
-
-<a [routerLink]="['/login']">Do you have an account already? Login in</a>
-</div>
+</app-main-nav>

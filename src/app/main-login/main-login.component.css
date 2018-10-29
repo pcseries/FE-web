@@ -1,0 +1,12 @@
+.card {
+  border-radius: 5px;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .06);
+  width: 36%;
+  margin: auto;
+}
+
+.example-full-width {
+  width: 60%;
+}

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
+<div class="sticky">
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="col col-lg-2">
-    <a class="navbar-brand" href="/mado">
+    <a class="navbar-brand " [routerLink]="['/mado']">
       <mat-icon>
         local_mall
       </mat-icon>
@@ -9,10 +9,24 @@
     </a>
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="form-inline my-2 my-lg-3">
-      <input class="form-control ml-md-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <div class="sizesearch input-group">
+      <input class="form-control"  type="search" placeholder="ค้นหาสินค้า" aria-label="Search">
+      <div class="input-group-append btn-search">
+        <button type="button" class="btn btn-primary">
+          <mat-icon>
+            search
+          </mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
-
+    <div class="col-sm-3 form-inline groupbt">
+      <div class="store ">
+        <button mat-stroked-button color="primary">เปิดร้านค้า</button>
+      </div>
+      <div class="shopping ">
+          <i class="fa fa-cart-plus" style="font-size:36px;"></i>
+      </div>
+    </div>
+    </div>
 </nav>
+</div>
