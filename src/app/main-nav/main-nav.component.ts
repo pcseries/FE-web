@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
-import { tick } from '@angular/core/src/render3';
+
 
 
 @Component({
@@ -16,6 +16,7 @@ export class MainNavComponent implements OnInit {
 
   Islogin = false;
   Isadmin = false;
+  isSupperadmin: boolean = false;
   nameUser: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -33,6 +34,8 @@ export class MainNavComponent implements OnInit {
       this.Islogin = true;
       if (localStorage.getItem('permission') === "admin") {
         this.Isadmin = true;
+      } else if (localStorage.getItem('permission') === "superadmin") {
+        this.isSupperadmin = true;
       } else {
         this.router.navigate(['/mado']);
       }

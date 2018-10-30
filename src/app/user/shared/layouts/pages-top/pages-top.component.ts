@@ -12,6 +12,7 @@ export class PagesTopComponent implements OnInit {
   avatarImgSrc: string = 'assets/images/avatar.png';
   userName: string ;
   isAdmin: boolean = false;
+  isSupperadmin: boolean = false;
 
 
   sidebarToggle: boolean = true;
@@ -24,6 +25,8 @@ export class PagesTopComponent implements OnInit {
     this.userName = localStorage.getItem('user');
     if (localStorage.getItem('permission') === "admin") {
       this.isAdmin = true;
+    } else if (localStorage.getItem('permission') === "superadmin") {
+      this.isSupperadmin = true;
     }
   }
 

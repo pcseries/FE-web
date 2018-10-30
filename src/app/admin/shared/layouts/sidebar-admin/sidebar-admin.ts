@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { menuService } from '../../../../services/menu.service';
 import { GlobalService } from '../../../../services/global.service';
+import { MenuAdminService } from '../../../../services/menu/menu-admin.service';
+
 
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  providers: [menuService]
+  selector: 'app-sidebar-admin',
+  templateUrl: './sidebar-admin.html',
+  styleUrls: ['./sidebar-admin.scss'],
+  providers: [MenuAdminService]
 })
-export class SidebarComponent implements OnInit {
+
+export class SidebarAdminComponent implements OnInit {
 
   public menuInfo: Array<any> = [];
   public sidebarToggle = true;
 
-  constructor(private _menuService: menuService,
+  constructor(private _menuService: MenuAdminService,
     public _globalService: GlobalService) { }
 
   ngOnInit() {
@@ -55,5 +57,4 @@ export class SidebarComponent implements OnInit {
       }
     }
   }
-
 }

@@ -12,7 +12,7 @@
         <li><a [routerLink]="['/user/profile']">บัญชีของฉัน</a></li>
         <li><a href="#">ประวัติการสั่งซื้อ</a></li>
         <li class="divider"></li>
-        <li><a (click)= "onLogout()">ออกจากระบบ</a></li>
+        <li><a (click)= "onLogout()" style="cursor: pointer">ออกจากระบบ</a></li>
 
     </ul>
 
@@ -23,8 +23,8 @@
       <i class="fa fa-tasks" style="size: 36px;"></i>
     </div>
     <div class="logo-page">
-      <h5 *ngIf="isAdmin">Admin Management</h5>
-      <h5 *ngIf="!isAdmin">User Management</h5>
+      <h5 *ngIf="isAdmin || isSupperadmin">Admin Management</h5>
+      <h5 *ngIf="!isAdmin && !isSupperadmin">User Management</h5>
     </div>
   </div>
 

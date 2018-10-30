@@ -41,6 +41,7 @@ import { ProfileComponent } from './user/pages/profile/profile.component';
 import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.component';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {  UserMNcomponent } from './admin/pages/userMN/user-mn.component';
+import { SidebarAdminComponent } from './admin/shared/layouts/sidebar-admin/sidebar-admin';
 
 
 
@@ -62,6 +63,7 @@ import {  UserMNcomponent } from './admin/pages/userMN/user-mn.component';
     ProfileComponent,
     PagesTopComponent,
     UserMNcomponent,
+    SidebarAdminComponent,
   ],
   imports: [
     BrowserModule,
