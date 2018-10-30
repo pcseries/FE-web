@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class PagesTopComponent implements OnInit {
 
   avatarImgSrc: string = 'assets/images/avatar.png';
-  userName: string = 'Folisise Chosielie';
-  userPost: string = 'Musician, Player';
+  userName: string ;
+  isAdmin: boolean = false;
 
 
   sidebarToggle: boolean = true;
@@ -21,6 +21,10 @@ export class PagesTopComponent implements OnInit {
   constructor(private _globalService: GlobalService,  private router: Router) { }
 
   ngOnInit() {
+    this.userName = localStorage.getItem('user');
+    if (localStorage.getItem('permission') === "admin") {
+      this.isAdmin = true;
+    }
   }
 
   onLogout() {

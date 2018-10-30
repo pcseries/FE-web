@@ -41,11 +41,11 @@ export class MainLoginComponent implements OnInit {
             localStorage.setItem('token', response['body'][0].token);
             localStorage.setItem('user', this.userLogin.value.username);
             localStorage.setItem('permission', response['body'][0].permission);
-            location.reload();
-            if (localStorage.getItem('permission') === "admin"){
+            if (localStorage.getItem('permission') === "admin") {
               this.router.navigate(['/admin/userMN']);
             } else {
               this.router.navigate(['/main-login']);
+              location.reload();
             }
 
          } else {

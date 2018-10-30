@@ -6,7 +6,6 @@
       </div>
       <div class="user-info-wrap">
         <span class="user-name" title="{{userName}}">{{userName}}</span>
-        <span class="user-post" title="{{userPost}}">{{userPost}}</span>
       </div>
     </div>
     <ul class="dropdown-menu">
@@ -21,10 +20,11 @@
 
   <div class="Logo">
     <div class="logo-icon">
-      <i class="fa fa-user-circle" style="size: 36px;"></i>
+      <i class="fa fa-tasks" style="size: 36px;"></i>
     </div>
     <div class="logo-page">
-      <h5>User Management</h5>
+      <h5 *ngIf="isAdmin">Admin Management</h5>
+      <h5 *ngIf="!isAdmin">User Management</h5>
     </div>
   </div>
 

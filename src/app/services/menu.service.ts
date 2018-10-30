@@ -7,7 +7,7 @@ import { GlobalService } from './global.service';
 export class menuService {
 
   constructor(public _globalService: GlobalService, private _router: Router) {
-    this.getNodePath(MENU_ITEM);
+    this.getNodePath(MENU_ITEM); //start
   }
 
   private parent_node = null;
@@ -39,7 +39,7 @@ export class menuService {
       parent_node: this.parent_node,
       node: this.node
     };
-  }
+  }// เรียกต่อจาก creatRouterLink
 
   protected creatRouterLink(nodeId: any) {
     this.node = null;
@@ -51,7 +51,7 @@ export class menuService {
     } else {
       return this.path_item;
     }
-  }
+  }// เรียกต่อจาก getnodepath
 
   protected getNodePath(json: any): void {
     json.forEach((index) => {
@@ -69,7 +69,7 @@ export class menuService {
 
   public putSidebarJson() {
     return MENU_ITEM;
-  }
+  }// เรียกที่ sidebar.component.ts
 
   public selectItem(item) {
     item.forEach(element => {
@@ -81,6 +81,6 @@ export class menuService {
       } else if (element.children)
         this.selectItem(element.children);
     });
-  }
+  }// เรียกที่ sidebar.component.ts
 
 }
