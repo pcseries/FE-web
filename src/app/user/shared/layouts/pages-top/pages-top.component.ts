@@ -11,6 +11,7 @@ export class PagesTopComponent implements OnInit {
 
   avatarImgSrc: string = 'assets/images/avatar.png';
   userName: string ;
+  status: string;
   isAdmin: boolean = false;
   isSupperadmin: boolean = false;
 
@@ -23,10 +24,13 @@ export class PagesTopComponent implements OnInit {
 
   ngOnInit() {
     this.userName = localStorage.getItem('user');
-    if (localStorage.getItem('permission') === "admin") {
+    if (localStorage.getItem('permission') === "ADMIN") {
       this.isAdmin = true;
-    } else if (localStorage.getItem('permission') === "superadmin") {
+    } else if (localStorage.getItem('permission') === "SUPERADMIN") {
       this.isSupperadmin = true;
+      this.status = "Superadmin"
+    } else {
+      this.status = "User";
     }
   }
 

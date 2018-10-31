@@ -8,6 +8,7 @@ import { MADOComponent } from './mado/mado.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './user/pages/profile/profile.component';
 import { UserMNcomponent } from './admin/pages/userMN/user-mn.component';
+import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
 
 
 
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'mado', component: MADOComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/profile', component: ProfileComponent},
-  {path: 'admin/userMN', component: UserMNcomponent}
+  {path: 'admin/userMN', component: UserMNcomponent},
+  {path: 'admin/adminMN', component: AdminMNComponent}
 ];
 
 @NgModule({

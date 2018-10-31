@@ -12,7 +12,8 @@ import { MatToolbarModule
   , MatListModule
   , MatCheckboxModule
   , MatBadgeModule
-   , MatNativeDateModule  } from '@angular/material';
+   , MatNativeDateModule
+  } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
@@ -42,6 +43,10 @@ import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.com
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {  UserMNcomponent } from './admin/pages/userMN/user-mn.component';
 import { SidebarAdminComponent } from './admin/shared/layouts/sidebar-admin/sidebar-admin';
+import { MattabledataComponent } from './components/mattabledata/mattabledata.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
 
 
 
@@ -64,6 +69,8 @@ import { SidebarAdminComponent } from './admin/shared/layouts/sidebar-admin/side
     PagesTopComponent,
     UserMNcomponent,
     SidebarAdminComponent,
+    MattabledataComponent,
+    AdminMNComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +92,10 @@ import { SidebarAdminComponent } from './admin/shared/layouts/sidebar-admin/side
     AppRoutingModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule
+
   ],
   entryComponents: [LoginComponent,
     loginDialog,

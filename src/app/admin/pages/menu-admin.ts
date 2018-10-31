@@ -5,10 +5,14 @@ export let MENU_ITEM = [
       icon: 'user'
   },
   {
-    path: '#',
-    title: 'จัดการผูดูแลระบบ',
+    path: 'admin/adminMN',
+    title: 'ผู้ดูแลระบบ',
     icon: 'user',
     children: [{
+      path: 'admin/adminMN',
+      title: 'จัดการผู้ดูแลระบบ'
+    },
+    {
       path: '#',
       title: 'ข้อมูลของฉัน'
     }

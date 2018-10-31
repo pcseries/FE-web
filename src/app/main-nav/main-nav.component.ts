@@ -34,7 +34,7 @@ export class MainNavComponent implements OnInit {
       this.Islogin = true;
       if (localStorage.getItem('permission') === "admin") {
         this.Isadmin = true;
-      } else if (localStorage.getItem('permission') === "superadmin") {
+      } else if (localStorage.getItem('permission') === "SUPERADMIN") {
         this.isSupperadmin = true;
       } else {
         this.router.navigate(['/mado']);
