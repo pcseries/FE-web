@@ -24,7 +24,7 @@
           </div>
           <br>
           <div class="form-actions">
-            <button mat-ripple mat-stroked-button type="submit" id="submit"
+            <button mat-ripple mat-stroked-button type="submit" id="submit" [disabled]="userLogin.invalid || loading"
               color="primary">Login
             </button>
             <button [routerLink]="['/mado']" mat-raised-button color="accent" style="margin-left: 10px;">Cancel

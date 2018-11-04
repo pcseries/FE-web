@@ -1,0 +1,26 @@
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.card {
+  margin-top: 3px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .06);
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.center {
+    margin: auto;
+}
+
+.example-full-width {
+  width: 65%;
+}
+
+.group-bt {
+  display: flex;
+}

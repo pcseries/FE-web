@@ -1,8 +1,6 @@
-<app-main-nav>
-  <app-subnav></app-subnav>
-  <div class="col-md-6 center">
+<div class="col-md-6 center">
     <div class="card">
-      <h1 style="color:#9012fe;"> Register </h1>
+      <h1 style="color:#9012fe;"> เพิ่ม admin </h1>
       <form (ngSubmit)="onRegister()" [formGroup]="userRegister">
         <div class="form-group">
           <mat-form-field class="example-full-width">
@@ -92,18 +90,12 @@
               mat-raised-button
               type="submit"
               [disabled]="userRegister.invalid || loading"
-              color="primary">Register
-            </button>
-            <button [routerLink]="['/mado']"
-              mat-raised-button
-              color="accent"
-              style="margin-left: 10px;">Cancel
+              color="primary">เพิ่มadmin
             </button>
           </div>
           <br>
         </div>
       </form>
-      <a [routerLink]="['/main-login']">Do you have an account already? Login in</a>
+
     </div>
   </div>
-</app-main-nav>

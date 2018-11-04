@@ -9,16 +9,21 @@ export const PasswordValidation = [
 
 
 
-export class RepeatPasswordEStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    return (control && control.parent.get('password').value !== control.parent.get('cFpassword').value && control.dirty)
-  }
-}
+// export class RepeatPasswordEStateMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     return (control && control.parent.get('password').value !== control.parent.get('cFpassword').value && control.dirty)
+//   }
+// }
 
-export function RepeatPasswordValidator(group: FormGroup) {
-  let password = group.controls.password.value;
-  let passwordConfirmation = group.controls.cFpassword.value;
+// export function RepeatPasswordValidator(group: FormGroup) {
+//   let password = group.controls.password.value;
+//   let passwordConfirmation = group.controls.cFpassword.value;
 
-  return password === passwordConfirmation ? null : { passwordsNotEqual: true }
-}
+
+//   return password === passwordConfirmation ? null : { passwordsNotEqual: true }
+
+// }
+
+//สร้าง function confirm require
+
 

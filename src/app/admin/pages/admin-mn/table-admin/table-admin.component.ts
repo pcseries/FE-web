@@ -1,19 +1,17 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from 'src/app/services/admin/user.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { BackendService } from 'src/app/services/backend.service';
-import { UserService } from 'src/app/services/admin/user.service';
 import { LoginService } from 'src/app/services/login.service';
-import { HtmlTagDefinition } from '@angular/compiler';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-
 @Component({
-  selector: 'app-mattabledata',
-  templateUrl: './mattabledata.component.html',
-  styleUrls: ['./mattabledata.component.css'],
+  selector: 'app-table-admin',
+  templateUrl: './table-admin.component.html',
+  styleUrls: ['./table-admin.component.css'],
   providers: [UserService]
 })
-export class MattabledataComponent implements OnInit {
+export class TableAdminComponent implements OnInit {
 
   userEdit: FormGroup;
 
@@ -105,8 +103,9 @@ export class MattabledataComponent implements OnInit {
 
   }
 
+  addAdmin() {
+
+
+  }
 
 }
-
-
-

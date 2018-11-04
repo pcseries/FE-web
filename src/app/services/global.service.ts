@@ -13,6 +13,7 @@ export class GlobalService {
             ev: ev,
             value: value
         });
+
     }
 }
 

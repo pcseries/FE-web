@@ -47,6 +47,8 @@ import { MattabledataComponent } from './components/mattabledata/mattabledata.co
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
+import { TableAdminComponent } from './admin/pages/admin-mn/table-admin/table-admin.component';
+import { AddAdminComponent } from './admin/pages/admin-mn/add-admin/add-admin.component';
 
 
 
@@ -71,6 +73,8 @@ import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
     SidebarAdminComponent,
     MattabledataComponent,
     AdminMNComponent,
+    TableAdminComponent,
+    AddAdminComponent,
   ],
   imports: [
     BrowserModule,

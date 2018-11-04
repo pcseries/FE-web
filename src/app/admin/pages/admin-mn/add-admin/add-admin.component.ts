@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { PasswordValidation  } from './validators';
-import { RegisterService } from '../services/register.service';
+
 import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5/dist/md5';
+import { RegisterService } from 'src/app/services/register.service';
+import { AdminService } from 'src/app/services/admin/admin.service';
+import { AdminMNComponent } from '../admin-mn.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,12 +19,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  providers: [RegisterService]
+  selector: 'app-add-admin',
+  templateUrl: './add-admin.component.html',
+  styleUrls: ['./add-admin.component.css'],
+  providers: [AdminService]
 })
-export class RegisterComponent implements OnInit {
+export class AddAdminComponent implements OnInit {
 
   userRegister: FormGroup;
   loading: boolean;
@@ -30,9 +32,10 @@ export class RegisterComponent implements OnInit {
   public date = new Date();
 
   matcher = new MyErrorStateMatcher();
+  transfer = new AdminMNComponent();
 
 
-  constructor(private fb: FormBuilder, private registerServic: RegisterService,
+  constructor(private fb: FormBuilder, private AddadminService: AdminService,
     private router: Router) {
       this.userRegister = this.fb.group( {
         username: ['', Validators.required],
@@ -71,7 +74,7 @@ export class RegisterComponent implements OnInit {
 
     this.userRegister.value.password = md5.appendStr(this.userRegister.value.password).end();
     console.log(this.userRegister.value);
-    this.registerServic.registerUser(this.userRegister.value).subscribe(
+    this.AddadminService.addAdmin(this.userRegister.value).subscribe(
        response => {
          console.log('response', response);
          if (response['msg'] === "Email have been used") {
@@ -81,8 +84,8 @@ export class RegisterComponent implements OnInit {
           alert(response['msg']);
           location.reload();
          } else {
-            alert('register successful');
-           this.router.navigate(['/mado']);
+            alert('Add successful');
+           location.reload();
          }
        },
        error => {
@@ -92,7 +95,4 @@ export class RegisterComponent implements OnInit {
   }
 
 
-
 }
-
-

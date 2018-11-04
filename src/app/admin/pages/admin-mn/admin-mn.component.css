@@ -1,0 +1,12 @@
+.bt-add {
+  height: 45px;
+  margin-left: 70%;
+  border-radius: 7px;
+  background-color:  #6495ED;
+  font-weight: bold;
+}
+
+.bt-add:hover {
+  color: black;
+  background-color: aquamarine;
+}

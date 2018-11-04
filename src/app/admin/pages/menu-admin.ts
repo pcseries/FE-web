@@ -2,21 +2,23 @@ export let MENU_ITEM = [
   {
       path: 'admin/userMN',
       title: 'จัดการuser',
-      icon: 'user'
+      icon: 'users'
   },
   {
     path: 'admin/adminMN',
-    title: 'ผู้ดูแลระบบ',
+    title: 'จัดการผู้ดูแลระบบ',
     icon: 'user',
-    children: [{
-      path: 'admin/adminMN',
-      title: 'จัดการผู้ดูแลระบบ'
-    },
-    {
-      path: '#',
-      title: 'ข้อมูลของฉัน'
-    }
-    ]
+
+  },
+  {
+    path: '#',
+    title: 'จัดการ Category',
+    icon: 'book'
+  },
+  {
+    path: '#',
+    title: 'รายงานปัญหา',
+    icon: 'warning',
   }
 ];
 
