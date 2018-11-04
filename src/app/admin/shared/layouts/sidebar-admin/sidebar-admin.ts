@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../services/global.service';
 import { MenuAdminService } from '../../../../services/menu/menu-admin.service';
+import { MenuAdmin2Service } from 'src/app/services/menu/menu-admin2.service';
 
 
 
@@ -8,7 +9,7 @@ import { MenuAdminService } from '../../../../services/menu/menu-admin.service';
   selector: 'app-sidebar-admin',
   templateUrl: './sidebar-admin.html',
   styleUrls: ['./sidebar-admin.scss'],
-  providers: [MenuAdminService]
+  providers: [MenuAdminService, MenuAdmin2Service]
 })
 
 export class SidebarAdminComponent implements OnInit {
@@ -17,12 +18,20 @@ export class SidebarAdminComponent implements OnInit {
   public sidebarToggle = true;
 
   constructor(private _menuService: MenuAdminService,
-    public _globalService: GlobalService) { }
+    public _globalService: GlobalService, private menu2Service: MenuAdmin2Service ) { }
 
   ngOnInit() {
-    this.menuInfo = this._menuService.putSidebarJson();
+    if (localStorage.getItem('permission') === "SUPERADMIN") {
+      this.menuInfo = this._menuService.putSidebarJson();
+    } else {
+      this.menuInfo = this.menu2Service.putSidebarJson();
+    }
     this._sidebarToggle();
-    this._menuService.selectItem(this.menuInfo);
+    if (localStorage.getItem('permission') === "SUPERADMIN") {
+      this._menuService.selectItem(this.menuInfo);
+    } else {
+      this.menu2Service.selectItem(this.menuInfo);
+    }
     this._isSelectItem(this.menuInfo);
   }
 

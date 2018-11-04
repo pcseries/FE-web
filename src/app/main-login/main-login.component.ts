@@ -36,7 +36,11 @@ export class MainLoginComponent implements OnInit {
     this.userLogin.value.password = md5.appendStr(this.userLogin.value.password).end();
      this.loginService.loginUser(this.userLogin.value).subscribe(
        response => {
-         if ( response['body'] !== null) {
+         console.log('response', response);
+         if (response['status'] === 401) {
+            alert(response['msg']);
+            location.reload();
+         } else if ( response['body'] !== null) {
             console.log('token', response['body'][0].token);
             localStorage.setItem('token', response['body'][0].token);
             localStorage.setItem('user', this.userLogin.value.username);
@@ -51,6 +55,7 @@ export class MainLoginComponent implements OnInit {
          } else {
            console.log('login invalid');
            alert('login invalid');
+           location.reload();
          }
        },
        error => {

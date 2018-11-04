@@ -47,7 +47,7 @@
       <button mat-icon-button color="primary" focusable="false" *ngIf="checkStatus(row.status)" (click)="change(row.username)">
         <i class="fa fa-eye mat-icon"></i>
       </button>
-      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="change(row.username)">
+      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="active(row.username)">
         <i style="color: red" class="fa fa-eye-slash mat-icon"></i>
       </button>
       <button mat-icon-button color="primary" focusable="false " (click)="onDelete(row.username)">

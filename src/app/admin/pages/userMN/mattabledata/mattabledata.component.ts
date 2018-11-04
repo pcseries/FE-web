@@ -91,6 +91,22 @@ export class MattabledataComponent implements OnInit {
       );
   }
 
+  active(user: any) {
+    this.userEdit = this.fb.group({
+      username: [user]
+     });
+     this.userService.unblockUser(this.userEdit.value).subscribe(
+       response => {
+          console.log('response', response);
+          this.ngOnInit();
+       },
+       error => {
+          console.log('error', error);
+       }
+     );
+
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

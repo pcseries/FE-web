@@ -22,4 +22,21 @@ export let MENU_ITEM = [
   }
 ];
 
+export let MENU_ITEM2 = [
+  {
+      path: 'admin/userMN',
+      title: 'จัดการuser',
+      icon: 'users'
+  },
+  {
+    path: '#',
+    title: 'จัดการ Category',
+    icon: 'book'
+  },
+  {
+    path: '#',
+    title: 'รายงานปัญหา',
+    icon: 'warning',
+  }
+];
 

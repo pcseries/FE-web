@@ -26,6 +26,7 @@ export class PagesTopComponent implements OnInit {
     this.userName = localStorage.getItem('user');
     if (localStorage.getItem('permission') === "ADMIN") {
       this.isAdmin = true;
+      this.status = "Admin"
     } else if (localStorage.getItem('permission') === "SUPERADMIN") {
       this.isSupperadmin = true;
       this.status = "Superadmin"

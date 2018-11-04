@@ -43,12 +43,13 @@ import { PagesTopComponent } from './user/shared/layouts/pages-top/pages-top.com
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {  UserMNcomponent } from './admin/pages/userMN/user-mn.component';
 import { SidebarAdminComponent } from './admin/shared/layouts/sidebar-admin/sidebar-admin';
-import { MattabledataComponent } from './components/mattabledata/mattabledata.component';
+import { MattabledataComponent } from './admin/pages/userMN/mattabledata/mattabledata.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
 import { TableAdminComponent } from './admin/pages/admin-mn/table-admin/table-admin.component';
 import { AddAdminComponent } from './admin/pages/admin-mn/add-admin/add-admin.component';
+
 
 
 
@@ -75,6 +76,7 @@ import { AddAdminComponent } from './admin/pages/admin-mn/add-admin/add-admin.co
     AdminMNComponent,
     TableAdminComponent,
     AddAdminComponent,
+
   ],
   imports: [
     BrowserModule,

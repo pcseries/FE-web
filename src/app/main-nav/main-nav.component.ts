@@ -32,7 +32,7 @@ export class MainNavComponent implements OnInit {
       console.log(localStorage.getItem('user'));
       this.nameUser = localStorage.getItem('user');
       this.Islogin = true;
-      if (localStorage.getItem('permission') === "admin") {
+      if (localStorage.getItem('permission') === "ADMIN") {
         this.Isadmin = true;
       } else if (localStorage.getItem('permission') === "SUPERADMIN") {
         this.isSupperadmin = true;

@@ -27,6 +27,10 @@ export class UserService {
     return this.http.put(this.baseUrlBS + 'admin/banneduser', user , this.getAuth());
   }
 
+  unblockUser(user: User): Observable<any> {
+    return this.http.put(this.baseUrlBS + 'admin/unbanneduser', user , this.getAuth());
+  }
+
   private getAuth() {
     const conttent = 'application/json; charset=utf-8';
     const token = '313e3e42a3273e43577968f8732164c3';// เปลี่ยนเป็น gettoken มาเเทน
