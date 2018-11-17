@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './user/pages/profile/profile.component';
 import { UserMNcomponent } from './admin/pages/userMN/user-mn.component';
 import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
+import { DtailProductComponent } from './core/pages/dtail-product/dtail-product.component';
+import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
 
 
 
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'user/profile', component: ProfileComponent},
   {path: 'admin/userMN', component: UserMNcomponent},
-  {path: 'admin/adminMN', component: AdminMNComponent}
+  {path: 'admin/adminMN', component: AdminMNComponent},
+  {path: 'product/detail/:id', component: DtailProductComponent},
+  {path: 'user/editProfile', component: EditUserComponent}
 ];
 
 @NgModule({

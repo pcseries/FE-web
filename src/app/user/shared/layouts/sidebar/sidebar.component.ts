@@ -56,4 +56,10 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  recieve_status(status: any) {
+    if ( status === true) {
+      this.ngOnInit();
+    }
+  }
+
 }

@@ -19,6 +19,19 @@ export let MENU_ITEM = [
     path: '#',
     title: 'รายงานปัญหา',
     icon: 'warning',
+  },
+  {
+    path: '#',
+    title: 'จัดการบัญชี'
+  },
+  {
+    path: '#',
+    title: 'จัดการการส่ง'
+  },
+  {
+    path: '#',
+    title: 'บัญชีของฉัน',
+    icon: 'address-card'
   }
 ];
 
@@ -37,6 +50,20 @@ export let MENU_ITEM2 = [
     path: '#',
     title: 'รายงานปัญหา',
     icon: 'warning',
+  },
+  {
+    path: '#',
+    title: 'จัดการการส่ง'
+  },
+  {
+    path: '#',
+    title: 'จัดการบัญชี'
+  },
+  {
+    path: '#',
+    title: 'บัญชีของฉัน',
+    icon: 'address-card'
   }
+
 ];
 

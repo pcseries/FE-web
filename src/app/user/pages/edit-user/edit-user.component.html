@@ -1,0 +1,92 @@
+<div class="pages-wrap">
+  <app-pages-top></app-pages-top>
+    <div class="pages-body">
+      <app-sidebar></app-sidebar>
+
+      <div class="pages-content">
+        <div class="card">
+          <header class="row title">
+            <div class="col-xs-12 text-center">
+              <h5 class="main-title" style="color: #9012fe;padding-left: 20px;">
+                แก้ไขข้อมูล {{ userName }}
+              </h5>
+              <hr class="line" />
+            </div>
+          </header>
+          <div class="my-account-profile">
+            <form class="form-edit" (ngSubmit)="onEdit()" [formGroup]="editProfile">
+              <div class="contain-form">
+              <div class="my-account-profile__left">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Name:" formControlName="name" />
+                </mat-form-field>
+                <br />
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    placeholder="Surname:"
+                    formControlName="sername"
+
+                  />
+                </mat-form-field>
+                <br />
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Phone:" formControlName="phone" />
+                </mat-form-field>
+                <br />
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Email:" formControlName="email"  />
+                </mat-form-field>
+                <br />
+              </div>
+
+              <div class="my-account-profile__center">
+                  <mat-form-field class="example-full-width" >
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" formControlName="dob" value="{{dob}}">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <br>
+              <section class="example-section">
+                <label class="example-margin">เพศ:</label>
+                <mat-radio-group formControlName="sex" >
+                  <mat-radio-button class="example-margin" value="MALE">ชาย</mat-radio-button>
+                  <mat-radio-button class="example-margin" value="FEMALE">หญิง</mat-radio-button>
+                </mat-radio-group>
+              </section>
+              </div>
+              </div>
+              <br>
+              <div class="form-actions">
+                <button mat-ripple
+                  mat-raised-button
+                  type="submit"
+                  color="primary">แก้ไขข้อมูล
+                </button>
+              </div>
+
+            </form>
+
+            <div class="my-account-profile__right">
+              <div class="card-profile">
+                <img
+                [src]="imageToShow"
+                alt="Place image title"
+                *ngIf="!isImageLoading; else: noImageFound"
+                class="card-img-top"
+
+              />
+              <ng-template #noImageFound>
+                <img src="fallbackImage.png" alt="Fallbackimage" />
+              </ng-template>
+                <h4>{{name}}</h4>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

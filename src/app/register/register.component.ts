@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
     const month = this.userRegister.value.dob.getMonth() ;
     const date = this.userRegister.value.dob.getDate();
     console.log(this.userRegister.value.dob.getMonth());
-    this.userRegister.value.dob = year + '-' + month + '-' + date;
+    this.userRegister.value.dob = year + '-' + (month+1) + '-' + date;
 
     this.userRegister.value.password = md5.appendStr(this.userRegister.value.password).end();
     console.log(this.userRegister.value);

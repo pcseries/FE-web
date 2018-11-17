@@ -13,20 +13,29 @@
         </header>
         <div class="my-account-profile">
           <div class="my-account-profile__left">
-            Name: Sila
-            <br>
-            Surname: Sangjansiriporn
-            <br>
-            Phone:
-            <br>
-            Email:
-            <br>
-            DOB:
+          <div class="detail">
+            <strong>Name:</strong> &nbsp;  {{ name }} <br />
+          <strong>Surname:</strong> &nbsp;   {{ surname }} <br />
+          <strong>Phone:</strong> &nbsp;  {{ phone }} <br />
+          <strong>Email:</strong> &nbsp;  {{ email }} <br />
+          <strong>DOB:</strong> &nbsp;  {{ dob | date }}
           </div>
+
+
+          </div>
+
           <div class="my-account-profile__right">
             <div class="card-profile">
-              <img src="../../../../assets/image/garfield.jpg" height="270" style="width:100%">
-              <h4>Sila Sangjansiriporn</h4>
+              <img
+              [src]="imageToShow"
+              alt="Place image title"
+              *ngIf="!isImageLoading; else: noImageFound"
+              class="card-img-top"
+            />
+            <ng-template #noImageFound>
+              <img src="fallbackImage.png" alt="Fallbackimage" />
+            </ng-template>
+              <h4>{{ name }}</h4>
             </div>
             <button mat-raised-button style="margin-left: 30%;">เลือกรูปภาพ</button>
           </div>

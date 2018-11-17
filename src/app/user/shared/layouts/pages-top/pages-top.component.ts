@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../../services/global.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../../../services/admin/user.service';
 
 @Component({
   selector: 'app-pages-top',
@@ -18,9 +19,12 @@ export class PagesTopComponent implements OnInit {
 
   sidebarToggle: boolean = true;
   tip = { ring: true, email: true };
+  isImageLoading: any;
+  imageToShow: any;
 
 
-  constructor(private _globalService: GlobalService,  private router: Router) { }
+  constructor(private _globalService: GlobalService,  private router: Router,
+    private imageService: UserService) { }
 
   ngOnInit() {
     this.userName = localStorage.getItem('user');
@@ -33,7 +37,32 @@ export class PagesTopComponent implements OnInit {
     } else {
       this.status = "User";
     }
+
+    this.getImageFromService();
   }
+
+  getImageFromService() {
+    this.isImageLoading = true;
+    this.imageService.getImage().subscribe(
+      data => {
+        this.createImageFromBlob(data);
+        this.isImageLoading = false;
+      }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
 
   onLogout() {
     localStorage.removeItem('user');

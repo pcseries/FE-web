@@ -45,14 +45,19 @@
       <button mat-icon-button color="accent"><i class="fa fa-gears mat-icon" style="font-size: 24px;"></i></button>
     </mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false">
+
+      <button  mat-icon-button color="primary" focusable="false" (click)="onInfo(row.username)">
         <i class="fa fa-info-circle mat-icon"></i>
       </button>
+
+      <button  mat-icon-button color="primary" focusable="false" (click)="onEdit(row.username)">
+          <i class="fa fa-edit mat-icon"></i>
+    </button>
 
       <button mat-icon-button color="primary" focusable="false" *ngIf="checkStatus(row.status)" (click)="change(row.username)">
         <i class="fa fa-eye mat-icon"></i>
       </button>
-      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="change(row.username)">
+      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="active(row.username)">
         <i style="color: red" class="fa fa-eye-slash mat-icon"></i>
       </button>
       <button mat-icon-button color="primary" focusable="false " (click)="onDelete(row.username)">

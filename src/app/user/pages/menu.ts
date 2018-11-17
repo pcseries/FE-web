@@ -5,12 +5,12 @@ export let MENU_ITEM = [
     icon: 'address-card-o'
   },
   {
-      path: '#',
+      path: 'user/editProfile',
       title: 'จัดการบัญชี',
       icon: 'user',
       children: [
         {
-          path: '#',
+          path: 'user/editProfile',
           title: 'จัดการโปร์ไฟล์'
         },
         {
@@ -27,5 +27,10 @@ export let MENU_ITEM = [
     path: '#',
     title: 'การซื้อของฉัน',
     icon: 'credit-card'
+  },
+  {
+    path: '#',
+    title: 'จัดการร้านค้า',
+    icon: 'briefcase'
   }
 ];

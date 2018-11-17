@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/services/admin/user.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { BackendService } from 'src/app/services/backend.service';
 import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+
+
+
 
 @Component({
   selector: 'app-table-admin',
@@ -14,6 +17,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class TableAdminComponent implements OnInit {
 
   userEdit: FormGroup;
+
+
+  @Output() infoPass = new EventEmitter();
+  @Output() editProfile = new EventEmitter();
 
   displayedColumns = [ 'username' , 'name', 'sername', 'email', 'status', 'actionsColumn'];// column จากservice json
   dataSource: MatTableDataSource<any>;
@@ -29,7 +36,7 @@ export class TableAdminComponent implements OnInit {
     //this.dataSource = new MatTableDataSource(this.myservice.getData());
 
 
-       this.userService.getUser().subscribe(
+       this.userService.getAdmin().subscribe(
          response => {
            //alert(response['body']);
            this.dataSource = new MatTableDataSource(response['body']);
@@ -103,9 +110,37 @@ export class TableAdminComponent implements OnInit {
 
   }
 
-  addAdmin() {
 
-
+  active(user: any) {
+    this.userEdit = this.fb.group({
+      username: [user]
+     });
+     this.userService.unblockUser(this.userEdit.value).subscribe(
+       response => {
+          console.log('response', response);
+          this.ngOnInit();
+       },
+       error => {
+          console.log('error', error);
+       }
+     );
   }
+
+  onInfo(name) {
+    const info = {
+      stat: true,
+      uName: name
+    };
+    this.infoPass.emit(info);
+  }
+
+  onEdit(name) {
+    const info = {
+      stat: true,
+      uName: name
+    };
+    this.editProfile.emit(info);
+  }
+
 
 }

@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+
 
 
 @Component({
@@ -7,6 +8,22 @@ import { Component } from "@angular/core";
   styleUrls: ['./../admin-page.component.scss' ]
 })
 
-export class UserMNcomponent {
+export class UserMNcomponent implements OnInit {
 
+  info = [];
+  isSeeuser:boolean ;
+
+  ngOnInit() {
+    this.isSeeuser = false;
+  }
+
+
+  onInfoAdd(infoUser) {
+    this.isSeeuser = infoUser.stat;
+    this.info = infoUser;
+  }
+
+  backPage() {
+    this.isSeeuser = false;
+  }
 }

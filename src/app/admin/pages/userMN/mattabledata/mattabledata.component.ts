@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { BackendService } from 'src/app/services/backend.service';
 import { UserService } from 'src/app/services/admin/user.service';
@@ -16,6 +16,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class MattabledataComponent implements OnInit {
 
   userEdit: FormGroup;
+
+  @Output() infoUser = new EventEmitter();
 
   displayedColumns = [ 'username' , 'name', 'sername', 'email', 'status', 'actionsColumn'];// column จากservice json
   dataSource: MatTableDataSource<any>;
@@ -47,7 +49,7 @@ export class MattabledataComponent implements OnInit {
   }
 
   onDelete(getUsername: any) {
-    // ทำ confirm ให้ด้วยนาจาา
+    // ทำ confirm
     console.dir(getUsername);
     let c = confirm('Are you sure delete');
     if (c == true) {
@@ -118,9 +120,15 @@ export class MattabledataComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-
   }
 
+  onInfo(name) {
+    const info = {
+      stat: true,
+      uName: name
+    };
+    this.infoUser.emit(info);
+  }
 
 }
 

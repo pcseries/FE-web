@@ -1,0 +1,7 @@
+<img [src]="imageToShow"
+     alt="Place image title"
+     class="card-img-top"
+     *ngIf="!isImageLoading; else noImageFound">
+<ng-template #noImageFound>
+     <img src="fallbackImage.png" alt="Fallbackimage">
+</ng-template>

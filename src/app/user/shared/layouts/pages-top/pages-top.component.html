@@ -1,28 +1,29 @@
 <div class="pages-top">
-
-    <div class="avatar-wrap " data-toggle="dropdown">
-      <div class="avatar">
-        <img src="../../../../../assets/image/garfield.jpg" alt="avatar">
-      </div>
-      <div class="user-info-wrap">
-        <span class="user-name" title="{{userName}}">{{userName}}</span>
-        <span class="user-post" title="{{status}}">{{status}}</span>
-      </div>
+  <div class="avatar-wrap " data-toggle="dropdown">
+    <div class="avatar">
+      <img
+        [src]="imageToShow"
+        alt="Place image title"
+        *ngIf="!isImageLoading; else: noImageFound"
+      />
+      <ng-template #noImageFound>
+        <img src="fallbackImage.png" alt="Fallbackimage" />
+      </ng-template>
     </div>
-    <ul class="dropdown-menu">
-        <li><a [routerLink]="['/user/profile']">บัญชีของฉัน</a></li>
-        <li><a href="#">ประวัติการสั่งซื้อ</a></li>
-        <li class="divider"></li>
-        <li><a (click)= "onLogout()" style="cursor: pointer">ออกจากระบบ</a></li>
-
-    </ul>
-
-
+    <div class="user-info-wrap">
+      <span class="user-name" title="{{userName}}">{{ userName }}</span>
+      <span class="user-post" title="{{status}}">{{ status }}</span>
+    </div>
+  </div>
+  <ul class="dropdown-menu">
+    <li><a [routerLink]="['/user/profile']">บัญชีของฉัน</a></li>
+    <li><a href="#">ประวัติการสั่งซื้อ</a></li>
+    <li class="divider"></li>
+    <li><a (click)="onLogout()" style="cursor: pointer">ออกจากระบบ</a></li>
+  </ul>
 
   <div class="Logo">
-    <div class="logo-icon">
-      <i class="fa fa-tasks" style="size: 36px;"></i>
-    </div>
+    <div class="logo-icon"><i class="fa fa-tasks" style="size: 36px;"></i></div>
     <div class="logo-page">
       <h5 *ngIf="isAdmin || isSupperadmin">Admin Management</h5>
       <h5 *ngIf="!isAdmin && !isSupperadmin">User Management</h5>
@@ -31,11 +32,11 @@
 
   <div class="go-shoping" [routerLink]="['/mado']">
     <div class="icon-shoping">
-      <i class="fa fa-shopping-cart" style="font-size: 36px; margin-top: 10px;"></i>
+      <i
+        class="fa fa-shopping-cart"
+        style="font-size: 36px; margin-top: 10px;"
+      ></i>
     </div>
-    <div class="goMado">
-      MADO
-    </div>
+    <div class="goMado">MADO</div>
   </div>
-
 </div>

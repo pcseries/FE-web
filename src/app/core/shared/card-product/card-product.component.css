@@ -1,0 +1,20 @@
+.card-productDetail{
+  display: flex;
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+}
+
+.edge-detail-product {
+  -webkit-box-flex: 1;
+  flex: 1 0 auto;
+  width: 0;
+}
+
+.Image-product {
+  display: block;
+  width: 35%;
+}
+
+.dtail-product {
+  padding: 2rem 3.5rem 0 2rem;
+}

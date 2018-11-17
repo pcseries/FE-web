@@ -1,4 +1,4 @@
 <div class="pages-sider" [ngClass]="{'side-collapsed':!sidebarToggle}">
   <span class="sidebar-top-line"></span>
-  <du-menu [menuInfo]="menuInfo"></du-menu>
+  <du-menu [menuInfo]="menuInfo" (passSidebar)="recieve_status($event)"></du-menu>
 </div>

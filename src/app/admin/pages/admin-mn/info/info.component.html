@@ -1,0 +1,39 @@
+<div class="pages-body">
+  <div class="pages-content">
+    <div class="card">
+      <header class="row title">
+        <div class="col-xs-12 text-center">
+          <h5 class="main-title" style="color: #9012fe;padding-left: 20px;">
+            ข้อมูลของฉัน {{ user.uName }}
+          </h5>
+          <hr class="line" />
+        </div>
+      </header>
+      <div class="my-account-profile">
+        <div class="my-account-profile__left">
+          <strong>Name:</strong> &nbsp;  {{ name }} <br />
+          <strong>Surname:</strong> &nbsp;   {{ surname }} <br />
+          <strong>Phone:</strong> &nbsp;  {{ phone }} <br />
+          <strong>Email:</strong> &nbsp;  {{ email }} <br />
+          <strong>DOB:</strong> &nbsp;  {{ dob | date }}
+        </div>
+        <div class="my-account-profile__right">
+          <div class="card-profile">
+            <img
+              [src]="imageToShow"
+              alt="Place image title"
+              *ngIf="!isImageLoading; else: noImageFound"
+              class="card-img-top"
+
+            />
+            <ng-template #noImageFound>
+              <img src="fallbackImage.png" alt="Fallbackimage" />
+            </ng-template>
+            <h4>{{ name }}</h4>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
