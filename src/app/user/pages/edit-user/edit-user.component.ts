@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/admin/user.service';
 import { ProfileService } from 'src/app/services/user/profile.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -27,11 +28,16 @@ export class EditUserComponent implements OnInit {
   isImageLoading: any;
   imageToShow: any;
 
+  selectedFile: File = null;
+
+  fileToUpload: File = null;
+
+  sendFile: FormGroup;
 
   public date = new Date("en-US");
 
   constructor(private fb: FormBuilder, private userService: UserService,
-    private profileService: ProfileService) {
+    private profileService: ProfileService, private http: HttpClient) {
     this.infoForm();
   }
 
@@ -124,6 +130,42 @@ export class EditUserComponent implements OnInit {
     this.editProfile.value.dob = year + '-' + (month+1) + '-' + date;
     console.log('dob', this.editProfile.value.dob);
   }
+
+  onFileSelected(event) {
+    console.log(event);
+
+    this.selectedFile = <File>event.target.files[0];
+    console.log('file', this.selectedFile);
+    //console.log('name', this.selectedFile.name);
+  }
+
+  onUpload() {
+    let fd = new FormData();
+    fd.append('file', this.selectedFile , this.selectedFile.name );
+    // this.http.post('http://158.108.207.7:8080/ecom/api/eshop/upload/', fd , this.getAuthProfile() ).subscribe(
+    //   res => {
+    //     console.log('garfield', res);
+    //   },
+    //   error => {
+    //     console.log('error', error);
+    //   }
+    // );
+
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
+
+uploadFileToActivity() {
+  this.profileService.upLoadProfile(this.fileToUpload).subscribe(
+    data => {
+    // do something, if upload success
+      console.log('garfield', data);
+    }, error => {
+      console.log(error);
+    });
+}
 
 
 }

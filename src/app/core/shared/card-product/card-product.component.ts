@@ -19,6 +19,7 @@ export class CardProductComponent implements OnInit {
  this.productService.detailProduct(this.idProduct).subscribe(
       response => {
         this.nameProduct = response['body'].product[0].name_product;
+        //alert(this.nameProduct);
         console.log('response', response);
       },
       error => {

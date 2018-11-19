@@ -82,6 +82,11 @@
                 <h4>{{name}}</h4>
               </div>
 
+              <input type="file"
+                id="file"
+                enctype="multipart/form-data"
+                (change)="handleFileInput($event.target.files)"/>
+              <button type="button" (click)="uploadFileToActivity()">Upload</button>
             </div>
           </div>
         </div>

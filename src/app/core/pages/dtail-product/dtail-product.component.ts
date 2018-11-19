@@ -15,16 +15,16 @@ export class DtailProductComponent implements OnInit {
   constructor(private route: ActivatedRoute, private productService: ProductsService) { }
 
   ngOnInit() {
-    this.idProduct = this.route.snapshot.paramMap.get('id');
+     this.idProduct = this.route.snapshot.paramMap.get('id');
 
-    this.productService.detailProduct(this.idProduct).subscribe(
-      response => {
-        console.log('response', response);
-      },
-      error => {
-        console.log('error' , error);
-      }
-    );
+     this.productService.detailProduct(this.idProduct).subscribe(
+       response => {
+         console.log('response', response);
+       },
+       error => {
+         console.log('error' , error);
+       }
+     );
   }
 
 }

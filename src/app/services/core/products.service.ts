@@ -26,11 +26,11 @@ export class ProductsService {
   }
 
   detailProduct(idProduct: any): Observable<any> {
-    return this.http.get(this.baseUrlC + 'product/' + idProduct , this.getAutprodtuct());
+    return this.http.get(this.baseUrlC + 'product/' + idProduct  , this.getAutprodtuct());
   }
 
   getnewProduct(): Observable<any> {
-    return this.http.get(this.baseUrlBS + 'productnew/5', this.authWeb());
+    return this.http.get(this.baseUrlBS + 'productnew/7', this.authWeb());
   }
 
 

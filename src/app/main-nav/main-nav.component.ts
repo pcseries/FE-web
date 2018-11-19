@@ -28,6 +28,7 @@ export class MainNavComponent implements OnInit {
     private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
+
     if (localStorage.getItem('user') && localStorage.getItem('token')) {
       console.log(localStorage.getItem('user'));
       this.nameUser = localStorage.getItem('user');
@@ -36,8 +37,6 @@ export class MainNavComponent implements OnInit {
         this.Isadmin = true;
       } else if (localStorage.getItem('permission') === "SUPERADMIN") {
         this.isSupperadmin = true;
-      } else {
-        this.router.navigate(['/mado']);
       }
     }
   }
