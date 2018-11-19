@@ -24,19 +24,19 @@ export class ProfileService {
   }
 
    upLoadProfile(fileToUpload: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    formData.append('id_product', '10');
+    let formData: FormData = new FormData();
+     formData.append('file', fileToUpload, fileToUpload.name);
+     formData.append('id_product', '10');
 
     // this.sendFile = new FormGroup({
-    //   file: new FormControl(fileToUpload),
-    //   id_product: new FormControl('10')
-    // });
+    //    file: new FormControl(fileToUpload),
+    //    id_product: new FormControl('10')
+    //  });
     //this.sendFile.patchValue({image: fileToUpload});
    // let Form = JSON.stringify(this.sendFile.value);
-    console.log('file', formData);
+    console.log('Formdata', formData);
      return this.http
-      .post( 'http://158.108.207.7:8080/ecom/api/eshop/upload/', formData , this.getAuthImage());
+      .post( 'http://158.108.207.7:8080/ecom/api/eshop/upload/', JSON.stringify(formData) , this.getAuthImage());
    }
 
   private getAuthProfile() {

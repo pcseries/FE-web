@@ -58,7 +58,7 @@ import { CardProductComponent } from './core/shared/card-product/card-product.co
 import { RecommendComponent } from './core/shared/allProduct/recommend/recommend.component';
 import { NewProductComponent } from './core/shared/allProduct/new-product/new-product.component';
 import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
-
+import { UserComponent } from './user/user.component';
 
 
 
@@ -96,7 +96,7 @@ import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
     RecommendComponent,
     NewProductComponent,
     EditUserComponent,
-
+    UserComponent
   ],
   imports: [
     BrowserModule,

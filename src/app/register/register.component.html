@@ -14,13 +14,13 @@
           <br>
           <mat-form-field class="example-full-width">
             <input matInput type="password"  placeholder="Password:" formControlName="password" required>
-            <mat-error *ngIf="userRegister.hasError('required', 'password')">
+            <mat-error *ngIf="userRegister.hasError('required')">
               Password is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="userRegister.hasError('minlength', 'password')">
+            <mat-error *ngIf="userRegister.hasError('minlength')">
               Password has to be at least 6 chars
             </mat-error>
-            <mat-error *ngIf="userRegister.hasError('maxlength', 'password')" >
+            <mat-error *ngIf="userRegister.hasError('maxlength')" >
               Password with more than 24 characters
             </mat-error>
           </mat-form-field>
