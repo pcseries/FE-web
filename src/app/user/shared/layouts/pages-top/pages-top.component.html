@@ -4,11 +4,8 @@
       <img
         [src]="imageToShow"
         alt="Place image title"
-        *ngIf="!isImageLoading; else: noImageFound"
       />
-      <ng-template #noImageFound>
-        <img src="fallbackImage.png" alt="Fallbackimage" />
-      </ng-template>
+
     </div>
     <div class="user-info-wrap">
       <span class="user-name" title="{{userName}}">{{ userName }}</span>

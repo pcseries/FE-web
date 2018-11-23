@@ -18,3 +18,67 @@
 .dtail-product {
   padding: 2rem 3.5rem 0 2rem;
 }
+
+.Image-product {
+  width: 450px;
+  padding: 15px;
+  flex-shrink: 0;
+}
+
+.titleProduct {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin: 0;
+  vertical-align: sub;
+  max-height: 4.8rem;
+  line-height: 2.4rem;
+  overflow: hidden;
+  max-width: 66.5rem;
+  font-size: 2rem;
+  word-wrap: break-word;
+}
+
+.flex-Price {
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  flex-direction: column;
+}
+.flex {
+  display: flex;
+}
+
+.bg {
+  padding: 15px 20px;
+  background: #fafafa;
+}
+
+.item-center {
+  -moz-box-align: center;
+  align-items: center;
+}
+
+._2n_9_X {
+  flex-wrap: wrap;
+  width: 625px;
+  flex-basis: 625px;
+}
+
+.priceProduct {
+  font-size: 2rem;
+  font-weight: 500;
+  color: cornflowerblue;
+}
+
+.groupAction {
+  margin-top: 50px;
+}
+
+.group-btn {
+  padding-left: 20px;
+}
+.flex-btn {
+  display: flex;
+}

@@ -11,6 +11,8 @@
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
+  margin: auto;
+  width: 65%;
 }
 
 .center {
@@ -19,4 +21,22 @@
 
 .example-full-width {
   width: 65%;
+}
+
+@media (max-width: 600px) {
+  .card {
+    margin-top: 3px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .06);
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 75%;
+  }
 }

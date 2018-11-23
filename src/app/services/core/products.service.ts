@@ -30,7 +30,11 @@ export class ProductsService {
   }
 
   getnewProduct(): Observable<any> {
-    return this.http.get(this.baseUrlBS + 'productnew/7', this.authWeb());
+    return this.http.get(this.baseUrlBS + 'productnew/5', this.authWeb());
+  }
+
+  getPromoProduct(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'productpromo/5', this.authWeb());
   }
 
 

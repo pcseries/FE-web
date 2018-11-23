@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
@@ -59,6 +60,7 @@ import { RecommendComponent } from './core/shared/allProduct/recommend/recommend
 import { NewProductComponent } from './core/shared/allProduct/new-product/new-product.component';
 import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
 import { UserComponent } from './user/user.component';
+import { PromotionProductComponent } from './promotion-product/promotion-product.component';
 
 
 
@@ -96,7 +98,8 @@ import { UserComponent } from './user/user.component';
     RecommendComponent,
     NewProductComponent,
     EditUserComponent,
-    UserComponent
+    UserComponent,
+    PromotionProductComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +132,10 @@ import { UserComponent } from './user/user.component';
   ],
   providers: [
     GlobalService,
-    CookieService
+    CookieService,
+    {provide: LocationStrategy,
+     useClass: HashLocationStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 <app-main-nav>
   <app-subnav></app-subnav>
-  <div class="col-md-6 center">
+  <div class= "container">
     <div class="card">
       <h1 style="color:#9012fe;"> Register </h1>
       <form (ngSubmit)="onRegister()" [formGroup]="userRegister">
@@ -105,5 +105,6 @@
       </form>
       <a [routerLink]="['/main-login']">Do you have an account already? Login in</a>
     </div>
-  </div>
+
+</div>
 </app-main-nav>

@@ -51,3 +51,10 @@
 mat-form-field {
   width: 50%;
 }
+
+.example-container {
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+}
+

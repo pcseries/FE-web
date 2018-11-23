@@ -1,12 +1,46 @@
-
 <div class="card-productDetail">
+  <div class="Image-product">
+    <div class="allImage">
+      <div class="mainImage">
+        <img
+          [src]="imageToShow"
+          alt="Place image title"
+          *ngIf="!isImageLoading; else: noImageFound"
+          class="card-img-top"
+        />
 
-    <div class="Image-product">
-      Image
+      </div>
+
+      <div class="showSelectImage"></div>
     </div>
-    <div class="edge-detail-product">
-      <div class="dtail-product">
-        {{nameProduct}}
+  </div>
+  <div class="edge-detail-product">
+    <div class="dtail-product">
+      <div class="titleProduct">{{ nameProduct }}</div>
+      <div class="descripProduct">{{ descript }}</div>
+      <div style="margin-top: 15px">
+        <div class="flex flex-Price">
+          <div class="flex flex-Price bg">
+            <div class="flex item-center">
+              <div class="flex items-center _2n_9_X" >
+                <div class="flex items-center">
+                  <div class="priceProduct">
+                    {{ price | currency: '฿' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="groupAction">
+        <div class="group-btn">
+          <div class="flex-btn">
+              <button mat-stroked-button color="primary">เพิ่มไปยังรถเข็น</button>
+              <button mat-flat-button color="primary">ซื้อเลย</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+</div>

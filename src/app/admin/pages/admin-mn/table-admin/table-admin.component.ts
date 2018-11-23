@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { UserService } from 'src/app/services/admin/user.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { BackendService } from 'src/app/services/backend.service';
 import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-
+import { DataSource } from '@angular/cdk/collections';
 
 
 
@@ -14,10 +14,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./table-admin.component.css'],
   providers: [UserService]
 })
-export class TableAdminComponent implements OnInit {
+export class TableAdminComponent implements OnInit, AfterViewInit {
 
   userEdit: FormGroup;
-
+  length: any;
 
   @Output() infoPass = new EventEmitter();
   @Output() editProfile = new EventEmitter();
@@ -49,6 +49,12 @@ export class TableAdminComponent implements OnInit {
          }
        );
 
+
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   onDelete(getUsername: any) {
@@ -96,10 +102,7 @@ export class TableAdminComponent implements OnInit {
       );
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

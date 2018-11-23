@@ -25,8 +25,8 @@ export class ProfileService {
 
    upLoadProfile(fileToUpload: File): Observable<any> {
     let formData: FormData = new FormData();
-     formData.append('file', fileToUpload, fileToUpload.name);
-     formData.append('id_product', '10');
+     formData.append('image', fileToUpload, fileToUpload.name);
+     //formData.append('id_product', '10');
 
     // this.sendFile = new FormGroup({
     //    file: new FormControl(fileToUpload),
@@ -34,16 +34,15 @@ export class ProfileService {
     //  });
     //this.sendFile.patchValue({image: fileToUpload});
    // let Form = JSON.stringify(this.sendFile.value);
-    console.log('Formdata', formData);
+    //console.log('Formdata', formData);
      return this.http
-      .post( 'http://158.108.207.7:8080/ecom/api/eshop/upload/', JSON.stringify(formData) , this.getAuthImage());
+      .post( 'http://158.108.207.7:8181/ecom/api/emarket/picprofiles', formData , this.getAuthProfile());
    }
 
   private getAuthProfile() {
     const token = localStorage.getItem('token');
-    const conttent = 'application/json';
     const name = 'multipart/form-data';
-    const httpheaders = new HttpHeaders({'Content-Type': conttent , 'token': token, 'enctype': name});
+    const httpheaders = new HttpHeaders({ 'token': token, 'mimeType': name});
     return { headers: httpheaders };
   }
 

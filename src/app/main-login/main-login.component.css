@@ -3,10 +3,25 @@
   padding: 50px;
   background-color: white;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .06);
-  width: 36%;
   margin: auto;
+  width: 50%;
 }
 
 .example-full-width {
-  width: 60%;
+  width: 65%;
+}
+
+@media (max-width: 600px) {
+  .card {
+    border-radius: 5px;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, .06);
+  margin: auto;
+  width: 100%;
+  }
+
+  .example-full-width {
+    width: 75%;
+  }
 }

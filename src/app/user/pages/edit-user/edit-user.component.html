@@ -72,17 +72,15 @@
                 <img
                 [src]="imageToShow"
                 alt="Place image title"
-                *ngIf="!isImageLoading; else: noImageFound"
                 class="card-img-top"
-
               />
-              <ng-template #noImageFound>
-                <img src="fallbackImage.png" alt="Fallbackimage" />
-              </ng-template>
+
                 <h4>{{name}}</h4>
               </div>
 
+
               <input type="file"
+
                 id="file"
                 enctype="multipart/form-data"
                 (change)="handleFileInput($event.target.files)"/>

@@ -11,13 +11,15 @@
     <mat-toolbar color="primary" class="navbar-sticky">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        {{ nameUser }}
       </button>
       <span>
-        <a [routerLink]="['/mado']">
-          <mat-icon id="icon-warn">error_outline</mat-icon>
-          แจ้งปัญหา
-        </a>
-
+        <div class="report-menu">
+            <a [routerLink]="['/mado']">
+            <mat-icon id="icon-warn">error_outline</mat-icon>
+              แจ้งปัญหา
+            </a>
+      </div>
       </span>
       <span class="spacer"></span>
       <a *ngIf="!Islogin" [routerLink]="['/register']">สมัครสมาชิก</a>

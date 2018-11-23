@@ -58,3 +58,19 @@ a {
   color: black;
 }
 
+@media (max-width: 600px) {
+  .report-menu {
+    display: none;
+  }
+  .spacer {
+  flex: 1 1 auto;
+}
+  .bt-profile ,mat-icon-button  {
+    display: none;
+    margin-left: 1px;
+  }
+
+}
+
+
+

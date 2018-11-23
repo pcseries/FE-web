@@ -158,6 +158,10 @@ export class EditUserComponent implements OnInit {
 }
 
 uploadFileToActivity() {
+  const formData = new FormData();
+  formData.append('image', this.fileToUpload, this.fileToUpload.name);
+
+  console.log('FormData', formData);
   this.profileService.upLoadProfile(this.fileToUpload).subscribe(
     data => {
     // do something, if upload success
