@@ -4,7 +4,7 @@ import { AddAdminComponent } from './add-admin/add-admin.component';
 @Component({
   selector: 'app-admin-mn',
   templateUrl: './admin-mn.component.html',
-  styleUrls: ['./admin-mn.component.css', './../admin-page.component.scss' ]
+  styleUrls: ['./admin-mn.component.css' ]
 })
 export class AdminMNComponent implements OnInit {
 

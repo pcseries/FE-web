@@ -68,7 +68,7 @@ export class PagesTopComponent implements OnInit {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('permission');
-    this.router.navigate(['/mado']);
+    this.router.navigate(['/mado/listproduct']);
   }
 
   public _sidebarToggle() {

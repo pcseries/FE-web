@@ -53,7 +53,7 @@ export class ProductsComponent implements OnInit {
 
   seeProduct(idProduct) {
     //alert(idProduct);
-    this.router.navigate(['product/detail', idProduct]);
+    this.router.navigate(['mado/product/detail', idProduct]);
   }
 
   getImageFromService(id: any , name: any, i: any) {

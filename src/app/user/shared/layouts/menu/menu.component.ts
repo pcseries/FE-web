@@ -35,28 +35,10 @@ export class MenuComponent implements OnInit {
 
   private _selectItem(item) {
     //this._globalService._isActived(item);
-    console.log(item);
-    //this._globalService.dataBusChanged('isActived', item);
-    //alert(item.path);
-    let p = item.path.split('/');
-    //alert(p[1]);
-
-    if (p[1] === 'editProfile' ) {
-      item.toggle = 'on';
-
-    } else {
-      //this.check = true;
-      item.toggle = 'off';
-      this.isToggleOn(item);
-      //
-      //this.passSidebar.emit(this.check);
-
-    }
-
+    this._globalService.dataBusChanged('isActived', item);
   }
 
   ngOnInit () {
-    this.check = false;
 
   }
 

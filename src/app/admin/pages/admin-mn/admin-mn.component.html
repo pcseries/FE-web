@@ -1,8 +1,4 @@
-<div class="pages-wrap">
-  <app-pages-top></app-pages-top>
-  <div class="pages-body">
-    <app-sidebar-admin></app-sidebar-admin>
-    <div class="pages-content">
+
       <div class=group-bt>
         <button class="bt-back" (click)="backPage()" mat-raised-button *ngIf="isAddadmin || isSeeadmin || isEdit"><i class="fa fa-chevron-circle-left" style="font-size: 24px;"></i> กลับไปหน้าจัดการ admin</button>
         <button class="bt-add" mat-flat-button (click)="addAdmin()" *ngIf="!isAddadmin && !isSeeadmin && !isEdit"><i class="fa fa-user-plus"
@@ -13,7 +9,4 @@
       <app-add-admin *ngIf="isAddadmin"></app-add-admin>
       <app-info *ngIf="isSeeadmin" [user]="storeInfo"></app-info>
       <app-edit-admin *ngIf="isEdit" [userName]="storeName"></app-edit-admin>
-    </div>
-  </div>
-</div>
 

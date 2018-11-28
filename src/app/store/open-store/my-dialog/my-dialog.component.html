@@ -1,9 +1,26 @@
-<h1 mat-dialog-title>Title</h1>
-<div mat-dialog-content>
-  ส่วนinput เปิดร้าน
+
+<h1 mat-dialog-title class="title-dialog"><i class="fa fa-bank" style="font-size:36px"></i>เปิดร้านค้า</h1>
+
+<div mat-dialog-content class="input-group">
+  <mat-form-field class="name">
+    <input matInput placeholder="ชื่อร้านค้า" [(ngModel)]="data.name_shop">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="name">
+    <input matInput placeholder="ชื่อธนาคาร" [(ngModel)]="data.bank_account_name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="name">
+    <input matInput placeholder="รหัสธนาคาร" [(ngModel)]="data. bank_account_number">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="address">
+    <textarea class="area" placeholder="ที่อยู่ร้านค้า" matInput [(ngModel)]="data.shop_address"></textarea>
+  </mat-form-field>
   <p></p>
 </div>
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>ยกเลิก</button>
-  <button mat-raised-button (click)="save()" >เปิดร้าน</button>
-</div>
+  <button mat-raised-button color="accent" (click)="save()" >เปิดร้าน</button>
+
+</mat-dialog-actions>

@@ -12,20 +12,45 @@ import { AdminMNComponent } from './admin/pages/admin-mn/admin-mn.component';
 import { DtailProductComponent } from './core/pages/dtail-product/dtail-product.component';
 import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
 
+import { AdminPageComponent } from './admin/admin-page.component';
+import { UserComponent } from './user/user.component';
+import { ProfileAdminComponent } from './admin/pages/profile-admin/profile-admin.component';
+import { ListProductComponent } from './core/shared/list-product/list-product.component';
+import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
+
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/mado', pathMatch: 'full'},
+  {path: '', redirectTo: '/mado/listproduct', pathMatch: 'full'},
   {path: 'main-nav', component: MainNavComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'main-login', component: MainLoginComponent},
-  {path: 'mado', component: MADOComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'user/profile', component: ProfileComponent},
-  {path: 'admin/userMN', component: UserMNcomponent},
-  {path: 'admin/adminMN', component: AdminMNComponent},
-  {path: 'product/detail/:id', component: DtailProductComponent},
-  {path: 'user/editProfile', component: EditUserComponent}
+  {
+    path: 'mado', component: MADOComponent,
+    children: [
+      {path: 'listproduct', component: ListProductComponent},
+      {path: 'login', component: MainLoginComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'product/detail/:id', component: DtailProductComponent},
+      {path: 'shopping', component: ShoppingCartsComponent}
+    ]
+  },
+
+  {
+    path: 'admin', component: AdminPageComponent,
+    children: [
+      {path: 'userMN' , component: UserMNcomponent},
+      {path: 'adminMN', component: AdminMNComponent},
+      {path: 'profile', component: ProfileAdminComponent}
+    ],
+  },
+  {
+    path: 'user', component: UserComponent,
+    children: [
+      {path: 'profile', component: ProfileComponent},
+      {path: 'editProfile', component: EditUserComponent}
+    ],
+  },
+
+
 ];
 
 @NgModule({

@@ -60,8 +60,13 @@ import { RecommendComponent } from './core/shared/allProduct/recommend/recommend
 import { NewProductComponent } from './core/shared/allProduct/new-product/new-product.component';
 import { EditUserComponent } from './user/pages/edit-user/edit-user.component';
 import { UserComponent } from './user/user.component';
-import { PromotionProductComponent } from './promotion-product/promotion-product.component';
+import { PromotionProductComponent } from './core/pages/promotion-product/promotion-product.component';
+import { AdminPageComponent } from './admin/admin-page.component';
 
+import { ProfileAdminComponent } from './admin/pages/profile-admin/profile-admin.component';
+import { ListProductComponent } from './core/shared/list-product/list-product.component';
+import { FormsModule } from '@angular/forms';
+import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
 
 
 
@@ -99,7 +104,12 @@ import { PromotionProductComponent } from './promotion-product/promotion-product
     NewProductComponent,
     EditUserComponent,
     UserComponent,
-    PromotionProductComponent
+    PromotionProductComponent,
+    AdminPageComponent,
+    ProfileAdminComponent,
+    ListProductComponent,
+    ShoppingCartsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -123,7 +133,8 @@ import { PromotionProductComponent } from './promotion-product/promotion-product
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule
 
   ],
   entryComponents: [LoginComponent,

@@ -7,7 +7,7 @@
     <div class="example-container">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="username" sticky>
+    <ng-container matColumnDef="username" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
       <td mat-cell *matCellDef="let row"  > {{row.username}} </td>
     </ng-container>
@@ -41,7 +41,7 @@
 
 
 
-    <ng-container matColumnDef="actionsColumn" stickyEnd>
+    <ng-container matColumnDef="actionsColumn" class="action" >
       <th mat-header-cell *matHeaderCellDef >
         <button mat-icon-button color="accent"><i class="fa fa-gears mat-icon" style="font-size: 24px;"></i></button>
       </th>

@@ -58,3 +58,8 @@ mat-form-field {
   overflow: auto;
 }
 
+table.mat-table {
+  width: 100%;
+}
+
+

@@ -1,7 +1,7 @@
 <div class="sticky">
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="col col-lg-2">
-    <a class="navbar-brand " [routerLink]="['/mado']">
+    <a class="navbar-brand " [routerLink]="['/mado/listproduct']">
       <mat-icon>
         local_mall
       </mat-icon>
@@ -21,10 +21,13 @@
     </div>
     <div class="col-sm-3 form-inline groupbt">
       <div class="store ">
-        <app-open-store></app-open-store>
+        <app-open-store *ngIf="!isOpen"></app-open-store>
+        <button  mat-stroked-button color="primary" *ngIf="isOpen">จัดการร้านค้า</button>
       </div>
       <div class="shopping ">
-          <i class="fa fa-cart-plus" style="font-size:36px;"></i>
+        <a [routerLink]="['/mado/shopping']" style="color: black;">
+          <i class="fa fa-cart-plus" style="font-size:36px; cursor: pointer;" ></i>
+        </a>
       </div>
     </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../services/core/products.service';
+
 import { Router } from '@angular/router';
+import { ProductsService } from 'src/app/services/core/products.service';
 
 @Component({
   selector: 'app-promotion-product',
@@ -37,7 +38,7 @@ export class PromotionProductComponent implements OnInit {
 
   seeProduct(idProduct) {
     //alert(idProduct);
-    this.router.navigate(['product/detail', idProduct]);
+    this.router.navigate(['mado/product/detail', idProduct]);
   }
 
   getImageFromService(id: any , name: any, i: any) {

@@ -48,7 +48,8 @@ export class MainLoginComponent implements OnInit {
             if (localStorage.getItem('permission') === "ADMIN" || localStorage.getItem('permission') === "SUPERADMIN" ) {
               this.router.navigate(['/admin/userMN']);
             } else if (localStorage.getItem('permission') === "USER") {
-              this.router.navigate(['/mado']);
+              location.reload();
+              this.router.navigate(['/mado/listproduct']);
             } else {
               this.router.navigate(['/main-login']);
               location.reload();

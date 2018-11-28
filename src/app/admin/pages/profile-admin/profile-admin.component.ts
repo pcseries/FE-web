@@ -6,12 +6,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss'],
-  providers: [UserService, ProfileService]
+  selector: 'app-profile-admin',
+  templateUrl: './profile-admin.component.html',
+  styleUrls: ['./profile-admin.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class ProfileAdminComponent implements OnInit {
 
   editProfile: FormGroup;
 
@@ -172,6 +171,5 @@ uploadFileToActivity() {
       console.log(error);
     });
 }
-
 
 }

@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
           location.reload();
          } else {
             alert('register successful');
-           this.router.navigate(['/mado']);
+           this.router.navigate(['/mado/listproduct']);
          }
        },
        error => {

@@ -18,11 +18,11 @@ export class UserService {
   baseUrlBS: string = environment.apiUrlBS;
 
   getUser(): Observable<any> {
-    return this.http.get(this.baseUrlBS + 'users' , {headers: this.httpHeaders});
+    return this.http.get(this.baseUrlBS + 'members' , {headers: this.httpHeaders});
   }
 
   getAdmin(): Observable<any> {
-    return this.http.get(this.baseUrlBS + 'admin', this.getAuth());
+    return this.http.get(this.baseUrlBS + 'admins', this.getAuth());
   }
 
    deleteUser(body: any): Observable<any> {

@@ -13,10 +13,12 @@ export class MyDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
+
   }
 
   save() {
-    this.dialogRef.close("It WAS SAVED");
+    //this.dialogRef.close("It WAS SAVED");
+    this.dialogRef.close(this.data);
     // save data
   }
 

@@ -1,13 +1,6 @@
-<div class="pages-wrap">
-  <app-pages-top></app-pages-top>
-  <div class="pages-body">
-    <app-sidebar-admin></app-sidebar-admin>
-    <div class="pages-content">
+
       <div class=group-bt>
           <button class="bt-back" *ngIf="isSeeuser" mat-raised-button (click)="backPage()"><i class="fa fa-chevron-circle-left" style="font-size: 24px;"></i> กลับไปหน้าจัดการ user</button>
       </div>
       <app-mattabledata *ngIf="!isSeeuser" (infoUser)="onInfoAdd($event)"></app-mattabledata>
       <app-info *ngIf="isSeeuser" [user]="info"></app-info>
-    </div>
-  </div>
-</div>

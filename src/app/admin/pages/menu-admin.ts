@@ -29,7 +29,7 @@ export let MENU_ITEM = [
     title: 'จัดการการส่ง'
   },
   {
-    path: '#',
+    path: 'admin/profile',
     title: 'บัญชีของฉัน',
     icon: 'address-card'
   }

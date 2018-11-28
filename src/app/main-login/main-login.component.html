@@ -1,6 +1,5 @@
-<app-main-nav>
-  <app-subnav></app-subnav>
-  <div class="container">
+
+
   <div style="text-align:center">
     <div class="card">
       <h1>
@@ -28,7 +27,7 @@
             <button mat-ripple mat-stroked-button type="submit" id="submit" [disabled]="userLogin.invalid || loading"
               color="primary">Login
             </button>
-            <button [routerLink]="['/mado']" mat-raised-button color="accent" style="margin-left: 10px;">Cancel
+            <button [routerLink]="['/mado/listproduct']" mat-raised-button color="accent" style="margin-left: 10px;">Cancel
             </button>
 
           </div>
@@ -38,9 +37,8 @@
       </div>
       <br><br>
       <div mat-dialog-actions>
-        <a [routerLink]="['/register']">Don't have an accoount? Register here</a>
+        <a [routerLink]="['/mado/register']">Don't have an accoount? Register here</a>
       </div>
     </div>
-  </div>
-  </div>
-</app-main-nav>
+
+
