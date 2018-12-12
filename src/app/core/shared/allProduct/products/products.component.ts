@@ -18,6 +18,8 @@ export class ProductsComponent implements OnInit {
   imageToShow: any = [];
   cart: Array<CartShop> = [];
 
+  price = [];
+
 
   count: any;
 
@@ -36,11 +38,12 @@ export class ProductsComponent implements OnInit {
         // productList.price = this.products[0].product_variation[0]['price'];
         // this.cart.push(productList);
         this.products = response['body'];
-        console.log('product' , this.products);
+        //console.log('product' , this.products[0]['variation'][0].price);
 
         //get image แบบลูปและส่ง i ไปด้วย
         for (let i = 0; i < this.products.length; i++) {
-          this.getImageFromService(this.products[i].id_product, this.products[i].pic_product, i);
+          this.getImageFromService(this.products[i].id_product, this.products[i].pic[0].pic_product, i);
+          this.price[i] = this.products[i]['variation'][0].price;
         }
 
       },

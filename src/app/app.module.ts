@@ -16,7 +16,7 @@ import { MatToolbarModule
    , MatNativeDateModule
   } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatSelectModule} from '@angular/material/select';
 
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
@@ -26,7 +26,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './/app-routing.module';
 
-import { LoginComponent, loginDialog } from './login/login.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainLoginComponent } from './main-login/main-login.component';
 import { MADOComponent } from './mado/mado.component';
@@ -52,7 +52,7 @@ import { OpenStoreComponent } from './store/open-store/open-store.component';
 import { MyDialogComponent } from './store/open-store/my-dialog/my-dialog.component';
 import { InfoComponent } from './admin/pages/admin-mn//info/info.component';
 import { ProductsComponent } from './core/shared/allProduct/products/products.component';
-import { ImageComponent } from './image/image.component';
+
 import { EditAdminComponent } from './admin/pages/admin-mn/edit-admin/edit-admin.component';
 import { DtailProductComponent } from './core/pages/dtail-product/dtail-product.component';
 import { CardProductComponent } from './core/shared/card-product/card-product.component';
@@ -67,7 +67,9 @@ import { ProfileAdminComponent } from './admin/pages/profile-admin/profile-admin
 import { ListProductComponent } from './core/shared/list-product/list-product.component';
 import { FormsModule } from '@angular/forms';
 import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
-
+import { UserStoreComponent } from './user/pages/user-store/user-store.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SeeProductsComponent } from './see-products/see-products.component';
 
 
 
@@ -76,8 +78,7 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
   declarations: [
     AppComponent,
     MainNavComponent,
-    LoginComponent,
-    loginDialog,
+
     MainLoginComponent,
     MADOComponent,
     RegisterComponent,
@@ -96,7 +97,7 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
     MyDialogComponent,
     InfoComponent,
     ProductsComponent,
-    ImageComponent,
+
     EditAdminComponent,
     DtailProductComponent,
     CardProductComponent,
@@ -108,7 +109,9 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
     AdminPageComponent,
     ProfileAdminComponent,
     ListProductComponent,
-    ShoppingCartsComponent
+    ShoppingCartsComponent,
+    UserStoreComponent,
+    SeeProductsComponent
 
   ],
   imports: [
@@ -134,11 +137,12 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatProgressSpinnerModule
 
   ],
-  entryComponents: [LoginComponent,
-    loginDialog,
+  entryComponents: [
     MyDialogComponent
   ],
   providers: [

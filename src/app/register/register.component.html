@@ -1,5 +1,5 @@
 
-
+<div class="container">
     <div class="card">
       <h1 style="color:#9012fe;"> Register </h1>
       <form (ngSubmit)="onRegister()" [formGroup]="userRegister">
@@ -64,7 +64,7 @@
             </mat-error>
             <mat-error
               *ngIf="!(userRegister.get('phone').hasError('minlength') && userRegister.get('phone').hasError('maxlength'))&& !userRegister.get('phone').hasError('required') ">
-              Phone has to be 10 chars
+              Phone has to be 10 digit
             </mat-error>
             <mat-error
               *ngIf="userRegister.get('phone').hasError('pattern')">
@@ -95,7 +95,7 @@
             </button>
             <button [routerLink]="['/mado/listproduct']"
               mat-raised-button
-              color="accent"
+
               style="margin-left: 10px;">Cancel
             </button>
           </div>
@@ -105,5 +105,5 @@
       <a [routerLink]="['/mado/login']">Do you have an account already? Login in</a>
     </div>
 
-
+  </div>
 

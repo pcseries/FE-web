@@ -12,7 +12,7 @@
 }
 
 .area {
-
+  height: 60px;
 }
 
 .action-group {
@@ -21,4 +21,8 @@
 
 .input-group {
   height: 75%;
+}
+
+.selectBank {
+  width: 50%;
 }

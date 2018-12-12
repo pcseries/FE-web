@@ -1,26 +1,57 @@
 
 <h1 mat-dialog-title class="title-dialog"><i class="fa fa-bank" style="font-size:36px"></i>เปิดร้านค้า</h1>
 
+<form (ngSubmit)="save()" [formGroup]="openStore">
 <div mat-dialog-content class="input-group">
   <mat-form-field class="name">
-    <input matInput placeholder="ชื่อร้านค้า" [(ngModel)]="data.name_shop">
-  </mat-form-field>
-  <br>
-  <mat-form-field class="name">
-    <input matInput placeholder="ชื่อธนาคาร" [(ngModel)]="data.bank_account_name">
-  </mat-form-field>
-  <br>
-  <mat-form-field class="name">
-    <input matInput placeholder="รหัสธนาคาร" [(ngModel)]="data. bank_account_number">
+    <input matInput placeholder="ชื่อร้านค้า"  formControlName="name_shop">
+    <mat-error *ngIf="openStore.get('name_shop').hasError('required')">
+        โปรดกรอก <strong>ชื่อร้าน</strong>
+    </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field class="address">
-    <textarea class="area" placeholder="ที่อยู่ร้านค้า" matInput [(ngModel)]="data.shop_address"></textarea>
+    <textarea class="area" placeholder="ที่อยู่ร้านค้า" matInput formControlName="shop_address"></textarea>
+    <mat-error *ngIf="openStore.get('shop_address').hasError('required')">
+        โปรดกรอก <strong>ที่อยู่ร้านค้า</strong>
+    </mat-error>
   </mat-form-field>
+  <br>
+  <mat-form-field class="name">
+    <input matInput placeholder="ชื่อบัญชี" formControlName="bank_account_name">
+    <mat-error *ngIf="openStore.get('bank_account_name').hasError('required')">
+        โปรดกรอก <strong>ชื่อบัญชี</strong>
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="name">
+    <input matInput placeholder="เลขบัญชี" formControlName="bank_account_number">
+    <mat-error *ngIf="openStore.get('bank_account_number').hasError('required')">
+        โปรดกรอกรหัส <strong>ธนาคาร</strong>
+    </mat-error>
+    <mat-error *ngIf="!(openStore.get('bank_account_number').hasError('minlength') && openStore.get('bank_account_number').hasError('maxlength'))&& !openStore.get('bank_account_number').hasError('required') ">
+        Bank account has to be 10 digit
+    </mat-error>
+    <mat-error
+          *ngIf="openStore.get('bank_account_number').hasError('pattern')">
+          Bank account must be char 0-9
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="selectBank">
+    <input matInput placeholder="ธนาคาร" value="{{name_bank}}" >
+  </mat-form-field>
+
+
   <p></p>
 </div>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>ยกเลิก</button>
-  <button mat-raised-button color="accent" (click)="save()" >เปิดร้าน</button>
+
+  <button mat-raised-button color="accent" [disabled]="openStore.invalid " type="submit" >เปิดร้าน</button>
+
+  <button mat-raised-button type="button" (click)="close()">ยกเลิก</button>
+
 
 </mat-dialog-actions>
+
+</form>

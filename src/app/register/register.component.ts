@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     const md5 = new Md5();
+    console.log('register', this.userRegister.value.dob);
     const year = this.userRegister.value.dob.getFullYear();
     const month = this.userRegister.value.dob.getMonth() ;
     const date = this.userRegister.value.dob.getDate();
@@ -82,7 +83,7 @@ export class RegisterComponent implements OnInit {
           location.reload();
          } else {
             alert('register successful');
-           this.router.navigate(['/mado/listproduct']);
+            this.router.navigate(['/mado/listproduct']);
          }
        },
        error => {

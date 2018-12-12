@@ -29,7 +29,7 @@ export let MENU_ITEM = [
     icon: 'credit-card'
   },
   {
-    path: '#',
+    path: 'user/store',
     title: 'จัดการร้านค้า',
     icon: 'briefcase'
   }

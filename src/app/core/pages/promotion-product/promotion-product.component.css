@@ -54,8 +54,14 @@ h2.title::after{
 }
 
 .card-title {
-  font-size: 15px;
-  font-weight: bold;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.125rem;
+  height: 2.1875rem;
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
 }
 
 .card-img-top {
@@ -63,3 +69,13 @@ h2.title::after{
 }
 
 
+.price-promo {
+  display: flex;
+}
+
+.oldPrice {
+  color: rgba(0,0,0,.54);
+  text-decoration: line-through;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { MainLoginComponent } from './main-login/main-login.component';
 import { MADOComponent } from './mado/mado.component';
 import { RegisterComponent } from './register/register.component';
@@ -17,6 +16,7 @@ import { UserComponent } from './user/user.component';
 import { ProfileAdminComponent } from './admin/pages/profile-admin/profile-admin.component';
 import { ListProductComponent } from './core/shared/list-product/list-product.component';
 import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
+import { UserStoreComponent } from './user/pages/user-store/user-store.component';
 
 
 
@@ -46,7 +46,8 @@ const routes: Routes = [
     path: 'user', component: UserComponent,
     children: [
       {path: 'profile', component: ProfileComponent},
-      {path: 'editProfile', component: EditUserComponent}
+      {path: 'editProfile', component: EditUserComponent},
+      {path: 'store', component: UserStoreComponent}
     ],
   },
 

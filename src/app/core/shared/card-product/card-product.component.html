@@ -1,17 +1,49 @@
-<div class="card-productDetail">
+<mat-spinner *ngIf="!progress"></mat-spinner>
+
+<div *ngIf="progress"  class="card-productDetail">
   <div class="Image-product">
     <div class="allImage">
       <div class="mainImage">
         <img
-          [src]="imageToShow"
+          [src]=" imageBigshow"
           alt="Place image title"
-          *ngIf="!isImageLoading; else: noImageFound"
-          class="card-img-top"
+          class="card-img-top imageMain"
         />
 
       </div>
 
-      <div class="showSelectImage"></div>
+      <!--  [ส่วนของการ show รูปเยอะๆ]  -->
+
+
+
+      <div class="showSelectImage">
+        <ng-container *ngFor="let p of imageToShow; let i = index">
+        <div class="_2MDwq_">
+          <div class="ZPN9uD">
+
+            <div class="animated-lazy-image">
+              <div class="imageShowAll">
+
+                  <img *ngIf="i < 5" [src]="p"
+
+                  alt="Place image title"
+                  class="card-img-top img-shows"
+                  style="cursor: pointer;"
+                  id="myText"
+                  (click)="changeMainImage(i)"
+                  >
+
+              </div>
+            </div>
+
+            <div *ngIf="i==isSelected" class="Wrsd9N"></div>
+
+          </div>
+        </div>
+          </ng-container>
+      </div>
+
+
     </div>
   </div>
   <div class="edge-detail-product">
@@ -33,14 +65,67 @@
           </div>
         </div>
       </div>
+
+      <!--คำนวณ ปริมาณ  -->
+
+
+
+      <div class="variation">
+          <label class="title-variation" >Variation</label>
+
+          <div class="choice" >
+            <mat-form-field >
+              <mat-select placeholder="โปรดเลือกชนิดสินค้า"  [(ngModel)]="selectedValue" >
+                  <mat-option *ngFor="let vT of variations; let i = index" [value]="i" (click)="changeVariation()" >
+                    {{vT.name}}
+                  </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+      </div>
+      <div class="quantity">
+        <div class="amount">
+          จำนวน
+        </div>
+        <div class="group-amount">
+          <div style="margin-right: 15px">
+            <div class="shopee-input-quantity">
+              <button class="shopee-button-outline" [disabled]="!canReduce"  (click)="reduceAmount()">
+                <svg class="shopee-svg-icon" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
+                  <polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon>
+                </svg>
+              </button>
+              <input class="input-amount" type="text" value={{amount}} [disabled]="noKey">
+              <button class="shopee-button-outline" (click)="addAmount()">
+                <svg class="shopee-svg-icon plus-icon" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
+                  <polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        <div>มีทั้งหมด {{ amountAll }}  ชิ้น</div>
+
+        </div>
+      </div>
+
+
+      <!--==== [END] ====-->
       <div class="groupAction">
         <div class="group-btn">
           <div class="flex-btn">
-              <button mat-stroked-button color="primary">เพิ่มไปยังรถเข็น</button>
-              <button mat-flat-button color="primary">ซื้อเลย</button>
+              <button mat-stroked-button color="primary" class="btn-add" (click)="addProduct()">
+                <i class="fa fa-cart-plus" style="font-size:30px; cursor: pointer;" ></i>
+                เพิ่มไปยังรถเข็น
+              </button>
+              <button mat-flat-button color="primary" class="btn-buy" style="margin-left: 20px;">ซื้อเลย</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

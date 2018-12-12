@@ -16,8 +16,17 @@
   </ng-template>
 
           <div class="card-body">
-            <div class="card-title">{{ p.name_product }}</div>
-            <p class="card-text">ราคา </p>
+            <div class="card-title">{{ p.name }}</div>
+            <div class="price-promo">
+              <div class="oldPrice">
+                  ฿{{ p.price | number:0  }}
+              </div>
+              <div class="newPrice" style="margin-left: 7px;">
+                <p class="card-text">
+                  <strong>{{ p.new_price | currency:'฿'  }}</strong>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

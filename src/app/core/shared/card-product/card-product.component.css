@@ -74,6 +74,7 @@
 
 .groupAction {
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 
 .group-btn {
@@ -81,4 +82,169 @@
 }
 .flex-btn {
   display: flex;
+}
+
+.quantity {
+  margin-top: 30px;
+  color: #757575;
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.amount {
+  color: #757575;
+  width: 110px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.group-amount {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.shopee-input-quantity {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  background: #fff;
+}
+
+.shopee-input-quantity .shopee-button-outline {
+  width: 2rem;
+  height: 2rem;
+  outline: none;
+  cursor: pointer;
+  font-size: .875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+  border: 1px solid rgb(0, 0, 0, 0.09);
+  border-radius: 2px;
+  background: transparent;
+  color: rgb(0, 0, 0, 0.8);
+}
+
+.shopee-input-quantity>.shopee-button-outline:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.shopee-svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  position: relative;
+  font-size: .625rem;
+}
+
+.input-amount {
+  width: 3.125rem;
+  height: 2rem;
+  border-left: none;
+  border-right: none;
+  font-size: 1rem;
+  font-weight: 400;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: text;
+  border-radius: 0;
+  outline: none;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+  border:1px solid rgba(0,0,0,.09);
+  background: transparent;
+  color: rgba(0,0,0,.8);
+}
+
+.variation {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: baseline;
+  margin-top: 25px;
+}
+
+.title-variation {
+  color: #757575;
+  width: 110px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.btn-add {
+  min-width: 11.25rem;
+  padding: 0.46rem;
+}
+
+.btn-buy {
+  min-width: 11.25rem;
+}
+
+.showSelectImage {
+  margin: 5px -5px;
+  position: relative;
+
+}
+
+._2MDwq_ {
+  display: inline-block;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 20%;
+}
+
+.ZPN9uD {
+  position: relative;
+}
+
+.animated-lazy-image {
+  position: relative;
+}
+.imageShowAll {
+ background-size: contain;
+ background-repeat: no-repeat;
+ width: 100%;
+ padding-top: 10%;
+ opacity: 1;
+ transition: opacity 1s ease;
+
+}
+
+.imageMain{
+  height: 400px;
+}
+
+.imageShowAll:hover {
+
+  border: 2px solid dodgerblue;
+
+}
+
+.Wrsd9N {
+  right: 0;
+  bottom: 0;
+  border: 2px solid dodgerblue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 }

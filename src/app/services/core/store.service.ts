@@ -21,6 +21,10 @@ export class StoreService {
     return this.http.get(this.baseUrlBS + 'checkshop', this.getAuth());
   }
 
+  getBank() {
+    return this.http.get(this.baseUrlBS + 'banks', this.getAuth());
+  }
+
   getAuth() {
     const token = localStorage.getItem('token');
     const content = 'application/json; charset=utf-8';

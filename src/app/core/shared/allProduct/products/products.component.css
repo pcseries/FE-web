@@ -15,8 +15,14 @@
 }
 
 .card-title {
-  font-size: 15px;
-  font-weight: bold;
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.125rem;
+  height: 2.1875rem;
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
 }
 
 .card-img-top {

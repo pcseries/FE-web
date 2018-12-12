@@ -1,3 +1,99 @@
-<p>
-  shopping-carts works!
-</p>
+<div class= "container">
+
+
+<div class="page-product-header">
+  <div class="page-product-header_product">
+    สินค้า
+  </div>
+  <div class="page-product-header_unit-price">
+      ราคาต่อชิ้น
+  </div>
+  <div class="page-product-header_quanlity">
+    จำนวน
+  </div>
+  <div class="page-product-header_total-price">
+    ราคารวม
+  </div>
+  <div class= "page-product-header_delete">
+    ยกเลิกการสั่งซื้อ
+  </div>
+
+</div>
+
+<!--ตัว content product ใช้ array ที่นี้-->
+<mat-spinner *ngIf="!progress"></mat-spinner>
+
+<div class="showProduct" *ngIf="isHaveProduct">
+<div class="shopping-basket">
+
+<ng-container   *ngFor="let p of selectProduct; let i = index">
+  <div class="cart-page-shop-section">
+
+    <div class= "cart-page-shop-header">
+      <div class="cart-page-shop-header__center-wrapper">
+        <div class="cart-page-shop-header__shop-name">
+          <span style="padding-left: 5px;">{{ p.shop_name }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cart-page-shop-section__items">
+      <div class="cart-item">
+
+        <div class="cart-item__cell-overview">
+
+          <div class="cart-item-overview__picture">
+              <img
+              [src]="imageToShow[i]"
+              alt="Place image title"
+              class="card-img-top"
+              *ngIf="!isImageLoading; else noImageFound">
+            <ng-template #noImageFound>
+              <img src="./../../../../assets/image/fallbackImage.png"
+              alt="Fallbackimage"
+              class="card-img-top"
+              >
+            </ng-template>
+
+
+          </div>
+
+          <div class="cart-item-overview__product-name-wrapper">
+              <div class="cart-item-overview__name">
+                {{p.name_product}}
+              </div>
+              <div class="selected-product">
+                <strong>เลือกสินค้า:</strong> {{p.name_variation}}
+              </div>
+          </div>
+        </div>
+
+        <div class="cart-item__cell-unit-price">
+            <div class="price">
+              {{p.price}}
+            </div>
+        </div>
+
+        <div class="cart-item__cell-quantity">
+            {{ p.quantity }}
+        </div>
+
+        <div class="cart-item__cell-total-price" >
+          {{ p.price*p.quantity }}
+        </div>
+
+        <div class="cart-item__cell-actions">
+          <button class="btn-shopDelete" mat-stroked-button (click)="onDeleteProduct(p.id_item)">ลบ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
+</div>
+</div>
+
+<div class="noProduct" *ngIf="!isHaveProduct">
+<h3>ไม่มีสินค้า</h3>
+</div>
+</div>

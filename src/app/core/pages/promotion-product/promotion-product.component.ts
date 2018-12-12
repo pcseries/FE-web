@@ -13,6 +13,8 @@ export class PromotionProductComponent implements OnInit {
   products = [];
   image = [];
 
+
+  namePic = [];
   isImageLoading: boolean;
   imageToShow: any = [];
 
@@ -23,10 +25,14 @@ export class PromotionProductComponent implements OnInit {
     this.productService.getPromoProduct().subscribe(
       response => {
         this.products = response['body'];
-        console.log('promo' , this.products);
+        //console.log('promo' , this.products);
+        console.log('oldprice', this.products);
 
         for (let i = 0; i < this.products.length; i++) {
-          this.getImageFromService(this.products[i].id_product, this.products[i].pic_product, i);
+
+           this.namePic[i] = this.products[i]['pic'][0];
+           //console.log('picture', this.namePic[i].pic_product);
+          this.getImageFromService(this.products[i].id_product, this.namePic[i].pic_product, i);
         }
       } ,
       error => {

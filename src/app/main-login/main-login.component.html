@@ -1,5 +1,5 @@
 
-
+<div class="container">
   <div style="text-align:center">
     <div class="card">
       <h1>
@@ -24,10 +24,10 @@
           </div>
           <br>
           <div class="form-actions">
-            <button mat-ripple mat-stroked-button type="submit" id="submit" [disabled]="userLogin.invalid || loading"
+            <button mat-ripple mat-raised-button color="primary" type="submit" id="submit" [disabled]="userLogin.invalid || loading"
               color="primary">Login
             </button>
-            <button [routerLink]="['/mado/listproduct']" mat-raised-button color="accent" style="margin-left: 10px;">Cancel
+            <button [routerLink]="['/mado/listproduct']" mat-raised-button  style="margin-left: 10px;">Cancel
             </button>
 
           </div>
@@ -41,4 +41,4 @@
       </div>
     </div>
 
-
+  </div>

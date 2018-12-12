@@ -26,7 +26,7 @@ export class ProductsService {
   }
 
   detailProduct(idProduct: any): Observable<any> {
-    return this.http.get(this.baseUrlC + 'product/' + idProduct  , this.getAutprodtuct());
+    return this.http.get(this.baseUrlBS + 'productid/' + idProduct  , this.getCardProduct());
   }
 
   getnewProduct(): Observable<any> {
@@ -54,6 +54,12 @@ export class ProductsService {
     const token = 'PC9OqYjEQ10c5W78T3ADxwPFe6BTDgTx';
     const httpheaders = new HttpHeaders({'token': token});
     return { headers: httpheaders};
+  }
+
+  private getCardProduct() {
+    const token = 'PC9OqYjEQ10c5W78T3ADxwPFe6BTDgTx';
+    const httpheaders = new HttpHeaders({'token': token});
+    return { headers: httpheaders };
   }
 
 }
