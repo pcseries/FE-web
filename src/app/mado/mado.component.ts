@@ -12,8 +12,6 @@ export class MADOComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-
-
   }
 
 }

@@ -25,6 +25,7 @@ export class MyDialogComponent implements OnInit {
   name_bank: any;
 
   selected: any;
+  banks: any;
 
   constructor(public dialogRef: MatDialogRef<MyDialogComponent>,
   private fb: FormBuilder,
@@ -34,7 +35,7 @@ export class MyDialogComponent implements OnInit {
         bank_account_name: ['', Validators.required],
         bank_account_number: ['', [Validators.required, Validators.minLength(10),  Validators.maxLength(10), Validators.pattern('[0-9]+[A-Z]?')]],
         shop_address: ['', Validators.required],
-        id_bank_company: [''],
+        id_bank_company: ['', Validators.required],
         statusDialog: [false]
       }
       );
@@ -48,10 +49,12 @@ export class MyDialogComponent implements OnInit {
   setBank() {
     this.storeService.getBank().subscribe(
       res => {
-        this.selected = res['body'][0].id_bank_company.toString();
+        this.selected = '1'; //res['body'][0].id_bank_company.toString();
         this.name_bank = res['body'][0].bank_name;
+        this.banks = res['body'];
+        console.log('getBank', res['body']);
+        console.log('selected', this.selected);
 
-        //console.log('getBank', this.selected);
       },
       err => {
         console.log('bankError', err);
@@ -63,8 +66,10 @@ export class MyDialogComponent implements OnInit {
     //this.dialogRef.close("It WAS SAVED");
     //this.data['statusDialog'] = false;
     this.openStore.value.statusDialog = true;
-    this.openStore.value.id_bank_company = parseInt(this.selected, 10);
+    //this.openStore.value.id_bank_company = parseInt(this.selected, 10);
     //console.log('save');
+
+    //console.log('openStore', this.openStore.value);
     this.dialogRef.close(this.openStore.value);
 
     // save data
@@ -75,10 +80,12 @@ export class MyDialogComponent implements OnInit {
   //this.data['statusDialog'] = false;
    //console.log('data', this.data['statusDialog']);
    this.openStore.value.statusDialog = false;
-   this.openStore.value.id_bank_company = parseInt(this.selected, 10);
+   //this.openStore.value.id_bank_company = parseInt(this.selected, 10);
   // console.log('bank',  this.openStore.value.id_bank_company);
 
    this.dialogRef.close(this.openStore.value);
  }
+
+
 
 }

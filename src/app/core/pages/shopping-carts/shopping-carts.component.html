@@ -84,7 +84,9 @@
         </div>
 
         <div class="cart-item__cell-actions">
-          <button class="btn-shopDelete" mat-stroked-button (click)="onDeleteProduct(p.id_item)">ลบ</button>
+          <button mat-icon-button  class="btn-shopDelete"  focusable="false" (click)="onDeleteProduct(p.id_item)" color="primary">
+            <i class="fa fa-trash mat-icon"></i>
+          </button>
         </div>
       </div>
     </div>

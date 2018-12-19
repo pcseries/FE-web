@@ -39,7 +39,14 @@
   </mat-form-field>
   <br>
   <mat-form-field class="selectBank">
-    <input matInput placeholder="ธนาคาร" value="{{name_bank}}" >
+    <mat-select placeholder="โปรดเลือกธนาคาร"  formControlName="id_bank_company">
+      <mat-option *ngFor="let b of banks; let i = index" [value]="b.id_bank_company" >
+        {{b.bank_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="openStore.get('id_bank_company').hasError('required')">
+      โปรดเลือก <strong>ธนาคาร</strong>
+  </mat-error>
   </mat-form-field>
 
 
