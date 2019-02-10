@@ -30,7 +30,7 @@ export class OpenStoreComponent implements OnInit {
       shop_address: [''],
       bank_account_name: [''],
       bank_account_number: [''],
-      id_bank_company: [1]
+      id_bank_company: ['1']
     });
    }
 
@@ -42,7 +42,7 @@ export class OpenStoreComponent implements OnInit {
     if (localStorage.getItem('token') != null) {
       const dialogRef = this.dialog.open(MyDialogComponent , {
       width: '50%',
-      height: '88%',
+      height: '560px',
       data: {
         name_shop: this.openShop.value.name_shop,
         shop_address: this.openShop.value.shop_address,
@@ -74,12 +74,12 @@ export class OpenStoreComponent implements OnInit {
 
   }
     open (data: FormGroup) {
-      console.log(data);
-      //location.reload();
+      // console.log(data);
+      // location.reload();
       this.storeService.openStore(data).subscribe(
         res => {
-          //console.log('store', res);
-          location.reload();
+          // console.log('store', res);
+           location.reload();
         },
         error => {
           console.log('err', error);

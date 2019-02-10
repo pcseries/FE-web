@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
   let pass = group.controls.password.value;
   let confirmPass = group.controls.confirmPassword.value;
 
-  return pass === confirmPass ? null : { notSame: true }
+  return pass === confirmPass ? null : { notSame: true };
 }
 
 

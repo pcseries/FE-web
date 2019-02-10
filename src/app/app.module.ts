@@ -70,6 +70,10 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
 import { UserStoreComponent } from './user/pages/user-store/user-store.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SeeProductsComponent } from './see-products/see-products.component';
+import { AddProductStoreComponent } from './user/pages/user-store/add-product-store/add-product-store.component';
+import { ListProductsStoreComponent } from './user/pages/user-store/list-products-store/list-products-store.component';
+import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
+
 
 
 
@@ -111,7 +115,10 @@ import { SeeProductsComponent } from './see-products/see-products.component';
     ListProductComponent,
     ShoppingCartsComponent,
     UserStoreComponent,
-    SeeProductsComponent
+    SeeProductsComponent,
+    AddProductStoreComponent,
+    ListProductsStoreComponent,
+    StoreManageComponent
 
   ],
   imports: [

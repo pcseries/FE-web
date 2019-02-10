@@ -1,6 +1,8 @@
 <mat-spinner *ngIf="!progress"></mat-spinner>
 
-<div *ngIf="progress"  class="card-productDetail">
+
+<div *ngIf="progress" >
+<div   class="card-productDetail">
   <div class="Image-product">
     <div class="allImage">
       <div class="mainImage">
@@ -128,4 +130,16 @@
   </div>
 </div>
 
+<div>
+  <div class="detail-card">
+    <div class="title-detail">
+      รายละเอียด
+      <hr class="line">
+    </div>
+    <div class="content-card">
+      {{description}}
+    </div>
+  </div>
+</div>
 
+</div>

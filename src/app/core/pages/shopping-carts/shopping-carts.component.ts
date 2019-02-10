@@ -22,8 +22,12 @@ export class ShoppingCartsComponent implements OnInit {
   isHaveProduct: boolean;
   isImageLoading: boolean;
   imageToShow: any = [];
-
   deleteProduct: FormGroup;
+
+  // แสดงรายการสินค้า
+  showOrders = [];
+  sort_showOrder = [];
+  status_header = [];
 
   constructor(
     private shopcartService: ShopcartService,
@@ -43,22 +47,29 @@ export class ShoppingCartsComponent implements OnInit {
       res => {
         this.shopCart = res["body"]["order"];
         //this.name = res['body']['order'][1]['order_item'][0].name_product;
-        console.log("shopCart", res["body"]["order"]);
+        // console.log("shopCart", res["body"]["order"]);
+        // this.showOrders = res['body']['order'];
+       // this.onShoworders(res['body']['order']);
 
-        //คัดสินค้า ที่นี้
+        // คัดสินค้า ที่นี้
         for (let i = 0; i < this.shopCart.length; i++) {
           if (this.shopCart[i].order_status === "ORDERING") {
             this.id_order = this.shopCart[i].id_order;
             this.count = this.count + 1;
             this.isHaveProduct = true;
-            //console.log(this.shopCart[i]);
-            //this.selectProduct[this.count] = this.shopCart[i].order_item;
-            //this.getImageFromService(this.selectProduct[this.count][this.count].id_product , this.selectProduct[this.count][this.count].pic_product);
+            // console.log(this.shopCart[i]);
+            // this.selectProduct[this.count] = this.shopCart[i].order_item;
+            // this.getImageFromService(this.selectProduct[this.count][this.count].id_product , this.selectProduct[this.count][this.count].pic_product);
+           // this.onShoworders(this.shopCart[i]["order_item"]);
 
-            //console.log('productSelect', this.shopCart[i]['order_item'][0]);
+            this.onShoworders(this.shopCart[i]["order_item"]);
+
+            // console.log('productSelect', this.shopCart[i]['order_item'][0]);
             for (let j = 0; j < this.shopCart[i]["order_item"].length; j++) {
               this.selectProduct = this.shopCart[i]["order_item"];
-              //console.log('selectProduct', this.selectProduct);
+                // this.showOrders.push(this.selectProduct[j]);
+               // this.onShoworders(this.shopCart[i]["order_item"]);
+            // console.log('selectProduct', this.selectProduct[j]);
               console.log("LengthProduct", this.selectProduct.length);
               let id = this.shopCart[i]["order_item"][j].id_product;
               let namepic = this.shopCart[i]["order_item"][j].pic_product;
@@ -75,14 +86,44 @@ export class ShoppingCartsComponent implements OnInit {
           this.isHaveProduct = false;
         }
 
-        //console.log('length', this.shopCart.length);
-        //console.log('name', res['body']['order'][1]['order_item'][0].name_product);
+        // console.log('length', this.shopCart.length);
+        // console.log('name', res['body']['order'][1]['order_item'][0].name_product);
         this.progress = true;
+
       },
       error => {
         console.log("err", error);
       }
     );
+
+  }
+
+  onShoworders (showOrders: any) {
+    console.log('showOrders', showOrders);
+    // sort ตาม id ร้าน ** id_shop
+    // this.showOrders.sort((a, b) => a.id_shop.localeCompare(b.id_shop));
+    let swap = [];
+    for (let i = 0; i < showOrders.length - 1 ; i++) {
+      for (let j = 0; j < showOrders.length - i - 1 ; j++ ) {
+         //console.log('access');
+        if (showOrders[j].id_shop > showOrders[j + 1].id_shop) {
+          swap = showOrders[j];
+          showOrders[j] = showOrders[j + 1];
+          showOrders[j + 1] = swap;
+        }
+      }
+    }
+     console.log('sortOrder', showOrders);
+     this.status_header[0] = true;
+     for (let i = 1; i < showOrders.length; i++) {
+      if (showOrders[i-1].id_shop === showOrders[i].id_shop) {
+        this.status_header[i] = false;
+      } else {
+        this.status_header[i] = true;
+      }
+
+     }
+
   }
 
   getImageFromService(id: any, namePic: any, j: any) {
@@ -116,6 +157,8 @@ export class ShoppingCartsComponent implements OnInit {
 
   onDeleteProduct(item: any) {
     let c = confirm("Are you sure delete");
+   // console.log('id_order', this.id_order);
+   // alert(this.id_order);
     if (c == true) {
       this.deleteProduct = this.fb.group({
         body: [
@@ -125,7 +168,9 @@ export class ShoppingCartsComponent implements OnInit {
           }
         ]
       });
-      //console.log('delete', this.deleteProduct.value);
+      // console.log('delete', this.deleteProduct.value);
+     // alert(item);
+     console.log('product_delete', this.deleteProduct.value);
       this.shopcartService.deleteProduct(this.deleteProduct.value).subscribe(
         res => {
           console.log("res", res);
@@ -137,6 +182,10 @@ export class ShoppingCartsComponent implements OnInit {
       );
 
     }
+
+  }
+
+  onAddProduct() {
 
   }
 }

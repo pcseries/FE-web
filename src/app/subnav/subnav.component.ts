@@ -24,8 +24,9 @@ export class SubnavComponent implements OnInit {
     this.storeService.storeCheck().subscribe(
       res => {
         this.status = res['status'];
+        console.log('statusStore', this.status);
         if (this.status === 401) {
-          //console.log('statusStore', this.status);
+          console.log('statusStore', this.status);
         } else {
           this.isOpen = true;
         }

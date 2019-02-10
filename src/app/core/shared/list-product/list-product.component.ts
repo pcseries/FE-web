@@ -16,7 +16,7 @@ export class ListProductComponent implements OnInit {
   price = [];
   count: any;
 
-  //product Promotion
+  // product Promotion
 
   products2 = [];
   image2 = [];
@@ -25,6 +25,7 @@ export class ListProductComponent implements OnInit {
   namePic = [];
   isImageLoading2: boolean;
   imageToShow2: any = [];
+  lastIndex: any;
 
   constructor(private productService: ProductsService, private router: Router) { }
 
@@ -36,12 +37,21 @@ export class ListProductComponent implements OnInit {
         // productList.price = this.products[0].product_variation[0]['price'];
         // this.cart.push(productList);
         this.products = response['body'];
-        //console.log('product' , this.products[0]['variation'][0].price);
+        console.log('newPrice', response);
+        // console.log('product' , this.products[0]['variation'][0].price);
 
-        //get image แบบลูปและส่ง i ไปด้วย
+        // get image แบบลูปและส่ง i ไปด้วย
+
         for (let i = 0; i < this.products.length; i++) {
-          this.getImageFromService(this.products[i].id_product, this.products[i].pic[0].pic_product, i);
-          this.price[i] = this.products[i]['variation'][0].price;
+          // console.log('id_product', this.products[i].id_product);
+           console.log('name_product_pic',  this.products[i].pic.length);
+          if (this.products[i].pic.length !== 0) {
+            this.getImageFromService(this.products[i].id_product, this.products[i].pic[0].pic_product, i);
+            this.price[i] = this.products[i]['variation'][0].price;
+          } else {
+
+            this.imageToShow[i] = 'https://www.condo.fi/wp-content/uploads/2018/11/no-image.png';
+          }
         }
 
       },
@@ -50,17 +60,17 @@ export class ListProductComponent implements OnInit {
       }
      );
 
-     //get Promotion
+     // get Promotion
      this.productService.getPromoProduct().subscribe(
       response => {
         this.products2 = response['body'];
-        //console.log('promo' , this.products);
+        // console.log('promo' , this.products);
         console.log('oldprice', this.products2);
 
         for (let i = 0; i < this.products2.length; i++) {
 
            this.namePic[i] = this.products2[i]['pic'][0];
-           //console.log('picture', this.namePic[i].pic_product);
+           // console.log('picture', this.namePic[i].pic_product);
           this.getImageFromService2(this.products2[i].id_product, this.namePic[i].pic_product, i);
         }
       } ,
@@ -71,7 +81,7 @@ export class ListProductComponent implements OnInit {
   }
 
   seeProduct(idProduct) {
-    //alert(idProduct);
+    // alert(idProduct);
     this.router.navigate(['mado/product/detail', idProduct]);
   }
 
@@ -91,6 +101,8 @@ export class ListProductComponent implements OnInit {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
        this.imageToShow[i] = reader.result;
+       // คำนวนค่า last index
+      this.lastIndex = i;
     }, false);
 
     if (image) {

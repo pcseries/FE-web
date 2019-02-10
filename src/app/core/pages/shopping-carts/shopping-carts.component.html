@@ -29,10 +29,10 @@
 <ng-container   *ngFor="let p of selectProduct; let i = index">
   <div class="cart-page-shop-section">
 
-    <div class= "cart-page-shop-header">
+    <div class= "cart-page-shop-header" *ngIf="status_header[i]">
       <div class="cart-page-shop-header__center-wrapper">
         <div class="cart-page-shop-header__shop-name">
-          <span style="padding-left: 5px;">{{ p.shop_name }}</span>
+          <span style="padding-left: 5px; color: #fff">{{ p.shop_name }}</span>
         </div>
 
       </div>

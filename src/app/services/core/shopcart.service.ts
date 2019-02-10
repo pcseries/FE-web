@@ -27,9 +27,14 @@ export class ShopcartService {
     return this.http.request('delete', this.baseUrlC + 'order/' , {body: product , headers: this.getAuthDelete()});
   }
 
+  editProduct(product: any) {
+    return this.http.put(this.baseUrlC + 'order/' , product, this.getAuth());
+  }
+
   getAuth() {
     const token = localStorage.getItem('token');
-    const httpheaders = new HttpHeaders({ 'token': token});
+    const content = 'application/json; charset=utf-8';
+    const httpheaders = new HttpHeaders({ 'Content-Type': content , 'token': token});
     return { headers: httpheaders };
   }
 

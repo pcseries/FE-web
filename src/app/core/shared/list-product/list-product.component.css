@@ -67,4 +67,14 @@ h2.title::after{
   height: 120px;
 }
 
+.price-promo {
+  display: flex;
+}
+
+.oldPrice {
+  color: rgba(0,0,0,.54);
+  text-decoration: line-through;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 

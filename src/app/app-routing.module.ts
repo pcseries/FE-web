@@ -17,6 +17,7 @@ import { ProfileAdminComponent } from './admin/pages/profile-admin/profile-admin
 import { ListProductComponent } from './core/shared/list-product/list-product.component';
 import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
 import { UserStoreComponent } from './user/pages/user-store/user-store.component';
+import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
 
 
 
@@ -47,7 +48,8 @@ const routes: Routes = [
     children: [
       {path: 'profile', component: ProfileComponent},
       {path: 'editProfile', component: EditUserComponent},
-      {path: 'store', component: UserStoreComponent}
+      {path: 'store', component: UserStoreComponent},
+      {path: 'manageStore/:id', component: StoreManageComponent}
     ],
   },
 

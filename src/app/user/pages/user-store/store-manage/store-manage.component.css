@@ -1,0 +1,51 @@
+.header {
+  border-bottom: 1px solid #ebeff2; /*สร้างเส้น */
+  margin-bottom: 20px;
+  margin-left: 25%;
+  padding: 12px 0; /*สร้าง ขยายแนวตั้ง*/
+  text-align: center;
+}
+
+.title-header {
+  color: 	#1E90FF;
+  font-size: 20px;
+  position: relative;
+  font-weight: bold;
+
+}
+
+.border-title {
+  border-bottom: 1px solid #ebeff2; /*สร้างเส้น */
+  margin-bottom: 20px;
+  padding: 12px 0; /*สร้าง ขยายแนวตั้ง*/
+}
+
+.imageToShow {
+  border: 2px solid darkblue;
+  margin: 25px;
+}
+
+.product-image-box {
+  margin: 20px 0;
+  border: 1px solid rgba(0, 0, 0, .1);
+  margin:  10px;
+}
+
+.product-image {
+  width: 100%;
+  min-width: 82px;
+  height: 90px;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.col {
+  max-width: 25%;
+}
+
+.card-title {
+  margin-top: 10px;
+  margin-left: 40%;
+  color: #A9A9A9;
+}

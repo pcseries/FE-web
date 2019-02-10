@@ -49,7 +49,7 @@ export class MyDialogComponent implements OnInit {
   setBank() {
     this.storeService.getBank().subscribe(
       res => {
-        this.selected = '1'; //res['body'][0].id_bank_company.toString();
+        this.selected = '1'; // res['body'][0].id_bank_company.toString();
         this.name_bank = res['body'][0].bank_name;
         this.banks = res['body'];
         console.log('getBank', res['body']);
@@ -63,14 +63,17 @@ export class MyDialogComponent implements OnInit {
   }
 
   save() {
-    //this.dialogRef.close("It WAS SAVED");
-    //this.data['statusDialog'] = false;
+    // this.dialogRef.close("It WAS SAVED");
+    // this.data['statusDialog'] = false;
     this.openStore.value.statusDialog = true;
-    //this.openStore.value.id_bank_company = parseInt(this.selected, 10);
-    //console.log('save');
+    // this.openStore.value.id_bank_company = parseInt(this.selected, 10);
+    // console.log('save');
 
-    //console.log('openStore', this.openStore.value);
-    this.dialogRef.close(this.openStore.value);
+    // console.log('openStore', this.openStore.value);
+    this.openStore.value.id_bank_company = this.openStore.value.id_bank_company.toString();
+   // console.log(typeof(this.openStore.value.id_bank_company));
+
+     this.dialogRef.close(this.openStore.value);
 
     // save data
   }

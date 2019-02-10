@@ -1,3 +1,316 @@
-<p>
-  user-store works!
-</p>
+<div class="header-section" >
+<div class="header col-md-5">
+    <div class="title-header">
+      <div *ngIf="!addProduct_status">จัดการร้านค้า</div>
+      <div *ngIf="addProduct_status">เพิ่มสินค้า</div>
+    </div>
+  </div>
+<div class="row store-manage"
+*ngIf="!addProduct_status">
+  <div class="input-group">
+    <div class="search" style="width: 70%">
+      <input type="text" name="search" placeholder="ค้นหาสินค้า..." />
+      <label  class="fa fa-search icon-search" style="cursor: pointer;"></label>
+    </div>
+    <div class="btn-add">
+      <button class="bt-add" mat-flat-button (click)="onAddProduct()" >
+        <i class="fa fa-plus" style="font-size:24px"></i>
+        เพิ่มสินค้า
+      </button>
+    </div>
+  </div>
+</div>
+
+<button
+  class="bt-back"
+  mat-raised-button
+  *ngIf="addProduct_status"
+  (click)="onNotadd_product()">
+  <i class="fa fa-chevron-circle-left"
+    style="font-size: 24px;"></i>
+      กลับไปหน้าจัดการสินค้า
+</button>
+</div>
+<div class="store" *ngIf="!addProduct_status">
+  <div class="store-product">
+    <div class="product-store">
+
+      <app-list-products-store></app-list-products-store>
+    </div>
+  </div>
+</div>
+
+<!-- ส่วนการเพิ่ม สินค้า -->
+<div class="add-product" *ngIf="addProduct_status">
+  <div class="col-md-9 center" style="margin: auto;">
+    <div class="card " style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;" >
+      <div class="card-body">
+        <div class="card-title text-center">
+          <div class="title-header border-title">
+              รายละเอียดสินค้า
+          </div>
+        </div>
+        <div class="card-content text-center" >
+
+          <!-- ส่วนเพิ่ม รายละเอียดสินค้า -->
+          <div class="data-send">
+            <form class="data-form" [formGroup]="productAdd" (ngSubmit)="onsubmit_product()">
+              <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="ชื่อสินค้า:" formControlName="name_product">
+                  <mat-error *ngIf="productAdd.get('name_product').hasError('required')">
+                    Product name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <br>
+
+                <!-- ทำตัว ชนิดสินค้า -->
+                <div class="grid create-row">
+                  <div class="create-label col-3">
+                    หมวดหมู่
+                  </div>
+                  <div class="create-input col-8">
+                    <div class="product-form-item" >
+                      <div tabindex="-1" class="mado-catagory">
+                        <div class="mado-catagory-header">
+                          <div class="mado-category_header_label text-overflow" (click)="onExpand()">
+                            <span class="subtitle">{{select_category}}</span>
+                            <i class="fa fa-angle-down subtitle-icon mado-icon"></i>
+                          </div>
+                        </div>
+
+                        <div class="mado-category__main expanded" *ngIf="expanded">
+                          <div class="mado-category__main__title">
+                            <span>หมวดหมู่ทั้งหมด</span>
+
+                          </div>
+                          <hr>
+                          <div class="mado-category__content">
+                            <ng-container >
+
+                              <ul class="mado-category_content_column"  *ngIf="level === 0">
+
+                                <!-- ใช้ for -->
+                                <li class="mado-category_content_item mado_category_item--main" *ngFor="let c of catagory_level1;let i = index"
+                                (click)="onSelect_category(i)">
+                                  <div class="menu" >{{c.name_catagory}}</div>
+                                  <i class="fa fa-angle-right"></i>
+                                </li>
+                              </ul>
+
+
+                              <ul class="mado-category_content_column"  *ngIf="level === 1">
+
+                                  <!-- ใช้ for -->
+                                  <li class="mado-category_content_item mado_category_item--main" *ngFor="let c of catagory_level2;let i = index"
+                                  (click)="onSelect_category_level3(i)">
+                                    <div class="menu" >{{c.name_catagory}}</div>
+                                    <i class="fa fa-angle-right"></i>
+                                  </li>
+                              </ul>
+
+                              <ul class="mado-category_content_column"  *ngIf="level === 2">
+
+                                  <!-- ใช้ for -->
+                                  <li class="mado-category_content_item mado_category_item--main" *ngFor="let c of catagory_level3;let i = index"
+                                  (click)="onSelect_category_level4(i)">
+                                    <div class="menu" >{{c.name_catagory}}</div>
+
+                                  </li>
+                              </ul>
+
+
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <mat-form-field class="example-full-width">
+                  <mat-select placeholder="สภาพสินค้า" formControlName="condition" >
+                    <mat-option *ngFor="let c of con" [value]="c">
+                      {{ c }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="productAdd.get('condition').hasError('required')">
+                    Condition is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field class="example-full-width">
+                    <textarea matInput
+                      placeholder="รายละเอียด"
+                      style="height: 100px;"
+                      formControlName="description"></textarea>
+                </mat-form-field>
+                <br>
+
+                <div class="variation-form">
+
+                  <div class="data-add">
+
+                    <!-- เริ่มเพิ่มตัวเลือสินค้า -->
+
+                    <!-- <form class="input-group" style="margin-left: 25%;width: 60%;"
+                      [formGroup]="variation_1"
+                      (ngSubmit)="onAdd_variation(variationName, variationPrice,  variationAmount)">
+
+
+                        <div class="name-input" >
+                          <mat-form-field class="example-full-width" >
+                            <input matInput placeholder="ชื่อ:" #variationName formControlName="name">
+                            <mat-error *ngIf="variation_1.get('name').hasError('required')">
+                                Name is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="price-input">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="ราคา:" #variationPrice formControlName="price">
+                            <mat-error *ngIf="variation_1.get('price').hasError('required')">
+                                Price is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="amount-input">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="จำนวน:" #variationAmount formControlName="stock">
+                            <mat-error *ngIf="variation_1.get('stock').hasError('required')">
+                                Amount is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="button-add">
+                            <button type="submit"
+                             class="btn btn-success"
+                             [disabled]="variation_1.invalid" >เพิ่ม</button>
+                        </div>
+                      </form>
+                       -->
+                      <!-- สิ้นสุดส่วน เพิ่มตัวเลือกสินค้า -->
+
+                  </div>
+                  <div class="show-variation " >
+
+                    <form [formGroup]="variation_1"
+                    (ngSubmit)="onAdd_variation(variationName, variationPrice,  variationAmount)">
+
+                    <div class="container">
+                      <div class="table-list-variation row  col-md-offset-2 custyle">
+                        <table class="table table-striped custab">
+                          <thead>
+                            <tr>
+                              <th>ชื่อ</th>
+                              <th>ราคา</th>
+                              <th>จำนวน</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                             </thead>
+
+                             <tr>
+
+                                <td>
+                                  <mat-form-field class="variation-group-table" >
+                                    <input matInput placeholder="ชื่อ:" #variationName formControlName="name">
+                                    <mat-error *ngIf="variation_1.get('name').hasError('required')">
+                                      Name is <strong>required</strong>
+                                    </mat-error>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                  <mat-form-field class="variation-group-table">
+                                    <input matInput placeholder="ราคา:" #variationPrice formControlName="price">
+                                    <mat-error *ngIf="variation_1.get('price').hasError('required')">
+                                        Price is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+
+                                </td>
+                                <td>
+                                  <mat-form-field class="variation-group-table">
+                                    <input matInput placeholder="จำนวน:" #variationAmount formControlName="stock">
+                                    <mat-error *ngIf="variation_1.get('stock').hasError('required')">
+                                        Amount is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                                </td>
+                                <td>
+                                  <div class="button-add">
+                                    <button type="submit"
+                                      class="btn btn-success"
+                                      [disabled]="variation_1.invalid" >เพิ่ม</button>
+                                  </div>
+                                </td>
+
+                              </tr>
+                            <ng-container *ngFor="let v of variation; let i = index">
+                            <tr>
+                              <td>
+                                <mat-form-field class="variation-group-table">
+                                    <input matInput value="{{v.name}}"
+                                      [disabled]="edit_row !== i"
+                                      #name_variation>
+                                </mat-form-field>
+                              </td>
+                              <td>
+                                  <mat-form-field class="variation-group-table">
+                                      <input matInput value="{{v.price}}"
+                                        [disabled]=" edit_row !== i"
+                                        #price_variation>
+                                  </mat-form-field>
+                              </td>
+                              <td>
+                                  <mat-form-field class="variation-group-table">
+                                      <input matInput value="{{v.stock}}"
+                                        [disabled]="edit_row !== i"
+                                        #stock_variation>
+                                  </mat-form-field>
+                              </td>
+                              <td>
+                                <div class="row">
+                                  <div class="col-sm  icon-variation">
+                                    <i class="fa fa-times btn-delete" (click)="onRemove_variation(i)"></i>
+                                  </div>
+                                  <div class="col-sm  icon-variation">
+                                    <i class="fa fa-pencil-square-o btn-edit" (click)="onEdit_variation(i)" ></i>
+                                  </div>
+                                  <div class="col-sm  icon-variation" *ngIf="edit_row === i">
+                                    <i class="fa fa-check btn-true"
+                                      (click)="onConfirm_edit(i, name_variation, price_variation, stock_variation)"></i>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                         </ng-container>
+                        </table>
+                      </div>
+                    </div>
+                  </form>
+                    </div>
+                  </div>
+
+
+                <div class="btn-action" style="margin-left: 65.9%;">
+                  <div class="input-group" style="margin: 10px 10px;">
+                    <button type="submit"
+                      class="btn btn-success"
+                      style="margin-right: 10px;"
+                      [disabled]="!allow_add">เพิ่มสินค้า</button>
+                    <button type="button"
+                      class="btn btn-danger"
+                      (click)="onNotadd_product()">ยกเลิก</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

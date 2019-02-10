@@ -2,7 +2,7 @@
 <h1 mat-dialog-title class="title-dialog"><i class="fa fa-bank" style="font-size:36px"></i>เปิดร้านค้า</h1>
 
 <form (ngSubmit)="save()" [formGroup]="openStore">
-<div mat-dialog-content class="input-group">
+<div mat-dialog-content class="input-group" >
   <mat-form-field class="name">
     <input matInput placeholder="ชื่อร้านค้า"  formControlName="name_shop">
     <mat-error *ngIf="openStore.get('name_shop').hasError('required')">

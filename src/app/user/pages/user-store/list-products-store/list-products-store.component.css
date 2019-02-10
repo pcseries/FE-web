@@ -1,0 +1,241 @@
+.product-list-view {
+  margin: 8px auto;
+  position: relative;
+  transition: opacity .5s ease;
+}
+
+.product-list-item {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  text-align: center;
+}
+
+.product-list-header {
+  color: #888;
+  background: #f2f2f2;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.product-main {
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.product-list-header-item {
+  border: none!important;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+
+.product-name {
+  -webkit-box-flex: 1;
+  flex: 1;
+  padding: 16px 10px;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.product-sku {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 92px;
+  min-width: 92px;
+  padding: 0 4px;
+  border-right: 1px solid #efefef;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-variation__name, .product-variation__sku {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 4px;
+
+  padding: 28px 4px;
+  border-right: 1px solid #efefef;
+}
+
+.product-variation__name{
+  border-bottom: 1px solid #efefef;
+}
+
+.product-variation__sku {
+  width: 118px;
+    min-width: 118px;
+}
+
+.product-variation__name {
+  width: 140px;
+    min-width: 140px;
+}
+
+.product-variation__price{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 144px;
+  min-width: 144px;
+  padding: 0 4px;
+  border-right: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 16px 4px;
+}
+
+.product-variation__sales, .product-variation__stock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 4px;
+  border-right: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  padding: 20px 4px;
+}
+.product-variation__stock {
+  width: 138px;
+  min-width: 138px;
+}
+
+.product-variation__sales {
+  width: 84px;
+  min-width: 84px;
+}
+.product-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 120px;
+  min-width: 100px;
+  padding: 0 4px;
+}
+
+.product-main {
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+
+  cursor: pointer;
+}
+
+.product-list-card {
+  color: #333;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .02);
+  margin-bottom: 10px;
+}
+
+.product-image-box {
+  margin: 20px 0;
+  border: 1px solid rgba(0, 0, 0, .1);
+  margin: 0 8px;
+}
+
+.product-image {
+  width: 100px;
+  min-width: 82px;
+  height: 82px;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-name-box {
+  line-height: 20px;
+}
+
+.product-sku {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 92px;
+  min-width: 92px;
+  padding: 0 4px;
+  border-right: 1px solid #efefef;
+}
+
+.product-variation {
+  width: 624px;
+  min-width: 624px;
+  padding: 0;
+}
+
+.product-variation-item {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.product-variation__stock {
+  width: 138px;
+  min-width: 138px;
+}
+
+.product-action {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 120px;
+  min-width: 100px;
+  padding: 0 4px;
+}
