@@ -1,0 +1,36 @@
+.content-mn-variation{
+  margin-top: 50px;
+}
+
+.header-variation {
+  color: #A9A9A9;
+  margin-left: 40%;
+}
+
+
+
+.icon-variation {
+  font-size: 19px;
+
+
+}
+
+.btn-delete {
+cursor: pointer;
+color: red;
+
+}
+
+.btn-edit  {
+cursor: pointer;
+color: #4169E1;
+}
+
+.variation-group-table {
+width: 50%;
+}
+
+.btn-true {
+cursor: pointer;
+color: green;
+}

@@ -38,6 +38,8 @@ export class ProductsService {
   }
 
 
+
+
   private getAutprodtuct() {
     const token = '1a2b3c';
     const httpheaders = new HttpHeaders({'token': token});
@@ -61,6 +63,8 @@ export class ProductsService {
     const httpheaders = new HttpHeaders({'token': token});
     return { headers: httpheaders };
   }
+
+
 
 }
 

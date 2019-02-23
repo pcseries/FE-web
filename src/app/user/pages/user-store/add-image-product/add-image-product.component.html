@@ -1,0 +1,53 @@
+
+<div class="image_manage">
+  <div class="show_image">
+    <div class="row">
+      <div class="col-md-9" style="margin: auto;">
+        <div class="card">
+          <h4 class="card-title">
+            เพิ่มรูปภาพสินค้า
+          </h4>
+          <div class="imageToShow">
+            <div class="row">
+                <ng-container *ngFor="let im of name_images; let i = index">
+              <div class="col">
+                <div class="product-image product-image-box">
+                  <img
+                   [src]="imageToShow[0]"
+                    alt="Product of store"
+                    class="card-img-top"
+                    *ngIf="!isImageLoading; else noImageFound"
+                  />
+                  <ng-template #noImageFound>
+                    <img
+                      src="https://www.condo.fi/wp-content/uploads/2018/11/no-image.png"
+                      alt="Fallbackimage"
+                    />
+                  </ng-template>
+                </div>
+              </div>
+            </ng-container>
+
+            </div>
+          </div>
+          <div class="action-upload">
+            <input
+              type="file"
+              id="file"
+              enctype="multipart/form-data"
+              (change)="handleFileInput($event.target.files)"
+            />
+            <button type="button" (click)="uploadFileToActivity()">
+              Upload
+            </button>
+          </div>
+          <div class="action_image">
+            <button class="btn btn-success" (click)="onSuccess_add()">เพิ่มสินค้าเสร็จสิ้น
+              <i class="fa fa-angle-double-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,9 @@
         <ng-container *ngFor="let pV of p.product_variation"> <!-- ใช้ for -->
           <div class="product-variation-item" style="height: auto;">
             <div class="product-variation__sku">
-
+              <mat-slide-toggle
+                (click)="changeStatus_product()">
+                {{status_product}}</mat-slide-toggle>
             </div>
             <div class="product-variation__name">
               {{pV.name}}
@@ -62,10 +64,12 @@
           <button class="btn btn-info"
             (click)="onManage_Product(i)">จัดการสินค้า</button>
         </div>
+
         <div>
         </div>
 
       </div>
+
     </div>
   </ng-container>
 

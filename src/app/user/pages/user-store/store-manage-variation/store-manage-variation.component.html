@@ -1,0 +1,107 @@
+<div class="content-mn-variation">
+
+  <!-- ใส่ form -->
+
+  <div class="container">
+    <h4 class="header-variation">
+      จัดการตัวเลือก
+    </h4>
+    <form [formGroup]="form_variation"
+    (ngSubmit)="oncreate_variation()">
+    <div class="table-show-variation">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>ชื่อ</th>
+            <th>ราคา</th>
+            <th>จำนวน</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <!-- ส่วนตัวเพิ่ม -->
+          <td>
+            <mat-form-field class="variation-group-table" >
+              <input matInput placeholder="ชื่อ:"
+                #variationName
+                formControlName="name">
+
+              </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="variation-group-table">
+              <input matInput placeholder="ราคา:"
+                #variationPrice
+                formControlName="price">
+
+            </mat-form-field>
+
+          </td>
+          <td>
+            <mat-form-field class="variation-group-table">
+              <input matInput placeholder="จำนวน:"
+                #variationAmount
+                formControlName="stock">
+
+            </mat-form-field>
+          </td>
+          <td>
+            <div class="button-add">
+              <button type="submit"
+                class="btn btn-success">
+                เพิ่ม</button>
+            </div>
+          </td>
+        </tr>
+
+
+        <ng-container *ngFor="let v of variation_product; let i = index">
+            <tr>
+              <td>
+                <mat-form-field class="variation-group-table">
+                    <input matInput value="{{v.name}}"
+                    [disabled]="onedit !== i"
+                      #name_variation>
+                </mat-form-field>
+              </td>
+              <td>
+                  <mat-form-field class="variation-group-table">
+                      <input matInput value="{{v.price}}"
+                      [disabled]="onedit !== i"
+                        #price_variation>
+                  </mat-form-field>
+              </td>
+              <td>
+                  <mat-form-field class="variation-group-table">
+                      <input matInput value="{{v.stock}}"
+                      [disabled]="onedit !== i"
+                        #stock_variation>
+                  </mat-form-field>
+              </td>
+              <td>
+                <div class="row">
+                  <div class="col-sm  icon-variation">
+                    <i class="fa fa-times btn-delete"
+                      (click)="onRemove_variation(i)"></i>
+                  </div>
+                  <div class="col-sm  icon-variation">
+                    <i class="fa fa-pencil-square-o btn-edit"
+                    (click)="onEditRow(i)" ></i>
+                  </div>
+                  <div class="col-sm  icon-variation" *ngIf="onedit === i">
+                    <i class="fa fa-check btn-true"
+                    (click)="edit_variation(name_variation,price_variation,stock_variation,v.id_variation)"
+                      ></i>
+                  </div>
+                </div>
+              </td>
+            </tr>
+         </ng-container>
+
+      </table>
+    </div>
+</form>
+  </div>
+
+
+</div>

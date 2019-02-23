@@ -18,6 +18,7 @@ import { ListProductComponent } from './core/shared/list-product/list-product.co
 import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-carts.component';
 import { UserStoreComponent } from './user/pages/user-store/user-store.component';
 import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
+import { AddImageProductComponent } from './user/pages/user-store/add-image-product/add-image-product.component';
 
 
 
@@ -49,7 +50,8 @@ const routes: Routes = [
       {path: 'profile', component: ProfileComponent},
       {path: 'editProfile', component: EditUserComponent},
       {path: 'store', component: UserStoreComponent},
-      {path: 'manageStore/:id', component: StoreManageComponent}
+      {path: 'manageStore/:id', component: StoreManageComponent} ,
+      {path: 'addImage/:id', component: AddImageProductComponent}
     ],
   },
 

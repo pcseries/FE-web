@@ -46,7 +46,7 @@ export class ShoppingCartsComponent implements OnInit {
     this.shopcartService.getOrder().subscribe(
       res => {
         this.shopCart = res["body"]["order"];
-        //this.name = res['body']['order'][1]['order_item'][0].name_product;
+        // this.name = res['body']['order'][1]['order_item'][0].name_product;
         // console.log("shopCart", res["body"]["order"]);
         // this.showOrders = res['body']['order'];
        // this.onShoworders(res['body']['order']);

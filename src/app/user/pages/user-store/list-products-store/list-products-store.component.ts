@@ -14,12 +14,14 @@ export class ListProductsStoreComponent implements OnInit {
   product_variation: any;
 
   imageToShow = [];
+  status_product: any;
 
   constructor(private storeService: StoreService,
     private productService: ProductsService,
     private router: Router) { }
 
   ngOnInit() {
+    this.status_product = 'off';
     this.storeService.getProduct_store().subscribe(
       res => {
         this.product_store = res['body']['product'];
@@ -73,6 +75,11 @@ export class ListProductsStoreComponent implements OnInit {
  onManage_Product(index: any) {
 
   this.router.navigate(['user/manageStore', this.product_store[index].id_product]);
+ }
+
+ changeStatus_product() {
+  //  alert('change');
+  this.status_product = 'on';
  }
 
 

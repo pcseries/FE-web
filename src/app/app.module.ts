@@ -23,6 +23,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -73,6 +74,9 @@ import { SeeProductsComponent } from './see-products/see-products.component';
 import { AddProductStoreComponent } from './user/pages/user-store/add-product-store/add-product-store.component';
 import { ListProductsStoreComponent } from './user/pages/user-store/list-products-store/list-products-store.component';
 import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
+import { StoreManageVariationComponent } from './user/pages/user-store/store-manage-variation/store-manage-variation.component';
+import { AddImageProductComponent } from './user/pages/user-store/add-image-product/add-image-product.component';
+import { ManageDtailComponent } from './user/pages/user-store/store-manage/manage-dtail/manage-dtail.component';
 
 
 
@@ -118,7 +122,10 @@ import { StoreManageComponent } from './user/pages/user-store/store-manage/store
     SeeProductsComponent,
     AddProductStoreComponent,
     ListProductsStoreComponent,
-    StoreManageComponent
+    StoreManageComponent,
+    StoreManageVariationComponent,
+    AddImageProductComponent,
+    ManageDtailComponent
 
   ],
   imports: [
@@ -146,7 +153,8 @@ import { StoreManageComponent } from './user/pages/user-store/store-manage/store
     MatPaginatorModule,
     FormsModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSlideToggleModule
 
   ],
   entryComponents: [

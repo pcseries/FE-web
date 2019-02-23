@@ -1,0 +1,118 @@
+<div class="dtail-product">
+  <div class="container">
+    <h4 class="header-dtail">รายละเอียดสินค้า</h4>
+    <div class="content-dtail-product">
+      <form [formGroup]="product_store"
+       (ngSubmit)="onEdit_detail()">
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ชื่อสินค้า"
+                formControlName="name_product"
+                value="{{name_pd}}">
+
+            </mat-form-field>
+            <br>
+
+            <div class="grid create-row">
+              <div class="create-label col-2">
+                หมวดหมู่
+              </div>
+              <div class="create-input col-9">
+                <div class="product-form-item" >
+                  <div tabindex="-1" class="mado-catagory">
+                    <div class="mado-catagory-header">
+                      <div class="mado-category_header_label text-overflow" (click)="onExpand()">
+                        <span class="subtitle">{{catagory_pd}}</span>
+                        <i class="fa fa-angle-down subtitle-icon mado-icon"></i>
+                      </div>
+                    </div>
+
+                    <div class="mado-category__main expanded" *ngIf="expanded">
+                      <div class="mado-category__main__title">
+                        <span>หมวดหมู่ทั้งหมด</span>
+
+                      </div>
+                      <hr>
+                      <div class="mado-category__content">
+                        <ng-container >
+
+                          <ul class="mado-category_content_column" *ngIf="level ===0">
+
+                            <!-- ใช้ for -->
+                            <li class="mado-category_content_item mado_category_item--main"
+                            *ngFor="let c of catagory_level1;let i = index"
+                            (click)="onSelect_category(i)">
+                              <div class="menu" >{{c.name_catagory}}</div>
+                              <i class="fa fa-angle-right"></i>
+                            </li>
+                          </ul>
+
+
+                          <ul class="mado-category_content_column"  *ngIf="level === 1">
+
+                              <!-- ใช้ for -->
+                              <li class="mado-category_content_item mado_category_item--main"
+                              *ngFor="let c of catagory_level2;let i = index"
+                              (click)="onSelect_category_level1(i)"
+                              >
+                                <div class="menu" >{{c.name_catagory}}</div>
+                                <i class="fa fa-angle-right"></i>
+                              </li>
+                          </ul>
+
+                          <ul class="mado-category_content_column"  *ngIf="level === 2">
+
+                              <!-- ใช้ for -->
+                              <li class="mado-category_content_item mado_category_item--main"
+                              *ngFor="let c of catagory_level3;let i = index"
+                              (click)="onSelect_category_level2(i)"
+                              >
+                                <div class="menu" >{{c.name_catagory}}</div>
+
+                              </li>
+                          </ul>
+
+
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="สภาพสินค้า"
+                [(value)]="condition_pd"
+                formControlName="condition">
+
+                  <mat-option value="NEW">NEW</mat-option>
+                  <mat-option value="SECONDHAND">SECONDHAND</mat-option>
+
+              </mat-select>
+
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <textarea matInput
+                placeholder="รายละเอียดสินค้า"
+                class="product-Dtail"
+                value="{{detail_pd}}"
+                formControlName="description"></textarea>
+
+            </mat-form-field>
+            <div class="btn-group">
+              <div class="button">
+                <button type="submit"
+                class="btn btn-success edit-button ">แก้ไขสินค้า
+              </button>
+              </div>
+
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+</div>

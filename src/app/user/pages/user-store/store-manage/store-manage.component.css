@@ -23,6 +23,7 @@
 .imageToShow {
   border: 2px solid darkblue;
   margin: 25px;
+  height: 200px;
 }
 
 .product-image-box {
@@ -34,7 +35,7 @@
 .product-image {
   width: 100%;
   min-width: 82px;
-  height: 90px;
+  height: 86%;
   z-index: 0;
   position: relative;
   overflow: hidden;
@@ -48,4 +49,13 @@
   margin-top: 10px;
   margin-left: 40%;
   color: #A9A9A9;
+}
+
+.action-upload {
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.button-delete-product{
+  margin-left: 90%;
 }

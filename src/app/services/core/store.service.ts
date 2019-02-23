@@ -37,6 +37,31 @@ export class StoreService {
     return this.http.get(this.baseUrlBS + 'catagories', this.getAuth_Catagory());
   }
 
+  getproductbyID(idProduct: any): Observable<any> {
+    return this.http.get(this.baseUrlC + 'product/' + idProduct , this.getAuth());
+  }
+
+  // edit Product
+  editofProduct(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'product/' , data , this.getAuth());
+  }
+
+  deleteVariation(data: any):Observable<any> {
+    return this.http.request('delete', this.baseUrlC + 'product/', {body: data, headers: this.getAuthDelete()});
+  }
+
+  deleteProduct(data: any):Observable<any> {
+    return this.http.request('delete', this.baseUrlC + 'product/', {body: data, headers: this.getAuthDelete()});
+  }
+
+  upImageProduct(fileToUpload: File, idProduct: any): Observable<any> {
+    let formData: FormData = new FormData();
+    formData.append('id_product', idProduct);
+    formData.append('file', fileToUpload, fileToUpload.name);
+    console.log('formdata', formData);
+    return this.http.post(this.baseUrlC + 'upload/' , formData , this.getAuthImage());
+  }
+
   getAuth() {
     const token = localStorage.getItem('token');
     const content = 'application/json; charset=utf-8';
@@ -49,6 +74,20 @@ export class StoreService {
     const content = 'application/json; charset=utf-8';
     const httpheaders = new HttpHeaders({'Content-Type': content , 'token': token});
     return { headers: httpheaders };
+  }
+
+  private getAuthImage() {
+    const token = localStorage.getItem('token');
+    const name = 'multipart/form-data';
+    const httpheaders = new HttpHeaders({ 'token': token, 'mimeType': name});
+    return { headers: httpheaders };
+  }
+
+
+  getAuthDelete() {
+    const token = localStorage.getItem('token');
+    const httpheaders = new HttpHeaders({'Content-Type': 'application/json' , 'token': token});
+    return  httpheaders;
   }
 
 }

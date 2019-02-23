@@ -15,6 +15,7 @@ export class UserStoreComponent implements OnInit {
   con = [];
   forAddProduct: FormGroup;
 
+
   // ส่วน variation
   name_variation: any;
   variation: Variation[] = [];
@@ -44,6 +45,11 @@ export class UserStoreComponent implements OnInit {
   id_catagory: any;
   edit_row: any;
 
+  // ตัว upload รูปภาพ
+  upload_image: any;
+  id_toImage: any;
+  product_image_dtail: any;
+
 
 
   constructor(private fb: FormBuilder, private storeService: StoreService,
@@ -64,6 +70,8 @@ export class UserStoreComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.upload_image = false;
     this.addProduct_status = false;
     this.category_all.push(0);
     this.con = ['NEW', 'SECONDHAND'];
@@ -125,7 +133,12 @@ export class UserStoreComponent implements OnInit {
 
   onRemove_variation(index: any) {
     // alert(index);
-    this.variation.splice(index, 1);
+    let c = confirm('Are you sure delete');
+
+    if (c == true) {
+      this.variation.splice(index, 1);
+    }
+
   }
 
   onsubmit_product() {
@@ -144,15 +157,18 @@ export class UserStoreComponent implements OnInit {
     console.log('data-productAdd: ', this.forAddProduct.value);
     this.storeService.addProduct(this.forAddProduct.value).subscribe(
       resOnsubmit => {
-
+        this.product_image_dtail = resOnsubmit;
         console.log('onAddProduct', resOnsubmit );
         alert('เพิ่มสินค้าสำเร็จ');
-        this.addProduct_status = false;
+        this.id_toImage = this.product_image_dtail.id_product;
+        // this.addProduct_status = false;
+        this.router.navigate(['/user/addImage', this.id_toImage]);
       },
       error => {
         console.log('errorAddProduct', error);
       }
     );
+
   }
 
   onNotadd_product() {
