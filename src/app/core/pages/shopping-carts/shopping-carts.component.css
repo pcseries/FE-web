@@ -178,3 +178,40 @@
   height: 5rem;
 }
 
+.check-cart {
+  margin-top: 3%;
+  margin-right: 5px;
+}
+
+.shopping-basket {
+  margin-bottom: 15px;
+}
+
+
+.detail-card {
+  padding: 1.5625rem;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+  border-radius: .125rem;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 1.25rem;
+  bottom: 5rem;
+}
+
+.content-card {
+  margin-top: 1.25rem;
+
+}
+
+
+.detail-card .title-detail .line {
+  border-color: #e1e1e1;
+  margin-bottom: 0;
+  margin-top: 10px;
+ }
+
+ hr {
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+
+}

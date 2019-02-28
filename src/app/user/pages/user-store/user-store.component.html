@@ -2,6 +2,12 @@
 <div class="header col-md-5">
     <div class="title-header">
       <div *ngIf="!addProduct_status">จัดการร้านค้า</div>
+      <div *ngIf="!addProduct_status"
+        class="button-to-dtailStore">
+        <button mat-mini-fab color="info-button">
+            <i class="fa fa-edit" ></i>
+        </button>
+      </div>
       <div *ngIf="addProduct_status">เพิ่มสินค้า</div>
     </div>
   </div>

@@ -19,6 +19,7 @@ import { ShoppingCartsComponent } from './core/pages/shopping-carts/shopping-car
 import { UserStoreComponent } from './user/pages/user-store/user-store.component';
 import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
 import { AddImageProductComponent } from './user/pages/user-store/add-image-product/add-image-product.component';
+import { AddAdressComponent } from './core/pages/add-adress/add-adress.component';
 
 
 
@@ -32,7 +33,8 @@ const routes: Routes = [
       {path: 'login', component: MainLoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'product/detail/:id', component: DtailProductComponent},
-      {path: 'shopping', component: ShoppingCartsComponent}
+      {path: 'shopping', component: ShoppingCartsComponent},
+      {path: 'addAdress', component: AddAdressComponent}
     ]
   },
 

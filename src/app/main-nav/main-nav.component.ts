@@ -30,7 +30,7 @@ export class MainNavComponent implements OnInit {
   ngOnInit() {
 
     if (localStorage.getItem('user') && localStorage.getItem('token')) {
-      //console.log(localStorage.getItem('user'));
+      // console.log(localStorage.getItem('user'));
       this.nameUser = localStorage.getItem('user');
       this.Islogin = true;
       if (localStorage.getItem('permission') === "ADMIN") {

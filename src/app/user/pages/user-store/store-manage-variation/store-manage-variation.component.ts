@@ -85,7 +85,7 @@ export class StoreManageVariationComponent implements OnInit {
   }
 
 
-  oncreate_variation() {
+  oncreate_variation(name: HTMLInputElement, price: HTMLInputElement, amount: HTMLInputElement) {
 
 
     this.variation_add = this.fb.group({
@@ -104,15 +104,17 @@ export class StoreManageVariationComponent implements OnInit {
       res => {
         alert('เพิ่มตัวเลือกสินค้าสำเร็จ');
         console.log('res_create=>', res);
+
+        name.value = null;
+        price.value = null;
+        amount.value = null;
         this.ngOnInit();
       }, error => {
         console.log('err_create=>', error);
       }
     );
 
-    this.form_variation.value.name = null;
-    this.form_variation.value.price = null;
-    this.form_variation.value.stock = null;
+
   }
 
   onRemove_variation(ind: any) {

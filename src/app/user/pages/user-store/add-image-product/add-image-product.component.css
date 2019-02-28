@@ -3,6 +3,7 @@
   border: 2px solid darkblue;
   margin: 25px;
   height: 200px;
+  overflow: auto;
 }
 
 .product-image-box {
@@ -22,7 +23,7 @@
 
 
 .col {
-  max-width: 25%;
+  max-width: 24.5%;
 }
 
 .card-title {
@@ -37,6 +38,6 @@
 }
 
 .action_image{
-  margin-left: 85%;
+  margin-left: 72%;
   margin-bottom: 13px;
 }

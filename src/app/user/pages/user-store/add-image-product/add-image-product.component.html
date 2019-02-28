@@ -13,7 +13,7 @@
               <div class="col">
                 <div class="product-image product-image-box">
                   <img
-                   [src]="imageToShow[0]"
+                   [src]="imageToShow[i]"
                     alt="Product of store"
                     class="card-img-top"
                     *ngIf="!isImageLoading; else noImageFound"
@@ -26,6 +26,7 @@
                   </ng-template>
                 </div>
               </div>
+              <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
             </ng-container>
 
             </div>

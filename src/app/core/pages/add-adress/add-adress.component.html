@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <h4 class="headder-adress">ข้อมูลการจัดส่ง</h4>
+      <hr class="line" />
+    </div>
+    <div class="form-data-address">
+      <form class="data-address-form" [formGroup]="address">
+        <div class="contain-form">
+          <div class="form-data-left">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ชื่อผู้รับ:" formControlName="receiver" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="หมายเลขโทรศัพท์:" formControlName="receiver" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="จังหวัด:" formControlName="receiver" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เขต:" formControlName="receiver" />
+            </mat-form-field>
+          </div>
+          <div class="form-data-right">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เเขวง:" formControlName="receiver" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เลขไปรษณีย์:" formControlName="receiver" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <textarea matInput
+                placeholder="ที่อยู่:"
+                class="text-address"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="button-submit-save">
+          <div class="save-button">
+            <button type="submit"
+              class="btn btn-info  ">บันทึก
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

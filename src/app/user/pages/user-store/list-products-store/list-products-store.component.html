@@ -30,16 +30,26 @@
             {{p.name_product}}
           </div>
         </div>
+        <div class="product-variation__sku">
+            <ui-switch
+            [(ngModel)]="status_product[i]"
+            (change)="changeStatus_product(i)"></ui-switch>
+          <div class="characer-status-show"
+          *ngIf="status_product[i] && index_product[i] === i">
+            แสดงสินค้า
+          </div>
+          <div class="characer-status-not_show"
+          *ngIf="!status_product[i] && index_product[i] === i">
+            ไม่แสดงสินค้า
+          </div>
+        </div>
       </div>
 
       <div class="product-variation text-overflow">
         <ng-container *ngFor="let pV of p.product_variation"> <!-- ใช้ for -->
-          <div class="product-variation-item" style="height: auto;">
-            <div class="product-variation__sku">
-              <mat-slide-toggle
-                (click)="changeStatus_product()">
-                {{status_product}}</mat-slide-toggle>
-            </div>
+          <div class="product-variation-item" style="height: 110px;">
+
+
             <div class="product-variation__name">
               {{pV.name}}
             </div>

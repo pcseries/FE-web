@@ -1,0 +1,70 @@
+.headder-adress {
+  color: darkgray;
+}
+
+.card {
+  margin-top: 3px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 9px 0 rgba(202, 58, 58, 0.06);
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+
+}
+
+.line {
+  border-color: #e1e1e1;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.form-data-address {
+  display: flex;
+  align-items: stretch;
+  padding-top: 30px;
+}
+
+.contain-form {
+  display: flex;
+}
+
+.example-full-width {
+  width: 70%;
+}
+
+.data-address-form {
+
+  width: 100%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 80%;
+}
+
+.form-data-left {
+  width: 50%;
+}
+
+.form-data-right {
+  width: 50%;
+}
+
+.text-address {
+  height: 100px;
+}
+
+.save-button {
+  margin-left: 84%;
+}

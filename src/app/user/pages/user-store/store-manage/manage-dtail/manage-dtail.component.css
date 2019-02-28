@@ -36,6 +36,10 @@
 
 }
 
+.head-category{
+  color: #888;
+}
+
 .create-input {
   line-height: 24px;
   min-height: 40px;
@@ -71,7 +75,7 @@
 }
 
 .mado-category_header_label {
-  color: #bababa;
+  color: black;
 }
 
 .text-overflow {

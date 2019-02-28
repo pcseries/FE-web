@@ -254,4 +254,41 @@ export class CardProductComponent implements OnInit {
     this.imageBigshow = this.imageToShow[index];
     this.isSelected = index;
   }
+
+  onBuy_product() {
+   // alert('ซื้อสินค้า');
+
+
+   if (localStorage.getItem('user') && localStorage.getItem('token')) {
+
+    this.product = this.fb.group({
+      body: [
+        {
+          order_status: "ORDERING",
+          order_item: [
+            {
+              id_variation: this.id_variation,
+              quantity: this.amount
+            }
+          ]
+        }
+      ]
+    });
+
+    this.shopService.addProduct(this.product.value).subscribe(
+      res => {
+        console.log("resShop=>", res);
+        location.reload();
+        this.router.navigate(['/mado/shopping']);
+      }, err => {
+        console.log('err=>', err);
+      }
+    );
+
+   } else {
+     alert('please login!');
+     this.router.navigate(['/mado/login']);
+   }
+
+  }
 }

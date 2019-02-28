@@ -78,6 +78,8 @@ import { StoreManageVariationComponent } from './user/pages/user-store/store-man
 import { AddImageProductComponent } from './user/pages/user-store/add-image-product/add-image-product.component';
 import { ManageDtailComponent } from './user/pages/user-store/store-manage/manage-dtail/manage-dtail.component';
 
+import { UiSwitchModule } from 'ngx-toggle-switch';
+import { AddAdressComponent } from './core/pages/add-adress/add-adress.component';
 
 
 
@@ -125,7 +127,8 @@ import { ManageDtailComponent } from './user/pages/user-store/store-manage/manag
     StoreManageComponent,
     StoreManageVariationComponent,
     AddImageProductComponent,
-    ManageDtailComponent
+    ManageDtailComponent,
+    AddAdressComponent
 
   ],
   imports: [
@@ -154,7 +157,8 @@ import { ManageDtailComponent } from './user/pages/user-store/store-manage/manag
     FormsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    UiSwitchModule
 
   ],
   entryComponents: [

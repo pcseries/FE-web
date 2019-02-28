@@ -56,7 +56,8 @@ input[type=text]:focus {
   font-size: 20px;
   position: relative;
   font-weight: bold;
-
+  display: flex;
+  margin-left: 30%;
 }
 
 .border-title {
@@ -318,4 +319,13 @@ input[type=text]:focus {
 .btn-true {
   cursor: pointer;
   color: green;
+}
+
+.info-button {
+
+}
+
+.mat-mini-fab{
+  color: white;
+  background-color: #17a2b8;
 }

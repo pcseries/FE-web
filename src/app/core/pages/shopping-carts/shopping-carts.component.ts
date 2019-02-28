@@ -29,6 +29,10 @@ export class ShoppingCartsComponent implements OnInit {
   sort_showOrder = [];
   status_header = [];
 
+  // สินค้าที่เลือกจ่ายตังค์
+  all_buy_cost: any;
+  counts_product: any;
+
   constructor(
     private shopcartService: ShopcartService,
     private productService: ProductsService,
@@ -187,5 +191,8 @@ export class ShoppingCartsComponent implements OnInit {
 
   onAddProduct() {
 
+  }
+
+  onSelect_product() {
   }
 }

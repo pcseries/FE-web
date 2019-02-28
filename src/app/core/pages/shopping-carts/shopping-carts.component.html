@@ -42,6 +42,9 @@
       <div class="cart-item">
 
         <div class="cart-item__cell-overview">
+          <div class="check-cart">
+            <mat-checkbox (click)="onSelect_product()"></mat-checkbox>
+          </div>
 
           <div class="cart-item-overview__picture">
               <img
@@ -92,6 +95,18 @@
     </div>
   </div>
   </ng-container>
+</div>
+<div class="show-total-price">
+    <div class="detail-card">
+        <div class="title-detail">
+          รายละเอียดราคาสินค้า
+          <hr class="line">
+        </div>
+        <div class="content-card">
+          <div class="amount-product">เลือกสินค้าเป็นจำนวน {{count+1}} ชิ้น</div>
+          <div class="price-all-products"></div>
+        </div>
+      </div>
 </div>
 </div>
 
