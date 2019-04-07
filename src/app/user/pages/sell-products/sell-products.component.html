@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="purchase-list-page__tabs-container">
+
+        <div  class="purchase-list-page__tab purchase-list-page__tab--selected">
+          <span class="purchase-list-page__tab-label ">
+            ที่ต้องชำระ
+          </span>
+        </div>
+
+        <div *ngIf="!is_delivery"
+
+          class="purchase-list-page__tab">
+          <span class="purchase-list-page__tab-label">
+            ที่ต้องจัดส่ง
+          </span>
+        </div>
+
+
+        <div class="purchase-list-page__tab">
+            <span class="purchase-list-page__tab-label">
+              ที่ต้องได้รับ
+            </span>
+        </div>
+
+
+        <div class="purchase-list-page__tab">
+          <span class="purchase-list-page__tab-label">
+            สำเร็จแล้ว
+          </span>
+        </div>
+
+
+
+        <div class="purchase-list-page__tab  ">
+          <span class="purchase-list-page__tab-label">
+            ยกเลิกแล้ว
+          </span>
+      </div>
+
+      <div class="purchase-list-page__tab">
+        <span class="purchase-list-page__tab-label">
+          สินค้าที่ขอคืน
+        </span>
+    </div>
+
+      </div>
+
+      <app-sell-ordered></app-sell-ordered>
+
+</div>

@@ -46,12 +46,12 @@ export class StoreService {
     return this.http.put(this.baseUrlC + 'product/' , data , this.getAuth());
   }
 
-  deleteVariation(data: any):Observable<any> {
+  deleteVariation(data: any): Observable<any> {
     return this.http.request('delete', this.baseUrlC + 'product/', {body: data, headers: this.getAuthDelete()});
   }
 
-  deleteProduct(data: any):Observable<any> {
-    return this.http.request('delete', this.baseUrlC + 'product/', {body: data, headers: this.getAuthDelete()});
+  deleteProduct(data: any): Observable<any> {
+    return this.http.request('delete', this.baseUrlC + 'product/' + data, { headers: this.getAuthDelete()});
   }
 
   upImageProduct(fileToUpload: File, idProduct: any): Observable<any> {
@@ -60,6 +60,18 @@ export class StoreService {
     formData.append('file', fileToUpload, fileToUpload.name);
     console.log('formdata', formData);
     return this.http.post(this.baseUrlC + 'upload/' , formData , this.getAuthImage());
+  }
+
+  get_shipping(id: any) {
+    return this.http.get(this.baseUrlC + 'product/delivery/' + id, this.getAuth());
+  }
+
+  getDetail_shop() {
+    return this.http.get(this.baseUrlBS + 'shops/user', this.getAuth());
+  }
+
+  edit_store(data: any) {
+    return this.http.put(this.baseUrlBS + 'shops', data, this.getAuth());
   }
 
   getAuth() {
@@ -75,6 +87,8 @@ export class StoreService {
     const httpheaders = new HttpHeaders({'Content-Type': content , 'token': token});
     return { headers: httpheaders };
   }
+
+
 
   private getAuthImage() {
     const token = localStorage.getItem('token');

@@ -43,7 +43,11 @@
 
         <div class="cart-item__cell-overview">
           <div class="check-cart">
-            <mat-checkbox (click)="onSelect_product()"></mat-checkbox>
+            <mat-checkbox
+              color="primary"
+              (click)="onadd_uncheck_product(i)"
+              [(ngModel)]="checked[i]"
+            ></mat-checkbox>
           </div>
 
           <div class="cart-item-overview__picture">
@@ -51,7 +55,10 @@
               [src]="imageToShow[i]"
               alt="Place image title"
               class="card-img-top"
-              *ngIf="!isImageLoading; else noImageFound">
+              *ngIf="!isImageLoading; else noImageFound"
+              style="height: 80px;"
+              >
+
             <ng-template #noImageFound>
               <img src="./../../../../assets/image/fallbackImage.png"
               alt="Fallbackimage"
@@ -103,8 +110,18 @@
           <hr class="line">
         </div>
         <div class="content-card">
-          <div class="amount-product">เลือกสินค้าเป็นจำนวน {{count+1}} ชิ้น</div>
-          <div class="price-all-products"></div>
+          <div class="amount-product">เลือกสินค้าเป็นจำนวน {{counts_product}} ชิ้น</div>
+          <div class="action-group-products">
+            <div class="price-all-products">{{price_all | currency:'฿'}}</div>
+            <div class="action-button">
+              <button mat-flat-button
+                (click)="ongo_checkOut()"
+                color="primary"
+                class="button-shop-product">
+                 <span class="text-order-product">สั่งสินค้า</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 </div>

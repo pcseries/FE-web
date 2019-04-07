@@ -200,7 +200,7 @@
 
 .content-card {
   margin-top: 1.25rem;
-
+  display: flex;
 }
 
 
@@ -214,4 +214,24 @@
   border: 0;
   border-top: 1px solid rgba(0,0,0,.1);
 
+}
+
+.price-all-products {
+  font-size: 1.875rem;
+  line-height: 1.875rem;
+  color: #1E90FF;
+}
+
+.action-group-products {
+  display: flex;
+  margin-left: 50%;
+}
+
+.button-shop-product {
+  margin: 0 22px 0 15px;
+  padding: 10px 50px;
+}
+
+.amount-product {
+  width: 30%;
 }

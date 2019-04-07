@@ -95,7 +95,7 @@ export class ListProductsStoreComponent implements OnInit {
 
  onManage_Product(index: any) {
 
-  this.router.navigate(['user/manageStore', this.product_store[index].id_product]);
+  this.router.navigate(['user/store/manageStore', this.product_store[index].id_product]);
  }
 
  changeStatus_product(index: any) {

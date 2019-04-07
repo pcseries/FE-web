@@ -1,0 +1,87 @@
+<div class="container background-main">
+  <div class="purchase-list-page__tabs-container">
+
+    <div *ngIf="is_ordered" class="purchase-list-page__tab purchase-list-page__tab--selected">
+      <span class="purchase-list-page__tab-label ">
+        ที่ต้องชำระ
+      </span>
+    </div>
+
+    <div class="purchase-list-page__tab"
+      *ngIf="!is_ordered"
+      (click)="on_pageOrdered()">
+        <span class="purchase-list-page__tab-label ">
+          ที่ต้องชำระ
+        </span>
+    </div>
+
+
+
+    <div *ngIf="is_delivery"
+      class="purchase-list-page__tab purchase-list-page__tab--selected">
+      <span class="purchase-list-page__tab-label">
+        ที่ต้องจัดส่ง
+      </span>
+    </div>
+
+    <div *ngIf="!is_delivery"
+    (click)="on_pageDelivery()"
+      class="purchase-list-page__tab">
+      <span class="purchase-list-page__tab-label">
+        ที่ต้องจัดส่ง
+      </span>
+    </div>
+
+    <div class="purchase-list-page__tab">
+      <span class="purchase-list-page__tab-label">
+        ที่ต้องได้รับ
+      </span>
+    </div>
+
+    <div class="purchase-list-page__tab">
+      <span class="purchase-list-page__tab-label">
+        สำเร็จแล้ว
+      </span>
+    </div>
+
+    <div class="purchase-list-page__tab"
+      (click)="on_pageCanceled()"
+      *ngIf="!is_canceled">
+      <span class="purchase-list-page__tab-label">
+        ยกเลิกแล้ว
+      </span>
+    </div>
+
+    <div class="purchase-list-page__tab  purchase-list-page__tab--selected" *ngIf="is_canceled">
+      <span class="purchase-list-page__tab-label">
+        ยกเลิกแล้ว
+      </span>
+  </div>
+
+  <div class="purchase-list-page__tab">
+    <span class="purchase-list-page__tab-label">
+      สินค้าที่ขอคืน
+    </span>
+</div>
+
+  </div>
+
+  <div class="ordered_products"
+    *ngIf="is_ordered">
+    <app-ordered-history></app-ordered-history>
+  </div>
+
+  <div class="delivery-products"
+    *ngIf="is_delivery">
+    <app-delivery-products></app-delivery-products>
+  </div>
+
+  <div class="canceled_products"
+    *ngIf="is_canceled">
+    <app-canceled-history></app-canceled-history>
+  </div>
+
+
+
+
+</div>

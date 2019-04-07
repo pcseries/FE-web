@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>สินค้าทั้งหมด</th>
+        <th>ผู้รับ</th>
+        <th>จำนวน</th>
+        <th>ช่องทางการส่ง</th>
+        <th>ราคาทั้งหมด</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let p of seller_products;let i = index ">
+      <tr>
+        <td>{{name_products[i]}}</td>
+        <td>{{reciever[i]}}</td>
+        <td>{{quantity[i]}}</td>
+        <td>{{product_delivery[i]}}</td>
+        <td>{{price_all[i]}}</td>
+        <td>
+          <button
+            (click)="go_detail(i)"
+            type="button" class="btn btn-info">
+            จัดการสินค้า
+          </button>
+        </td>
+      </tr>
+</ng-container>
+    </tbody>
+  </table>

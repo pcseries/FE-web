@@ -53,6 +53,7 @@ export class UserService {
      return this.http.put(this.baseUrlBS + 'users/' + user, member , this.getAuth());
   }
 
+
   private getAuth() {
     const conttent = 'application/json; charset=utf-8';
     const token = '313e3e42a3273e43577968f8732164c3';// เปลี่ยนเป็น gettoken มาเเทน

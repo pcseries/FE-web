@@ -5,31 +5,34 @@
       <hr class="line" />
     </div>
     <div class="form-data-address">
-      <form class="data-address-form" [formGroup]="address">
+      <form class="data-address-form"
+        [formGroup]="address"
+        (ngSubmit)="onAdd_address()">
         <div class="contain-form">
           <div class="form-data-left">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="ชื่อผู้รับ:" formControlName="receiver" />
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="หมายเลขโทรศัพท์:" formControlName="receiver" />
+              <input matInput placeholder="หมายเลขโทรศัพท์:" formControlName="phone_receiver" />
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="จังหวัด:" formControlName="receiver" />
+              <input matInput placeholder="จังหวัด:" formControlName="province" />
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="เขต:" formControlName="receiver" />
+              <input matInput placeholder="เขต:" formControlName="district" />
             </mat-form-field>
           </div>
           <div class="form-data-right">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="เเขวง:" formControlName="receiver" />
+              <input matInput placeholder="เเขวง:" formControlName="sub_district" />
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="เลขไปรษณีย์:" formControlName="receiver" />
+              <input matInput placeholder="เลขไปรษณีย์:" formControlName="postal_code" />
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <textarea matInput
+                formControlName="address"
                 placeholder="ที่อยู่:"
                 class="text-address"></textarea>
             </mat-form-field>

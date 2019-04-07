@@ -23,8 +23,8 @@ export class ShopcartService {
     return this.http.post(this.baseUrlC + 'order/', product , this.getAuth());
   }
 
-  deleteProduct(product: any) {
-    return this.http.request('delete', this.baseUrlC + 'order/' , {body: product , headers: this.getAuthDelete()});
+  deleteProduct(id_item: any) {
+    return this.http.delete( this.baseUrlC + 'order/' +  id_item, {headers: this.getAuthDelete()});
   }
 
   editProduct(product: any) {

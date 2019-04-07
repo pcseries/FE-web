@@ -37,8 +37,34 @@ export class ProductsService {
     return this.http.get(this.baseUrlBS + 'productpromo/5', this.authWeb());
   }
 
+  ordered_product(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'order/', data , this.getAuth());
+  }
+
+  update_order(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'order/', data , this.getAuth());
+  }
+
+  pay_product(data: any): Observable<Blob> {
+    return this.http.post(this.baseUrlBS + 'promptpay', data, {responseType: 'blob', headers: this.getAuthImage()});
+  }
 
 
+  get_paying(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'type/payments', this.getAuth());
+  }
+
+  update_ordered(ordered: any): Observable<any> {
+    return this.http.put('http://158.108.207.7:8080/ecom/api/eshop/order/', ordered , this.getAuth());
+  }
+
+  get_order(): Observable<any> {
+    return this.http.get(this.baseUrlC  + 'order/', this.getAuth());
+  }
+
+  ongetorder_byid(id: any): Observable<any> {
+    return this.http.get(this.baseUrlC + 'order/' + id, this.getAuth());
+  }
 
   private getAutprodtuct() {
     const token = '1a2b3c';
@@ -64,7 +90,18 @@ export class ProductsService {
     return { headers: httpheaders };
   }
 
+  getAuth() {
+    const token = localStorage.getItem('token');
+    const content = 'application/json; charset=utf-8';
+    const httpheaders = new HttpHeaders({'Content-Type': content , 'token': token});
+    return { headers: httpheaders };
+  }
 
+  private getAuthImage() {
+    const token = localStorage.getItem('token');
+    const httpheaders = new HttpHeaders({'token': token});
+    return  httpheaders ;
+  }
 
 }
 

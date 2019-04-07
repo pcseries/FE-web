@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="my-account-section">
+    <div class="my-account-section__header">
+      <div class="my-account-section__header-left">
+        <div class="my-account-section__header-title">
+          ที่อยู่ของฉัน
+        </div>
+        <div class="my-account-section__header-subtitle">
+        </div>
+      </div>
+      <div class="my-account-section__header-button">
+        <button (click)="on_goAddaddress()"
+        class="shopee-button-solid shopee-button-solid--primary shopee-button-solid--address-tab ">
+          <div class="button-with-icon">
+            <div class="button-with-icon__icon">
+              <svg class="shopee-svg-icon icon-plus-sign" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
+                <polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5">
+
+                </polygon>
+              </svg>
+            </div>
+            <div>เพิ่มที่อยู่</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div >
+      <div class="address-card" *ngFor="let p of data_address;let i = index">
+        <div></div>
+        <div class="address-display__left">
+          <div class="address-display__field-container address-display__field-container--name">
+            <div class="address-display__field-label">
+              ชื่อ
+            </div>
+            <div class="address-display__field-content">
+              <span class="address-display__name-text">
+                {{p.receiver}}
+              </span>
+              <div class="bacc-default-badge" *ngIf="is_default === i">
+                ค่าเริ่มต้น
+              </div>
+            </div>
+          </div>
+          <div class="address-display__field-container">
+            <div class="address-display__field-label">
+              โทรศัพท์
+            </div>
+            <div class="address-display__field-content">
+              {{p.phone_receiver}}
+            </div>
+          </div>
+          <div class="address-display__field-container">
+            <div class="address-display__field-label">
+              ที่อยู่
+            </div>
+            <div class="address-display__field-content">
+              <span>{{p.address}}
+                <br>{{p.district}}
+                <br>{{p.province}}
+                <br>{{p.postal_code}}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="address-card__buttons">
+          <div class="address-card__button-group">
+            <button (click)="on_editAddress(i)"
+              class="bacc-secondary-action-btn">
+              แก้ไข
+            </button>
+            <button *ngIf="allow_delete"
+              (click)="on_deleteAddress(i)"
+              class="bacc-secondary-action-btn">
+              ลบ
+            </button>
+          </div>
+          <div class="address-card__button-group">
+            <button (click)="address_setdefault(i)"
+              type="button" class="btn btn-light btn--s btn--inline btn-light--disabled">
+              ตั้งเป็นค่าตั้งต้น
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

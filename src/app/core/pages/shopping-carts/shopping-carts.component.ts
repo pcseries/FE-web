@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ShopcartService } from "src/app/services/core/shopcart.service";
 import { ProductsService } from "src/app/services/core/products.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { UserService } from "src/app/services/user/user.service";
 
 @Component({
   selector: "app-shopping-carts",
@@ -19,6 +20,7 @@ export class ShoppingCartsComponent implements OnInit {
   name: any;
   id_order: any;
 
+
   isHaveProduct: boolean;
   isImageLoading: boolean;
   imageToShow: any = [];
@@ -30,14 +32,23 @@ export class ShoppingCartsComponent implements OnInit {
   status_header = [];
 
   // สินค้าที่เลือกจ่ายตังค์
-  all_buy_cost: any;
+  price_all: any;
   counts_product: any;
+  checked = [];
+  public idProduct: any;
+  check2 = [];
+
+
+  ordered: FormGroup;
+  amount_all_product: any;
 
   constructor(
     private shopcartService: ShopcartService,
     private productService: ProductsService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -45,8 +56,11 @@ export class ShoppingCartsComponent implements OnInit {
       alert("Please Login");
       this.router.navigate(["/mado/login"]);
     }
+    this.idProduct = this.route.snapshot.paramMap.get('id');
+    this.price_all = 0;
     this.count = 0;
     this.isHaveProduct = true;
+    this.counts_product = 0;
     this.shopcartService.getOrder().subscribe(
       res => {
         this.shopCart = res["body"]["order"];
@@ -61,24 +75,38 @@ export class ShoppingCartsComponent implements OnInit {
             this.id_order = this.shopCart[i].id_order;
             this.count = this.count + 1;
             this.isHaveProduct = true;
+
             // console.log(this.shopCart[i]);
             // this.selectProduct[this.count] = this.shopCart[i].order_item;
             // this.getImageFromService(this.selectProduct[this.count][this.count].id_product , this.selectProduct[this.count][this.count].pic_product);
            // this.onShoworders(this.shopCart[i]["order_item"]);
 
             this.onShoworders(this.shopCart[i]["order_item"]);
-
+            this.amount_all_product = this.shopCart[i]["order_item"].length;
             // console.log('productSelect', this.shopCart[i]['order_item'][0]);
             for (let j = 0; j < this.shopCart[i]["order_item"].length; j++) {
               this.selectProduct = this.shopCart[i]["order_item"];
                 // this.showOrders.push(this.selectProduct[j]);
                // this.onShoworders(this.shopCart[i]["order_item"]);
-            // console.log('selectProduct', this.selectProduct[j]);
+
+             console.log('selectProduct=>', this.selectProduct[j]);
               console.log("LengthProduct", this.selectProduct.length);
               let id = this.shopCart[i]["order_item"][j].id_product;
               let namepic = this.shopCart[i]["order_item"][j].pic_product;
               this.getImageFromService(id, namepic, j);
+              if (this.idProduct == this.selectProduct[j].id_product) {
+                this.counts_product++;
+                this.checked[j] = true;
+                this.price_all = this.price_all + (this.selectProduct[j].quantity * this.selectProduct[j].price );
+              } else if (this.idProduct == 0) {
+                this.counts_product = this.shopCart[i]["order_item"].length ;
+                this.checked[j] = true;
+                this.price_all = this.price_all + (this.selectProduct[j].quantity * this.selectProduct[j].price );
+              } else {
+                this.checked[j] = false;
+              }
             }
+            this.check2 = this.checked;
             if (this.shopCart[i]["order_item"].length === 0) {
               this.count = 0;
             }
@@ -109,7 +137,7 @@ export class ShoppingCartsComponent implements OnInit {
     let swap = [];
     for (let i = 0; i < showOrders.length - 1 ; i++) {
       for (let j = 0; j < showOrders.length - i - 1 ; j++ ) {
-         //console.log('access');
+         // console.log('access');
         if (showOrders[j].id_shop > showOrders[j + 1].id_shop) {
           swap = showOrders[j];
           showOrders[j] = showOrders[j + 1];
@@ -175,7 +203,7 @@ export class ShoppingCartsComponent implements OnInit {
       // console.log('delete', this.deleteProduct.value);
      // alert(item);
      console.log('product_delete', this.deleteProduct.value);
-      this.shopcartService.deleteProduct(this.deleteProduct.value).subscribe(
+      this.shopcartService.deleteProduct(item).subscribe(
         res => {
           console.log("res", res);
           location.reload();
@@ -193,6 +221,49 @@ export class ShoppingCartsComponent implements OnInit {
 
   }
 
-  onSelect_product() {
+  onadd_uncheck_product(index: any) {
+    // alert(this.checked[index]);
+   // alert(this.checked[index]);
+
+    if (this.checked[index] === true) {
+
+      this.price_all = this.price_all - (this.selectProduct[index].quantity * this.selectProduct[index].price );
+      this.counts_product = this.counts_product - 1;
+    } else {
+      this.counts_product = this.counts_product + 1;
+      this.price_all = this.price_all + (this.selectProduct[index].quantity * this.selectProduct[index].price );
+    }
   }
+
+  ongo_checkOut() {
+
+    let count = 0;
+    localStorage.setItem('order_all', this.counts_product);
+    for (let i = 0 ; i < this.amount_all_product; i++) {
+      if (this.checked[i]) {
+        localStorage.setItem('order_' + count, this.selectProduct[i].id_variation);
+        count++;
+      }
+    }
+
+     this.userService.get_address().subscribe(
+       res => {
+         console.log('gocheck=>', res['body']);
+         if (res['body'].length === 0) {
+            this.router.navigate(['/mado/addAdress']);
+         } else if (this.idProduct !== 0) {
+           this.router.navigate(['/mado/checkOut/', this.idProduct]);
+         } else {
+           this.router.navigate(['/mado/checkOut/0']);
+         }
+       }, error => {
+         console.log('err=>', error);
+       }
+     );
+     this.router.navigate(['/mado/checkOut']);
+
+ }
+
 }
+
+

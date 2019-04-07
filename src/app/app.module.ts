@@ -80,6 +80,23 @@ import { ManageDtailComponent } from './user/pages/user-store/store-manage/manag
 
 import { UiSwitchModule } from 'ngx-toggle-switch';
 import { AddAdressComponent } from './core/pages/add-adress/add-adress.component';
+import { PagesComponent } from './core/pages/pages.component';
+import { CheckOutComponent } from './core/pages/check-out/check-out.component';
+import { EditStoreComponent } from './user/pages/user-store/edit-store/edit-store.component';
+import { MyShippingComponent } from './core/pages/check-out/my-shipping/my-shipping.component';
+import { PayProductsComponent } from './core/pages/pay-products/pay-products.component';
+import { PayHistoryComponent } from './user/pages/pay-history/pay-history.component';
+import { MyPayingComponent } from './core/pages/check-out/my-paying/my-paying.component';
+import { OrderedHistoryComponent } from './user/pages/pay-history/ordered-history/ordered-history.component';
+import { CanceledHistoryComponent } from './user/pages/pay-history/canceled-history/canceled-history.component';
+import { AddressManageComponent } from './user/pages/address-manage/address-manage.component';
+import { UseraddAddressComponent } from './user/pages/address-manage/useradd-address/useradd-address.component';
+import { UsereditAddressComponent } from './user/pages/address-manage/useredit-address/useredit-address.component';
+import { DeliveryProductsComponent } from './user/pages/pay-history/delivery-products/delivery-products.component';
+import { SellProductsComponent } from './user/pages/sell-products/sell-products.component';
+import { TrackingProductComponent } from './user/pages/pay-history/delivery-products/tracking-product/tracking-product.component';
+import { SellOrderedComponent } from './user/pages/sell-products/sell-ordered/sell-ordered.component';
+import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/dtail-ordered.component';
 
 
 
@@ -128,7 +145,24 @@ import { AddAdressComponent } from './core/pages/add-adress/add-adress.component
     StoreManageVariationComponent,
     AddImageProductComponent,
     ManageDtailComponent,
-    AddAdressComponent
+    AddAdressComponent,
+    PagesComponent,
+    CheckOutComponent,
+    EditStoreComponent,
+    MyShippingComponent,
+    PayProductsComponent,
+    PayHistoryComponent,
+    MyPayingComponent,
+    OrderedHistoryComponent,
+    CanceledHistoryComponent,
+    AddressManageComponent,
+    UseraddAddressComponent,
+    UsereditAddressComponent,
+    DeliveryProductsComponent,
+    SellProductsComponent,
+    TrackingProductComponent,
+    SellOrderedComponent,
+    DtailOrderedComponent
 
   ],
   imports: [
@@ -162,7 +196,10 @@ import { AddAdressComponent } from './core/pages/add-adress/add-adress.component
 
   ],
   entryComponents: [
-    MyDialogComponent
+    MyDialogComponent,
+    MyShippingComponent,
+    MyPayingComponent
+
   ],
   providers: [
     GlobalService,

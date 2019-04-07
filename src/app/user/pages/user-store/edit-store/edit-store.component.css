@@ -1,0 +1,27 @@
+.header-store {
+  text-align: center;
+}
+
+.example-full-width {
+  width: 80%;
+  margin: auto;
+  margin-left: 10%;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+
+.area {
+  height: 60px;
+}
+
+
+.save-button {
+  margin-left: 84%;
+}
+
+.button-submit-save {
+  margin-bottom: 10px;
+}

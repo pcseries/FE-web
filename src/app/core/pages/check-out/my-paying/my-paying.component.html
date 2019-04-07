@@ -1,0 +1,54 @@
+<div class="MyShippingComponent">
+  <div class="logistics-selection-modal">
+    <div class="logistics-selection-modal__title">
+        เลือก ตัวเลือกการจัดส่ง
+    </div>
+
+    <div class="logistics-selection-modal__content">
+      <div class="logistics-selection-modal__section">
+        <div class="logistics-selection-channels">
+          <div class="logistics-selection-channels__headers">
+
+          </div>
+
+<ng-container  *ngFor="let p of payment_order; let i = index">
+          <div class="logistics-selection-channels__channels">
+            <div class="stardust-radio stardust-radio--checked">
+                <label (click)="on_selectPay(i)"
+                  *ngIf="present_pay === p.name_type"
+                 class="container">{{p.name_type}}
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                  </label>
+
+                  <label (click)="on_selectPay(i)"
+                  *ngIf="present_pay !== p.name_type"
+                 class="container">{{p.name_type}}
+                    <input type="radio"  name="radio">
+                    <span class="checkmark"></span>
+                  </label>
+            </div>
+
+            <div class="price_shipping">
+
+            </div>
+
+          </div>
+</ng-container>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="logistics-selection-modal__footer">
+      <div class="logistics-selection-modal__footer-content">
+        <button class="stardust-button logistics-selection-modal__cancel-btn"
+        (click)="on_cancel()">ยกเลิก</button>
+        <button class="stardust-button stardust-button--primary logistics-selection-modal__submit-btn"
+         (click)="save()" >ยืนยัน</button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -14,17 +14,13 @@ export let MENU_ITEM = [
           title: 'จัดการโปร์ไฟล์'
         },
         {
-          path: '#',
+          path: 'addressManage',
           title: 'จัดการที่อยู่'
-        },
-        {
-          path: '#',
-          title: 'ตั้งค่าความปลอดภัย'
         }
       ]
   },
   {
-    path: '#',
+    path: 'user/payHistory/0',
     title: 'การซื้อของฉัน',
     icon: 'credit-card'
   },
@@ -32,5 +28,10 @@ export let MENU_ITEM = [
     path: 'user/store',
     title: 'จัดการร้านค้า',
     icon: 'briefcase'
+  },
+  {
+    path: 'user/sellProducts',
+    title: 'การขายของฉัน',
+    icon: 'btc'
   }
 ];

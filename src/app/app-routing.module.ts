@@ -20,6 +20,17 @@ import { UserStoreComponent } from './user/pages/user-store/user-store.component
 import { StoreManageComponent } from './user/pages/user-store/store-manage/store-manage.component';
 import { AddImageProductComponent } from './user/pages/user-store/add-image-product/add-image-product.component';
 import { AddAdressComponent } from './core/pages/add-adress/add-adress.component';
+import { CheckOutComponent } from './core/pages/check-out/check-out.component';
+import { EditStoreComponent } from './user/pages/user-store/edit-store/edit-store.component';
+import { PayProductsComponent } from './core/pages/pay-products/pay-products.component';
+import { PayHistoryComponent } from './user/pages/pay-history/pay-history.component';
+import { AddressManageComponent } from './user/pages/address-manage/address-manage.component';
+import { UseraddAddressComponent } from './user/pages/address-manage/useradd-address/useradd-address.component';
+import { UsereditAddressComponent } from './user/pages/address-manage/useredit-address/useredit-address.component';
+import { SellProductsComponent } from './user/pages/sell-products/sell-products.component';
+import { TrackingProductComponent } from './user/pages/pay-history/delivery-products/tracking-product/tracking-product.component';
+import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/dtail-ordered.component';
+
 
 
 
@@ -33,8 +44,10 @@ const routes: Routes = [
       {path: 'login', component: MainLoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'product/detail/:id', component: DtailProductComponent},
-      {path: 'shopping', component: ShoppingCartsComponent},
-      {path: 'addAdress', component: AddAdressComponent}
+      {path: 'shopping/:id', component: ShoppingCartsComponent},
+      {path: 'addAdress', component: AddAdressComponent},
+      {path: 'checkOut/:id', component: CheckOutComponent},
+      {path: 'payorder/:id', component: PayProductsComponent}
     ]
   },
 
@@ -52,8 +65,16 @@ const routes: Routes = [
       {path: 'profile', component: ProfileComponent},
       {path: 'editProfile', component: EditUserComponent},
       {path: 'store', component: UserStoreComponent},
-      {path: 'manageStore/:id', component: StoreManageComponent} ,
-      {path: 'addImage/:id', component: AddImageProductComponent}
+      {path: 'store/manageStore/:id', component: StoreManageComponent} ,
+      {path: 'addImage/:id', component: AddImageProductComponent},
+      {path: 'store/edit', component: EditStoreComponent},
+      {path: 'payHistory/:id', component: PayHistoryComponent},
+      {path: 'addressManage', component: AddressManageComponent},
+      {path: 'addressManage/addAddress', component: UseraddAddressComponent},
+      {path: 'addressManage/editAddress/:id', component: UsereditAddressComponent},
+      {path: 'sellProducts', component: SellProductsComponent},
+      {path: 'payHistory/tracking/:id', component: TrackingProductComponent},
+      {path: 'sellProducts/manage-ordered/:id', component: DtailOrderedComponent}
     ],
   },
 

@@ -203,6 +203,8 @@ export class UserStoreComponent implements OnInit {
       this.select_category = this.store_name[0] + this.store_name[1];
       this.expanded = false;
       this.level = 0;
+     // console.log('category=>', this.catagory_level2[index]);
+      this.onset_catagoryId(this.catagory_level2[index].id_catagory);
     } else {
       this.store_name[1] = this.catagory_level2[index].name_catagory + '>';
 
@@ -250,6 +252,10 @@ export class UserStoreComponent implements OnInit {
 
 
     this.edit_row = -1;
+  }
+
+  goEdit_store() {
+    this.router.navigate(['/user/store/edit']);
   }
 
 }

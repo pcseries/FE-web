@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="checkout-address-selection">
+    <div class="checkout-address-selection__container">
+      <div class="checkout-address-selection__section-header">
+        <div class="checkout-address-selection__section-header-text">
+          <svg class="shopee-svg-icon icon-location-marker"
+            height="16"
+            viewBox="0 0 12 16"
+            width="12">
+            <path d="M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z"
+            fill-rule="evenodd"></path>
+          </svg>
+          ที่อยู่ในการจัดส่ง
+        </div>
+      </div>
+      <div class="checkout-address-selection__selected-address-summary">
+
+        <div class="checkout-address-row">
+          <div class="checkout-address-row__user-detail">{{receiver}}  {{phone_receiver}}</div>
+          <div class="checkout-address-row__address-summary">{{address}} {{sub_district}} ,  {{district}}, {{province}}, {{postal_code}}</div>
+          <div class="checkout-address-row__default-label">ค่าเริ่มต้น</div>
+        </div>
+
+        <div class="checkout-address-selection__change-btn">เปลี่ยน</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ส่วนแสดง order สินค้า -->
+  <ng-container *ngFor="let p of selectProduct; let i = index;">
+  <div class="checkout-product-ordered-list">
+    <div class="checkout-product-ordered-list__header-block">
+      <div class="checkout-product-ordered-list__headers">
+        <div class="checkout-product-ordered-list__header checkout-product-ordered-list__header--product">
+          <div class="checkout-product-ordered-list__title">
+            สั่งซื้อสินค้าแล้ว
+          </div>
+        </div>
+
+        <div class="checkout-product-ordered-list__header
+          checkout-product-ordered-list__header--variation">
+        </div>
+
+        <div class="checkout-product-ordered-list__header">ราคาต่อหน่วย</div>
+        <div class="checkout-product-ordered-list__header">จำนวน</div>
+        <div class="checkout-product-ordered-list__header
+          checkout-product-ordered-list__header">รายการย่อย</div>
+      </div>
+    </div>
+
+    <div class="checkout-product-ordered-list__content">
+      <div class="checkout-shop-order-group">
+        <div class="checkout-shop-order-group__orders">
+          <div class="checkout-product-ordered-list-item">
+            <div class="checkout-product-ordered-list-item-shop-info">
+              <div class="checkout-product-ordered-list-item-shop-info__shop-icon">
+                <div class="checkout-product-ordered-list-item-shop-info__shop-icon-link">
+                  <svg class="stardust-icon stardust-icon-search-shop"
+                  enable-background="new 0 0 15 15"
+                  viewBox="0 0 15 15">
+                    <path stroke="none" d="m13 1.9c-.2-.5-.8-1-1.4-1h-8.4c-.6.1-1.2.5-1.4 1l-1.4 4.3 0 0c0 .8.3 1.6.9 2.1v4.8c0 .6.5 1 1.1 1h10.2c.6 0 1.1-.5 1.1-1v-4.6c.6-.4.9-1.2.9-2.3zm-11.4 3.4l1-3c .1-.2.4-.4.6-.4h8.3c.3 0 .5.2.6.4l1 3zm .6 3.5h.4c.7 0 1.4-.3 1.8-.8.4.5.9.8 1.5.8.7 0 1.3-.5 1.5-.8.2.3.8.8 1.5.8.6 0 1.1-.3 1.5-.8.4.5 1.1.8 1.7.8h.4v3.9c0 .1 0 .2-.1.3s-.2.1-.3.1h-9.5c-.1 0-.2 0-.3-.1s-.1-.2-.1-.3zm8.8-1.7l0 0h-1v .1s0 .3-.2.6c-.2.1-.5.2-.9.2-.3 0-.6-.1-.8-.3-.2-.3-.2-.6-.2-.6v-.1h-1v .1s0 .3-.2.5c-.2.3-.5.4-.8.4-1 0-1-.8-1-.8l0 0h-1l0 0c0 .8-.7.8-1.3.8s-1.1-1-1.2-1.7h12.1c0 .2-.1.9-.5 1.4-.2.2-.5.3-.8.3-1.2 0-1.2-.8-1.2-.9z"></path>
+                  </svg>
+                </div>
+
+                <a class="checkout-product-ordered-list-item-shop-info__shop-name">{{p.shop_name}}</a>
+              </div>
+            </div>
+
+            <div class="checkout-product-ordered-list-item__items">
+              <div class="checkout-product-ordered-list-item__item
+                checkout-product-ordered-list-item__item--non-add-on">
+                <div class="checkout-product-ordered-list-item__header
+                  checkout-product-ordered-list-item__header--product">
+                  <img class="checkout-product-ordered-list-item__product-image" [src]="imageToShow[i]" width="40" height="40">
+                  <span class="checkout-product-ordered-list-item__product-info">{{p.name_product}}</span>
+                </div>
+
+                <div class="checkout-product-ordered-list-item__header checkout-product-ordered-list-item__header--variation">
+                  <span class="checkout-product-ordered-list-item__variation">
+                    ตัวเลือก: {{p.name_variation}}.
+                  </span>
+                </div>
+
+                <div class="checkout-product-ordered-list-item__header">
+                  {{p.price }}
+                </div>
+
+                <div class="checkout-product-ordered-list-item__header">
+                    {{ p.quantity }}
+                </div>
+
+                <div class="checkout-product-ordered-list-item__header checkout-product-ordered-list-item__header--subtotal">
+                  {{ store_price[i] }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkout-product-ordered-list-item__actions">
+          <div class="checkout-product-ordered-list-item__action checkout-product-ordered-list-item__action--right">
+            <div class="_155Awv">
+              Shipping Option
+            </div>
+            <div class="_22Zp-M">{{ship_ping[i]}}</div>
+            <div class="_27FVO_"></div>
+            <div class="_3UvATu">Receive in {{time_ship[i]}} days</div>
+            <div class="_3DcBG5"
+              (click)="openDialog(p.id_product, i)">
+            เปลี่ยน</div>
+            <div class="_2R3cCB">฿{{price_ship[i]}}</div>
+          </div>
+        </div>
+
+
+        <div class="_1pkbuI">
+          <div class="_1wd2xT">ยอดสั่งซื้อทั้งหมด ({{p.quantity }} ชิ้น):</div>
+          <div class="ZwtlWT">฿{{price_all[i]}}</div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+  <!-- ส่วนชำระเงิน -->
+  <div class="page-checkout__payment-order-wrapper">
+    <div class="checkout-payment-method-view">
+      <div class="checkout-payment-method-view__current">
+        <div class="checkout-payment-method-view__current-title
+          checkout-payment-method-view__current-title--wide-block">
+          วิธีการชำระเงิน
+        </div>
+        <div class="checkout-payment-method-view__current-type">
+          {{name_paying}}
+        </div>
+        <div class="checkout-change-payment-method-button"
+          (click)="open_paying(name_paying)">
+          เปลี่ยน
+        </div>
+      </div>
+    </div>
+
+    <div class="_1r8NL4">
+      <div class="_2X6jGK Ycio_F _3H1NVA">ยอดรวมสินค้า:</div>
+      <div class="_2X6jGK _3CkY6E _3H1NVA">฿{{price_all_product}}</div>
+      <div class="_2X6jGK Ycio_F _3zEJev">รวมการจัดส่ง:</div>
+      <div class="_2X6jGK _3CkY6E _3zEJev">฿{{final_ship}}</div>
+      <div class="_2X6jGK Ycio_F _37sKog">การชำระเงินทั้งหมด:</div>
+      <div class="_2X6jGK bYNx7P _3CkY6E _37sKog">฿{{final_price}}</div>
+
+      <div class="_1nqViI _32OJur">
+        <button class="stardust-button stardust-button--primary
+        stardust-button--large _1rgnQx"
+        style="cursor: pointer"
+        (click)="go_payorder()">สั่งสินค้า</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

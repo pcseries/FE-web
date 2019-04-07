@@ -107,14 +107,14 @@ onRemove_product() {
   let c = confirm('Are you sure delete');
 
   if (c == true) {
-    this.delete_product = this.fb.group({
-      body: {
-        id_product: [this.idProduct]
-      }
-    });
+    // this.delete_product = this.fb.group({
+    //   body: {
+    //     id_product: [this.idProduct]
+    //   }
+    // });
 
-    console.log('delete_product=> ', this.delete_product.value);
-    this.storeService.deleteProduct(this.delete_product.value).subscribe(
+    // console.log('delete_product=> ', this.delete_product.value);
+    this.storeService.deleteProduct(this.idProduct).subscribe(
       res => {
         console.log('delete_pd_store=>', res);
         this.router.navigate(['/user/store']);

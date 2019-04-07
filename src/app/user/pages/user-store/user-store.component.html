@@ -4,7 +4,9 @@
       <div *ngIf="!addProduct_status">จัดการร้านค้า</div>
       <div *ngIf="!addProduct_status"
         class="button-to-dtailStore">
-        <button mat-mini-fab color="info-button">
+        <button mat-mini-fab
+          color="info-button"
+          (click)="goEdit_store()">
             <i class="fa fa-edit" ></i>
         </button>
       </div>

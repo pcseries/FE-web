@@ -1,0 +1,51 @@
+
+
+<div class="container">
+    <div class="col-md-10 center">
+        <div class="card">
+          <h4 style="color:black;" class="header-store"> ข้อมูลร้านค้า </h4>
+          <hr>
+          <form class="data-address-form"
+            [formGroup]="data_store"
+            (ngSubmit)="onEdit_address()">
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="ชื่อร้าน:"
+                  value="{{name_store}}" formControlName="name_shop">
+
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <textarea class="area" placeholder="ที่อยู่ร้านค้า:" matInput
+              value="{{address_store}}"
+              formControlName="shop_address"></textarea>
+
+              </mat-form-field>
+
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="ชื่อบัญชี:" value="{{nameBank_store}}"
+            formControlName="bank_account_name">
+
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="เลขบัญชี:" value="{{numBank_store}}"
+            formControlName="bank_account_number">
+
+          </mat-form-field>
+        <br>
+
+        </div>
+        <div class="button-submit-save">
+            <div class="save-button">
+              <button type="submit"
+                class="btn btn-info  ">บันทึก
+              </button>
+            </div>
+
+          </div>
+          </form>
+        </div>
+      </div>
+</div>

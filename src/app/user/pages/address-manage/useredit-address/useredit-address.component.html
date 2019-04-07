@@ -1,0 +1,68 @@
+
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <h4 class="headder-adress">ข้อมูลการจัดส่ง</h4>
+      <hr class="line" />
+    </div>
+    <div class="form-data-address">
+      <form class="data-address-form"
+        [formGroup]="address"
+        (ngSubmit)="on_editAddress()"
+       >
+        <div class="contain-form">
+          <div class="form-data-left">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ชื่อผู้รับ:"
+                formControlName="receiver"
+                value="{{receiver}}" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="หมายเลขโทรศัพท์:"
+                formControlName="phone_receiver"
+                value="{{phone_receiver}}" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <textarea matInput
+                formControlName="address"
+                placeholder="ที่อยู่:"
+                class="text-address"
+                value="{{address1}}"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="form-data-right">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เลขไปรษณีย์:"
+                formControlName="postal_code"
+                value="{{postal_code}}" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เเขวง:"
+                formControlName="sub_district"
+                value="{{sub_district}}" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="เขต:"
+                formControlName="district"
+                value="{{district}}"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="จังหวัด:"
+                formControlName="province"
+                value="{{province}}"/>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="button-submit-save">
+          <div class="save-button">
+            <button type="submit"
+            [disabled]="address.invalid"
+              class="btn btn-info  ">บันทึก
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

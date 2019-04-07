@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="page-header">
+
+        <h3 id="timeline">
+          Tracking Product
+        </h3>
+        <button (click)="on_gopayhistory()"
+          type="button" class="btn btn-outline-info btn-exit">
+            <i class="fa fa-sign-out"></i>
+          </button>
+    </div>
+    <ul class="timeline">
+        <li>
+          <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Shipment picked up</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+            </div>
+            <div class="timeline-body">
+
+              <p>Acceptance scan.</p>
+              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Arrived at Hub/Transit station</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Arrival scan.</p>
+              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge danger"><i class="fa fa-clock-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Arrived at destination station</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Arrived at destination country.</p>
+              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="timeline-badge info"><i class="fa fa-clock-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Out for delivery</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Out for Delivery.</p>
+              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="timeline-inverted">
+          <div class="timeline-badge success"><i class="fa fa-thumbs-o-up"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">Delivered Successful</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>Delivered.</p>
+              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+            </div>
+          </div>
+        </li>
+    </ul>
+</div>
