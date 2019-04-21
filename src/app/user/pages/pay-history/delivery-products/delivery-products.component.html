@@ -1,4 +1,11 @@
 
+<div class="have-orders" *ngIf="not_loading">
+<div class="not-loaded" *ngIf="!loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="load-complete" *ngIf="loading">
+
 <div class="purchase-list-page__order-list-card-container"
   *ngFor="let p of order_item;let i = index">
     <div class="purchase-list-page__order-card-wrapper">
@@ -27,7 +34,7 @@
               </div>
 
               <div class="order-content__item-list">
-                <a href="#" class="order-content__item-wrapper">
+                <a (click)="go_dtail_payhistory(i)" class="order-content__item-wrapper">
                   <div class="order-content__item order-content__item--last">
                     <div class="order-content__item__col order-content__item__detail">
                       <div class="order-content__item__product">
@@ -118,7 +125,7 @@
                 </div>
 
                 <div class="purchase-card-buttons__show-button-wrapper">
-                  <button
+                  <button (click)="on_rejectproduct(i)"
                     class="shopee-button-outline shopee-button-outline--fill shopee-button-outline--primary ">
                     <span class="purchase-card-buttons__button-content">
                       ยกเลิกการสั่งซื้อ
@@ -136,6 +143,14 @@
     </div>
 
   </div>
+
+</div>
+
+</div>
+
+<div class="not-orderbybuyer" *ngIf="!not_loading">
+  <h3>ไม่มีคำสั่งซื้อสินค้า</h3>
+</div>
 
 
 

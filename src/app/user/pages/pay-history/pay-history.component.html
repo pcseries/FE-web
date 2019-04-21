@@ -32,13 +32,33 @@
       </span>
     </div>
 
-    <div class="purchase-list-page__tab">
+    <div class="purchase-list-page__tab"
+      *ngIf="!is_precomplete"
+      (click)="on_pageprecomplete()">
       <span class="purchase-list-page__tab-label">
         ที่ต้องได้รับ
       </span>
     </div>
 
-    <div class="purchase-list-page__tab">
+    <div class="purchase-list-page__tab purchase-list-page__tab--selected"
+      *ngIf="is_precomplete">
+        <span class="purchase-list-page__tab-label ">
+          ที่ต้องได้รับ
+        </span>
+    </div>
+
+    <div *ngIf="!is_complete"
+    (click)="on_pagecomplete()"
+      class="purchase-list-page__tab">
+      <span class="purchase-list-page__tab-label">
+        สำเร็จแล้ว
+      </span>
+    </div>
+
+    <div *ngIf="is_complete"
+    (click)="on_pagecomplete()"
+
+      class="purchase-list-page__tab purchase-list-page__tab--selected">
       <span class="purchase-list-page__tab-label">
         สำเร็จแล้ว
       </span>
@@ -58,11 +78,21 @@
       </span>
   </div>
 
-  <div class="purchase-list-page__tab">
+  <div (click)="on_pagerejected()"
+    class="purchase-list-page__tab"
+    *ngIf="!is_rejected">
     <span class="purchase-list-page__tab-label">
       สินค้าที่ขอคืน
     </span>
 </div>
+
+  <div (click)="on_pagerejected()"
+    class="purchase-list-page__tab purchase-list-page__tab--selected"
+    *ngIf="is_rejected">
+    <span class="purchase-list-page__tab-label">
+      สินค้าที่ขอคืน
+    </span>
+  </div>
 
   </div>
 
@@ -79,6 +109,22 @@
   <div class="canceled_products"
     *ngIf="is_canceled">
     <app-canceled-history></app-canceled-history>
+  </div>
+
+  <div class="precomplete_products"
+    *ngIf="is_precomplete">
+  <app-precomplete-history></app-precomplete-history>
+  </div>
+
+  <div class="complete_products"
+  *ngIf="is_complete">
+    <app-complete-history></app-complete-history>
+  </div>
+
+
+  <div class="reject_product"
+    *ngIf="is_rejected">
+    <app-rejected-history></app-rejected-history>
   </div>
 
 

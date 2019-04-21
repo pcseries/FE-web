@@ -20,6 +20,12 @@ export class CanceledHistoryComponent implements OnInit {
 
   imageToShow = [];
 
+
+  loading: any;
+
+  count: any;
+  not_loading: any;
+
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -28,6 +34,10 @@ export class CanceledHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.count = 0;
+    this.not_loading = true;
+    this.loading = false;
     this.count_ind = 0;
     this.count_ind2 = 0;
     this.get_canceledOrder();
@@ -41,12 +51,14 @@ export class CanceledHistoryComponent implements OnInit {
         for (let i = 0; i < res['body'].order.length; i++) {
 
           if (res['body'].order[i].order_status === 'ORDERED') {
-            this.products_ordered[this.count_ind2] = (res['body'].order[i]);
-            console.log('products_ordered=>', this.products_ordered[i]);
 
-            for (let j = 0; j < this.products_ordered[i].order_item.length; j++) {
+            this.count = this.count + 1;
+            this.products_ordered[this.count_ind2] = res['body'].order[i];
+            console.log('products_ordered=>', this.products_ordered[this.count_ind2]);
 
-              if (this.products_ordered[i].order_item[j].order_item_status === 'CANCEL_BUYER') {
+            for (let j = 0; j < this.products_ordered[this.count_ind2].order_item.length; j++) {
+
+              if (this.products_ordered[this.count_ind2].order_item[j].order_item_status === 'CANCEL_BUYER') {
                 this.order_item[this.count_ind] = this.products_ordered[this.count_ind2].order_item[j];
                 console.log('order_item=>', this.order_item[j]);
 
@@ -64,6 +76,10 @@ export class CanceledHistoryComponent implements OnInit {
             }
             this.count_ind2 = this.count_ind2 + 1;
           }
+        }
+
+        if (this.count === 0) {
+          this.not_loading = false;
         }
       }, error => {
         console.log('err_ordered=>', error);
@@ -91,6 +107,7 @@ export class CanceledHistoryComponent implements OnInit {
       "load",
       () => {
         this.imageToShow[i] = reader.result;
+        this.loading = true;
       },
       false
     );
@@ -99,7 +116,12 @@ export class CanceledHistoryComponent implements OnInit {
       reader.readAsDataURL(image);
     }
   }
-
+  go_dtail_payhistory(ind: any) {
+    // alert('go detail');
+    console.log('item', this.order_item[ind]);
+    const go = 4 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
+     this.router.navigate(['user/payHistory/dtail/', go]);
+  }
 
 
 }

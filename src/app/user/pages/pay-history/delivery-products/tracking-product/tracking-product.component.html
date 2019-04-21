@@ -10,71 +10,71 @@
           </button>
     </div>
     <ul class="timeline">
-        <li>
+        <li *ngIf="0 < track_level">
           <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Shipment picked up</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+              <h4 class="timeline-title">{{track_dtail[0].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[0].checkpoint_time}}</small></p>
             </div>
             <div class="timeline-body">
 
-              <p>Acceptance scan.</p>
-              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+              <p>{{track_dtail[0].subtag_message}}</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[0].location}}</p>
             </div>
           </div>
         </li>
-        <li class="timeline-inverted">
+        <li class="timeline-inverted" *ngIf="1 < track_level">
           <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Arrived at Hub/Transit station</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+              <h4 class="timeline-title">{{track_dtail[1].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[1].checkpoint_time}}</small></p>
             </div>
             <div class="timeline-body">
-              <p>Arrival scan.</p>
-              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+              <p>{{track_dtail[1].subtag_message}}</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[1].location}}</p>
             </div>
           </div>
         </li>
-        <li>
+        <li *ngIf="2 < track_level">
           <div class="timeline-badge danger"><i class="fa fa-clock-o"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Arrived at destination station</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+              <h4 class="timeline-title">{{track_dtail[2].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[2].checkpoint_time}}</small></p>
             </div>
             <div class="timeline-body">
-              <p>Arrived at destination country.</p>
-              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+              <p>{{track_dtail[2].subtag_message}}.</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[2].location}}</p>
             </div>
           </div>
         </li>
 
-        <li>
+        <li *ngIf="3 < track_level">
           <div class="timeline-badge info"><i class="fa fa-clock-o"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Out for delivery</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+              <h4 class="timeline-title">{{track_dtail[3].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[3].checkpoint_time}}</small></p>
             </div>
             <div class="timeline-body">
-              <p>Out for Delivery.</p>
-              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+              <p>{{track_dtail[3].subtag_message}}.</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[3].location}}</p>
             </div>
           </div>
         </li>
 
-        <li class="timeline-inverted">
+        <li class="timeline-inverted" *ngIf="4 < track_level">
           <div class="timeline-badge success"><i class="fa fa-thumbs-o-up"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Delivered Successful</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>2019-03-16T10:07:00</small></p>
+              <h4 class="timeline-title">{{track_dtail[4].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[4].checkpoint_time}}</small></p>
             </div>
             <div class="timeline-body">
-              <p>Delivered.</p>
-              <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+              <p>{{track_dtail[4].subtag_message}}.</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[4].location}}</p>
             </div>
           </div>
         </li>

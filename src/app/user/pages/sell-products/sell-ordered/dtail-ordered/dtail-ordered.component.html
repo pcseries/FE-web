@@ -1,3 +1,39 @@
-<p>
-  dtail-ordered works!
-</p>
+<div class="container">
+
+
+  <div class="button_backpages">
+      <button (click)="back_page()"
+              type="button" class="btn btn-warning">
+              <i class="fa fa-arrow-left"></i>
+              กลับไปหน้าการซื้อของฉัน
+      </button>
+  </div>
+
+  <div class="post_tracking_number"
+  *ngIf="ship">
+      <app-create-ship></app-create-ship>
+  </div>
+
+  <hr>
+  <div class="section_product_dtail">
+    <app-dtail-sellproduct></app-dtail-sellproduct>
+  </div>
+
+  <hr>
+  <div class="section_recieve_address">
+    <app-dtail-address></app-dtail-address>
+  </div>
+
+
+  <div *ngIf="go_delivery"
+  class="go-delivery-product">
+    <div class="btn-go-delivery">
+      <!-- <button type="button" class="btn btn-success btn-delivery">
+        จัดส่งสำเร็จ
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </button> -->
+    </div>
+
+  </div>
+
+</div>

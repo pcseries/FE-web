@@ -97,6 +97,21 @@ import { SellProductsComponent } from './user/pages/sell-products/sell-products.
 import { TrackingProductComponent } from './user/pages/pay-history/delivery-products/tracking-product/tracking-product.component';
 import { SellOrderedComponent } from './user/pages/sell-products/sell-ordered/sell-ordered.component';
 import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/dtail-ordered.component';
+import { PrecompleteHistoryComponent } from './user/pages/pay-history/precomplete-history/precomplete-history.component';
+import { CompleteHistoryComponent } from './user/pages/pay-history/complete-history/complete-history.component';
+import { RejectedHistoryComponent } from './user/pages/pay-history/rejected-history/rejected-history.component';
+import { AddShippingComponent } from './user/pages/user-store/add-shipping/add-shipping.component';
+import { CreateShipComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/create-ship/create-ship.component';
+import { DtailPayHistoryComponent } from './user/pages/pay-history/dtail-pay-history/dtail-pay-history.component';
+import { DtailAddressComponent } from './user/pages/sell-products/dtail-address/dtail-address.component';
+import { DtailSellproductComponent } from './user/pages/sell-products/dtail-sellproduct/dtail-sellproduct.component';
+import { HistoryPetComponent } from './history-pet/history-pet.component';
+import { SelledProductsComponent } from './user/pages/sell-products/selled-products/selled-products.component';
+import { DeliveredProductsComponent } from './user/pages/sell-products/delivered-products/delivered-products.component';
+import { CompleteSellproductsComponent } from './user/pages/sell-products/complete-sellproducts/complete-sellproducts.component';
+import { CanceledSellproductsComponent } from './user/pages/sell-products/canceled-sellproducts/canceled-sellproducts.component';
+import { RejectedSellproductsComponent } from './user/pages/sell-products/rejected-sellproducts/rejected-sellproducts.component';
+
 
 
 
@@ -162,7 +177,22 @@ import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/d
     SellProductsComponent,
     TrackingProductComponent,
     SellOrderedComponent,
-    DtailOrderedComponent
+    DtailOrderedComponent,
+    PrecompleteHistoryComponent,
+    CompleteHistoryComponent,
+    RejectedHistoryComponent,
+    AddShippingComponent,
+    CreateShipComponent,
+    DtailPayHistoryComponent,
+    DtailAddressComponent,
+    DtailSellproductComponent,
+    HistoryPetComponent,
+    SelledProductsComponent,
+    DeliveredProductsComponent,
+    CompleteSellproductsComponent,
+    CanceledSellproductsComponent,
+    RejectedSellproductsComponent,
+
 
   ],
   imports: [

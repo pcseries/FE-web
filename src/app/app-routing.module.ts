@@ -30,6 +30,8 @@ import { UsereditAddressComponent } from './user/pages/address-manage/useredit-a
 import { SellProductsComponent } from './user/pages/sell-products/sell-products.component';
 import { TrackingProductComponent } from './user/pages/pay-history/delivery-products/tracking-product/tracking-product.component';
 import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/dtail-ordered.component';
+import { DtailPayHistoryComponent } from './user/pages/pay-history/dtail-pay-history/dtail-pay-history.component';
+import { HistoryPetComponent } from './history-pet/history-pet.component';
 
 
 
@@ -69,14 +71,20 @@ const routes: Routes = [
       {path: 'addImage/:id', component: AddImageProductComponent},
       {path: 'store/edit', component: EditStoreComponent},
       {path: 'payHistory/:id', component: PayHistoryComponent},
+      {path: 'payHistory', component: PayHistoryComponent},
+      {path: 'payHistory/dtail/:id', component: DtailPayHistoryComponent},
       {path: 'addressManage', component: AddressManageComponent},
       {path: 'addressManage/addAddress', component: UseraddAddressComponent},
       {path: 'addressManage/editAddress/:id', component: UsereditAddressComponent},
       {path: 'sellProducts', component: SellProductsComponent},
+      {path: 'sellProducts/:id', component: SellProductsComponent},
       {path: 'payHistory/tracking/:id', component: TrackingProductComponent},
       {path: 'sellProducts/manage-ordered/:id', component: DtailOrderedComponent}
     ],
   },
+  {
+    path: 'history/pet' , component: HistoryPetComponent
+  }
 
 
 ];

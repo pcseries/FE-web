@@ -1,0 +1,21 @@
+<div class="create-ship-section">
+  <div class="create-title">
+    <h3 class="text-title">เพิ่ม code เพื่อติดตามสินค้า</h3>
+  </div>
+  <div class="body-create-shipping">
+    <mat-form-field class="example-full-width">
+    <input matInput
+      placeholder="code:"
+      #input_track
+      value="{{track_number}}">
+  </mat-form-field>
+  <div class="group-btn">
+      <button (click)="add_tracknum(input_track)"
+        type="button" class="btn btn-success">
+        เพิ่ม code
+      </button>
+  </div>
+  </div>
+
+</div>
+

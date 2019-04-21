@@ -1,0 +1,69 @@
+
+<div class="shipping-product">
+
+<div class="shipping-header">
+  <h3 class="text-header">เลือกการส่ง</h3>
+</div>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">เลือก</th>
+      <th scope="col">ชื่่อการส่ง</th>
+      <th scope="col">ระยะเวลา</th>
+      <th scope="col">ราคา</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <mat-checkbox class="example-margin"
+          (click)="on_selectvalue(0)"
+        >
+        </mat-checkbox>
+      </th>
+      <td>kerry-logistics</td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="วัน:"
+          #day1>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="ราคา:"
+          #price1>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <mat-checkbox class="example-margin"
+        (click)="on_selectvalue(1)"
+        >
+        </mat-checkbox>
+      </th>
+      <td>thailand-post</td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="วัน:"
+          #day2>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="ราคา:"
+          #price2>
+        </mat-form-field>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<button [disabled]="allow_button"
+  (click)="submit_shipping(day1,day2,price1,price2)"
+  type="button" class="btn btn-success">
+  บันทึกการส่ง
+</button>
+</div>

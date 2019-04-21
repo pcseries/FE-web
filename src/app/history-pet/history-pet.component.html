@@ -1,0 +1,84 @@
+<div class="container">
+
+  <div class="card">
+    <header class="row title">
+      <div class="col-xs-12 text-center">
+        <h5 class="main-title" style="color: #9012fe;padding-left: 20px;">
+          ประวัติสัตว์เลี้ยง
+        </h5>
+        <hr class="line" />
+      </div>
+    </header>
+    <div class="my-account-profile">
+
+        <div class="contain-form">
+        <div class="my-account-profile__left">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="ชื่อสัตว์เลี้ยง:"  value="มีนา"/>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>ประเภทสัตว์</mat-label>
+            <mat-select [(value)]="option">
+              <mat-option>None</mat-option>
+              <mat-option value="option1">สุนัข</mat-option>
+              <mat-option value="option2">แมว</mat-option>
+              <mat-option value="option3">นก</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+              <mat-label>ชื่อสายพันธ์</mat-label>
+              <mat-select [(value)]="option">
+                <mat-option>None</mat-option>
+                <mat-option value="option1">ไซบีเรียน</mat-option>
+                <mat-option value="option2">แมว</mat-option>
+                <mat-option value="option3">นก</mat-option>
+              </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="ที่อยู่" style="height: 100px;"></textarea>
+          </mat-form-field>
+          <br />
+        </div>
+
+        <div class="my-account-profile__center">
+            <mat-form-field class="example-full-width" >
+                <input matInput placeholder="อายุ" value="4 ปี">
+              </mat-form-field>
+              <br>
+        <section class="example-section">
+          <label class="example-margin">เพศ:</label>
+          <mat-radio-group [value]='radio'>
+            <mat-radio-button  class="example-margin" value="MALE">ชาย</mat-radio-button>
+            <mat-radio-button class="example-margin" value="FEMALE">หญิง</mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+          <mat-form-field class="example-full-width box">
+              <textarea matInput placeholder="หมายเหตุ" style="height: 100px;"></textarea>
+          </mat-form-field>
+        </div>
+        </div>
+        <br>
+
+      <div class="my-account-profile__right">
+        <div class="card-profile">
+          <img
+          src='https://image.dek-d.com/27/0480/0947/119149086'
+          alt="Place image title"
+          class="card-img-top"
+        />
+
+          <h4></h4>
+        </div>
+
+
+
+
+      </div>
+
+  </div>
+
+</div>

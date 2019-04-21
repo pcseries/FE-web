@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let p of seller_products;let i = index ">
+      <ng-container *ngFor="let p of order_item;let i = index ">
       <tr>
         <td>{{name_products[i]}}</td>
         <td>{{reciever[i]}}</td>
@@ -21,7 +21,7 @@
           <button
             (click)="go_detail(i)"
             type="button" class="btn btn-info">
-            จัดการสินค้า
+            จัดการการสั่งซื้อ
           </button>
         </td>
       </tr>

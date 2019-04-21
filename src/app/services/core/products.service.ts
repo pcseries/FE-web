@@ -66,6 +66,27 @@ export class ProductsService {
     return this.http.get(this.baseUrlC + 'order/' + id, this.getAuth());
   }
 
+  update_complete(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'orderitem/', data , this.getAuth());
+  }
+
+  onreject_product(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'orderitem/', data, this.getAuth());
+  }
+
+  on_setShipping(data: any): Observable<any> {
+    return this.http.post(this.baseUrlC + 'product/delivery', data, this.getAuth());
+  }
+
+  get_productsellByid(id: any) {
+    return this.http.get(this.baseUrlC + 'orderforseller/' + id, this.getAuth());
+  }
+
+
+  create_track(data: any) {
+    return this.http.put(this.baseUrlC + 'orderforseller/', data, this.getAuth());
+  }
+
   private getAutprodtuct() {
     const token = '1a2b3c';
     const httpheaders = new HttpHeaders({'token': token});

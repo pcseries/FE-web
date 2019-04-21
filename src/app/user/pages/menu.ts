@@ -20,7 +20,7 @@ export let MENU_ITEM = [
       ]
   },
   {
-    path: 'user/payHistory/0',
+    path: 'user/payHistory',
     title: 'การซื้อของฉัน',
     icon: 'credit-card'
   },

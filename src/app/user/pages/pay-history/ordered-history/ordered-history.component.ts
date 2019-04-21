@@ -25,6 +25,11 @@ export class OrderedHistoryComponent implements OnInit {
   count_ind2: any;
   cancel_order: FormGroup;
 
+  loading: any;
+  not_loading: any;
+
+  count: any;
+
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -33,9 +38,13 @@ export class OrderedHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+  this.count = 0;
+  this.not_loading = true;
   this.count_ind = 0;
   this.count_ind2 = 0;
     this.is_ordered = true;
+    this.loading = false;
     this.get_ordered();
 
   }
@@ -43,24 +52,27 @@ export class OrderedHistoryComponent implements OnInit {
   get_ordered() {
     this.productsService.get_order().subscribe(
       res => {
-        console.log('get_ordered=>', res['body'].order);
+       // console.log('get_ordered=>', res['body'].order);
 
          for (let i = 0; i < res['body'].order.length; i++) {
 
 
            if (res['body'].order[i].order_status === 'ORDERED') {
+
+
+
         //     // alert(res['body'].order[i].order_status);
             this.products_ordered[this.count_ind2] = res['body'].order[i];
-            console.log('products_ordered=>', this.products_ordered[this.count_ind]);
+           // console.log('products_ordered=>', this.products_ordered[this.count_ind]);
 
             for (let j = 0; j < this.products_ordered[this.count_ind2].order_item.length; j++) {
 
               if (this.products_ordered[this.count_ind2].order_item[j].order_item_status === 'UNPAID') {
-
-                console.log('order=>',  this.products_ordered[this.count_ind2]);
+                this.count = this.count + 1;
+              //  console.log('order=>',  this.products_ordered[this.count_ind2]);
                 this.order_item[this.count_ind] = this.products_ordered[this.count_ind2].order_item[j];
 
-                // console.log('order_item=>', this.order_item[this.count_ind]);
+               //  console.log('order_item=>', this.order_item[this.count_ind]);
 
                 this.order_priceAll[this.count_ind] = ((this.products_ordered[this.count_ind2].order_item[j].price *
                   this.products_ordered[this.count_ind2].order_item[j].quantity)
@@ -77,9 +89,16 @@ export class OrderedHistoryComponent implements OnInit {
 
             this.count_ind2 = this.count_ind2 + 1;
           } else if (res['body'].order[i].order_status  === 'PAID') {
+
               continue;
           }
+
+
          }
+
+         if (this.count === 0) {
+          this.not_loading = false;
+        }
       }, error => {
         console.log('err_ordered=>', error);
       }
@@ -107,6 +126,7 @@ export class OrderedHistoryComponent implements OnInit {
       "load",
       () => {
         this.imageToShow[i] = reader.result;
+        this.loading = true;
       },
       false
     );
@@ -154,6 +174,13 @@ export class OrderedHistoryComponent implements OnInit {
 
     }
 
+  }
+
+  go_dtail_payhistory(ind: any) {
+    // alert('go detail');
+    console.log('item', this.order_item[ind]);
+    const go = 0 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
+     this.router.navigate(['user/payHistory/dtail/', go]);
   }
 
 

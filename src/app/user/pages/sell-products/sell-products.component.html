@@ -2,50 +2,132 @@
 
     <div class="purchase-list-page__tabs-container">
 
-        <div  class="purchase-list-page__tab purchase-list-page__tab--selected">
+        <div  *ngIf="is_ordered"
+          class="purchase-list-page__tab purchase-list-page__tab--selected">
           <span class="purchase-list-page__tab-label ">
             ที่ต้องชำระ
           </span>
         </div>
 
-        <div *ngIf="!is_delivery"
-
-          class="purchase-list-page__tab">
-          <span class="purchase-list-page__tab-label">
-            ที่ต้องจัดส่ง
-          </span>
-        </div>
-
-
-        <div class="purchase-list-page__tab">
-            <span class="purchase-list-page__tab-label">
-              ที่ต้องได้รับ
+        <div  *ngIf="!is_ordered"
+        (click)="on_pageOrdered()"
+          class="purchase-list-page__tab ">
+            <span class="purchase-list-page__tab-label ">
+              ที่ต้องชำระ
             </span>
         </div>
 
+        <div *ngIf="is_delivery"
+        class="purchase-list-page__tab purchase-list-page__tab--selected">
+        <span class="purchase-list-page__tab-label">
+          ที่ต้องจัดส่ง
+        </span>
+      </div>
 
-        <div class="purchase-list-page__tab">
-          <span class="purchase-list-page__tab-label">
-            สำเร็จแล้ว
-          </span>
-        </div>
+      <div *ngIf="!is_delivery"
+      (click)="on_pageDelivery()"
+        class="purchase-list-page__tab">
+        <span class="purchase-list-page__tab-label">
+          ที่ต้องจัดส่ง
+        </span>
+      </div>
 
+      <div class="purchase-list-page__tab"
+        *ngIf="!is_precomplete"
+        (click)="on_pageprecomplete()">
+        <span class="purchase-list-page__tab-label">
+          จัดส่งแล้ว
+        </span>
+      </div>
 
-
-        <div class="purchase-list-page__tab  ">
-          <span class="purchase-list-page__tab-label">
-            ยกเลิกแล้ว
+      <div class="purchase-list-page__tab purchase-list-page__tab--selected"
+        *ngIf="is_precomplete">
+          <span class="purchase-list-page__tab-label ">
+            จัดส่งแล้ว
           </span>
       </div>
 
-      <div class="purchase-list-page__tab">
+      <div *ngIf="!is_complete"
+      (click)="on_pagecomplete()"
+        class="purchase-list-page__tab">
         <span class="purchase-list-page__tab-label">
-          สินค้าที่ขอคืน
+          สำเร็จแล้ว
+        </span>
+      </div>
+
+      <div *ngIf="is_complete"
+      (click)="on_pagecomplete()"
+
+        class="purchase-list-page__tab purchase-list-page__tab--selected">
+        <span class="purchase-list-page__tab-label">
+          สำเร็จแล้ว
+        </span>
+      </div>
+
+      <div class="purchase-list-page__tab"
+        (click)="on_pageCanceled()"
+        *ngIf="!is_canceled">
+        <span class="purchase-list-page__tab-label">
+          ยกเลิกแล้ว
+        </span>
+      </div>
+
+      <div class="purchase-list-page__tab  purchase-list-page__tab--selected" *ngIf="is_canceled">
+        <span class="purchase-list-page__tab-label">
+          ยกเลิกแล้ว
         </span>
     </div>
 
+    <div (click)="on_pagerejected()"
+      class="purchase-list-page__tab"
+      *ngIf="!is_rejected">
+      <span class="purchase-list-page__tab-label">
+        สินค้าที่ขอคืน
+      </span>
+  </div>
+
+    <div (click)="on_pagerejected()"
+      class="purchase-list-page__tab purchase-list-page__tab--selected"
+      *ngIf="is_rejected">
+      <span class="purchase-list-page__tab-label">
+        สินค้าที่ขอคืน
+      </span>
+    </div>
+
+
       </div>
 
+      <div class="ordered_products"
+      *ngIf="is_ordered">
       <app-sell-ordered></app-sell-ordered>
+    </div>
+
+    <div class="delivery-products"
+    *ngIf="is_delivery">
+    <app-selled-products></app-selled-products>
+  </div>
+
+  <div class="precomplete_products"
+    *ngIf="is_precomplete">
+    <app-delivered-products></app-delivered-products>
+  </div>
+
+  <div class="complete_products"
+  *ngIf="is_complete">
+    <app-complete-sellproducts></app-complete-sellproducts>
+  </div>
+
+
+  <div class="canceled_products"
+    *ngIf="is_canceled">
+    <app-canceled-sellproducts></app-canceled-sellproducts>
+  </div>
+
+  <div class="reject_product"
+  *ngIf="is_rejected">
+    <app-rejected-sellproducts></app-rejected-sellproducts>
+  </div>
+
+
 
 </div>

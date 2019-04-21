@@ -256,6 +256,10 @@ export class ShoppingCartsComponent implements OnInit {
          } else {
            this.router.navigate(['/mado/checkOut/0']);
          }
+
+         setTimeout(() => {
+          location.reload();
+        }, 800);
        }, error => {
          console.log('err=>', error);
        }
