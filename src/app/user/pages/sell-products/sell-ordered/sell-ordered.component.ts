@@ -32,6 +32,7 @@ export class SellOrderedComponent implements OnInit {
   get_products() {
     this.userService.getseller_products().subscribe(
       res => {
+
         this.seller_products = res['body']['order_item'];
         for (let i = 0; i < this.seller_products.length; i++) {
 

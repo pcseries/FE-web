@@ -4,6 +4,7 @@ import { ProductsService } from "src/app/services/core/products.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { UserService } from "src/app/services/user/user.service";
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 @Component({
   selector: "app-shopping-carts",
@@ -42,6 +43,7 @@ export class ShoppingCartsComponent implements OnInit {
   ordered: FormGroup;
   amount_all_product: any;
 
+
   constructor(
     private shopcartService: ShopcartService,
     private productService: ProductsService,
@@ -52,6 +54,7 @@ export class ShoppingCartsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     if (localStorage.getItem("token") === null) {
       alert("Please Login");
       this.router.navigate(["/mado/login"]);
@@ -73,6 +76,7 @@ export class ShoppingCartsComponent implements OnInit {
         for (let i = 0; i < this.shopCart.length; i++) {
           if (this.shopCart[i].order_status === "ORDERING") {
             this.id_order = this.shopCart[i].id_order;
+            console.log('id_order', this.id_order);
             this.count = this.count + 1;
             this.isHaveProduct = true;
 
@@ -89,8 +93,8 @@ export class ShoppingCartsComponent implements OnInit {
                 // this.showOrders.push(this.selectProduct[j]);
                // this.onShoworders(this.shopCart[i]["order_item"]);
 
-             console.log('selectProduct=>', this.selectProduct[j]);
-              console.log("LengthProduct", this.selectProduct.length);
+            // console.log('selectProduct=>', this.selectProduct[j]);
+             // console.log("LengthProduct", this.selectProduct.length);
               let id = this.shopCart[i]["order_item"][j].id_product;
               let namepic = this.shopCart[i]["order_item"][j].pic_product;
               this.getImageFromService(id, namepic, j);
@@ -229,43 +233,48 @@ export class ShoppingCartsComponent implements OnInit {
 
       this.price_all = this.price_all - (this.selectProduct[index].quantity * this.selectProduct[index].price );
       this.counts_product = this.counts_product - 1;
+
     } else {
+
       this.counts_product = this.counts_product + 1;
       this.price_all = this.price_all + (this.selectProduct[index].quantity * this.selectProduct[index].price );
+
     }
   }
 
   ongo_checkOut() {
 
-    let count = 0;
-    localStorage.setItem('order_all', this.counts_product);
-    for (let i = 0 ; i < this.amount_all_product; i++) {
-      if (this.checked[i]) {
-        localStorage.setItem('order_' + count, this.selectProduct[i].id_variation);
-        count++;
+    // let count = 0;
+    localStorage.setItem('id_order', this.id_order);
+    this.on_removeOrders(this.selectProduct);
+
+   this.router.navigate(['/mado/checkOut']);
+   setTimeout(() => {
+    location.reload();
+ }, 100);
+
+
+ }
+
+ on_removeOrders(id_have: any) {
+   console.log('is selects=>', this.selectProduct);
+    console.log('is_check=>', this.checked);
+
+    for (let i = 0; i < this.checked.length; i++) {
+      if (this.checked[i] === true) {
+          console.log('not delete=>', this.selectProduct[i]);
+      } else {
+         console.log('delete=>', this.selectProduct[i]);
+        this.shopcartService.deleteProduct(this.selectProduct[i].id_item).subscribe(
+          res => {
+            console.log('delet_success', res);
+          }, err => {
+            console.log('err_delete=>', err);
+          }
+        );
+
       }
     }
-
-     this.userService.get_address().subscribe(
-       res => {
-         console.log('gocheck=>', res['body']);
-         if (res['body'].length === 0) {
-            this.router.navigate(['/mado/addAdress']);
-         } else if (this.idProduct !== 0) {
-           this.router.navigate(['/mado/checkOut/', this.idProduct]);
-         } else {
-           this.router.navigate(['/mado/checkOut/0']);
-         }
-
-         setTimeout(() => {
-          location.reload();
-        }, 800);
-       }, error => {
-         console.log('err=>', error);
-       }
-     );
-     this.router.navigate(['/mado/checkOut']);
-
  }
 
 }

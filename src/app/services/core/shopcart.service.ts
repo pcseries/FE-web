@@ -19,6 +19,10 @@ export class ShopcartService {
     return this.http.get(this.baseUrlC + 'order/', this.getAuth());
   }
 
+  getOrder_byid(id: any): Observable<any> {
+    return this.http.get(this.baseUrlC + 'order/' + id , this.getAuth());
+  }
+
   addProduct(product: any): Observable<any> {
     return this.http.post(this.baseUrlC + 'order/', product , this.getAuth());
   }

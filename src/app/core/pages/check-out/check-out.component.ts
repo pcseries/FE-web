@@ -57,7 +57,7 @@ export class CheckOutComponent implements OnInit {
 
   // ส่วนของ order
   order_all: any;
-  order_id = [];
+  select_order = [];
   address_select: any;
   data_order: FormGroup;
   data_delivery: any;
@@ -75,6 +75,11 @@ export class CheckOutComponent implements OnInit {
   orderitem_update: FormGroup;
   keep_orderitem = [];
 
+  id_order1: any;
+  order_byid: any;
+  id_ship = [];
+  id_address: any;
+  id_pay: any;
 
   constructor(private userService: UserService,
     private shopcartService: ShopcartService,
@@ -88,22 +93,23 @@ export class CheckOutComponent implements OnInit {
 
 
   ngOnInit() {
+    this.id_order1 = localStorage.getItem('id_order');
     this.access_update = 0;
     this.count_update = 0;
     this.id_product = this.route.snapshot.paramMap.get('id');
-    this.order_all = localStorage.getItem('order_all');
+
     // alert(this.order_all);
     this.onGet_paying();
-    for (let i = 0; i < this.order_all; i++) {
-      this.order_id[i] = localStorage.getItem('order_' + i.toString());
+    // for (let i = 0; i < this.order_all; i++) {
+    //   this.order_id[i] = localStorage.getItem('order_' + i.toString());
 
-    }
+    // }
     this.final_price = 0;
     this.final_ship = 0;
     this.price_all_product = 0;
     this.userService.get_address().subscribe(
       res => {
-        // console.log('res=>', res['body'][0]);
+         console.log('res_address=>', res);
         this.res_data = res['body'][0];
         this.receiver = this.res_data.receiver;
         this.phone_receiver = this.res_data.phone_receiver;
@@ -112,82 +118,102 @@ export class CheckOutComponent implements OnInit {
         this.district = this.res_data.district;
         this.province = this.res_data.province;
         this.postal_code = this.res_data.postal_code;
+        this.id_address = this.res_data.id_address;
+        this.get_productOrders();
+        this.get_payingOrder();
       }, error => {
         console.log('error', error);
       }
     );
 
-    this.shopcartService.getOrder().subscribe(
+
+
+    setTimeout(() => {
+      this.on_firstUpdate();
+    }, 1200);
+
+  }
+
+
+  get_productOrders() {
+    this.shopcartService.getOrder_byid(this.id_order1).subscribe(
       res => {
-      //  console.log('res_order=>', res['body']['order']);
-        this.shopCart = res['body']['order'];
+        console.log('res_order=>', res['body'].order[0]);
+        this.order_byid = res['body'].order[0];
+        this.selectProduct = res['body'].order[0].order_item;
+
+        for (let i = 0; i < this.selectProduct.length; i++) {
+          this.store_price[i] = this.selectProduct[i].price * this.selectProduct[i].quantity;
 
 
-        for (let i = 0; i < this.shopCart.length; i++) {
-          if (this.shopCart[i].order_status === 'ORDERING') {
-            this.id_order = this.shopCart[i].id_order;
-            this.order_item = this.shopCart[i].order_item;
-            for (let j = 0; j < this.shopCart[i]['order_item'].length; j++) {
-
-              console.log('order_item=>', this.shopCart[i]['order_item']);
-
-              for (let k = 0 ; k < this.shopCart[i]['order_item'].length ; k++) {
 
 
-                if (this.order_id[j] == this.shopCart[i]["order_item"][k].id_variation) {
-                  // alert(this.order_id[j]);
+          let id = this.selectProduct[i].id_product;
+          let namePic = this.selectProduct[i].pic_product;
 
-                  // console.log('order-Product=>', this.shopCart[i]["order_item"][k]);
-                  this.id_item.push(this.shopCart[i]["order_item"][k].id_item);
-                  this.selectProduct.push(this.shopCart[i]["order_item"][k]);
-                  let id = this.shopCart[i]["order_item"][k].id_product;
-                  let namepic = this.shopCart[i]["order_item"][k].pic_product;
+          this.get_shipping(id, i);
 
-                 // console.log('selectProduct=>', this.selectProduct);
-              this.store_price.push(this.selectProduct[j].price * this.selectProduct[j].quantity);
-
-              this.storeService.get_shipping(id).subscribe(
-                res_ship => {
-                //  console.log('res_shipping=>', res_ship['body']['product_delivery']);
-                  this.data_delivery = res_ship['body']['product_delivery'];
-                  this.onSet_other(this.shopCart[i]["order_item"][k]);
-                  this.ship_ping.push(res_ship['body']['product_delivery'][0].name_ship);
-                //  console.log('name_ship=>', this.ship_ping[0]);
-                  this.time_ship.push(res_ship['body']['product_delivery'][0].time_ship);
-                  this.price_ship.push(res_ship['body']['product_delivery'][0].price);
-
-                  this.price_all.push(this.price_ship[j] + this.store_price[j]);
-                  this.final_price = this.final_price + this.price_all[j];
-                  this.final_ship = this.final_ship + this.price_ship[j];
-                  this.price_all_product = this.final_price - this.final_ship;
-                //  console.log('each_price', this.price_all[j]);
-
-
-                }, error => {
-                  console.log('err_ship=>', error);
-                }
-              );
-
-              this.getImageFromService(id, namepic , j);
-
-                }
-              }
-
-              }
-            }
-          }
-
+          this.getImageFromService(id, namePic, i);
           setTimeout(() => {
-            // console.log('data_update=>', this.data_order.value);
-            this.on_firstUpdate();
-          }, 1000);
+            this.onSet_other(this.selectProduct[i] , i);
+        }, 800);
 
-      }, error => {
-        console.log('error_order', error);
+        }
+
+
+
+
+      }, err => {
+        console.log('err_order=>', err);
       }
     );
 
 
+  }
+
+
+  get_shipping(id: any, ind: any) {
+    this.storeService.get_shipping(id).subscribe(
+      res => {
+        console.log('res_ship=>', res['body'].product_delivery);
+        let price_min = res['body'].product_delivery[0].price;
+        this.price_ship[ind] = price_min;
+
+        let delivery = res['body'].product_delivery;
+
+        this.ship_ping[ind] = delivery[0].name_ship;
+        this.time_ship[ind] = delivery[0].time_ship;
+        this.id_ship[ind] = delivery[0].id_ship;
+
+        for (let i = 1 ; i < delivery.length; i++) {
+          if (price_min > delivery[i].price) {
+            this.ship_ping[ind] = delivery[i].name_ship;
+            this.time_ship[ind] = delivery[i].time_ship;
+            this.price_ship[ind] = delivery[i].price;
+            this.id_ship[ind] = delivery[i].id_ship;
+          }
+        }
+
+        this.price_all[ind] = this.store_price[ind] + this.price_ship[ind];
+
+
+        this.set_priceFinal(ind);
+
+      }, err => {
+        console.log('err_ship', err);
+      }
+    );
+  }
+
+
+  set_priceFinal(ind: any) {
+    console.log('store_price=>', this.store_price[ind]);
+    this.price_all_product = this.price_all_product + this.store_price[ind];
+    this.final_ship = this.final_ship + this.price_ship[ind];
+
+    setTimeout(() => {
+      this.final_price = this.price_all_product + this.final_ship;
+   }, 500);
   }
 
   onGet_paying() {
@@ -202,77 +228,49 @@ export class CheckOutComponent implements OnInit {
     );
   }
 
-  onSet_other(data: any) {
-    // console.log('data_order=>', data);
-   // console.log('delivery=> ', this.data_delivery[0]);
-   // console.log('paying=>', this.paying_order);
-    this.name_paying = this.paying_order.name_type;
-    this.userService.get_address().subscribe(
-      res => {
-       // console.log('address', res['body'][0]);
-        for (let i = 0; i < this.shopCart.length; i++) {
+  onSet_other(data: any , ind: any) {
 
+    // console.log('data_setother=>', data);
+    // console.log('order=>', this.order_byid);
 
-          if (this.shopCart[i].order_status === 'ORDERING') {
-
-            if (this.count_update === 0) {
-              this.data_order = this.fb.group(
-              {
-                body: {
-                  id_order: this.shopCart[i].id_order,
-                  order_status: 'ORDERING',
-                  order_item: [{
-                    id_item: data.id_item,
-                    id_variation: data.id_variation,
-                    quantity: data.quantity,
-                    id_ship: this.data_delivery[0].id_ship,
-                  }],
-                  id_address: res['body'][0].id_address,
-                  id_type_payment: this.paying_order.id_type_payment
-              }
-            }
-          );
-        }
-
-
-
-          this.on_Setorderitem(data);
-          // console.log('order_update=>', this.data_order.value['body'].order_item);
-            if (this.count_update < this.order_item.length) {
-              this.update_first[this.count_update] = this.data_order.value;
-
-              // console.log('count_update=>', this.count_update);
-
-            }
-        }
-
-
-        }
-
-        // setTimeout(() => {
-        //   // console.log('data_update=>', this.data_order.value);
-        //   this.on_firstUpdate();
-        // }, 2000);
-
-
-
-
-
-      }, error => {
-        console.log('error', error);
+    if (this.count_update === 0) {
+      this.data_order = this.fb.group(
+      {
+        body: {
+          id_order: this.order_byid.id_order,
+          order_status: 'ORDERING',
+          order_item: [{
+            id_item: data.id_item,
+            id_variation: data.id_variation,
+            quantity: data.quantity,
+            id_ship: this.id_ship[ind],
+          }],
+          id_address: this.id_address,
+          id_type_payment: this.id_pay
       }
-    );
+    }
+  );
 
+  console.log('data_order=>', this.data_order.value);
+
+
+}   else {
+  this.on_Setorderitem(data , ind);
+
+}
+
+this.count_update = this.count_update + 1;
 
 
   }
 
-  on_Setorderitem(data: any) {
+  on_Setorderitem(data: any, ind: any) {
+    console.log('id_ship=>', this.id_ship[ind]);
     this.orderitem_update = this.fb.group({
         id_item: data.id_item,
         id_variation: data.id_variation,
         quantity: data.quantity,
-        id_ship: this.data_delivery[0].id_ship,
+        id_ship: this.id_ship[ind],
     });
 
 
@@ -282,18 +280,15 @@ export class CheckOutComponent implements OnInit {
     this.keep_orderitem[this.count_update] = this.orderitem_update.value;
 
     console.log('keep_order=>', this.orderitem_update.value);
-    this.count_update = this.count_update + 1;
-    // console.log('item_array=>', this.orderitem_update.value);
-    // this.data_order.value['body'].order_item.push(this.orderitem_update.value);
 
-    // console.log('update_order=>', this.data_order.value);
+
   }
 
   on_firstUpdate() {
-    // console.log('first_update=>', this.order_item.length);
+
 
       this.get_formUpdate();
-          // console.log('data_update=>', this.update_first[0]);
+
           this.productService.update_order( this.data_order.value).subscribe(
             res => {
               console.log('update_order=>', res);
@@ -304,7 +299,7 @@ export class CheckOutComponent implements OnInit {
             }
 
           );
-          // this.access_update = this.access_update + 1;
+
 
 
 
@@ -326,7 +321,7 @@ export class CheckOutComponent implements OnInit {
   on_updateOrder(data: any) {
     this.productService.update_order(data).subscribe(
       res => {
-        console.log('data_update=>', data);
+       // console.log('data_update=>', data);
         console.log('update_order=>', res);
       }, error => {
         console.log('error_update=>', error);
@@ -342,6 +337,8 @@ export class CheckOutComponent implements OnInit {
       localStorage.removeItem('order_' + i.toString());
     }
   }
+
+
   getImageFromService(id: any, namePic: any, j: any) {
     this.productService.getImage(id, namePic).subscribe(
       data => {
@@ -382,8 +379,9 @@ export class CheckOutComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       result => {
-       // console.log(result);
-       // console.log('ship_set=>', result);
+       console.log(result);
+       let item = this.order_byid.order_item[ind];
+       console.log('order_item=>', this.order_byid);
        this.ship_ping[this.ind_present] = result.name_ship;
        this.time_ship[this.ind_present] = result.time_ship;
        this.price_ship[this.ind_present] = result.price;
@@ -395,9 +393,9 @@ export class CheckOutComponent implements OnInit {
             id_order: this.id_order,
             order_status: 'ORDERING',
             order_item: [{
-              id_item: this.order_item[ind].id_item,
-              id_variation: this.order_item[ind].id_variation,
-              quantity: this.order_item[ind].quantity,
+              id_item: item.id_item,
+              id_variation: item.id_variation,
+              quantity: item.quantity,
               id_ship: result.id_ship,
             }
             ],
@@ -414,16 +412,17 @@ export class CheckOutComponent implements OnInit {
 
         }
         this.final_price = this.final_ship + this.price_all_product;
-      }
-    );
+       }
+     );
   }
 
   go_payorder() {
 
     // alert('acess');
+    let id = parseInt(this.id_order1, 10);
     this.data_ordered = this.fb.group({
       body: {
-        id_order: this.id_order,
+        id_order: id,
        order_status: "ORDERED"
       }
     });
@@ -433,9 +432,9 @@ export class CheckOutComponent implements OnInit {
       res => {
       //  console.log('res_ordered=>', res);
         localStorage.setItem('amount', this.final_price);
-        this.onRemove_order();
-        this.delete_basket(this.id_item);
-        this.router.navigate(['/mado/payorder/', this.id_order]);
+        // this.onRemove_order();
+        // this.delete_basket(this.id_item);
+        this.router.navigate(['/mado/payorder/', id]);
 
       }, error => {
         console.log('err_ordered', error);
@@ -457,23 +456,7 @@ export class CheckOutComponent implements OnInit {
     }
   }
 
-  // on_odered() {
-  //   this.data_ordered = this.fb.group({
-  //     id_order: this.id_order,
-  //     order_status: "ORDERED"
-  //   });
 
-  //   console.log('data_ordered=>', this.data_ordered.value);
-  //   this.productService.update_ordered(this.data_order.value).subscribe(
-  //     res => {
-  //       console.log('res_ordered=>', res);
-
-  //     }, error => {
-  //       console.log('err_ordered', error);
-  //     }
-  //   );
-
-  // }
 
   open_paying(name_pay: any) {
     // alert(name_pay);
@@ -489,6 +472,20 @@ export class CheckOutComponent implements OnInit {
         if (result !== null) {
           this.name_paying = result;
         }
+      }
+    );
+  }
+
+  get_payingOrder() {
+    let pay: any;
+    this.productService.get_paying().subscribe(
+      res => {
+         console.log('Paying_all=>', res['body'][0]);
+         pay = res['body'][0];
+         this.id_pay = pay.id_type_payment;
+          this.name_paying = pay.name_type;
+      }, error => {
+        console.log('err_pay=>', error);
       }
     );
   }

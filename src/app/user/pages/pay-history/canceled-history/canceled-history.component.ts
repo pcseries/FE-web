@@ -52,13 +52,15 @@ export class CanceledHistoryComponent implements OnInit {
 
           if (res['body'].order[i].order_status === 'ORDERED') {
 
-            this.count = this.count + 1;
+
             this.products_ordered[this.count_ind2] = res['body'].order[i];
             console.log('products_ordered=>', this.products_ordered[this.count_ind2]);
 
             for (let j = 0; j < this.products_ordered[this.count_ind2].order_item.length; j++) {
 
               if (this.products_ordered[this.count_ind2].order_item[j].order_item_status === 'CANCEL_BUYER') {
+
+                this.count = this.count + 1;
                 this.order_item[this.count_ind] = this.products_ordered[this.count_ind2].order_item[j];
                 console.log('order_item=>', this.order_item[j]);
 
@@ -79,6 +81,7 @@ export class CanceledHistoryComponent implements OnInit {
         }
 
         if (this.count === 0) {
+
           this.not_loading = false;
         }
       }, error => {
