@@ -46,7 +46,7 @@ export class CanceledHistoryComponent implements OnInit {
   get_canceledOrder() {
     this.productsService.get_order().subscribe(
       res => {
-        console.log('get_ordered=>', res['body'].order);
+        // console.log('get_ordered=>', res['body'].order);
 
         for (let i = 0; i < res['body'].order.length; i++) {
 
@@ -54,7 +54,7 @@ export class CanceledHistoryComponent implements OnInit {
 
 
             this.products_ordered[this.count_ind2] = res['body'].order[i];
-            console.log('products_ordered=>', this.products_ordered[this.count_ind2]);
+            // console.log('products_ordered=>', this.products_ordered[this.count_ind2]);
 
             for (let j = 0; j < this.products_ordered[this.count_ind2].order_item.length; j++) {
 

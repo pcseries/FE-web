@@ -17,6 +17,8 @@ export class CreateShipComponent implements OnInit {
   selet_url = [];
 
   track_number: any;
+  complete_stat: any;
+  from_page: any;
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +32,16 @@ export class CreateShipComponent implements OnInit {
     this.selet_url = this.url_data.split('_');
 
     this.id_item = parseInt(this.selet_url[1]  , 10);
+    this.from_page = parseInt(this.selet_url[0], 10);
+    console.log('frompage=>', this.from_page);
+    if (this.from_page === 3 || this.from_page === 5 || this.from_page === 4) {
+
+      this.complete_stat = true;
+     // alert(this.complete_stat);
+    } else {
+      this.complete_stat = false;
+    }
+
     this.get_datatrack();
   }
 

@@ -93,23 +93,25 @@ export class CheckOutComponent implements OnInit {
 
 
   ngOnInit() {
-    this.id_order1 = localStorage.getItem('id_order');
+    this.id_order1 = parseInt(localStorage.getItem('id_order'), 10) ;
+
     this.access_update = 0;
     this.count_update = 0;
     this.id_product = this.route.snapshot.paramMap.get('id');
 
     // alert(this.order_all);
     this.onGet_paying();
-    // for (let i = 0; i < this.order_all; i++) {
-    //   this.order_id[i] = localStorage.getItem('order_' + i.toString());
 
-    // }
     this.final_price = 0;
     this.final_ship = 0;
     this.price_all_product = 0;
     this.userService.get_address().subscribe(
       res => {
          console.log('res_address=>', res);
+
+        if (res['body'].length === 0) {
+          this.router.navigate(['mado/addAdress']);
+        }
         this.res_data = res['body'][0];
         this.receiver = this.res_data.receiver;
         this.phone_receiver = this.res_data.phone_receiver;
@@ -287,18 +289,10 @@ this.count_update = this.count_update + 1;
   on_firstUpdate() {
 
 
+    setTimeout(() => {
       this.get_formUpdate();
+    }, 500);
 
-          this.productService.update_order( this.data_order.value).subscribe(
-            res => {
-              console.log('update_order=>', res);
-
-            }, error => {
-
-              console.log('error_update=>', error);
-            }
-
-          );
 
 
 
@@ -316,6 +310,17 @@ this.count_update = this.count_update + 1;
 
 
     console.log('form_update=>', this.data_order.value);
+
+    this.productService.update_order( this.data_order.value).subscribe(
+      res => {
+        console.log('update_order=>', res);
+
+      }, error => {
+
+        console.log('error_update=>', error);
+      }
+
+    );
   }
 
   on_updateOrder(data: any) {
@@ -422,19 +427,19 @@ this.count_update = this.count_update + 1;
     let id = parseInt(this.id_order1, 10);
     this.data_ordered = this.fb.group({
       body: {
-        id_order: id,
+        id_order: this.id_order1,
        order_status: "ORDERED"
       }
     });
 
-  // console.log('data_ordered=>', this.data_ordered.value);
+   console.log('data_ordered=>', this.data_ordered.value);
     this.productService.update_ordered(this.data_ordered.value).subscribe(
       res => {
       //  console.log('res_ordered=>', res);
         localStorage.setItem('amount', this.final_price);
         // this.onRemove_order();
         // this.delete_basket(this.id_item);
-        this.router.navigate(['/mado/payorder/', id]);
+        this.router.navigate(['/mado/payorder/', this.id_order1]);
 
       }, error => {
         console.log('err_ordered', error);

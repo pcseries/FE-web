@@ -31,6 +31,7 @@ export class DtailPayHistoryComponent implements OnInit {
   name_ship: any;
 
 
+
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,

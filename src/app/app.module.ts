@@ -111,6 +111,8 @@ import { DeliveredProductsComponent } from './user/pages/sell-products/delivered
 import { CompleteSellproductsComponent } from './user/pages/sell-products/complete-sellproducts/complete-sellproducts.component';
 import { CanceledSellproductsComponent } from './user/pages/sell-products/canceled-sellproducts/canceled-sellproducts.component';
 import { RejectedSellproductsComponent } from './user/pages/sell-products/rejected-sellproducts/rejected-sellproducts.component';
+import { AcceptRejectedComponent } from './user/pages/sell-products/rejected-sellproducts/accept-rejected/accept-rejected.component';
+import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders.component';
 
 
 
@@ -192,6 +194,8 @@ import { RejectedSellproductsComponent } from './user/pages/sell-products/reject
     CompleteSellproductsComponent,
     CanceledSellproductsComponent,
     RejectedSellproductsComponent,
+    AcceptRejectedComponent,
+    DecideOrdersComponent,
 
 
   ],

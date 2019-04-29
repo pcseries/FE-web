@@ -20,12 +20,20 @@ export class CompleteSellproductsComponent implements OnInit {
   name_products = [];
 
   order_item = [];
+  loading: any;
+  count_item: any;
+  stat_item: any;
+
+
   constructor(
     private userService: UserService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.stat_item = true;
+    this.count_item = 0;
+    this.loading = true;
     this.count_ind = 0;
     this.get_products();
   }
@@ -41,6 +49,8 @@ export class CompleteSellproductsComponent implements OnInit {
 
         for (let i = 0; i < this.seller_products.length; i++) {
           if (this.seller_products[i].status === 'COMPLETED') {
+
+            this.count_item = this.count_item + 1;
             console.log('complete_product=>', this.seller_products[i]);
             this.order_item[this.count_ind] = this.seller_products[i];
 
@@ -53,9 +63,20 @@ export class CompleteSellproductsComponent implements OnInit {
 
             this.count_ind ++;
           }
+
+
+          if (i === (this.seller_products.length - 1)) {
+            this.loading = false;
+          }
         }
+
+        if (this.count_item === 0) {
+          // alert('success');
+           this.stat_item = false;
+         }
       }, err => {
         console.log('res_complete=>', err);
+        this.stat_item = false;
       }
     );
 

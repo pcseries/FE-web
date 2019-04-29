@@ -64,7 +64,11 @@ export class CompleteHistoryComponent implements OnInit {
                 }
 
 
-                this.price_all[this.count_ind2] = this.products_complete[this.countpaid_ind].price_total;
+                let price = this.order_item[this.count_ind2].price;
+              let quantity = this.order_item[this.count_ind2].quantity;
+              let price_ship = this.order_item[this.count_ind2].product_delivery.price;
+
+                this.price_all[this.count_ind2] =  (price * quantity ) + price_ship ;
 
                 let id = this.order_item[this.count_ind2].id_product;
                 let picture = this.order_item[this.count_ind2].pic_product;

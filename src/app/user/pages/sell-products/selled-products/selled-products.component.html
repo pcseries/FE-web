@@ -1,3 +1,11 @@
+
+<div class="have-products" *ngIf="stat_item">
+<div class="loading" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div class="data-shows" *ngIf="!loading">
 <table class="table">
     <thead>
       <tr>
@@ -28,3 +36,9 @@
   </ng-container>
   </table>
 
+</div>
+</div>
+
+<div class="notHave-item" *ngIf="!stat_item">
+  <h3>ไม่มีคำสั่งซื้อสินค้า</h3>
+</div>

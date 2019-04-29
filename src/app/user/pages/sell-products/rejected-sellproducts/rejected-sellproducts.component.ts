@@ -21,6 +21,11 @@ export class RejectedSellproductsComponent implements OnInit {
   name_products = [];
 
   order_item = [];
+  loading: any;
+  count_item: any;
+  stat_item: any;
+  rejected_stat = [];
+  send_stat = [];
 
   constructor(
     private userService: UserService,
@@ -28,7 +33,9 @@ export class RejectedSellproductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.stat_item = true;
+    this.count_item = 0;
+    this.loading = true;
     this.count_ind = 0;
     this.get_products();
   }
@@ -37,13 +44,23 @@ export class RejectedSellproductsComponent implements OnInit {
 
     this.userService.getseller_products().subscribe(
       res => {
-        console.log('res_ordercomplete=>', res['body'].order_item);
+      //  console.log('res_ordercomplete=>', res['body'].order_item);
 
         this.seller_products = res['body'].order_item;
 
         for (let i = 0; i < this.seller_products.length; i++) {
-          if (this.seller_products[i].status === 'REJECTED') {
-            console.log('complete_product=>', this.seller_products[i]);
+
+          if (this.seller_products[i].status === 'REJECTED' || this.seller_products[i].status === 'WAITING_DECISION') {
+
+            if (this.seller_products[i].status === 'WAITING_DECISION') {
+              this.rejected_stat[this.count_ind] = 'รอadmin ตัดสิน';
+              this.send_stat[this.count_ind] = 1;
+            } else {
+              this.rejected_stat[this.count_ind] = 'รอผํู้ขายตอบรับ';
+              this.send_stat[this.count_ind] = 0;
+            }
+            this.count_item = this.count_item + 1;
+            console.log('reject_product=>', this.seller_products[i]);
             this.order_item[this.count_ind] = this.seller_products[i];
 
             this.reciever[this.count_ind] = this.order_item[this.count_ind].delivery_address.receiver;
@@ -55,9 +72,24 @@ export class RejectedSellproductsComponent implements OnInit {
 
             this.count_ind ++;
           }
+
+          if (i === (this.seller_products.length - 1)) {
+            this.loading = false;
+          }
+
+
         }
+
+
+
+        if (this.count_item === 0) {
+          // alert('success');
+           this.stat_item = false;
+         }
       }, err => {
+
         console.log('res_complete=>', err);
+        this.stat_item = false;
       }
     );
 
@@ -66,7 +98,8 @@ export class RejectedSellproductsComponent implements OnInit {
 
   go_detail(ind: any) {
     // alert(this.seller_products[ind].id_item);
-    const go_page = '5_'  + this.order_item[ind].id_item;
+
+    const go_page = '5_'  + this.order_item[ind].id_item + '_' + this.send_stat[ind];
    this.router.navigate(['user/sellProducts/manage-ordered/', go_page]);
 }
 

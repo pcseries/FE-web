@@ -32,6 +32,7 @@ import { TrackingProductComponent } from './user/pages/pay-history/delivery-prod
 import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/dtail-ordered/dtail-ordered.component';
 import { DtailPayHistoryComponent } from './user/pages/pay-history/dtail-pay-history/dtail-pay-history.component';
 import { HistoryPetComponent } from './history-pet/history-pet.component';
+import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders.component';
 
 
 
@@ -58,7 +59,8 @@ const routes: Routes = [
     children: [
       {path: 'userMN' , component: UserMNcomponent},
       {path: 'adminMN', component: AdminMNComponent},
-      {path: 'profile', component: ProfileAdminComponent}
+      {path: 'profile', component: ProfileAdminComponent},
+      {path: 'decideOrders', component: DecideOrdersComponent}
     ],
   },
   {

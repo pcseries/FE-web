@@ -1,6 +1,7 @@
 <div class="container">
 
 
+
   <div class="button_backpages">
       <button (click)="back_page()"
               type="button" class="btn btn-warning">
@@ -8,6 +9,12 @@
               กลับไปหน้าการซื้อของฉัน
       </button>
   </div>
+
+
+  <div class="accept_rejected" *ngIf="reject_stat">
+    <app-accept-rejected></app-accept-rejected>
+  </div>
+  <hr>
 
   <div class="post_tracking_number"
   *ngIf="ship">

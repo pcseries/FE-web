@@ -5,28 +5,38 @@ export let MENU_ITEM = [
       icon: 'users'
   },
   {
-    path: 'admin/adminMN',
-    title: 'จัดการผู้ดูแลระบบ',
-    icon: 'user',
-
+    path: 'admin',
+    title: 'จัดการระบบ',
+    icon: 'cog',
+    children: [
+      {
+        path: 'decideOrders',
+        title: 'สินค้ารอการตัดสิน'
+      },
+      {
+        path: '#',
+        title: 'จัดการ Category'
+      },
+      {
+        path: '#',
+        title: 'จัดการการส่ง'
+      },
+      {
+        path: '#',
+        title: 'จัดการการจ่ายเงิน'
+      }
+    ]
   },
   {
-    path: '#',
-    title: 'จัดการ Category',
-    icon: 'book'
-  },
-  {
-    path: '#',
-    title: 'รายงานปัญหา',
-    icon: 'warning',
-  },
-  {
-    path: '#',
-    title: 'จัดการบัญชี'
-  },
-  {
-    path: '#',
-    title: 'จัดการการส่ง'
+    path: 'admin/business',
+    title: 'จัดการธุรกิจ',
+    icon: 'cog',
+    children: [
+      {
+        path: '#',
+        title: 'สินค้ารอการตัดสิน'
+      }
+    ]
   },
   {
     path: 'admin/profile',
@@ -42,25 +52,41 @@ export let MENU_ITEM2 = [
       icon: 'users'
   },
   {
-    path: '#',
-    title: 'จัดการ Category',
-    icon: 'book'
+    path: 'admin',
+    title: 'จัดการระบบ',
+    icon: 'cog',
+    children: [
+      {
+        path: 'decideOrders',
+        title: 'สินค้ารอการตัดสิน'
+      },
+      {
+        path: '#',
+        title: 'จัดการ Category'
+      },
+      {
+        path: '#',
+        title: 'จัดการการส่ง'
+      },
+      {
+        path: '#',
+        title: 'จัดการการจ่ายเงิน'
+      }
+    ]
   },
   {
-    path: '#',
-    title: 'รายงานปัญหา',
-    icon: 'warning',
+    path: 'admin/business',
+    title: 'จัดการธุรกิจ',
+    icon: 'cog',
+    children: [
+      {
+        path: '#',
+        title: 'สินค้ารอการตัดสิน'
+      }
+    ]
   },
   {
-    path: '#',
-    title: 'จัดการการส่ง'
-  },
-  {
-    path: '#',
-    title: 'จัดการบัญชี'
-  },
-  {
-    path: '#',
+    path: 'admin/profile',
     title: 'บัญชีของฉัน',
     icon: 'address-card'
   }

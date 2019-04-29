@@ -18,6 +18,10 @@ export class CanceledSellproductsComponent implements OnInit {
 
   order_item = [];
   count_ind: any;
+  loading: any;
+  count_item: any;
+  stat_item: any;
+
 
   constructor(
     private userService: UserService,
@@ -25,6 +29,9 @@ export class CanceledSellproductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.stat_item = true;
+    this.count_item = 0;
+    this.loading = true;
     this.count_ind = 0;
     this.get_products();
   }
@@ -39,6 +46,8 @@ export class CanceledSellproductsComponent implements OnInit {
 
         for (let i = 0; i < this.seller_products.length; i++) {
           if (this.seller_products[i].status === 'CANCEL_BUYER') {
+
+            this.count_item = this.count_item + 1;
             console.log('canceled_product=>', this.seller_products[i]);
             this.order_item[this.count_ind] = this.seller_products[i];
 
@@ -51,10 +60,18 @@ export class CanceledSellproductsComponent implements OnInit {
 
             this.count_ind ++;
           }
+
+          if (i === (this.seller_products.length - 1)) {
+            this.loading = false;
+          }
         }
 
+        if (this.count_item === 0) {
+          // alert('success');
+           this.stat_item = false;
+         }
       }, err => {
-
+        this.stat_item = false;
       }
     );
 

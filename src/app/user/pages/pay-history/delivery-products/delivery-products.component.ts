@@ -65,7 +65,7 @@ export class DeliveryProductsComponent implements OnInit {
 
               // console.log('products_paid=>', this.products_paid[this.countpaid_ind].order_item[j]);
               this.product_status = this.products_paid[this.countpaid_ind].order_item[j].order_item_status;
-              if (this.product_status === 'NOT_SHIP') {
+              if (this.product_status === 'NOT_SHIP' || this.product_status === 'SHIPPED') {
 
               this.count = this.count + 1 ;
               this.order_item[this.count_ind2] = this.products_paid[this.countpaid_ind].order_item[j];
@@ -82,9 +82,16 @@ export class DeliveryProductsComponent implements OnInit {
                 this.status_track[this.count_ind2] = false;
               }
 
+              let price = this.order_item[this.count_ind2].price;
+              console.log('price=>', price);
+              let quantity = this.order_item[this.count_ind2].quantity;
+              console.log('quantity', quantity);
 
-              this.price_all[this.count_ind2] =  this.products_paid[this.countpaid_ind].price_total;
-              // id and picture_name
+              let price_ship = this.order_item[this.count_ind2].product_delivery.price;
+
+              this.price_all[this.count_ind2] =  (price * quantity ) + price_ship ;
+              console.log('price_all', this.price_all[this.count_ind2]);
+
               let id = this.order_item[this.count_ind2].id_product;
               let picture = this.order_item[this.count_ind2].pic_product;
 
@@ -146,7 +153,9 @@ export class DeliveryProductsComponent implements OnInit {
 
   tracking_product(ind: any) {
    console.log('order_item=>', this.order_item[ind]);
-    this.router.navigate(['/user/payHistory/tracking/', this.order_item[ind].id_order]);
+
+   const page = '1_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
+    this.router.navigate(['/user/payHistory/tracking/', page]);
   }
 
   on_rejectproduct(ind: any) {

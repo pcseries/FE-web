@@ -87,6 +87,10 @@ export class ProductsService {
     return this.http.put(this.baseUrlC + 'orderforseller/', data, this.getAuth());
   }
 
+  update_reject(data: any) {
+    return this.http.put(this.baseUrlC + 'orderitemseller', data , this.getAuth());
+  }
+
   private getAutprodtuct() {
     const token = '1a2b3c';
     const httpheaders = new HttpHeaders({'token': token});

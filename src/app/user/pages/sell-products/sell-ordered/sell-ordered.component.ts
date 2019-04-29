@@ -18,6 +18,9 @@ export class SellOrderedComponent implements OnInit {
 
   order_item = [];
   count_ind: any;
+  loading: any;
+  count_item: any;
+  stat_item: any;
 
   constructor(
     private userService: UserService,
@@ -25,6 +28,9 @@ export class SellOrderedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.stat_item = true;
+    this.count_item = 0;
+    this.loading = true;
     this.count_ind = 0;
     this.get_products();
   }
@@ -40,6 +46,7 @@ export class SellOrderedComponent implements OnInit {
           console.log('seller product=>', this.seller_products[i]);
 
           if (this.seller_products[i].status === 'UNPAID') {
+            this.count_item = this.count_item + 1;
             this.order_item[this.count_ind] = this.seller_products[i];
             this.reciever[this.count_ind] = this.order_item[this.count_ind].delivery_address.receiver;
             this.quantity[this.count_ind] = this.order_item[this.count_ind].quantity;
@@ -49,11 +56,21 @@ export class SellOrderedComponent implements OnInit {
             this.name_products[this.count_ind] = this.order_item[this.count_ind].product.name_product;
 
             this.count_ind ++;
+
           }
 
+          if (i === (this.seller_products.length - 1)) {
+            this.loading = false;
+          }
 
         }
+
+        if (this.count_item === 0) {
+         // alert('success');
+          this.stat_item = false;
+        }
       }, err => {
+        this.stat_item = false;
         console.log('error seller=>', err);
       }
     );

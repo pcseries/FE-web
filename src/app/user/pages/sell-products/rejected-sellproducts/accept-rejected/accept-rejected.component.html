@@ -1,0 +1,28 @@
+<div class="accept-rejected-section">
+  <div class="accept-title">
+    <h3 class="text-title" *ngIf="keep_stat === 0">
+      ยอมรับการขอคืนสินค้า หรือไม่
+    </h3>
+    <h3 class="text-waitaddmin" *ngIf="keep_stat === 1">
+       รอ Admin ตัดสิน
+    </h3>
+  </div>
+  <div class="body-accept-rejected" *ngIf="keep_stat === 0">
+    <div class="group-button">
+      <button
+        (click)="on_accept()"
+        type="button" class="btn btn-success btn_accept">
+        ยอมรับ
+        <i class="fa fa-check" aria-hidden="true"></i>
+      </button>
+
+      <button
+      (click)="on_cancel()"
+      type="button" class="btn btn-danger btn_no_accept">
+        ไม่ยอมรับ
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+</div>

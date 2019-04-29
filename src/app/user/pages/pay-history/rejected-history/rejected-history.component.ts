@@ -79,8 +79,11 @@ export class RejectedHistoryComponent implements OnInit {
                   this.status_track[this.count_ind2] = false;
                 }
 
+                let price = this.order_item[this.count_ind2].price;
+                let quantity = this.order_item[this.count_ind2].quantity;
+                let price_ship = this.order_item[this.count_ind2].product_delivery.price;
 
-                this.price_all[this.count_ind2] =  this.products_rejected[this.countpaid_ind].price_total;
+                this.price_all[this.count_ind2] =  (price * quantity ) + price_ship ;
                 // id and picture_name
                 let id = this.order_item[this.count_ind2].id_product;
                 let picture = this.order_item[this.count_ind2].pic_product;

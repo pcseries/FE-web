@@ -44,7 +44,7 @@ export class TrackingProductComponent implements OnInit {
     this.productsService.ongetorder_byid(this.id_order).subscribe(
       res => {
 
-        // console.log('track_data=>', res['body'].order[0].order_item);
+         console.log('track_data=>', res['body'].order[0].order_item);
 
         this.order_item = res['body'].order[0].order_item;
         for (let i = 0; i < this.order_item.length; i++) {
@@ -57,12 +57,7 @@ export class TrackingProductComponent implements OnInit {
 
           }
         }
-        //  console.log('track=>', res['body'].order[0].order_item[0].checkpoint);
-        // this.track_level = res['body'].order[0].order_item[0].checkpoint.length;
-        // console.log('track_level=>', this.track_level);
-        // for (let i = 0; i < this.track_level; i++){
-        //   this.track_dtail[i] = res['body'].order[0].order_item[0].checkpoint[i];
-        // }
+
       }, error => {
         console.log('err_track=>', error);
       }

@@ -38,7 +38,7 @@ export class AddAdressComponent implements OnInit {
       res => {
         alert('บันทึกสำเร็จ');
         console.log('resAddress=> ', res);
-         this.router.navigate(['/mado/checkOut/0']);
+         this.router.navigate(['/mado/checkOut']);
       }, error => {
         console.log('error' , error);
       }

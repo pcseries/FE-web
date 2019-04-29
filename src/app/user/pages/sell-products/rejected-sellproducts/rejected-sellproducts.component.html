@@ -1,3 +1,12 @@
+
+<div class="have-products" *ngIf="stat_item">
+<div class="loading" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+
+<div class="data-shows" *ngIf="!loading">
 <table class="table">
   <thead>
     <tr>
@@ -6,6 +15,7 @@
       <th>จำนวน</th>
       <th>ช่องทางการส่ง</th>
       <th>ราคาทั้งหมด</th>
+      <th>สถานะ</th>
       <th></th>
     </tr>
   </thead>
@@ -18,6 +28,14 @@
       <td>{{product_delivery[i]}}</td>
       <td>{{price_all[i]}}</td>
       <td>
+        <span class="stat_text" *ngIf="send_stat[i]===1">
+          {{rejected_stat[i]}}
+        </span>
+        <span class="stat_seller" *ngIf="send_stat[i]===0">
+            {{rejected_stat[i]}}
+          </span>
+      </td>
+      <td>
         <button
           (click)="go_detail(i)"
           type="button" class="btn btn-info">
@@ -28,3 +46,9 @@
 </ng-container>
   </tbody>
 </table>
+</div>
+
+</div>
+<div class="notHave-item" *ngIf="!stat_item">
+  <h3>ไม่มีคำสั่งซื้อสินค้า</h3>
+</div>

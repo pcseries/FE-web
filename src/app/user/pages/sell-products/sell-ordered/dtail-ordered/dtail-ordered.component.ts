@@ -15,7 +15,7 @@ export class DtailOrderedComponent implements OnInit {
 
   ship: any;
   go_delivery: any;
-
+  reject_stat: any;
 
 
   constructor(
@@ -24,7 +24,7 @@ export class DtailOrderedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.reject_stat = false;
     this.send_text = this.route.snapshot.paramMap.get('id');
     this.split_num = this.send_text.split('_');
 
@@ -39,6 +39,9 @@ export class DtailOrderedComponent implements OnInit {
     if (stat === 0) {
       this.ship = false;
       this.go_delivery = false;
+    } else if( stat === 5) {
+      this.reject_stat = true;
+      this.ship = true;
     } else {
       this.ship = true;
       this.go_delivery = true;
