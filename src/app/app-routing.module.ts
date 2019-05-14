@@ -33,6 +33,12 @@ import { DtailOrderedComponent } from './user/pages/sell-products/sell-ordered/d
 import { DtailPayHistoryComponent } from './user/pages/pay-history/dtail-pay-history/dtail-pay-history.component';
 import { HistoryPetComponent } from './history-pet/history-pet.component';
 import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders.component';
+import { ManageDecideComponent } from './admin/pages/decide-orders/manage-decide/manage-decide.component';
+import { AddRejectCommentComponent } from './user/pages/pay-history/add-reject-comment/add-reject-comment.component';
+import { ShippingManageComponent } from './admin/pages/shipping-manage/shipping-manage.component';
+import { CategoryManageComponent } from './admin/pages/category-manage/category-manage.component';
+import { PayingManageComponent } from './admin/pages/paying-manage/paying-manage.component';
+import { SubCategoryComponent } from './admin/pages/category-manage/sub-category/sub-category.component';
 
 
 
@@ -60,7 +66,12 @@ const routes: Routes = [
       {path: 'userMN' , component: UserMNcomponent},
       {path: 'adminMN', component: AdminMNComponent},
       {path: 'profile', component: ProfileAdminComponent},
-      {path: 'decideOrders', component: DecideOrdersComponent}
+      {path: 'decideOrders', component: DecideOrdersComponent},
+      {path: 'decideOrders/:id', component: ManageDecideComponent},
+      {path: 'shippingManages', component: ShippingManageComponent},
+      {path: 'categoryManages', component: CategoryManageComponent},
+      {path: 'payingManages' ,  component: PayingManageComponent},
+      {path: 'categoryManages/subcategory/:id', component: SubCategoryComponent}
     ],
   },
   {
@@ -81,7 +92,8 @@ const routes: Routes = [
       {path: 'sellProducts', component: SellProductsComponent},
       {path: 'sellProducts/:id', component: SellProductsComponent},
       {path: 'payHistory/tracking/:id', component: TrackingProductComponent},
-      {path: 'sellProducts/manage-ordered/:id', component: DtailOrderedComponent}
+      {path: 'sellProducts/manage-ordered/:id', component: DtailOrderedComponent},
+      {path: 'payHistory/addComment/:id', component: AddRejectCommentComponent}
     ],
   },
   {

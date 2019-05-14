@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>เพิ่มการจัดส่ง</h1>
+<div mat-dialog-content>
+
+  <mat-form-field class="field-ship">
+    <input matInput
+      #txt_input
+      class="modify-ship"
+      placeholder="ชื่อการจัดส่ง">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <div class="group-button">
+    <button (click)="on_save(txt_input)"
+      type="button" class="btn btn-success">
+      เพิ่ม
+      <i class="fa fa-plus"></i>
+    </button>
+    <button mat-button
+      (click)="on_Cancel()"
+      >ยกเลิก</button>
+  </div>
+
+</div>

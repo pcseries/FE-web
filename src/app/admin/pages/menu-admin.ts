@@ -14,7 +14,7 @@ export let MENU_ITEM = [
         title: 'สินค้ารอการตัดสิน'
       },
       {
-        path: '#',
+        path: 'categoryManages',
         title: 'จัดการ Category'
       },
       {
@@ -61,15 +61,15 @@ export let MENU_ITEM2 = [
         title: 'สินค้ารอการตัดสิน'
       },
       {
-        path: '#',
+        path: 'categoryManages',
         title: 'จัดการ Category'
       },
       {
-        path: '#',
+        path: 'shippingManages',
         title: 'จัดการการส่ง'
       },
       {
-        path: '#',
+        path: 'payingManages',
         title: 'จัดการการจ่ายเงิน'
       }
     ]

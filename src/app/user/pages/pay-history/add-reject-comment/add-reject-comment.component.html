@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="addComment-content">
+    <div class="header-text row">
+      <div class="col">
+        <h5>เพิ่มความเห็นใน การยกเลิกคำสั่ง</h5>
+      </div>
+
+    </div>
+
+    <hr class="line-reject">
+
+    <div class="body-reject">
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="example-full-width">
+            <textarea matInput
+            placeholder="ข้อคิดเห็น"
+            class="text-add-reject"
+            #textComment
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button (click)="addComment(textComment)"
+          type="button"
+          class="btn btn-success bton-action">
+          เพิ่มความคิดเห็น
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+        <button (click)="cancelComment()"
+          type="button"
+          class="btn btn-danger bton-action">
+          ยกเลิก
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

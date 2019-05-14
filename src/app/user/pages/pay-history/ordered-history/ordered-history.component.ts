@@ -42,7 +42,10 @@ export class OrderedHistoryComponent implements OnInit {
   c_orders: any;
   keep_ind: any;
   amount_ind = [];
+  id_order = [];
 
+  idOrder_shows = [];
+  order_ind = [];
 
   constructor(
 
@@ -75,12 +78,11 @@ export class OrderedHistoryComponent implements OnInit {
 
          for (let i = 0; i < res['body'].order.length; i++) {
 
-
            if (res['body'].order[i].order_status === 'ORDERED') {
 
 
 
-        //     // alert(res['body'].order[i].order_status);
+           // alert(res['body'].order[i].order_status);
             this.products_ordered[this.count_ind2] = res['body'].order[i];
             this.order_present = this.products_ordered[this.count_ind2].id_order;
            // console.log('products_ordered=>', this.products_ordered[this.count_ind]);
@@ -96,7 +98,9 @@ export class OrderedHistoryComponent implements OnInit {
 
 
 
+
                console.log('orders_show=>', this.order_shows[this.count_shows]);
+
                 if (this.count_shows !== 0) {
 
                  let old_ind = this.count_old(this.count_ind);
@@ -118,6 +122,7 @@ export class OrderedHistoryComponent implements OnInit {
 
                 console.log('orders=>', this.products_ordered[this.count_ind2]);
                 this.amount_ind[this.c_orders] = this.keep_ind;
+                this.order_ind[this.c_orders] = this.keep_ind;
 
                 let size = this.products_ordered[this.count_ind2].order_item.length;
 
@@ -159,7 +164,16 @@ export class OrderedHistoryComponent implements OnInit {
               continue;
           }
 
+          if (i === (res['body'].order.length - 1)) {
+            console.log('reverse');
+            this.order_item.reverse();
+            this.order_shows.reverse();
+            this.amount_ind.reverse();
+            // console.log('amount_ind', this.amount_ind);
+            // console.log('order_ind', this.order_ind);
+            console.log('order_show', this.order_shows);
 
+          }
          }
 
          if (this.count === 0) {

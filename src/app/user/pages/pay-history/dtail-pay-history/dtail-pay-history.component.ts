@@ -29,7 +29,7 @@ export class DtailPayHistoryComponent implements OnInit {
   loading: any;
   imageToShow: any;
   name_ship: any;
-
+  des_stat: any;
 
 
   constructor(
@@ -39,7 +39,7 @@ export class DtailPayHistoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.des_stat = false;
     this.send_text = this.route.snapshot.paramMap.get('id');
 
     // alert(this.send_text);
@@ -51,6 +51,10 @@ export class DtailPayHistoryComponent implements OnInit {
     this.id_order = parseInt(this.status_num[1] , 10);
     this.id_item = parseInt(this.status_num[2] , 10);
     this.get_order(this.status_num);
+
+    if (this.backpage === 5 || this.backpage === 6) {
+      this.des_stat = true;
+    }
   }
 
   get_order(id: any) {

@@ -31,6 +31,11 @@
                   </div>
                 </a>
               </div>
+
+              <div class="order-content__header__order-sn">
+                หมายเลขคำสั่งซื้อ. <span  class="order_num"> {{order_item[i].id_order}} </span>
+              </div>
+
             </div>
 
             <div class="order-content__item-list">
@@ -119,6 +124,29 @@
                     ดูข้อมูลกาสั่งซื้อ
                   </span>
                 </button> -->
+                <button
+
+                  *ngIf="!stat_score[i]"
+                  (click)="on_setScore(i)"
+                  class="score-button"
+                  mat-raised-button color="warn">
+                  <span class="purchase-card-buttons__button-content">
+                      ให้คะแนน
+                  </span>
+                </button>
+
+                <ngb-rating
+
+                  *ngIf="stat_score[i]"
+                  [(rate)]="get_score[i]">
+                <ng-template
+
+                 let-fill="fill" let-index="index">
+                  <span class="star"   [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+
+                </ngb-rating>
+                <span *ngIf="stat_score[i]">({{show_scores[i]}} คะแนน)</span>
               </div>
             </div>
 

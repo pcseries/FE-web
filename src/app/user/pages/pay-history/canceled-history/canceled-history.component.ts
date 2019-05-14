@@ -46,11 +46,11 @@ export class CanceledHistoryComponent implements OnInit {
   get_canceledOrder() {
     this.productsService.get_order().subscribe(
       res => {
-        // console.log('get_ordered=>', res['body'].order);
+        console.log('get_ordered=>', res['body'].order);
 
         for (let i = 0; i < res['body'].order.length; i++) {
 
-          if (res['body'].order[i].order_status === 'ORDERED') {
+          if (res['body'].order[i].order_status === 'ORDERED' ) {
 
 
             this.products_ordered[this.count_ind2] = res['body'].order[i];
@@ -62,7 +62,7 @@ export class CanceledHistoryComponent implements OnInit {
 
                 this.count = this.count + 1;
                 this.order_item[this.count_ind] = this.products_ordered[this.count_ind2].order_item[j];
-                console.log('order_item=>', this.order_item[j]);
+                // console.log('order_item=>', this.order_item[j].id_item);
 
                 this.order_priceAll[this.count_ind] = ((this.products_ordered[this.count_ind2].order_item[j].price
                   * this.products_ordered[this.count_ind2].order_item[j].quantity)

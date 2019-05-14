@@ -21,6 +21,14 @@ export class TrackingProductComponent implements OnInit {
 
   order_item: any;
 
+  complete_stat: any;
+  ind_final: any;
+
+  track_Start = [];
+  track_final = [];
+  ind_dtail: any;
+
+  load_track: any;
   constructor(
     private router: Router,
     private productsService: ProductsService,
@@ -28,6 +36,10 @@ export class TrackingProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.load_track = false;
+    this.ind_dtail = 0;
+    this.ind_final = 0;
+    this.complete_stat = false;
     this.track_level = 0;
     this.url_page = this.route.snapshot.paramMap.get('id');
     this.url_data = this.url_page.split('_');
@@ -52,7 +64,30 @@ export class TrackingProductComponent implements OnInit {
             console.log('track_data=>', this.order_item[i]);
             this.track_level = this.order_item[i].checkpoint.length;
             for (let j = 0; j < this.track_level; j++) {
-                this.track_dtail[j] = this.order_item[i].checkpoint[j];
+              if (this.pre_page === 1) {
+              if (j === 0) {
+                this.track_Start[0] = this.order_item[i].checkpoint[j];
+              } else {
+                this.track_dtail[this.ind_dtail] = this.order_item[i].checkpoint[j];
+                this.ind_dtail = this.ind_dtail + 1;
+                if (j === (this.track_level - 1)) {
+                  this.load_track = true;
+                }
+              }
+
+            } else if (this.pre_page === 2) {
+              if (j === 0) {
+                this.track_Start[0] = this.order_item[i].checkpoint[j];
+              } else if (j === (this.track_level - 1)) {
+                this.track_final[0] = this.order_item[i].checkpoint[j];
+                this.complete_stat = true;
+                this.load_track = true;
+              } else {
+                this.track_dtail[this.ind_dtail] = this.order_item[i].checkpoint[j];
+                this.ind_dtail = this.ind_dtail + 1;
+              }
+            }
+
             }
 
           }

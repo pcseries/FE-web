@@ -25,6 +25,10 @@
                     </div>
                   </a>
                 </div>
+
+                <div class="order-content__header__order-sn">
+                  หมายเลขคำสั่งซื้อ. <span  class="order_num"> {{p.order_item[0].id_order}} </span>
+                </div>
               </div>
 
               <div class="order-content__item-list" *ngFor="let item of p.order_item;let j = index">

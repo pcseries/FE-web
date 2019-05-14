@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ScoreDialogComponent } from './score-dialog/score-dialog.component';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-complete-history',
@@ -23,11 +27,19 @@ export class CompleteHistoryComponent implements OnInit {
   loading: any;
   not_loading: any;
   count: any;
+  order_history: any;
+  stat_score = [];
+  get_score = [];
+  show_scores = [];
 
   constructor(
     private productsService: ProductsService,
     private router: Router,
-  ) { }
+    public dialog: MatDialog,
+    config: NgbRatingConfig,
+  ) {
+    config.max = 5;
+   }
 
   ngOnInit() {
 
@@ -59,6 +71,9 @@ export class CompleteHistoryComponent implements OnInit {
                 console.log('complete_products=>', this.products_complete[this.countpaid_ind]);
                 this.order_item[this.count_ind2] = this.products_complete[this.countpaid_ind].order_item[j];
 
+
+                this.checkStat_score(this.order_item[this.count_ind2].id_item, this.count_ind2);
+
                 if (this.order_item[this.count_ind2].tracking_number !== undefined) {
                   this.tracking_num[this.count_ind2] = this.order_item[this.count_ind2].tracking_number;
                 }
@@ -87,6 +102,42 @@ export class CompleteHistoryComponent implements OnInit {
         }
       }, err => {
         console.log('error', err);
+      }
+    );
+  }
+
+
+  checkStat_score(id_item: any, ind: any) {
+   // console.log('id_item=>', id_item);
+
+    this.productsService.get_orderHistory().subscribe(
+      res => {
+        console.log('order=>', res['body']);
+        let order_his = res['body'].order_history;
+
+        for (let i = 0; i < order_his.length; i++) {
+          if (order_his[i].id_item === id_item) {
+            console.log('id_orderhistory=>', order_his[i].id_order_history);
+            this.productsService.get_ratingProduct(order_his[i].id_order_history).subscribe(
+              res => {
+                console.log('rating', res);
+
+                if (res['status'] === 200) {
+                  this.stat_score[ind] = true;
+                  this.get_score[ind] = res['body'].rating_product.rating;
+                  this.show_scores[ind] = res['body'].rating_product.rating;
+                } else {
+                  this.stat_score[ind] = false;
+                }
+
+              }, err => {
+                console.log('rating', err);
+              }
+            );
+          }
+        }
+      }, err => {
+        console.log('order=>', err);
       }
     );
   }
@@ -126,6 +177,38 @@ export class CompleteHistoryComponent implements OnInit {
     console.log('item', this.order_item[ind]);
     const go = 3 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
      this.router.navigate(['user/payHistory/dtail/', go]);
+  }
+
+  on_setScore(ind: any) {
+    // console.log('id_item=>', this.order_item[ind].id_item);
+
+     this.productsService.get_orderHistory().subscribe(
+       res => {
+       //  console.log('order_history', res['body'].order_history);
+         let order = res['body'].order_history;
+
+         for (let i = 0; i < order.length; i++) {
+           if (this.order_item[ind].id_item === order[i].id_item) {
+              console.log('order_history=>', order[i].id_order_history);
+              const dialogRef = this.dialog.open(ScoreDialogComponent, {
+                width: '700px',
+                data: {id: order[i].id_order_history}
+               });
+
+               dialogRef.afterClosed().subscribe(result => {
+                 if (result === true) {
+                    this.ngOnInit();
+                 }
+
+
+              });
+           }
+         }
+       }, err => {
+         console.log('order_history', err);
+       }
+     );
+
   }
 
 

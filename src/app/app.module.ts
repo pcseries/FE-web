@@ -113,7 +113,24 @@ import { CanceledSellproductsComponent } from './user/pages/sell-products/cancel
 import { RejectedSellproductsComponent } from './user/pages/sell-products/rejected-sellproducts/rejected-sellproducts.component';
 import { AcceptRejectedComponent } from './user/pages/sell-products/rejected-sellproducts/accept-rejected/accept-rejected.component';
 import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders.component';
+import { WaitmoneyHistoryComponent } from './user/pages/pay-history/waitmoney-history/waitmoney-history.component';
+import { RefundProductsComponent } from './user/pages/sell-products/refund-products/refund-products.component';
+import { ManageDecideComponent } from './admin/pages/decide-orders/manage-decide/manage-decide.component';
+import { DecideProductComponent } from './admin/pages/decide-orders/manage-decide/decide-product/decide-product.component';
+import { DtailDecideProductComponent } from './admin/pages/decide-orders/manage-decide/dtail-decide-product/dtail-decide-product.component';
+import { AddRejectCommentComponent } from './user/pages/pay-history/add-reject-comment/add-reject-comment.component';
+import { ShippingManageComponent } from './admin/pages/shipping-manage/shipping-manage.component';
+import { AddshipDialogComponent } from './admin/pages/shipping-manage/addship-dialog/addship-dialog.component';
+import { CategoryManageComponent } from './admin/pages/category-manage/category-manage.component';
+import { PayingManageComponent } from './admin/pages/paying-manage/paying-manage.component';
+import { AddpayDialogComponent } from './admin/pages/paying-manage/addpay-dialog/addpay-dialog.component';
+import { AddcategoryDialogComponent } from './admin/pages/category-manage/addcategory-dialog/addcategory-dialog.component';
+import { CommentRejectedComponent } from './user/pages/pay-history/comment-rejected/comment-rejected.component';
+import { SubCategoryComponent } from './admin/pages/category-manage/sub-category/sub-category.component';
+import { ScoreDialogComponent } from './user/pages/pay-history/complete-history/score-dialog/score-dialog.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CommentsProductComponent } from './core/pages/comments-product/comments-product.component';
 
 
 
@@ -196,6 +213,22 @@ import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders
     RejectedSellproductsComponent,
     AcceptRejectedComponent,
     DecideOrdersComponent,
+    WaitmoneyHistoryComponent,
+    RefundProductsComponent,
+    ManageDecideComponent,
+    DecideProductComponent,
+    DtailDecideProductComponent,
+    AddRejectCommentComponent,
+    ShippingManageComponent,
+    AddshipDialogComponent,
+    CategoryManageComponent,
+    PayingManageComponent,
+    AddpayDialogComponent,
+    AddcategoryDialogComponent,
+    CommentRejectedComponent,
+    SubCategoryComponent,
+    ScoreDialogComponent,
+    CommentsProductComponent,
 
 
   ],
@@ -226,13 +259,18 @@ import { DecideOrdersComponent } from './admin/pages/decide-orders/decide-orders
     MatSelectModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
-    UiSwitchModule
+    UiSwitchModule,
+    NgbModule
 
   ],
   entryComponents: [
     MyDialogComponent,
     MyShippingComponent,
-    MyPayingComponent
+    MyPayingComponent,
+    AddshipDialogComponent,
+    AddpayDialogComponent,
+    AddcategoryDialogComponent,
+    ScoreDialogComponent
 
   ],
   providers: [

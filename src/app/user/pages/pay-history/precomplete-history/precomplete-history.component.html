@@ -30,6 +30,10 @@
                   </div>
                 </a>
               </div>
+
+              <div class="order-content__header__order-sn">
+                หมายเลขคำสั่งซื้อ. <span  class="order_num"> {{order_item[i].id_order}} </span>
+              </div>
             </div>
 
             <div class="order-content__item-list">
@@ -124,10 +128,10 @@
               </div>
 
               <div class="purchase-card-buttons__show-button-wrapper">
-                <button
+                <button (click)="on_rejectproduct(i)"
                   class="shopee-button-outline shopee-button-outline--fill shopee-button-outline--primary ">
                   <span class="purchase-card-buttons__button-content">
-                    ยกเลิกการสั่งซื้อ
+                    ขอคืนเงิน
                   </span>
                 </button>
               </div>

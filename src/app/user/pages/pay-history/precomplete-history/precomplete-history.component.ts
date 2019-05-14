@@ -32,6 +32,7 @@ export class PrecompleteHistoryComponent implements OnInit {
   not_loading: any;
 
   count: any;
+  data_reject: FormGroup;
 
 
   constructor(
@@ -181,8 +182,40 @@ export class PrecompleteHistoryComponent implements OnInit {
 
 
 
-   on_rejectproduct() {
+   on_rejectproduct(ind: any) {
+    this.data_reject = this.fb.group({
+      id_item: this.order_item[ind].id_item,
+      order_item_status: 'REJECTED',
+      description_reject: 'ไม่มีข้อคิดเห็น'
+    });
 
+    const c = confirm('คุณต้องการยกเลืกการสั่งซื้อ หรือไม่');
+
+    if (c) {
+
+      const i = confirm('คุณต้องการให้ความเห็นการยกเลิก หรือไม่');
+
+      if (i) {
+        const pre_page = 2 + '_'  + this.order_item[ind].id_item;
+        this.router.navigate(['user/payHistory/addComment/', pre_page]);
+      } else {
+        console.log('data_reject=>', this.data_reject.value);
+
+        this.productsService.onreject_product(this.data_reject.value).subscribe(
+          res => {
+            console.log('reject_product=>', res);
+            this.router.navigate(['user/payHistory/', 5]);
+            setTimeout(() => {
+            location.reload();
+            }, 1000);
+
+          }, err => {
+            console.log('err_reject=>', err);
+          }
+        );
+    }
+
+    }
    }
 
 

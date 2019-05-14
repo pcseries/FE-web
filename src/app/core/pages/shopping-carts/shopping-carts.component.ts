@@ -128,7 +128,7 @@ export class ShoppingCartsComponent implements OnInit {
 
       },
       error => {
-        console.log("err", error);
+        console.log("err_shopcart=>", error);
       }
     );
 
@@ -249,9 +249,7 @@ export class ShoppingCartsComponent implements OnInit {
     this.on_removeOrders(this.selectProduct);
 
    this.router.navigate(['/mado/checkOut']);
-   setTimeout(() => {
-    location.reload();
- }, 100);
+
 
 
  }

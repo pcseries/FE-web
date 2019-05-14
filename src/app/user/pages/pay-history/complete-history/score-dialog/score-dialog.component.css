@@ -1,0 +1,39 @@
+.star {
+  font-size: 3rem;
+  color: #FAEBD7;
+
+}
+.filled {
+  color: 	#FFD700;
+}
+
+
+.section-rating {
+  margin-left: 35%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.area-txt {
+  height: 110px;
+}
+.modify-ship {
+  width: 100%;
+}
+
+.field-ship {
+  width: 430px;
+}
+
+
+.group-button {
+  margin-left: 70%;
+}

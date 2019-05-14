@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-8">
+    <mat-form-field class="search-area">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Results">
+    </mat-form-field>
+  </div>
+  <div class="col">
+    <button (click)="on_addPaying()"
+      type="button"
+      class="btn btn-success btn-addShip">
+      เพิ่มการจ่ายเงิน
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+<ng-container matColumnDef="id_type_payment" >
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับ</th>
+  <td mat-cell *matCellDef="let row;let i = index"
+    class="products" > {{order_num[i]}} </td>
+</ng-container>
+
+<ng-container matColumnDef="name_type">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อการจ่ายเงิน</th>
+  <td mat-cell *matCellDef="let row; let i = index"
+    class="name_modify">
+
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        #ship_txt
+        class="input_nameship"
+        [disabled]="stat_name[i]"
+        value="{{row.name_type}}">
+    </mat-form-field>
+
+    <button
+    *ngIf="stat_name[i]"
+
+    [disabled]="stat_name[i]"
+    mat-icon-button color="primary"
+    focusable="false" >
+    <i class="fa fa-check" ></i>
+  </button>
+
+    <button
+    *ngIf="!stat_name[i]"
+    (click)="on_confirm(row.id_type_payment,i,ship_txt)"
+    mat-icon-button color="primary"
+    focusable="false">
+    <i class="fa fa-check"  style="color: green;"></i>
+  </button>
+
+  </td>
+
+</ng-container>
+
+
+
+
+<ng-container matColumnDef="actionsColumn">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>
+    <i class="fa fa-cog"></i>
+  </th>
+  <td mat-cell *matCellDef="let row;let i = index">
+
+    <button  (click)="on_editPaying(i)"
+      mat-icon-button color="primary"
+      focusable="false" >
+        <i class="fa fa-edit mat-icon"></i>
+    </button>
+
+    <button  (click)="on_deletePaying(row.id_type_payment)"
+      mat-icon-button color="accent"
+      focusable="false" style="color: red;">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+
+
+
+    <!-- <button
+      *ngIf="!stat_name[i]"
+      (click)="on_confirmedit(i, row.id_type, ship_txt)"
+
+      mat-icon-button color="primary"
+      focusable="false">
+      <i class="fa fa-check"  style="color: green;"></i>
+    </button> -->
+
+    <!-- <button
+    *ngIf="stat_name[i]"
+    (click)="on_confirmedit(i)"
+    [disabled]="stat_name[i]"
+    mat-icon-button color="primary"
+    focusable="false" >
+    <i class="fa fa-check" ></i>
+  </button> -->
+
+
+</td>
+</ng-container>
+
+
+
+
+
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+</tr>
+</table>
+<mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+

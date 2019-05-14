@@ -15,8 +15,10 @@ export class PayHistoryComponent implements OnInit {
   is_precomplete: any;
   is_complete: any;
   is_rejected: any;
+  is_waitignmoney: any;
 
   id_selected: any;
+
 
 
   id_type: any;
@@ -44,6 +46,7 @@ export class PayHistoryComponent implements OnInit {
     this.is_precomplete = false;
     this.is_complete = false;
     this.is_rejected = false;
+    this.is_waitignmoney = false;
   }
 
   on_selectType(type: any) {
@@ -64,9 +67,11 @@ export class PayHistoryComponent implements OnInit {
     } else if (type === '5') {
       this.on_pagerejected();
       if (this.is_rejected === false) {
-        alert('dd');
+       //  alert('dd');
         this.ngOnInit();
       }
+    } else if (type === '6') {
+      this.on_pagewaiting();
     }
     else {
       this.on_type0();
@@ -108,6 +113,11 @@ this.is_canceled = true;
     this.is_complete = true;
   }
 
+  on_type6() {
+    this.on_falsepages();
+    this.is_waitignmoney = true;
+  }
+
 
   on_pageCanceled() {
 
@@ -135,4 +145,7 @@ this.is_canceled = true;
     this.on_type3();
   }
 
+  on_pagewaiting() {
+    this.on_type6();
+  }
 }

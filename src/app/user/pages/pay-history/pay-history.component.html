@@ -94,6 +94,22 @@
     </span>
   </div>
 
+  <div (click)="on_pagewaiting()"
+    class="purchase-list-page__tab  purchase-list-page__tab--selected"
+    *ngIf="is_waitignmoney">
+    <span class="purchase-list-page__tab-label">
+      สินค้าที่รอรับเงิน
+    </span>
+  </div>
+
+  <div (click)="on_pagewaiting()"
+    class="purchase-list-page__tab "
+    *ngIf="!is_waitignmoney">
+    <span class="purchase-list-page__tab-label">
+      สินค้าที่รอรับเงิน
+    </span>
+  </div>
+
   </div>
 
   <div class="ordered_products"
@@ -128,6 +144,9 @@
   </div>
 
 
-
+  <div class="waitmoney_products"
+  *ngIf="is_waitignmoney">
+    <app-waitmoney-history></app-waitmoney-history>
+  </div>
 
 </div>

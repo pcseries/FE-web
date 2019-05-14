@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin/admin.service';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-decide-orders',
@@ -23,9 +25,19 @@ export class DecideOrdersComponent implements OnInit {
   loading: any;
   count_item: any;
   stat_item: any;
+
+
+  displayedColumns = [ 'name_product' , 'name_shop' , 'receiver' , 'price' , 'actionsColumn'];// column จากservice json
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private adminService: AdminService
   ) { }
 
   ngOnInit() {
@@ -34,43 +46,35 @@ export class DecideOrdersComponent implements OnInit {
   }
 
   get_products() {
-    this.userService.getseller_products().subscribe(
+
+    this.adminService.get_decideProducts().subscribe(
       res => {
-        console.log('res_ordercomplete=>', res['body'].order_item);
-
-        this.seller_products = res['body'].order_item;
-        for (let i = 0; i < this.seller_products.length; i++) {
-
-          if ( this.seller_products[i].status === 'WAITING_DECISION') {
-            this.count_item = this.count_item + 1;
-            console.log('reject_product=>', this.seller_products[i]);
-            this.order_item[this.count_ind] = this.seller_products[i];
-
-            this.reciever[this.count_ind] = this.order_item[this.count_ind].delivery_address.receiver;
-            this.quantity[this.count_ind] = this.order_item[this.count_ind].quantity;
-            this.product_delivery[this.count_ind] = this.order_item[this.count_ind].product_delivery.type;
-            this.price_all[this.count_ind] = (this.order_item[this.count_ind].price * this.quantity[this.count_ind])
-              + this.order_item[this.count_ind].product_delivery.price_ship;
-            this.name_products[this.count_ind] = this.order_item[this.count_ind].product.name_product;
-
-            this.count_ind ++;
-          }
-
-
-          if (i === (this.seller_products.length - 1)) {
-            this.loading = false;
-          }
-
-        }
-
-        if (this.count_item === 0) {
-          // alert('success');
-           this.stat_item = false;
-         }
+        console.log('admin_products=>', res['body']);
+        this.dataSource = new MatTableDataSource(res['body']);
       }, err => {
-        console.log('res_complete=>', err);
+        console.log('err=>', err);
       }
     );
-
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+
+  on_goManageProducts(id: any, id_order: any, id_item: any) {
+    // alert(id);
+    const next = id + '_' + id_item + '_' + id_order;
+     this.router.navigate(['admin/decideOrders/', next]);
+  }
+
 }

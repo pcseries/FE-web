@@ -538,3 +538,57 @@
   margin-left: 5px;
 
 }
+
+.order-content__header__order-sn {
+  font-size: .875rem;
+  line-height: 1rem;
+}
+
+.order_num{
+  font-weight: bold;
+}
+
+.score-button {
+  width: 100%;
+}
+
+
+.star {
+  font-size: 1.8rem;
+  color: #FAEBD7;
+
+}
+.filled {
+  color: 	#DAA520;
+}
+
+
+.section-rating {
+  margin-left: 35%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.area-txt {
+  height: 110px;
+}
+.modify-ship {
+  width: 100%;
+}
+
+.field-ship {
+  width: 430px;
+}
+
+
+.group-button {
+  margin-left: 70%;
+}

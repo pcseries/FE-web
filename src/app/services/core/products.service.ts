@@ -91,6 +91,18 @@ export class ProductsService {
     return this.http.put(this.baseUrlC + 'orderitemseller', data , this.getAuth());
   }
 
+  get_orderHistory() {
+    return this.http.get(this.baseUrlC + 'orderhistory', this.getAuth());
+  }
+
+  set_Scoreforproduct(data: any) {
+    return this.http.post(this.baseUrlC + 'rating/product', data, this.getAuth());
+  }
+
+  get_ratingProduct(id: any) {
+    return this.http.get(this.baseUrlC + 'rating/product/' + id , this.getAuth());
+  }
+
   private getAutprodtuct() {
     const token = '1a2b3c';
     const httpheaders = new HttpHeaders({'token': token});

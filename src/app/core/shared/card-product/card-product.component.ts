@@ -280,9 +280,9 @@ export class CardProductComponent implements OnInit {
         console.log("resShop=>", res);
         this.router.navigate(['/mado/shopping', this.idProduct]);
 
-        setTimeout(() => {
-          location.reload();
-        }, 800);
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 800);
 
 
 

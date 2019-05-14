@@ -1,5 +1,15 @@
 
 <div class="container">
+
+    <div *ngIf="des_stat"
+       class="commentRejected_section">
+        <app-comment-rejected></app-comment-rejected>
+    </div>
+
+    <hr *ngIf="des_stat">
+
+
+
 <div class="order-detail-page__main-content-wrapper">
   <div class="order-detail-page__order-content-wrapper">
     <div class="order-detail-page__order-content">
@@ -143,4 +153,6 @@
       </div>
   </div>
 </div>
+
+
 </div>

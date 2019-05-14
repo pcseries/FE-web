@@ -533,3 +533,12 @@
 .shopee-button-solid--unactive {
   background: #D3D3D3;
 }
+
+.order-content__header__order-sn {
+  font-size: .875rem;
+  line-height: 1rem;
+}
+
+.order_num{
+  font-weight: bold;
+}

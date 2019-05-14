@@ -538,3 +538,12 @@
   margin-left: 5px;
 
 }
+
+.order-content__header__order-sn {
+  font-size: .875rem;
+  line-height: 1rem;
+}
+
+.order_num{
+  font-weight: bold;
+}

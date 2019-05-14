@@ -1,52 +1,73 @@
 
-<div class="container">
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Results">
+  </mat-form-field>
 
 
-<table class="table table-hover">
-    <thead class="thead-light">
-      <tr>
-          <th>สินค้าทั้งหมด</th>
-          <th>ผู้ขาย</th>
-          <th>ผู้ซื้อ</th>
 
-          <th>ราคาทั้งหมด</th>
-          <th>สถานะการพิจารณา</th>
-          <th></th>
-      </tr>
-    </thead>
+<table mat-table [dataSource]="dataSource" matSort>
 
-    <tbody>
-        <!-- <ng-container *ngFor="let p of order_item;let i = index ">
-            <tr>
-              <td>{{name_products[i]}}</td>
-              <td>{{reciever[i]}}</td>
-              <td>{{quantity[i]}}</td>
-              <td>{{product_delivery[i]}}</td>
-              <td>{{price_all[i]}}</td>
+  <ng-container matColumnDef="name_product" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>สินค้าทั้งหมด</th>
+    <td mat-cell *matCellDef="let row"
+      class="products" > {{row.name_product}} </td>
+  </ng-container>
 
-              <td>
-                <button
+  <ng-container matColumnDef="name_shop">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ร้านขายของ</th>
+    <td mat-cell *matCellDef="let row"> {{row.name_shop}} </td>
+  </ng-container>
 
-                  type="button" class="btn btn-info">
-                  จัดการการสั่งซื้อ
-                </button>
-              </td>
-            </tr>
-        </ng-container> -->
-        <tr>
-          <td>แคคตัสความสวยงาม</td>
-          <td>คนขาย</td>
-          <td>คนซื้อ 1</td>
+  <ng-container matColumnDef="receiver">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ผู้ซื้อ</th>
+    <td mat-cell *matCellDef="let row"> {{row.receiver}} </td>
+  </ng-container>
 
-          <td>2</td>
-          <td>คืนเงิน</td>
-          <td><button
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ราคาทั้งหมด</th>
+    <td mat-cell *matCellDef="let row"> {{(row.price * row.quantity) + row.shipping_price}} </td>
+  </ng-container>
 
-            type="button" class="btn btn-info">
-            จัดการการสั่งซื้อ
-            <i class="fa fa-cog"></i>
-          </button></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+  <ng-container matColumnDef="actionsColumn" class="action" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <i class="fa fa-cog"></i>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <button (click)="on_goManageProducts(row.id_order_history, row.id_order, row.id_item)" type="button"
+        class="btn btn-info">
+        จัดการสินค้า
+      </button>
+    </td>
+  </ng-container>
+
+
+
+<!--
+  <ng-container matColumnDef="actionsColumn" class="action" >
+    <th mat-header-cell *matHeaderCellDef >
+      <button mat-icon-button color="accent"><i class="fa fa-gears mat-icon" style="font-size: 24px;"></i></button>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="onInfo(row.username)">
+        <i class="fa fa-info-circle mat-icon"></i>
+      </button>
+
+      <button mat-icon-button color="primary" focusable="false" *ngIf="checkStatus(row.status)" (click)="change(row.username)">
+        <i class="fa fa-eye mat-icon"></i>
+      </button>
+      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="active(row.username)">
+        <i style="color: red" class="fa fa-eye-slash mat-icon"></i>
+      </button>
+      <button mat-icon-button color="primary" focusable="false " (click)="onDelete(row.username)">
+        <i class="fa fa-times mat-icon"></i>
+      </button>
+    </td>
+  </ng-container> -->
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+</table>
+<mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>

@@ -1,0 +1,35 @@
+<div class="decide-content">
+  <div class="decide-header">
+    <h5 class="text-header">
+      การพิจารณา
+    </h5>
+  </div>
+
+  <hr class="line-decide">
+
+  <div class="decide-body">
+    <div class="button-group">
+      <div class="row">
+        <div class="col">
+          <button (click)="on_refund()"
+            type="button" class="btn btn-warning btn-action">
+            คืนเงิน
+            <i class="fa fa-bitcoin"></i>
+          </button>
+          <button (click)="on_complete()"
+            [disabled]="des_stat"
+            type="button" class="btn btn-success btn-action">
+            การสั่งซื้อเสร็จสิ้น
+            <i class="fa fa-check"></i>
+          </button>
+          <button (click)="on_reject()"
+            type="button" class="btn btn-danger btn-action">
+            ปฏิเสธการคืนเงิน
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

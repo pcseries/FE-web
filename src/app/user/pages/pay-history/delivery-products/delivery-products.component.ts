@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-delivery-products',
@@ -162,30 +163,58 @@ export class DeliveryProductsComponent implements OnInit {
 
     this.data_reject = this.fb.group({
       id_item: this.order_item[ind].id_item,
-      order_item_status: 'REJECTED'
+      order_item_status: 'REJECTED',
+      description_reject: 'ไม่มีข้อคิดเห็น'
     });
 
 
 
     const c = confirm('คุณต้องการยกเลืกการสั่งซื้อ หรือไม่');
 
+
+
     if (c) {
-      console.log('data_reject=>', this.data_reject.value);
+      const i = confirm('คุณต้องการให้ความเห็นการยกเลิก หรือไม่');
 
-      this.productsService.onreject_product(this.data_reject.value).subscribe(
-        res => {
-          console.log('reject_product=>', res);
-          this.router.navigate(['user/payHistory/', 5]);
-          setTimeout(() => {
+      if (i) {
+        const pre_page = 1 + '_'  + this.order_item[ind].id_item;
+        this.router.navigate(['user/payHistory/addComment/', pre_page]);
+      } else {
+        console.log('data_reject=>', this.data_reject.value);
+
+        this.productsService.onreject_product(this.data_reject.value).subscribe(
+          res => {
+            console.log('reject_product=>', res);
+            this.router.navigate(['user/payHistory/', 5]);
+            setTimeout(() => {
             location.reload();
-          }, 1000);
+            }, 1000);
 
-        }, err => {
-          console.log('err_reject=>', err);
-        }
-      );
+          }, err => {
+            console.log('err_reject=>', err);
+          }
+        );
     }
+
+
+    // if (c) {
+    //   console.log('data_reject=>', this.data_reject.value);
+
+    //   this.productsService.onreject_product(this.data_reject.value).subscribe(
+    //     res => {
+    //       console.log('reject_product=>', res);
+    //       this.router.navigate(['user/payHistory/', 5]);
+    //       setTimeout(() => {
+    //         location.reload();
+    //       }, 1000);
+
+    //     }, err => {
+    //       console.log('err_reject=>', err);
+    //     }
+    //   );
+    // }
   }
+}
 
 
   go_dtail_payhistory(ind: any) {

@@ -1,0 +1,35 @@
+
+<h1 mat-dialog-title>ให้คะแนนสินค้า</h1>
+<div mat-dialog-content>
+  <div class="section-rating">
+    <ngb-rating
+    [(rate)]="currentRate">
+    <ng-template let-fill="fill" let-index="index">
+      <span class="star"  [class.filled]="fill === 100">&#9733;</span>
+    </ng-template>
+    </ngb-rating>
+  </div>
+  <div class="section-comment">
+    <mat-form-field class="example-full-width">
+      <textarea matInput
+        #txt_area
+        class="area-txt" placeholder="แสดงความคิดเห็น"></textarea>
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <div class="group-button">
+    <button
+      [disabled]="currentRate === 0"
+      (click)="set_rating(txt_area)"
+      type="button" class="btn btn-success">
+      สำเร็จ
+      <i class="fa fa-check"></i>
+    </button>
+    <button mat-button
+    (click)="on_Cancel()"
+      >ยกเลิก</button>
+  </div>
+
+</div>
