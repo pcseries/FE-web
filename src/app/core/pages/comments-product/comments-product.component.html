@@ -1,3 +1,81 @@
-<p>
-  comments-product works!
-</p>
+<div>
+  <div class="product-ratings">
+    <div class="product-ratings__header">
+      ความคิดเห็นเกี่ยวกับสินค้า
+    </div>
+    <div class="product-ratings__list">
+      <div class="shopee-product-comment-list">
+
+        <ng-container *ngFor="let c of comments_user;let i =index">
+          <div class="shopee-product-rating">
+            <!-- <div class="shopee-product-rating__avatar">
+              <div class="shopee-avatar">
+
+                  <div class="shopee-avatar__placeholder">
+                    <svg class="shopee-svg-icon icon-headshot" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                      <g>
+                        <circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10">
+
+                        </circle>
+                        <path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10">
+
+                        </path>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <img class="shopee-avatar__img" src="https://cf.shopee.co.th/file/8d028999875b01a83745938e9e3cdedf_tn">
+
+
+              </div>
+            </div> -->
+
+            <div class="shopee-product-rating__main">
+                <div class="shopee-product-rating__author-name">{{c.username_buyer}}</div>
+
+                <div class="shopee-product-rating__rating">
+
+
+                    <svg *ngIf="0 < rate_stars[i]"
+                      class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                      <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                      </polygon>
+                    </svg>
+
+                    <svg *ngIf="1 < rate_stars[i]"
+                    class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                        <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                        </polygon>
+                    </svg>
+
+                    <svg *ngIf="2 < rate_stars[i]"
+                    class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                        <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                        </polygon>
+                    </svg>
+
+                    <svg *ngIf="3 < rate_stars[i]"
+                    class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                      <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                      </polygon>
+                    </svg>
+
+                    <svg *ngIf="4 < rate_stars[i]"
+                    class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                      <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                      </polygon>
+                    </svg>
+
+                </div>
+
+                <div class="shopee-product-rating__content">
+                   {{c.content}}
+                </div>
+
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

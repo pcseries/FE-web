@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="searchShow-section">
+    <i class="fa fa-search icon-txt"></i>
+    <span class="txt-head">{{search_txt}}</span>
+  </div>
+  <hr class="line-head">
+
+  <mat-spinner *ngIf="isImageLoading"></mat-spinner>
+
+  <div *ngIf="!isImageLoading"
+    class="showProducts-section">
+      <div class="row">
+      <ng-container *ngFor="let p of products; let i = index">
+          <div class="column">
+            <div  class="card" style="width: 12rem;" (click)="seeProduct(p.id_product)">
+              <img [src]="imageToShow[i]"
+           alt="Place image title"
+           *ngIf="!isImageLoading; else noImageFound"
+           class="card-img-top">
+           <ng-template #noImageFound>
+            <img src="./../../../../../assets/image/fallbackImage.png" alt="Fallbackimage">
+       </ng-template>
+
+              <div class="card-body">
+                <div class="card-title" style="-webkit-box-orient: vertical">{{ p.name_product }}</div>
+                <p class="card-text"><strong>{{p.variation[0].price | currency:'฿' }}</strong></p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="(i + 1) % 5 === 0" class="w-100"></div>
+        </ng-container>
+        </div>
+  </div>
+
+  <div *ngIf="notProducts" class="dontHave-products">
+      <span class="txt-head">ไม่พบสินค้า</span>
+  </div>
+</div>

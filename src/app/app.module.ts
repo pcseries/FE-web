@@ -131,6 +131,11 @@ import { ScoreDialogComponent } from './user/pages/pay-history/complete-history/
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CommentsProductComponent } from './core/pages/comments-product/comments-product.component';
+import { SearchProductsComponent } from './core/pages/search-products/search-products.component';
+import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component';
+import { CategoryGroupComponent } from './core/pages/category-group/category-group.component';
+import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
+import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
 
 
 
@@ -229,6 +234,11 @@ import { CommentsProductComponent } from './core/pages/comments-product/comments
     SubCategoryComponent,
     ScoreDialogComponent,
     CommentsProductComponent,
+    SearchProductsComponent,
+    ShopDtailComponent,
+    CategoryGroupComponent,
+    BusinessMnComponent,
+    AccountMnComponent,
 
 
   ],

@@ -1,5 +1,7 @@
 <div class="sticky">
-<nav class="navbar navbar-expand-lg bg-light">
+<nav >
+
+<div class="navbar navbar-expand-lg bg-light">
   <div class="col col-lg-2">
     <a class="navbar-brand " [routerLink]="['/mado/listproduct']">
       <mat-icon>
@@ -10,9 +12,14 @@
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="sizesearch input-group">
-      <input class="form-control"  type="search" placeholder="ค้นหาสินค้า" aria-label="Search">
+      <input
+        #txt_search
+        class="form-control"
+        type="search" placeholder="ค้นหาสินค้า" aria-label="Search">
       <div class="input-group-append btn-search">
-        <button type="button" class="btn btn-primary">
+        <button
+          (click)="search_txt(txt_search)"
+          type="button" class="btn btn-primary">
           <mat-icon>
             search
           </mat-icon>
@@ -31,5 +38,8 @@
       </div>
     </div>
     </div>
+  </div>
+
 </nav>
+
 </div>

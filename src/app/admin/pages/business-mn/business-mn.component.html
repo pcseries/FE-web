@@ -1,0 +1,79 @@
+
+<div class="top-box">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Results">
+  </mat-form-field>
+
+  </div>
+
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+    <mat-cell *matCellDef="let row"  > {{row.username}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sername">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Surname</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.sername}} </mat-cell>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="mycolor2" > {{row.email }} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="status" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+    <mat-cell *matCellDef="let row"  >
+      <h6 style="color: green; font-weight: bold;" *ngIf="checkStatus(row.status)">{{row.status}} </h6>
+      <h6 style="color: red; font-weight: bold;" *ngIf="!checkStatus(row.status)">{{row.status}} </h6>
+    </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="actionsColumn">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button color="accent"><i class="fa fa-gears mat-icon" style="font-size: 24px;"></i></button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+
+      <button  mat-icon-button color="primary" focusable="false" (click)="onInfo(row.username)">
+        <i class="fa fa-info-circle mat-icon"></i>
+      </button>
+
+      <button  mat-icon-button color="primary" focusable="false" (click)="onEdit(row.username)">
+          <i class="fa fa-edit mat-icon"></i>
+    </button>
+
+      <button mat-icon-button color="primary" focusable="false" *ngIf="checkStatus(row.status)" (click)="change(row.username)">
+        <i class="fa fa-eye mat-icon"></i>
+      </button>
+      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="active(row.username)">
+        <i style="color: red" class="fa fa-eye-slash mat-icon"></i>
+      </button>
+      <button mat-icon-button color="primary" focusable="false " (click)="onDelete(row.username)">
+        <i class="fa fa-times mat-icon"></i>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+</mat-table>
+<mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[2,5, 10, 25, 100]">
+</mat-paginator>
+
+
+
+

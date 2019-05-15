@@ -30,11 +30,15 @@ export let MENU_ITEM = [
   {
     path: 'admin/business',
     title: 'จัดการธุรกิจ',
-    icon: 'cog',
+    icon: 'briefcase',
     children: [
       {
-        path: '#',
-        title: 'สินค้ารอการตัดสิน'
+        path: 'businessManages',
+        title: 'บริหารธุรกิจ'
+      },
+      {
+        path: 'accountManages',
+        title: 'จัดการบัญชี'
       }
     ]
   },
@@ -77,11 +81,15 @@ export let MENU_ITEM2 = [
   {
     path: 'admin/business',
     title: 'จัดการธุรกิจ',
-    icon: 'cog',
+    icon: 'briefcase',
     children: [
       {
-        path: '#',
-        title: 'สินค้ารอการตัดสิน'
+        path: 'businessManages',
+        title: 'บริหารธุรกิจ'
+      },
+      {
+        path: 'accountManages',
+        title: 'จัดการบัญชี'
       }
     ]
   },

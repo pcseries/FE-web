@@ -103,6 +103,15 @@ export class ProductsService {
     return this.http.get(this.baseUrlC + 'rating/product/' + id , this.getAuth());
   }
 
+  get_comments(id: any){
+    return this.http.get(this.baseUrlBS + 'productcomment/' + id, this.authWeb());
+  }
+
+  searchProductbyProduct(product: any): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'products?name_product=' + product, this.authWeb());
+  }
+
+
   private getAutprodtuct() {
     const token = '1a2b3c';
     const httpheaders = new HttpHeaders({'token': token});

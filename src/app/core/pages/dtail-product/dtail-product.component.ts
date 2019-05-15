@@ -19,7 +19,7 @@ export class DtailProductComponent implements OnInit {
 
      this.productService.detailProduct(this.idProduct).subscribe(
        response => {
-         console.log('response', response);
+         console.log('response_dtail', response);
        },
        error => {
          console.log('error' , error);

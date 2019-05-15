@@ -39,6 +39,10 @@ import { ShippingManageComponent } from './admin/pages/shipping-manage/shipping-
 import { CategoryManageComponent } from './admin/pages/category-manage/category-manage.component';
 import { PayingManageComponent } from './admin/pages/paying-manage/paying-manage.component';
 import { SubCategoryComponent } from './admin/pages/category-manage/sub-category/sub-category.component';
+import { SearchProductsComponent } from './core/pages/search-products/search-products.component';
+import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component';
+import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
+import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
 
 
 
@@ -56,7 +60,9 @@ const routes: Routes = [
       {path: 'shopping/:id', component: ShoppingCartsComponent},
       {path: 'addAdress', component: AddAdressComponent},
       {path: 'checkOut', component: CheckOutComponent},
-      {path: 'payorder/:id', component: PayProductsComponent}
+      {path: 'payorder/:id', component: PayProductsComponent},
+      {path: 'searchProducts/:cm', component: SearchProductsComponent},
+      {path: 'seeShop/:id', component: ShopDtailComponent}
     ]
   },
 
@@ -71,7 +77,9 @@ const routes: Routes = [
       {path: 'shippingManages', component: ShippingManageComponent},
       {path: 'categoryManages', component: CategoryManageComponent},
       {path: 'payingManages' ,  component: PayingManageComponent},
-      {path: 'categoryManages/subcategory/:id', component: SubCategoryComponent}
+      {path: 'categoryManages/subcategory/:id', component: SubCategoryComponent},
+      {path: 'business/accountManages', component: AccountMnComponent},
+      {path: 'business/businessManages', component: BusinessMnComponent}
     ],
   },
   {

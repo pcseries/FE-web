@@ -74,6 +74,14 @@ export class StoreService {
     return this.http.put(this.baseUrlBS + 'shops', data, this.getAuth());
   }
 
+  get_dtailbyid(id: any) {
+    return this.http.get(this.baseUrlBS + 'shopsbyid/' + id, this.getAuth_web());
+  }
+
+  get_productsOfshop(id: any) {
+    return this.http.get(this.baseUrlBS + 'products/byshop/' + id, this.getAuth_web());
+  }
+
   getAuth() {
     const token = localStorage.getItem('token');
     const content = 'application/json; charset=utf-8';
@@ -88,6 +96,13 @@ export class StoreService {
     return { headers: httpheaders };
   }
 
+
+  getAuth_web() {
+    const token = 'PC9OqYjEQ10c5W78T3ADxwPFe6BTDgTx';
+    const content = 'application/json; charset=utf-8';
+    const httpheaders = new HttpHeaders({'Content-Type': content , 'token': token});
+    return { headers: httpheaders };
+  }
 
 
   private getAuthImage() {

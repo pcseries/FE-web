@@ -54,4 +54,7 @@ export class MainNavComponent implements OnInit {
     location.reload();
   }
 
+  go_historyPay() {
+    this.router.navigate(['/user/payHistory']);
+  }
 }

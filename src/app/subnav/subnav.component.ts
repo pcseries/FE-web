@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../services/core/store.service';
 import { ShopcartService } from '../services/core/shopcart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subnav',
@@ -17,7 +18,9 @@ export class SubnavComponent implements OnInit {
 
   amont: any;
   constructor(private storeService: StoreService,
-    private shopcartService: ShopcartService) { }
+    private shopcartService: ShopcartService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
 
@@ -68,6 +71,17 @@ export class SubnavComponent implements OnInit {
     );
     }
 
+  }
+
+  search_txt(txt: HTMLInputElement) {
+
+    if (txt.value !== '') {
+      this.router.navigate(['mado/searchProducts/', txt.value]);
+      setTimeout(() => {
+      location.reload();
+      }, 100);
+
+    }
   }
 
 }

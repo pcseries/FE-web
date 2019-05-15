@@ -58,6 +58,8 @@ export class CardProductComponent implements OnInit {
 
   count_allow: any;
 
+  id_shop: any;
+
   constructor(
     private productService: ProductsService,
     private fb: FormBuilder,
@@ -84,13 +86,14 @@ export class CardProductComponent implements OnInit {
        // console.log('id_product', this.idProduct);
         this.nameProduct = response["body"][0].name_product;
         this.description = response["body"][0].description;
-
+        this.id_shop = response['body'][0].id_shop;
 
         // console.log('picture', this.picTure);
         this.price = response["body"][0]["variation"][0].price;
         this.basePrice = this.price;
         this.id_variation = response["body"][0]["variation"][0].id_variation;
         this.variation = response["body"][0]["variation"];
+
 
         console.log("variation", response["body"][0]["variation"]);
 
@@ -296,5 +299,11 @@ export class CardProductComponent implements OnInit {
      this.router.navigate(['/mado/login']);
    }
 
+  }
+
+
+  see_shop() {
+   // alert('ดูร้านค้า');
+    this.router.navigate(['mado/seeShop/', this.id_shop]);
   }
 }

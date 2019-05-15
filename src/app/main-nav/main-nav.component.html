@@ -40,7 +40,8 @@
           <button *ngIf="!Isadmin && !isSupperadmin" mat-menu-item (click)="onProfile()">
             <span>บัญชีของฉัน</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item
+            (click)="go_historyPay()">
             <span>ประวัติการสั่งซื้อ</span>
           </button>
           <button mat-menu-item (click)="onLogout()">
