@@ -136,6 +136,7 @@ import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component
 import { CategoryGroupComponent } from './core/pages/category-group/category-group.component';
 import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
 import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
+import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/account-dtail.component';
 
 
 
@@ -239,6 +240,7 @@ import { AccountMnComponent } from './admin/pages/account-mn/account-mn.componen
     CategoryGroupComponent,
     BusinessMnComponent,
     AccountMnComponent,
+    AccountDtailComponent,
 
 
   ],

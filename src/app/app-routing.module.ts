@@ -43,6 +43,7 @@ import { SearchProductsComponent } from './core/pages/search-products/search-pro
 import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component';
 import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
 import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
+import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/account-dtail.component';
 
 
 
@@ -79,7 +80,8 @@ const routes: Routes = [
       {path: 'payingManages' ,  component: PayingManageComponent},
       {path: 'categoryManages/subcategory/:id', component: SubCategoryComponent},
       {path: 'business/accountManages', component: AccountMnComponent},
-      {path: 'business/businessManages', component: BusinessMnComponent}
+      {path: 'business/businessManages', component: BusinessMnComponent},
+      {path: 'business/accountDtail', component: AccountDtailComponent}
     ],
   },
   {
