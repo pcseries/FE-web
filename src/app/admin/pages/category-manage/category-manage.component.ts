@@ -133,7 +133,13 @@ export class CategoryManageComponent implements OnInit {
       this.adminService.delete_category(id_type).subscribe(
         res => {
           console.log('delete_category=>', res);
-          this.ngOnInit();
+
+          if (res.status === 400) {
+            alert('ไม่สามารถลบได้เนื่องจาก มีประเภทย่อย');
+          } else {
+            this.ngOnInit();
+          }
+
         }, err => {
           console.log('delete_category=>', err);
         }
@@ -142,7 +148,8 @@ export class CategoryManageComponent implements OnInit {
    }
 
    on_seeSubcategory(ind: any) {
-    // console.log('data_cate=>', this.data_cate[ind].parent_id);
+    // console.log('data_cate=>', this.data_cate[ind].name_catagory);
+    localStorage.setItem('path', this.data_cate[ind].name_catagory + '>');
     this.c_pages = 0;
     localStorage.setItem('c_pages', this.c_pages);
     const next_page = this.data_cate[ind].id_catagory + '_' + this.data_cate[ind].parent_id + '_0';

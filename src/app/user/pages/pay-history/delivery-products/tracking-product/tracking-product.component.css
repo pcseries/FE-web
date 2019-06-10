@@ -183,9 +183,16 @@
 }
 
 .page-header {
-  display: flex;
+
 }
 
 .btn-exit {
   margin-left: 10px;
+}
+
+
+.num-track {
+  margin-left: 40%;
+  font-weight: bold;
+  color: orangered;
 }

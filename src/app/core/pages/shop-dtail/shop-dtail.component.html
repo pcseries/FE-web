@@ -61,7 +61,9 @@
 
   </div>
   <hr>
-  <div class="produts-shop">
+
+  <div class="section-produtsshop">
+      <div class="produts-shop">
    <div class="headproducts-shop">
 
        <h6 class="txt-head">
@@ -95,4 +97,108 @@
    </div>
 
   </div>
+  </div>
+
+
+  <div class="section-commentRate">
+    <div>
+      <div class="product-ratings">
+
+        <div class="product-ratings__header">
+            <img style="width: 50px;" src="https://img.icons8.com/dusk/64/000000/average.png">
+          คะแนนของร้านค้า
+        </div>
+
+        <div class="product-rating-overview">
+          <div class="product-rating-overview__briefing">
+            <div *ngIf="!not_rate" class="product-rating-overview__score-wrapper">
+              <span class="product-rating-overview__rating-score">{{mean_rate}}</span>
+              <span class="product-rating-overview__rating-score-out-of"> เต็ม 5 </span>
+            </div>
+
+            <div *ngIf="not_rate" class="product-rating-overview__score-wrapper">
+              <span class="badge badge-danger">ยังไม่มีการให้คะแนน</span>
+            </div>
+
+            <div class="shopee-rating-stars product-rating-overview__stars">
+
+                <ngb-rating
+                [readonly]="true"
+                [(rate)]="mean_rate">
+              <ng-template
+
+               let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+
+              </ngb-rating>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="product-ratings__header">
+          ความคิดเห็นเกี่ยวกับร้านค้า
+        </div>
+
+        <div class="product-ratings__list">
+          <div class="shopee-product-comment-list">
+
+            <ng-container *ngFor="let c of comments_user | paginate: { itemsPerPage: 6, currentPage: p1 };let i =index">
+              <div class="shopee-product-rating">
+
+                  <div class="shopee-product-rating__main">
+                      <div class="shopee-product-rating__author-name">{{c.username_buyer}}</div>
+
+                      <div class="shopee-product-rating__rating">
+
+
+                          <svg *ngIf="0 < rate_stars[i]"
+                            class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                            <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                            </polygon>
+                          </svg>
+
+                          <svg *ngIf="1 < rate_stars[i]"
+                          class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                              <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                              </polygon>
+                          </svg>
+
+                          <svg *ngIf="2 < rate_stars[i]"
+                          class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                              <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                              </polygon>
+                          </svg>
+
+                          <svg *ngIf="3 < rate_stars[i]"
+                          class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                            <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                            </polygon>
+                          </svg>
+
+                          <svg *ngIf="4 < rate_stars[i]"
+                          class="shopee-svg-icon icon-rating-solid--active icon-rating-solid" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                            <polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+                            </polygon>
+                          </svg>
+
+                      </div>
+
+                      <div class="shopee-product-rating__content">
+                         {{c.content}}
+                      </div>
+
+                  </div>
+                </div>
+              </ng-container>
+
+              <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>

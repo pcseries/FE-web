@@ -1,0 +1,27 @@
+.card-content {
+
+  margin: auto;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+
+.card-body {
+  overflow: auto;
+}
+
+.row-category {
+  display: flex;
+}
+
+.category-button {
+  margin-right: 20px;
+}
+
+.txt-head {
+  font-weight: bold;
+
+}
+
+.head-category {
+  margin-bottom: 15px;
+}

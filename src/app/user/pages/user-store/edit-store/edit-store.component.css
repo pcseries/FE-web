@@ -25,3 +25,12 @@
 .button-submit-save {
   margin-bottom: 10px;
 }
+
+.btn-deleteStore {
+  margin-top: 15px;
+}
+
+.closeStore{
+  width: 100%;
+  height: 50px;
+}

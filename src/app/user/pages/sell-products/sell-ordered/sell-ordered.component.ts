@@ -22,6 +22,8 @@ export class SellOrderedComponent implements OnInit {
   count_item: any;
   stat_item: any;
 
+  p1: number = 1;
+
   constructor(
     private userService: UserService,
     private router: Router
@@ -78,7 +80,7 @@ export class SellOrderedComponent implements OnInit {
 
   go_detail(ind: any) {
     // alert(this.seller_products[ind].id_item);
-    const go_page = '0_'  + this.order_item[ind].id_item;
+    const go_page = '0_'  + this.order_item[ind].id_item + '_' + this.order_item[ind].id_order;
    this.router.navigate(['user/sellProducts/manage-ordered/', go_page]);
   }
 

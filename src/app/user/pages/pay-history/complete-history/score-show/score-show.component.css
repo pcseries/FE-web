@@ -1,0 +1,23 @@
+.example-full-width {
+  width: 85%;
+  margin: auto;
+
+}
+
+.text-area {
+  height: 100px;
+}
+
+
+.star {
+  font-size: 1.8rem;
+  color: #FAEBD7;
+
+}
+.filled {
+  color: 	#FFA500;
+}
+
+.star-rate {
+  margin: auto;
+}

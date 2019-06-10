@@ -32,6 +32,11 @@ export class CompleteHistoryComponent implements OnInit {
   get_score = [];
   show_scores = [];
 
+  history_id = [];
+  count_his: any;
+
+  product_delete = [];
+
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -42,7 +47,7 @@ export class CompleteHistoryComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    this.count_his = 0;
     this.count = 0;
     this.not_loading = true;
     this.loading = false;
@@ -92,10 +97,18 @@ export class CompleteHistoryComponent implements OnInit {
 
                 this.count_ind2 = this.count_ind2 + 1;
               }
+
+
             }
             this.countpaid_ind = this.countpaid_ind + 1;
 
           }
+
+
+          // if (i === (res['body'].order.length - 1)) {
+          //   console.log('reverse');
+          //   this.order_item.reverse();
+          // }
         }
         if (this.count === 0) {
           this.not_loading = false;
@@ -118,6 +131,8 @@ export class CompleteHistoryComponent implements OnInit {
         for (let i = 0; i < order_his.length; i++) {
           if (order_his[i].id_item === id_item) {
             console.log('id_orderhistory=>', order_his[i].id_order_history);
+            this.history_id[this.count_his] = order_his[i].id_order_history;
+            this.count_his = this.count_his + 1;
             this.productsService.get_ratingProduct(order_his[i].id_order_history).subscribe(
               res => {
                 console.log('rating', res);
@@ -142,15 +157,23 @@ export class CompleteHistoryComponent implements OnInit {
     );
   }
 
+  go_dtailScore(ind: any) {
+    this.router.navigate(['user/payHistory/setScore/', this.order_item[ind].id_item]);
+  }
+
   getImageFromService(id: any, namePic: any, i: any) {
     this.productsService.getImage(id, namePic).subscribe(
       data => {
         this.createImageFromBlob(data, i);
+        this.product_delete[i] = false;
 
       },
       error => {
 
         console.log(error);
+        this.product_delete[i] = true;
+        this.loading = true;
+        this.imageToShow[i] = 'https://www.lauriloewenberg.com/wp-content/uploads/2019/04/No_Image_Available.jpg';
       }
     );
   }
@@ -174,9 +197,19 @@ export class CompleteHistoryComponent implements OnInit {
 
   go_dtail_payhistory(ind: any) {
     // alert('go detail');
-    console.log('item', this.order_item[ind]);
-    const go = 3 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
-     this.router.navigate(['user/payHistory/dtail/', go]);
+    if (this.stat_score[ind] === true) {
+      console.log('item', this.order_item[ind]);
+      const go = 3 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item +
+      '_1_' + this.history_id[ind];
+ this.router.navigate(['user/payHistory/dtail/', go]);
+    } else {
+      const go = 3 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item +
+      '_0' ;
+      this.router.navigate(['user/payHistory/dtail/', go]);
+    }
+
+
+
   }
 
   on_setScore(ind: any) {
@@ -211,5 +244,20 @@ export class CompleteHistoryComponent implements OnInit {
 
   }
 
+  go_setScore(ind: any) {
+    this.router.navigate(['user/payHistory/setScore/', this.order_item[ind].id_item]);
+  }
+
+  tracking_product(ind: any) {
+
+    const page = '3_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
+    console.log('order_item=>', this.order_item[ind]);
+     this.router.navigate(['/user/payHistory/tracking/', page]);
+   }
+
+   see_shop(id_shop) {
+    // alert('ดูร้านค้า');
+     this.router.navigate(['mado/seeShop/', id_shop]);
+   }
 
 }

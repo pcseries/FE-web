@@ -527,8 +527,12 @@
   color: #ee4d2d;
   font-weight: bold;
   margin-left: 5%;
+  cursor: pointer;
 }
 
+.track-number:hover {
+  color: #FFA500;
+}
 
 .shopee-button-solid--unactive {
   background: #D3D3D3;

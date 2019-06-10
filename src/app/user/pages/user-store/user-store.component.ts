@@ -49,11 +49,18 @@ export class UserStoreComponent implements OnInit {
   upload_image: any;
   id_toImage: any;
   product_image_dtail: any;
+  on_openStore: any;
 
+  on_loading: any;
 
+  shop_status: any;
+  clickOpen_shop: any;
 
-  constructor(private fb: FormBuilder, private storeService: StoreService,
-    private router: Router) {
+  constructor(private fb: FormBuilder,
+    private storeService: StoreService,
+    private router: Router,
+
+    ) {
     this.productAdd = this.fb.group({
           name_product: ['', Validators.required],
           catagory: ['', Validators.required],
@@ -70,6 +77,11 @@ export class UserStoreComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.clickOpen_shop = false;
+    this.open_orclose();
+    this.on_loading = true;
+    this.on_openStore = false;
+    this.check_store();
 
     this.upload_image = false;
     this.addProduct_status = false;
@@ -91,6 +103,41 @@ export class UserStoreComponent implements OnInit {
 
     this.edit_row = -1;
     this.allow_add = false;
+  }
+
+  open_orclose() {
+    this.storeService.getDetail_shop().subscribe(
+      res => {
+        console.log('res_store=>', res['body'][0].status);
+        this.shop_status = res['body'][0].status;
+
+        if (this.shop_status === 'CLOSE') {
+          this.clickOpen_shop = true;
+        }
+      }, error => {
+        console.log('err', error);
+      }
+    );
+  }
+
+  check_store() {
+    this.storeService.storeCheck().subscribe(
+      res => {
+        let status = res['status'];
+
+        console.log('statusStore', res);
+        if (status === 401) {
+          console.log('statusStore', status);
+          this.on_loading= false;
+        } else {
+          this.on_openStore = true;
+          this.on_loading= false;
+        }
+      },
+      err => {
+        console.log('errStatus', err);
+      }
+    );
   }
 
   onAddProduct() {
@@ -257,5 +304,20 @@ export class UserStoreComponent implements OnInit {
   goEdit_store() {
     this.router.navigate(['/user/store/edit']);
   }
+
+
+  open_again() {
+    // alert('open again');
+    this.storeService.openStore_again().subscribe(
+      res => {
+        console.log('res_openstoreagein', res);
+        alert('เปิดร้านค้าสำเร็จ');
+        this.ngOnInit();
+      }, err => {
+        console.log('err', err);
+      }
+    );
+  }
+
 
 }

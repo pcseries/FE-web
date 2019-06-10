@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -43,13 +43,25 @@ import { SearchProductsComponent } from './core/pages/search-products/search-pro
 import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component';
 import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
 import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
-import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/account-dtail.component';
+
+import { SearchCategoryComponent } from './core/pages/search-category/search-category.component';
+import { PromotionMNComponent } from './user/pages/user-store/store-manage-variation/promotion-mn/promotion-mn.component';
+import { PackageMnComponent } from './admin/pages/package-mn/package-mn.component';
+import { SearchBestsellerComponent } from './core/pages/search-bestseller/search-bestseller.component';
+import { BuyPackageComponent } from './user/pages/user-store/store-manage/buy-package/buy-package.component';
+import { PayPackageComponent } from './user/pages/user-store/store-manage/pay-package/pay-package.component';
+import { AllProductsComponent } from './core/pages/all-products/all-products.component';
+import { AllPromoComponent } from './core/pages/all-promo/all-promo.component';
+import { AllRecommendComponent } from './core/pages/all-recommend/all-recommend.component';
+import { SetScoreComponent } from './user/pages/pay-history/complete-history/set-score/set-score.component';
+import { DtailAccountComponent } from './admin/pages/account-mn/dtail-account/dtail-account.component';
 
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/mado/listproduct', pathMatch: 'full'},
+  {path: 'searchProducts/:cm', component: SearchProductsComponent},
   {path: 'main-nav', component: MainNavComponent},
   {
     path: 'mado', component: MADOComponent,
@@ -62,8 +74,15 @@ const routes: Routes = [
       {path: 'addAdress', component: AddAdressComponent},
       {path: 'checkOut', component: CheckOutComponent},
       {path: 'payorder/:id', component: PayProductsComponent},
-      {path: 'searchProducts/:cm', component: SearchProductsComponent},
-      {path: 'seeShop/:id', component: ShopDtailComponent}
+      {path: 'seeShop/:id', component: ShopDtailComponent},
+      {path: 'category/:txt', component: SearchCategoryComponent},
+      {path: 'searchbestseller/:id', component: SearchBestsellerComponent},
+      {path: 'manageAddress' , component: AddressManageComponent},
+      {path: 'manageAddress/add' , component: UseraddAddressComponent},
+      {path: 'manageAddress/editAddress/:id' , component: UsereditAddressComponent},
+      {path: 'allProducts' , component: AllProductsComponent},
+      {path: 'allPromo', component: AllPromoComponent},
+      {path: 'allrecommend', component: AllRecommendComponent}
     ]
   },
 
@@ -73,15 +92,16 @@ const routes: Routes = [
       {path: 'userMN' , component: UserMNcomponent},
       {path: 'adminMN', component: AdminMNComponent},
       {path: 'profile', component: ProfileAdminComponent},
-      {path: 'decideOrders', component: DecideOrdersComponent},
-      {path: 'decideOrders/:id', component: ManageDecideComponent},
+      {path: 'business/decideOrders', component: DecideOrdersComponent},
+      {path: 'business/decideOrders/:id', component: ManageDecideComponent},
       {path: 'shippingManages', component: ShippingManageComponent},
       {path: 'categoryManages', component: CategoryManageComponent},
       {path: 'payingManages' ,  component: PayingManageComponent},
       {path: 'categoryManages/subcategory/:id', component: SubCategoryComponent},
       {path: 'business/accountManages', component: AccountMnComponent},
+      {path: 'business/accountDtail', component: DtailAccountComponent},
       {path: 'business/businessManages', component: BusinessMnComponent},
-      {path: 'business/accountDtail', component: AccountDtailComponent}
+      {path: 'business/packageManages' , component: PackageMnComponent}
     ],
   },
   {
@@ -103,7 +123,11 @@ const routes: Routes = [
       {path: 'sellProducts/:id', component: SellProductsComponent},
       {path: 'payHistory/tracking/:id', component: TrackingProductComponent},
       {path: 'sellProducts/manage-ordered/:id', component: DtailOrderedComponent},
-      {path: 'payHistory/addComment/:id', component: AddRejectCommentComponent}
+      {path: 'payHistory/addComment/:id', component: AddRejectCommentComponent},
+      {path: 'store/promotion/:id', component: PromotionMNComponent},
+      {path: 'store/buyPackage/:id', component: BuyPackageComponent},
+      {path: 'store/payPackage/:id', component: PayPackageComponent},
+      {path: 'payHistory/setScore/:id', component: SetScoreComponent}
     ],
   },
   {

@@ -74,7 +74,7 @@ export class DecideOrdersComponent implements OnInit {
   on_goManageProducts(id: any, id_order: any, id_item: any) {
     // alert(id);
     const next = id + '_' + id_item + '_' + id_order;
-     this.router.navigate(['admin/decideOrders/', next]);
+     this.router.navigate(['admin/business/decideOrders/', next]);
   }
 
 }

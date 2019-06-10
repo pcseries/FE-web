@@ -36,6 +36,7 @@ export class SubCategoryComponent implements OnInit {
 
   stat_one: any;
   c_pages: any;
+  path: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -49,7 +50,7 @@ export class SubCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.path = localStorage.getItem('path');
     this.send_text = this.route.snapshot.paramMap.get('id');
     this.status_num = this.send_text.split("_");
 
@@ -115,6 +116,10 @@ export class SubCategoryComponent implements OnInit {
   on_seeSubcategory(ind: any) {
      console.log('data_cate=>', this.data_cate[ind].parent_id);
     // alert(this.data_cate[ind].parent_id);
+
+    let path =  localStorage.getItem('path');
+    path = path + this.data_cate[ind].name_catagory + '>';
+    localStorage.setItem('path', path);
     let page = parseInt(localStorage.getItem('c_pages'), 10) ;
     page = page + 1;
     localStorage.setItem('c_pages', page.toString());
@@ -223,12 +228,35 @@ export class SubCategoryComponent implements OnInit {
       this.adminService.delete_category(id_type).subscribe(
         res => {
           console.log('delete_category=>', res);
+
+          if (res.status === 400) {
+            alert('ไม่สามารถลบได้เนื่องจาก มีประเภทย่อย');
+
+          } else {
           this.adminService.get_subCategory(this.id_cate).subscribe(
             res=> {
               console.log('get=>', res['body']);
               if (res['body'].length === 0) {
                 this.pre_page = this.pre_cate + '_' + this.pre_parent;
                 this.router.navigate(['admin/categoryManages/subcategory/', this.pre_page]);
+
+                let p = localStorage.getItem('c_pages');
+                let insert = parseInt(p, 10) - 1;
+                localStorage.setItem('c_pages', insert.toString());
+                localStorage.removeItem(p);
+
+                let path = localStorage.getItem('path');
+                let pre_path = path.split('>');
+                let ind_delete = pre_path.length - 2;
+                pre_path.splice(ind_delete, 1);
+                console.log('prepath->', pre_path);
+
+                let txtpath = '';
+                for (let i = 0; i < pre_path.length-1; i++) {
+                  txtpath = txtpath + pre_path[i] + '>';
+                }
+                localStorage.setItem('path', txtpath);
+
                 setTimeout(() => {
                   this.ngOnInit();
                 }, 100);
@@ -236,6 +264,10 @@ export class SubCategoryComponent implements OnInit {
             }
           );
           this.ngOnInit();
+          }
+
+
+
         }, err => {
           console.log('delete_category=>', err);
         }
@@ -246,6 +278,17 @@ export class SubCategoryComponent implements OnInit {
 
 
    on_backPage() {
+    let path = localStorage.getItem('path');
+    let pre_path = path.split('>');
+    let ind_delete = pre_path.length - 2;
+    pre_path.splice(ind_delete, 1);
+    console.log('prepath->', pre_path);
+
+    let txtpath = '';
+    for (let i = 0; i < pre_path.length-1; i++) {
+      txtpath = txtpath + pre_path[i] + '>';
+    }
+    localStorage.setItem('path', txtpath);
     let page = parseInt(localStorage.getItem('c_pages'), 10) ;
     this.pre_page = localStorage.getItem(page.toString());
     page = page - 1;
@@ -253,6 +296,7 @@ export class SubCategoryComponent implements OnInit {
 
      if (page === -1) {
        localStorage.removeItem('c_pages');
+       localStorage.removeItem('path');
       this.router.navigate(['admin/categoryManages']);
      } else {
         page = page + 1;

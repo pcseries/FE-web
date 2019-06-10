@@ -1,4 +1,62 @@
+
+
+  <div class="button_backpages">
+      <button (click)="back_page()"
+              type="button" class="btn btn-warning">
+              <i class="fa fa-arrow-left"></i>
+              กลับไปจัดการร้านค้า
+      </button>
+  </div>
+
+  <div class="container">
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span class="badge badge-pill badge-success txt-package">
+                  package โฆษณาที่ซื้อ
+                </span>
+              </mat-panel-title>
+              <mat-panel-description>
+                <span *ngIf="!can_buyPackage" class="duration-date">
+                  {{time_start[0]}} - {{time_end[0]}}
+                </span>
+                <span *ngIf="can_buyPackage" class="not-buy badge badge-pill badge-danger">
+                    ไม่มี package ที่ซื้อ
+                </span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">ชื่อแพคเก็จ</th>
+                    <th scope="col">จำนวนวัน</th>
+                    <th scope="col">ราคา</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                        <i class="fa fa-gift" aria-hidden="true"></i>
+                    </th>
+                    <td>{{package_name}}</td>
+                    <td>{{day}}</td>
+                    <td>{{price}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
 <div class="header col-md-5">
+
+  <div class="show-packageSelect">
+
+  </div>
+
   <div class="title-header">
     <div >
       จัดการสินค้า
@@ -56,9 +114,12 @@
     </div>
   </div>
 
-  <app-manage-dtail></app-manage-dtail>
+  <div class="dtail" style="margin-top: 15px;">
+    <app-manage-dtail></app-manage-dtail>
+  </div>
 
-  <div class="variation_product">
+
+  <div class="variation_product" >
     <app-store-manage-variation>
 
     </app-store-manage-variation>
@@ -75,6 +136,25 @@
     </div>
 
 
+  </div>
+
+  <div class="section-addpackage">
+    <div class="row">
+
+      <div class="container" style="margin-top: 20px; margin-bottom: 10px;">
+         <button *ngIf="can_buyPackage"
+         (click)= "go_buyPackage()"
+         style="width: 100%;"
+         type="button"
+         class="btn btn-success">
+          ซื้อpackage โฆษณา
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </button>
+      </div>
+
+
+
+    </div>
   </div>
 
 </div>

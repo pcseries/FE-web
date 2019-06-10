@@ -1,0 +1,105 @@
+<div class="container">
+
+    <div  class="backPage-section">
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="col-2">
+             <button (click)="on_backPage()"
+            type="button" class="btn btn-warning">
+            <i class="fa fa-arrow-circle-left"></i>
+            กลับไปก่อนหน้านั้น
+            </button>
+          </div>
+          <div class="col-10">
+            <span class="textPath">
+              {{path}}
+            </span>
+          </div>
+        </div>
+
+
+<div *ngIf="show_category" class="subcategory-section">
+    <div class="card card-content">
+        <div class="card-body">
+          <div class="head-category">
+            <span class="txt-head">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              ประเภทที่เกี่ยวข้อง</span>
+          </div>
+
+          <div class="cate-group">
+            <!-- <div class="row-category"> -->
+<!--
+               <button *ngFor="let c of category_show;let i = index"
+                  mat-stroked-button class="category-button"
+                  color="primary"
+
+                  >
+                  <i class="fa fa-th-large"></i>
+                  {{c.name_catagory}}</button> -->
+
+                  <div class="row">
+                    <div class="col">
+                      <ng-container *ngFor="let c of category_show;let i = index">
+                          <button (click) = "search_category(i)"
+                          mat-stroked-button class="category-button"
+                          color="primary"
+                          >
+                          <i class="fa fa-th-large"></i>
+                          {{c.name_catagory}}</button>
+                          <div *ngIf="(i + 1) % 6 === 0" class="w-100"></div>
+                      </ng-container>
+                    </div>
+                  </div>
+
+            <!-- </div> -->
+
+          </div>
+        </div>
+
+      </div>
+
+</div>
+
+<mat-spinner
+*ngIf="isImageLoading"
+></mat-spinner>
+
+  <div *ngIf="!isImageLoading"
+  class="products-section">
+    <div class="row">
+    <ng-container *ngFor="let p of products; let i = index">
+      <div class="column">
+        <div  class="card card1" style="width: 12rem;" (click)="seeProduct(p.id_product)">
+          <img [src]="imageToShow[i]"
+       alt="Place image title"
+       *ngIf="!isImageLoading; else noImageFound"
+       class="card-img-top">
+       <ng-template #noImageFound>
+        <img src="./../../../../../assets/image/fallbackImage.png" alt="Fallbackimage">
+   </ng-template>
+
+          <div class="card-body">
+            <div class="card-title" style="-webkit-box-orient: vertical">{{ p.name_product }}</div>
+            <p class="card-text"><strong>{{price[i] | currency:'฿' }}</strong></p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="(i + 1) % 5 === 0" class="w-100"></div>
+    </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="is_empty" class="products-empty">
+    <div class="row">
+      <img src="https://img.icons8.com/doodle/96/000000/empty-box.png">
+    </div>
+    <div class="row">
+      <span class='txt-empty'>
+        ไม่มีสินค้า
+      </span>
+    </div>
+  </div>
+
+
+
+</div>

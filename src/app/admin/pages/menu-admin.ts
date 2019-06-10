@@ -9,20 +9,17 @@ export let MENU_ITEM = [
     title: 'จัดการระบบ',
     icon: 'cog',
     children: [
-      {
-        path: 'decideOrders',
-        title: 'สินค้ารอการตัดสิน'
-      },
+
       {
         path: 'categoryManages',
-        title: 'จัดการ Category'
+        title: 'จัดการประเภทสินค้า'
       },
       {
-        path: '#',
+        path: 'shippingManages',
         title: 'จัดการการส่ง'
       },
       {
-        path: '#',
+        path: 'payingManages',
         title: 'จัดการการจ่ายเงิน'
       }
     ]
@@ -33,12 +30,20 @@ export let MENU_ITEM = [
     icon: 'briefcase',
     children: [
       {
+        path: 'decideOrders',
+        title: 'สินค้ารอการตัดสิน'
+      },
+      {
         path: 'businessManages',
         title: 'บริหารธุรกิจ'
       },
       {
         path: 'accountManages',
         title: 'จัดการบัญชี'
+      },
+      {
+        path: 'packageManages',
+        title: 'จัดการแพคเก็จ'
       }
     ]
   },
@@ -60,13 +65,10 @@ export let MENU_ITEM2 = [
     title: 'จัดการระบบ',
     icon: 'cog',
     children: [
-      {
-        path: 'decideOrders',
-        title: 'สินค้ารอการตัดสิน'
-      },
+
       {
         path: 'categoryManages',
-        title: 'จัดการ Category'
+        title: 'จัดการประเภทสินค้า'
       },
       {
         path: 'shippingManages',
@@ -84,12 +86,20 @@ export let MENU_ITEM2 = [
     icon: 'briefcase',
     children: [
       {
+        path: 'decideOrders',
+        title: 'สินค้ารอการตัดสิน'
+      },
+      {
         path: 'businessManages',
         title: 'บริหารธุรกิจ'
       },
       {
         path: 'accountManages',
         title: 'จัดการบัญชี'
+      },
+      {
+        path: 'packageManages',
+        title: 'จัดการแพคเก็จ'
       }
     ]
   },

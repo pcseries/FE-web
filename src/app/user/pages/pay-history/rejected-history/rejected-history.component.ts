@@ -28,6 +28,7 @@ export class RejectedHistoryComponent implements OnInit {
   not_loading: any;
 
   count: any;
+  product_delete = [];
 
 
   constructor(
@@ -93,14 +94,18 @@ export class RejectedHistoryComponent implements OnInit {
 
                 this.getImageFromService(id, picture , this.count_ind2);
                 this.count_ind2 = this.count_ind2 + 1;
-
-
               }
+
+              // if (i === (res['body'].order.length - 1)) {
+              //   console.log('reverse');
+              //   this.order_item.reverse();
+              // }
             }
             this.countpaid_ind = this.countpaid_ind + 1;
-          } else if (res['body'].order[i].order_status  === 'PAID') {
-
-            continue;
+          }
+          if (i === (res['body'].order.length - 1)) {
+            console.log('reverse');
+            this.order_item.reverse();
           }
         }
         if (this.count === 0) {
@@ -116,11 +121,15 @@ export class RejectedHistoryComponent implements OnInit {
     this.productsService.getImage(id, namePic).subscribe(
       data => {
         this.createImageFromBlob(data, i);
+        this.product_delete[i] = false;
 
       },
       error => {
 
         console.log(error);
+        this.product_delete[i] = true;
+        this.loading = true;
+        this.imageToShow[i] = 'https://www.lauriloewenberg.com/wp-content/uploads/2019/04/No_Image_Available.jpg';
       }
     );
   }
@@ -147,5 +156,10 @@ export class RejectedHistoryComponent implements OnInit {
     const go = 5 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
      this.router.navigate(['user/payHistory/dtail/', go]);
   }
+
+  see_shop(id_shop) {
+    // alert('ดูร้านค้า');
+     this.router.navigate(['mado/seeShop/', id_shop]);
+   }
 
 }

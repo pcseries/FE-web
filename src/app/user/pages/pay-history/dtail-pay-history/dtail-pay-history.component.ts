@@ -30,8 +30,9 @@ export class DtailPayHistoryComponent implements OnInit {
   imageToShow: any;
   name_ship: any;
   des_stat: any;
+  id_shop: any;
 
-
+  on_show: any;
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
@@ -50,6 +51,7 @@ export class DtailPayHistoryComponent implements OnInit {
 
     this.id_order = parseInt(this.status_num[1] , 10);
     this.id_item = parseInt(this.status_num[2] , 10);
+    this.on_show = parseInt(this.status_num[3], 10);
     this.get_order(this.status_num);
 
     if (this.backpage === 5 || this.backpage === 6) {
@@ -71,6 +73,7 @@ export class DtailPayHistoryComponent implements OnInit {
             console.log('item=>', this.order_item[i]);
             this.dtail_item = this.order_item[i];
             this.shop_name = this.dtail_item.shop_name;
+            this.id_shop = this.dtail_item.id_shop;
             this.name_product = this.dtail_item.name_product;
             this.quantity = this.dtail_item.quantity;
             this.price = this.dtail_item.price;
@@ -126,5 +129,10 @@ export class DtailPayHistoryComponent implements OnInit {
   go_backpage() {
     this.router.navigate(['user/payHistory/', this.backpage]);
   }
+
+  see_shop() {
+    // alert('ดูร้านค้า');
+     this.router.navigate(['mado/seeShop/', this.id_shop]);
+   }
 
 }

@@ -82,6 +82,24 @@ export class AdminService {
     return this.http.get(this.baseUrlBS + 'catagories/' + id, this.getAuthWeb());
   }
 
+  add_package(data: any): Observable<any> {
+    return this.http.post(this.baseUrlBS + 'addrecpackage', data, this.getAuthAdmin());
+  }
+
+  get_package(): Observable<any> {
+    return  this.http.get(this.baseUrlBS + 'admin/recpackage', this.getAuthAdmin());
+  }
+
+  delete_package(id: any): Observable<any> {
+    return this.http.delete(this.baseUrlBS + 'recpackage/' + id, this.getAuthHeader());
+  }
+
+  edit_statusPackage(data: any): Observable<any> {
+    return this.http.put(this.baseUrlBS + 'recpackage/', data, this.getAuthAdmin());
+  }
+
+
+
   private getAuthWeb() {
     const conttent = 'application/json; charset=utf-8';
     const token = 'PC9OqYjEQ10c5W78T3ADxwPFe6BTDgTx';

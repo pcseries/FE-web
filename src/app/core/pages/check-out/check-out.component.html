@@ -21,15 +21,20 @@
           <div class="checkout-address-row__default-label">ค่าเริ่มต้น</div>
         </div>
 
-        <!-- <div class="checkout-address-selection__change-btn">เปลี่ยน</div> -->
+        <div class="checkout-address-selection__change-btn"
+          (click)="onChange_address()"
+        >เปลี่ยน</div>
       </div>
     </div>
   </div>
 
+  <!-- ส่วน load สินค้า -->
+  <mat-spinner *ngIf="!load_checkpoint"></mat-spinner>
+
 
   <!-- ส่วนแสดง order สินค้า -->
   <ng-container *ngFor="let p of selectProduct; let i = index;">
-  <div class="checkout-product-ordered-list">
+  <div *ngIf="load_checkpoint" class="checkout-product-ordered-list">
     <div class="checkout-product-ordered-list__header-block">
       <div class="checkout-product-ordered-list__headers">
         <div class="checkout-product-ordered-list__header checkout-product-ordered-list__header--product">
@@ -82,9 +87,15 @@
                   </span>
                 </div>
 
-                <div class="checkout-product-ordered-list-item__header">
+                <div *ngIf="!switch_price[i]"
+                class="checkout-product-ordered-list-item__header">
                   {{p.price }}
                 </div>
+
+                <div *ngIf="switch_price[i]"
+                class="checkout-product-ordered-list-item__header">
+                    {{p.new_price}}
+                  </div>
 
                 <div class="checkout-product-ordered-list-item__header">
                     {{ p.quantity }}
@@ -126,7 +137,7 @@
 </ng-container>
 
   <!-- ส่วนชำระเงิน -->
-  <div class="page-checkout__payment-order-wrapper">
+  <div *ngIf="load_checkpoint" class="page-checkout__payment-order-wrapper">
     <div class="checkout-payment-method-view">
       <div class="checkout-payment-method-view__current">
         <div class="checkout-payment-method-view__current-title

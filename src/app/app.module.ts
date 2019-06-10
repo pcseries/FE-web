@@ -17,6 +17,9 @@ import { MatToolbarModule
   } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
@@ -136,8 +139,26 @@ import { ShopDtailComponent } from './core/pages/shop-dtail/shop-dtail.component
 import { CategoryGroupComponent } from './core/pages/category-group/category-group.component';
 import { BusinessMnComponent } from './admin/pages/business-mn/business-mn.component';
 import { AccountMnComponent } from './admin/pages/account-mn/account-mn.component';
-import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/account-dtail.component';
 
+
+// ngx-bootstrap
+import {NgxPaginationModule} from 'ngx-pagination';
+import { SearchCategoryComponent } from './core/pages/search-category/search-category.component';
+import { ScoreShowComponent } from './user/pages/pay-history/complete-history/score-show/score-show.component';
+import { PromotionMNComponent } from './user/pages/user-store/store-manage-variation/promotion-mn/promotion-mn.component';
+import { ProductBestsellerComponent } from './core/pages/product-bestseller/product-bestseller.component';
+import { PackageMnComponent } from './admin/pages/package-mn/package-mn.component';
+import { AddpackageDialogComponent } from './admin/pages/package-mn/addpackage-dialog/addpackage-dialog.component';
+import { SearchBestsellerComponent } from './core/pages/search-bestseller/search-bestseller.component';
+import { BuyPackageComponent } from './user/pages/user-store/store-manage/buy-package/buy-package.component';
+import { PayPackageComponent } from './user/pages/user-store/store-manage/pay-package/pay-package.component';
+import { RecommendProductsComponent } from './core/pages/recommend-products/recommend-products.component';
+import { AllProductsComponent } from './core/pages/all-products/all-products.component';
+import { AllPromoComponent } from './core/pages/all-promo/all-promo.component';
+import { AllRecommendComponent } from './core/pages/all-recommend/all-recommend.component';
+import { SetScoreComponent } from './user/pages/pay-history/complete-history/set-score/set-score.component';
+import {MatCardModule} from '@angular/material/card';
+import { DtailAccountComponent } from './admin/pages/account-mn/dtail-account/dtail-account.component';
 
 
 
@@ -240,7 +261,22 @@ import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/ac
     CategoryGroupComponent,
     BusinessMnComponent,
     AccountMnComponent,
-    AccountDtailComponent,
+
+    SearchCategoryComponent,
+    ScoreShowComponent,
+    PromotionMNComponent,
+    ProductBestsellerComponent,
+    PackageMnComponent,
+    AddpackageDialogComponent,
+    SearchBestsellerComponent,
+    BuyPackageComponent,
+    PayPackageComponent,
+    RecommendProductsComponent,
+    AllProductsComponent,
+    AllPromoComponent,
+    AllRecommendComponent,
+    SetScoreComponent,
+    DtailAccountComponent,
 
 
   ],
@@ -272,7 +308,12 @@ import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/ac
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     UiSwitchModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    MatExpansionModule,
+    MatSnackBarModule,
+    MatCardModule
+
 
   ],
   entryComponents: [
@@ -282,7 +323,8 @@ import { AccountDtailComponent } from './admin/pages/account-mn/account-dtail/ac
     AddshipDialogComponent,
     AddpayDialogComponent,
     AddcategoryDialogComponent,
-    ScoreDialogComponent
+    ScoreDialogComponent,
+    AddpackageDialogComponent
 
   ],
   providers: [

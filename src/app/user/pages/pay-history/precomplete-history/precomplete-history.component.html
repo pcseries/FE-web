@@ -14,11 +14,12 @@
           <div class="order-content__container">
             <div class="order-content__header">
               <div class="order-content__header__seller">
+                <span *ngIf="product_delete[order_item.length-i-1]" class="badge badge-danger">สินค้าถูกลบ</span>
                 <span class="order-content__header__seller__name">
-                  {{p.shop_name}}
+                  {{order_item[order_item.length - i - 1].shop_name}}
                 </span>
 
-                <a href="#" class="order-content__header__seller__view-shop-btn-wrapper btn-slide">
+                <a (click)="see_shop(order_item[order_item.length - i - 1].id_shop)"  class="order-content__header__seller__view-shop-btn-wrapper btn-slide">
                   <div class="order-content__header__seller__view-shop-btn">
                     <button class="shopee-button-outline shopee-button-outline--normal">
                       <svg class="shopee-svg-icon icon-btn-shop" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
@@ -32,12 +33,12 @@
               </div>
 
               <div class="order-content__header__order-sn">
-                หมายเลขคำสั่งซื้อ. <span  class="order_num"> {{order_item[i].id_order}} </span>
+                หมายเลขคำสั่งซื้อ. <span  class="order_num"> {{order_item[order_item.length - i - 1].id_order}} </span>
               </div>
             </div>
 
             <div class="order-content__item-list">
-              <a (click)="go_dtail_payhistory(i)" class="order-content__item-wrapper">
+              <a (click)="go_dtail_payhistory(order_item.length-i-1)" class="order-content__item-wrapper">
                 <div class="order-content__item order-content__item--last">
                   <div class="order-content__item__col order-content__item__detail">
                     <div class="order-content__item__product">
@@ -45,7 +46,7 @@
                         <div class="shopee-image__wrapper">
                           <div class="shopee-image__place-holder">
                             <img class="checkout-product-ordered-list-item__product-image"
-                            [src]="imageToShow[i]" width="70" height="70">
+                            [src]="imageToShow[order_item.length-i-1]" width="70" height="70">
                           </div>
                           <div class="shopee-image__content" >
 
@@ -55,15 +56,15 @@
                       </div>
 
                       <div class="order-content__item__detail-content">
-                        <div class="order-content__item__name">{{p.name_product}}</div>
-                        <div class="order-content__item__variation">ตัวเลือกสินค้า: {{p.name_variation}}</div>
-                        <div class="order-content__item__quantity">x {{p.quantity}}</div>
+                        <div class="order-content__item__name">{{order_item[order_item.length - i - 1].name_product}}</div>
+                        <div class="order-content__item__variation">ตัวเลือกสินค้า: {{order_item[order_item.length - i - 1].name_variation}}</div>
+                        <div class="order-content__item__quantity">x {{order_item[order_item.length - i - 1].quantity}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="order-content__item__price order-content__item__col order-content__item__col--small order-content__item__col--last">
                   <div class="order-content__item__price-text">
-                    <div>฿{{p.price}}</div>
+                    <div>฿{{order_item[order_item.length - i - 1].price}}</div>
                   </div>
 
                 </div>
@@ -93,7 +94,7 @@
               ยอดคำสั่งซื้อทั้งหมด
             </span>
             <span class="purchase-card-buttons__total-price">
-              ฿{{price_all[i]}}
+              ฿{{price_all[order_item.length-i-1]}}
             </span>
           </div>
 
@@ -101,9 +102,9 @@
             <div class="purchase-card-buttons__text-info">
               <span class="purchase-text-info">
                 <span>สินค้ารอการยอมรับ</span>
-                <span class="track-number">{{tracking_num[i]}}</span>
+                <span class="track-number">{{tracking_num[order_item.length-i-1]}}</span>
                 <span class="track-button">
-                  <button (click)="tracking_product(i)"
+                  <button (click)="tracking_product(order_item.length-i-1)"
                     type="button" class="btn btn-info">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                   </button>
@@ -116,8 +117,9 @@
 
               <div class="purchase-card-buttons__show-button-wrapper">
                 <button
-                  (click)="on_complete(i)"
-                  [disabled]="!tracking_num[i]"
+                  (click)="on_complete(order_item.length-i-1)"
+                  [disabled]="!tracking_num[order_item.length-i-1] || product_delete[order_item.length-i-1]"
+                  mat-flat-button
                   class="shopee-button-solid shopee-button-solid--fill shopee-button-solid--primary">
                   <span class="purchase-card-buttons__button-content">
                     ยอมรับสินค้า
@@ -128,7 +130,9 @@
               </div>
 
               <div class="purchase-card-buttons__show-button-wrapper">
-                <button (click)="on_rejectproduct(i)"
+                <button mat-flat-button
+                [disabled]="product_delete[order_item.length-i-1]"
+                (click)="on_rejectproduct(order_item.length-i-1)"
                   class="shopee-button-outline shopee-button-outline--fill shopee-button-outline--primary ">
                   <span class="purchase-card-buttons__button-content">
                     ขอคืนเงิน

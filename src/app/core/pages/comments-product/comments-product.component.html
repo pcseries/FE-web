@@ -1,12 +1,46 @@
 <div>
+
   <div class="product-ratings">
+
+    <div class="product-ratings__header">
+      คะแนนของสินค้า
+    </div>
+
+    <div class="product-rating-overview">
+      <div class="product-rating-overview__briefing">
+        <div *ngIf="!not_rate" class="product-rating-overview__score-wrapper">
+          <span class="product-rating-overview__rating-score">{{mean_rate}}</span>
+          <span class="product-rating-overview__rating-score-out-of"> เต็ม 5 </span>
+        </div>
+
+        <div *ngIf="not_rate" class="product-rating-overview__score-wrapper">
+          <span class="badge badge-danger">ยังไม่มีการให้คะแนน</span>
+        </div>
+
+        <div class="shopee-rating-stars product-rating-overview__stars">
+
+            <ngb-rating
+            [readonly]="true"
+            [(rate)]="mean_rate">
+          <ng-template
+
+           let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+
+          </ngb-rating>
+        </div>
+
+      </div>
+    </div>
+
     <div class="product-ratings__header">
       ความคิดเห็นเกี่ยวกับสินค้า
     </div>
     <div class="product-ratings__list">
       <div class="shopee-product-comment-list">
 
-        <ng-container *ngFor="let c of comments_user;let i =index">
+        <ng-container *ngFor="let c of comments_user | paginate: { itemsPerPage: 6, currentPage: p1 };let i =index">
           <div class="shopee-product-rating">
             <!-- <div class="shopee-product-rating__avatar">
               <div class="shopee-avatar">
@@ -75,6 +109,9 @@
             </div>
           </div>
         </ng-container>
+
+        <pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+
       </div>
     </div>
   </div>

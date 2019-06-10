@@ -1,0 +1,16 @@
+.txt-head {
+  padding-top: 25px;
+  padding-bottom: 20px;
+  color: gray;
+  font-weight: bold;
+}
+
+
+.head-select {
+  margin: auto;
+}
+
+.action-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

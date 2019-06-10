@@ -37,7 +37,7 @@ input[type=text]:focus {
 
 .bt-add {
   height: 45px;
-  margin-left: 70%;
+
   border-radius: 7px;
   background-color:  #6495ED;
   font-weight: bold;
@@ -328,4 +328,28 @@ input[type=text]:focus {
 .mat-mini-fab{
   color: white;
   background-color: #17a2b8;
+}
+
+.nothaveStore-section {
+  margin: auto;
+}
+
+.txt-store {
+  font-weight: bold;
+  color: #888;
+  margin-left: 20%;
+  margin-bottom: 10px;
+}
+
+.btnOpen-store {
+  margin-left: 25%;
+}
+
+.btn-add {
+  margin-left: 90%;
+}
+
+
+.openStore-again {
+  margin: auto;
 }

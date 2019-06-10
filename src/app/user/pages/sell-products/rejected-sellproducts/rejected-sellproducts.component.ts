@@ -27,6 +27,8 @@ export class RejectedSellproductsComponent implements OnInit {
   rejected_stat = [];
   send_stat = [];
 
+  p1: number = 1;
+
   constructor(
     private userService: UserService,
     private router: Router
@@ -99,7 +101,8 @@ export class RejectedSellproductsComponent implements OnInit {
   go_detail(ind: any) {
     // alert(this.seller_products[ind].id_item);
 
-    const go_page = '5_'  + this.order_item[ind].id_item + '_' + this.send_stat[ind];
+    const go_page = '5_'  + this.order_item[ind].id_item + '_' + this.send_stat[ind]
+    + '_' + this.order_item[ind].id_order;
    this.router.navigate(['user/sellProducts/manage-ordered/', go_page]);
 }
 

@@ -532,3 +532,6 @@
   font-weight: bold;
 }
 
+.have-orders {
+  overflow: hidden;
+}

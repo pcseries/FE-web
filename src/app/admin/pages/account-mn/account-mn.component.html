@@ -1,78 +1,65 @@
-
+<!--
 <div class="top-box">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Results">
   </mat-form-field>
+</div>
+-->
 
-  </div>
+<h6>รายการสรุปรายได้ทั้งหมด</h6>
 
 <mat-table [dataSource]="dataSource" matSort>
-
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
-    <mat-cell *matCellDef="let row"  > {{row.username}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="sername">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Surname</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{row.sername}} </mat-cell>
-  </ng-container>
-
-
-
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="mycolor2" > {{row.email }} </mat-cell>
-  </ng-container>
-
-
-  <ng-container matColumnDef="status" >
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-    <mat-cell *matCellDef="let row"  >
-      <h6 style="color: green; font-weight: bold;" *ngIf="checkStatus(row.status)">{{row.status}} </h6>
-      <h6 style="color: red; font-weight: bold;" *ngIf="!checkStatus(row.status)">{{row.status}} </h6>
-    </mat-cell>
-  </ng-container>
-
-
-  <ng-container matColumnDef="actionsColumn">
-    <mat-header-cell *matHeaderCellDef>
-      <button mat-icon-button color="accent"><i class="fa fa-gears mat-icon" style="font-size: 24px;"></i></button>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-
-      <button  mat-icon-button color="primary" focusable="false" (click)="onInfo(row.username)">
-        <i class="fa fa-info-circle mat-icon"></i>
-      </button>
-
-      <button  mat-icon-button color="primary" focusable="false" (click)="onEdit(row.username)">
-          <i class="fa fa-edit mat-icon"></i>
-    </button>
-
-      <button mat-icon-button color="primary" focusable="false" *ngIf="checkStatus(row.status)" (click)="change(row.username)">
-        <i class="fa fa-eye mat-icon"></i>
-      </button>
-      <button mat-icon-button color="primary" focusable="false" *ngIf="!checkStatus(row.status)" (click)="active(row.username)">
-        <i style="color: red" class="fa fa-eye-slash mat-icon"></i>
-      </button>
-      <button mat-icon-button color="primary" focusable="false " (click)="onDelete(row.username)">
-        <i class="fa fa-times mat-icon"></i>
-      </button>
-    </mat-cell>
-  </ng-container>
-
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;">
-  </mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  <ng-container matColumnDef="sequence">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับ</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row; let i=index">{{i+1}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="round">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>รอบ</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row"> {{(row.date_start | date)+" - "+(row.date_end | date)}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="income">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>รายได้ ( บาท )</mat-header-cell>
+    <mat-cell class="right" *matCellDef="let row"> {{row.total_income}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>สถานะ</mat-header-cell>
+    <mat-cell class="mycolor2 center" *matCellDef="let row" >
+      <h6 *ngIf="row.status === 'COMPLETE'" style="color: green; font-weight: bold;" >{{row.status}} </h6>
+      <h6 *ngIf="row.status === 'INCOMPLETE'" style="color: red; font-weight: bold;" >{{row.status}} </h6>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="incomeReport" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>สรุปรายได้</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row">
+      <a *ngIf="row.path !== '-'" mat-button color="primary" routerLink="." (click)="onDownload(row.id_income, row.path)">{{row.path}}</a>
+      <a *ngIf="row.path === '-'" mat-button disabled color="primary" routerLink=".">{{row.path}}</a>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="detail">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>รายละเอียด</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row">
+
+      <button id="{{row.id_income}}" mat-icon-button color="primary" focusable="false" (click)="onDetail($event.target.id)">
+        <i id="{{row.id_income}}" class="fa fa-edit mat-icon" (click)="onDetail($event.target.id)"></i>
+      </button>
+
+    </mat-cell>
+  </ng-container>
+
 </mat-table>
+
+
+<!--
 <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[2,5, 10, 25, 100]">
-</mat-paginator>
+</mat-paginator>-->
 
 
 

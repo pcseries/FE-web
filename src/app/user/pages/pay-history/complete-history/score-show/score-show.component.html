@@ -1,0 +1,35 @@
+<div class="comment-content">
+    <div class="header">
+      <h5 class="text-head">
+        การให้คะแนนสินค้า
+      </h5>
+    </div>
+    <div class="body">
+      <div class="row">
+        <div class="star-rate">
+            <ngb-rating
+
+
+            [(rate)]="rate">
+          <ng-template
+
+           let-fill="fill" let-index="index">
+            <span class="star"   [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+
+          </ngb-rating>
+          <span >({{rate_show}} คะแนน)</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="example-full-width">
+        <textarea matInput
+         class="text-area"
+         [value]="content"
+         placeholder="ความคิดเห็น"></textarea>
+      </mat-form-field>
+      </div>
+
+    </div>
+  </div>

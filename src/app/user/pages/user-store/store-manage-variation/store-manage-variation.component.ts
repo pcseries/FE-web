@@ -142,4 +142,9 @@ export class StoreManageVariationComponent implements OnInit {
     }
   }
 
+  promotion_manage(ind: any) {
+    localStorage.setItem('backpage1', this.idProduct);
+    this.router.navigate(['user/store/promotion/', this.variation_product[ind].id_variation]);
+  }
+
 }

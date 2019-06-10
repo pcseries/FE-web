@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { e } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-useradd-address',
@@ -13,6 +14,7 @@ export class UseraddAddressComponent implements OnInit {
 
   address: FormGroup;
 
+  statusforBuy: any;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -31,6 +33,13 @@ export class UseraddAddressComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.router.url);
+
+    if (this.router.url === '/mado/manageAddress/add') {
+      this.statusforBuy = true;
+    } else {
+      this.statusforBuy = false;
+    }
   }
 
   onAdd_address() {
@@ -39,7 +48,14 @@ export class UseraddAddressComponent implements OnInit {
       res => {
         alert('บันทึกสำเร็จ');
         console.log('resAddress=> ', res);
-         this.router.navigate(['/user/addressManage']);
+
+        // if else
+        if(this.statusforBuy) {
+          this.router.navigate(['/mado/manageAddress']);
+        } else {
+          this.router.navigate(['/user/addressManage']);
+        }
+
       }, error => {
         console.log('error' , error);
       }

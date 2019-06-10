@@ -1,0 +1,95 @@
+<div class="container">
+
+  <div class="bestseller-section">
+      <div class="row">
+          <div class="col-2">
+            <div class="head-bestseller">
+              <h5 class="txt-head">สินค้าขายดี
+                  <i class="fa fa-calendar" style="margin-left: 5px;" aria-hidden="true"></i>
+              </h5>
+
+            </div>
+          </div>
+          <div class="col-10">
+            <div class="body-productseller">
+                <button (click)="best_day()"
+                type="button"
+                class="btn btn-outline-primary bt-bestseller">
+                  ประจำวัน
+                </button>
+                <button (click)="best_week()"
+                type="button"
+                class="btn btn-outline-info bt-bestseller">
+                  ประจำสัปดาห์
+                </button>
+                <button (click)="best_month()"
+                type="button"
+                class="btn btn-outline-success bt-bestseller">
+                  ประจำเดือน
+                </button>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="listProducts-section">
+    <div class="header-products" style="margin-top: 12px;">
+      <div class="row">
+        <div class="col">
+          <h4 class="text-head">
+            {{head_txt}}
+          </h4>
+        </div>
+      </div>
+
+    </div>
+    <hr>
+    <div class="body-products">
+
+      <div *ngIf="isImageLoading"
+      class="load-product">
+      <mat-spinner></mat-spinner>
+      </div>
+
+      <div *ngIf="!isImageLoading&&!is_empty"
+      class="show-products">
+        <div class="row">
+            <ng-container *ngFor="let p of products; let i = index">
+              <div class="column">
+                <div  class="card" style="width: 12rem;" (click)="seeProduct(p.id_product)">
+                  <img [src]="imageToShow[i]"
+               alt="Place image title"
+               *ngIf="!isImageLoading; else noImageFound"
+               class="card-img-top">
+               <ng-template #noImageFound>
+                <img src="./../../../../../assets/image/fallbackImage.png" alt="Fallbackimage">
+           </ng-template>
+
+                  <div class="card-body">
+                    <div class="card-title" style="-webkit-box-orient: vertical">{{ p.name_product }}</div>
+                    <p class="card-text"><strong>{{price[i] | currency:'฿' }}</strong></p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="(i + 1) % 5 === 0" class="w-100"></div>
+            </ng-container>
+          </div>
+      </div>
+
+      <div *ngIf="is_empty" class="products-empty">
+          <div class="row">
+            <img src="https://img.icons8.com/doodle/96/000000/empty-box.png">
+          </div>
+          <div class="row">
+            <h5 class='txt-empty'>
+              ไม่มีสินค้า
+            </h5>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+</div>
+
+

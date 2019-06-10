@@ -1,0 +1,297 @@
+<div class="container">
+
+
+
+<div *ngIf="status_promo"
+class="have-promotion">
+
+  <div class="button_backpages">
+      <button (click)="back_page()"
+              type="button" class="btn btn-warning">
+              <i class="fa fa-arrow-left"></i>
+              กลับไปจัดการร้านค้า
+      </button>
+  </div>
+
+  <div class="dtail-product">
+    <div class="header-dtail">
+      <h5>รายละเอียดสินค้า</h5>
+    </div>
+    <div class="order-content__item-list">
+      <div class="order-content__item-wrapper">
+        <div class="order-content__item order-content__item--last">
+          <div class="order-content__item__col order-content__item__detail">
+              <div class="order-content__item__product">
+                <div class="order-content__item__image">
+                  <div class="shopee-image__wrapper">
+                    <div class="shopee-image__place-holder">
+                      <svg class="shopee-svg-icon icon-loading-image" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                        <g>
+                          <rect fill="none" height="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="10" x="1" y="4.5">
+                      </rect><line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="1" x2="11" y1="6.5" y2="6.5">
+
+                      </line>
+                      <rect fill="none" height="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="3" x="11" y="6.5">
+
+                      </rect>
+                      <line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="1" x2="11" y1="14.5" y2="14.5"></line><line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="6" x2="6" y1=".5" y2="3"></line><line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="3.5" x2="3.5" y1="1" y2="3"></line><line fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="8.5" x2="8.5" y1="1" y2="3"></line></g></svg></div>
+                      <img class="shopee-image__content " [src]="imageToShow" >
+                        <div class="shopee-image__content--blur">
+
+                        </div>
+
+                    </div>
+                  </div>
+                  <div class="order-content__item__detail-content">
+                    <div class="order-content__item__name">
+                      {{name_product}}
+
+                    </div>
+                    <div class="order-content__item__variation">
+                      ตัวเลือกสินค้า: {{name_variation}}
+                    </div>
+                    <!-- <div class="order-content__item__quantity">
+                      x {{quantity}}
+                    </div> -->
+                  </div>
+                </div>
+          </div>
+          <div class="order-content__item__price order-content__item__col order-content__item__col--small order-content__item__col--last">
+              <div class="order-content__item__price-text">
+                  <div class="oldPrice">
+                      ฿{{price | number: 0}}
+                  </div>
+                <div class="shopee-price--primary">
+                  <strong>
+                    ฿{{new_price}}
+                  </strong>
+
+
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="dtail-promotion">
+    <div class="header-promotion">
+      <h5>รายละเอียดโปรโมชั่น</h5>
+    </div>
+
+    <div class="body-promotion">
+      <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" style="width: 10%;">ลำดับ</th>
+              <th scope="col" style="width: 60%;">รายละเอียดโปรโมชั่น</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td >ราคาเก่า</td>
+              <td >
+                <mat-form-field class="example-full-width">
+                  <input [disabled]="true"
+                  style="color: black;"
+                  #data_1
+                   matInput  value="{{price}}">
+                </mat-form-field>
+
+              </td>
+
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td >ราคาใหม่</td>
+              <td >
+                  <mat-form-field class="example-full-width">
+                      <input matInput #data_2
+                      style="color: black;"
+                      [disabled]="!edit_data" value="{{new_price}}">
+                    </mat-form-field>
+              </td>
+
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >วันเริ่ม</td>
+              <td >
+                <div class="row">
+                  <div class="col">
+                    <input
+                    #data_3_1
+                     [disabled]="!edit_data" type="date" class="form-control"
+                  value="{{date_start}}" >
+                  <input
+                  #data_3_2
+                  [disabled]="!edit_data" type="time" class="form-control"
+                  value="{{data_DT1[1]}}" >
+                  </div>
+                </div>
+
+              </td>
+
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td >วันสิ้นสุด</td>
+              <td >
+                  <input #data_4_1
+                  [disabled]="!edit_data" type="date" class="form-control"
+                  value="{{date_end}}" >
+                  <input #data_4_2
+                  [disabled]="!edit_data" type="time" class="form-control"
+                  value="{{data_DT2[1]}}" >
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="action-promotion">
+        <button *ngIf="!edit_data"
+        (click)="allow_edit()"
+        type="button " class="btn btn-info bt-action">
+          แก้ไขโปรโมชั่น
+          <i class="fa fa-edit"></i>
+        </button>
+
+        <button *ngIf="edit_data"
+        (click)="on_editSuccess(data_1,data_2,data_3_1,data_3_2,data_4_1,data_4_2)"
+        type="button"
+        class="btn btn-success bt-action">
+          สำเร็จ
+
+          <i class="fa fa-check"></i>
+        </button>
+        <button *ngIf="edit_data"
+        (click)="on_cancelEdit()"
+        type="button" class="btn btn-danger">
+          ยกเลิก
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="delete-promo">
+              <button type="button"
+              (click)="on_deletePromotion()"
+              class="btn btn-danger"
+              style="width: 100%; margin-top: 15px;">
+                ลบโปรโมชั่น
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="!status_promo"
+class="notHave-promotion">
+
+<div class="button_backpages">
+    <button (click)="back_page()"
+            type="button" class="btn btn-warning">
+            <i class="fa fa-arrow-left"></i>
+            กลับไปจัดการร้านค้า
+    </button>
+</div>
+
+
+  <div style="margin-top: 15px;"
+   class="create-promotion">
+    <div  class="header-create">
+      <h5>สร้างโปรโมชั่น</h5>
+    </div>
+
+    <hr>
+    <div class="body-createPromo">
+      <div class="col-10 card">
+          <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 10%;">ลำดับ</th>
+                  <th scope="col" style="width: 50%;">รายละเอียดโปรโมชั่น</th>
+                  <th scope="col"></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>ราคาใหม่</td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <input matInput
+                      placeholder="บาท"
+                       #data_1>
+                    </mat-form-field>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>วันเริ่ม</td>
+                  <td>
+
+                    <div class="row">
+                      <div class="col">
+                        <input
+                          #data_2_1
+                           type="date" class="form-control" >
+                          <input
+                          #data_2_2
+                           type="time" class="form-control">
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td >วันสิ้นสุด</td>
+                  <td>
+                    <div class="row">
+                      <div class="col">
+                        <input
+                          (click)="click3()"
+                          #data_3_1
+                          type="date" class="form-control" >
+                        <input
+                          #data_3_2
+                          type="time" class="form-control">
+                        </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+
+    <div class="action-create">
+      <div class="row">
+        <div class="col">
+            <button
+            (click)="add_promotion(data_1,data_2_1,data_2_2,data_3_1,data_3_2)"
+            [disabled]="!check_1&&!check_2&&!check_3"
+            style="margin-left: 70%; margin-top: 15px;"
+            type="button" class="btn btn-success">
+              เพิ่มโปรโมชั่น
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

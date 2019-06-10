@@ -1,10 +1,51 @@
+<div *ngIf="on_loading"
+class="loadNot-success">
+
+</div>
+
+<div *ngIf="!on_loading"
+class="load-success">
+<div *ngIf="!on_openStore"
+class="nothaveStore-section">
+  <div class="row">
+    <div class="col">
+      <h3 class="txt-store">
+        ยังไม่มีร้านค้า
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+        <img
+        src="https://img.icons8.com/dusk/512/000000/shop.png">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="btnOpen-store">
+        <app-open-store></app-open-store>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div *ngIf="on_openStore"
+class="haveStore-section">
+
+
 <div class="header-section" >
+
 <div class="header col-md-5">
     <div class="title-header">
       <div *ngIf="!addProduct_status">จัดการร้านค้า</div>
       <div *ngIf="!addProduct_status"
         class="button-to-dtailStore">
-        <button mat-mini-fab
+        <button
+        [disabled]="clickOpen_shop"
+        mat-mini-fab
           color="info-button"
           (click)="goEdit_store()">
             <i class="fa fa-edit" ></i>
@@ -13,18 +54,36 @@
       <div *ngIf="addProduct_status">เพิ่มสินค้า</div>
     </div>
   </div>
-<div class="row store-manage"
-*ngIf="!addProduct_status">
-  <div class="input-group">
-    <div class="search" style="width: 70%">
-      <input type="text" name="search" placeholder="ค้นหาสินค้า..." />
-      <label  class="fa fa-search icon-search" style="cursor: pointer;"></label>
-    </div>
-    <div class="btn-add">
-      <button class="bt-add" mat-flat-button (click)="onAddProduct()" >
+<div  class="row store-manage"
+*ngIf="!addProduct_status ">
+  <div *ngIf="!clickOpen_shop" class="input-group">
+
+    <div class="btn-add" >
+      <button  class="bt-add" mat-flat-button (click)="onAddProduct()" >
         <i class="fa fa-plus" style="font-size:24px"></i>
         เพิ่มสินค้า
       </button>
+    </div>
+  </div>
+
+  <div *ngIf="clickOpen_shop" class="openStore-again">
+    <div class="section-shop_againopen">
+      <div class="row">
+        <img src="https://img.icons8.com/dusk/512/000000/small-business.png">
+      </div>
+      <div class="row">
+        <h4 style="margin: auto;
+        color: #696969;
+        font-weight: bold;">เปิดร้านอีกครั้ง</h4>
+      </div>
+      <div class="row" style="margin-top: 15px;">
+          <button
+          (click)="open_again()"
+          style="margin: auto;"
+           mat-flat-button color="primary">
+            เปิด
+          </button>
+      </div>
     </div>
   </div>
 </div>
@@ -41,11 +100,13 @@
 </div>
 <div class="store" *ngIf="!addProduct_status">
   <div class="store-product">
-    <div class="product-store">
+    <div *ngIf="!clickOpen_shop" class="product-store">
 
       <app-list-products-store></app-list-products-store>
 
     </div>
+
+
   </div>
 </div>
 
@@ -323,7 +384,7 @@
     </div>
   </div>
 </div>
-
-
+</div>
+</div>
 
 

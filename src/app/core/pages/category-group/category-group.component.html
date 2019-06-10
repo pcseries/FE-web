@@ -1,3 +1,25 @@
-<p>
-  category-group works!
-</p>
+<div class="card card-content">
+  <div class="card-body">
+    <div class="head-category">
+      <span class="txt-head">
+          <i class="fa fa-list-alt" aria-hidden="true"></i>
+        ประเภทสินค้า</span>
+    </div>
+
+    <div class="cate-group">
+      <div class="row-category">
+
+         <button *ngFor="let c of category_show;let i = index"
+            mat-stroked-button class="category-button"
+            color="primary"
+            (click) = "search_category(i)"
+            >
+            <i class="fa fa-th-large"></i>
+            {{c.name_catagory}}</button>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

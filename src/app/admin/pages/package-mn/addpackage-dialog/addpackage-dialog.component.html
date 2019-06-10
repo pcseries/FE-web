@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>เพิ่มประเภทสินค้า</h1>
+<div mat-dialog-content>
+
+  <mat-form-field class="field-ship">
+    <input matInput
+      #txt_name
+      class="modify-ship"
+      placeholder="ชื่อแพกเก็จ">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="field-ship">
+    <input matInput
+      #txt_price
+      class="modify-ship"
+      placeholder="ราคา">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="field-ship">
+    <input matInput
+      #txt_day
+      class="modify-ship"
+      placeholder="วัน">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <div class="group-button">
+    <button
+    (click)="on_save(txt_name,txt_price,txt_day)"
+      type="button" class="btn btn-success">
+      เพิ่ม
+      <i class="fa fa-plus"></i>
+    </button>
+    <button mat-button
+      (click)="on_Cancel()"
+      >ยกเลิก</button>
+  </div>
+
+</div>

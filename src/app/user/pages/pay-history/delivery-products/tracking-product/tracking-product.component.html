@@ -1,22 +1,78 @@
 <div class="container">
-    <div class="page-header">
 
-        <h3 id="timeline">
+    <div class="row">
+        <div class="col-0">
+          <button (click)="on_gopayhistory()"
+          type="button" color="warn" mat-mini-fab >
+            <i class="fa fa-arrow-circle-left"></i>
+          </button>
+        </div>
+        <div class="col-11">
+           <h3 id="timeline">
           Tracking Product
         </h3>
-        <button (click)="on_gopayhistory()"
-          type="button" class="btn btn-outline-info btn-exit">
-            <i class="fa fa-sign-out"></i>
-          </button>
+        </div>
+      </div>
+
+  <div class="not-load_complete" *ngIf="!load_track && !status_track">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="status_track" class="notHave-track">
+    <h5>ติดตามสินค้าไม่ได้</h5>
+  </div>
+
+  <div *ngIf="!status_track" class="have-track">
+    <div class="page-header">
+
+
+
+      <div class="row">
+        <div class="tracknum">
+          <span class="num-track">
+            {{num_track}}
+          </span>
+        </div>
+      </div>
+
     </div>
 
-    <div class="not-load_complete" *ngIf="!load_track">
-      <mat-spinner></mat-spinner>
-    </div>
+
 
     <div class="load-completed" >
 
     <ul class="timeline">
+
+
+      <li class="timeline-inverted" *ngIf="complete_stat" >
+        <div class="timeline-badge success"><i class="fa fa-thumbs-o-up"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title">{{track_final[0].message}}</h4>
+            <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_final[0].checkpoint_time}}</small></p>
+          </div>
+          <div class="timeline-body">
+            <p>{{track_final[0].subtag_message}}.</p>
+            <p><i class="fa fa-map-marker"></i>{{track_final[0].location}}</p>
+          </div>
+        </div>
+      </li>
+
+        <li class="timeline-inverted" *ngFor="let d of track_dtail; let i = index">
+          <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{track_dtail[track_dtail.length-i-1].message}}</h4>
+              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[track_dtail.length-i-1].checkpoint_time}}</small></p>
+            </div>
+            <div class="timeline-body">
+              <p>{{track_dtail[track_dtail.length-i-1].subtag_message}}</p>
+              <p><i class="fa fa-map-marker"></i>{{track_dtail[track_dtail.length-i-1].location}}</p>
+            </div>
+          </div>
+        </li>
+
+
         <li *ngIf="0 < track_level">
           <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
           <div class="timeline-panel">
@@ -33,36 +89,10 @@
         </li>
 
 
-        <li class="timeline-inverted" *ngFor="let d of track_dtail; let i = index">
-          <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">{{track_dtail[i].message}}</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_dtail[i].checkpoint_time}}</small></p>
-            </div>
-            <div class="timeline-body">
-              <p>{{track_dtail[i].subtag_message}}</p>
-              <p><i class="fa fa-map-marker"></i>{{track_dtail[i].location}}</p>
-            </div>
-          </div>
-        </li>
 
-
-
-        <li class="timeline-inverted" *ngIf="complete_stat" >
-          <div class="timeline-badge success"><i class="fa fa-thumbs-o-up"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">{{track_final[0].message}}</h4>
-              <p><small class="text-muted"><i class="fa fa-clock-o"></i>{{track_final[0].checkpoint_time}}</small></p>
-            </div>
-            <div class="timeline-body">
-              <p>{{track_final[0].subtag_message}}.</p>
-              <p><i class="fa fa-map-marker"></i>{{track_final[0].location}}</p>
-            </div>
-          </div>
-        </li>
     </ul>
     </div>
+  </div>
+
 
 </div>

@@ -1,0 +1,76 @@
+.card1:hover {
+  -webkit-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+  box-shadow: -1px 9px 40px -12px rgba(0,0,0,0.75);
+  cursor: pointer;
+
+}
+
+.column {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+.card1{
+  height: 240px;
+}
+
+.card-title {
+  overflow: hidden;
+  word-wrap: break-word;
+  line-height: 1.125rem;
+  height: 2.1875rem;
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+}
+
+.card-img-top {
+  height: 120px;
+}
+
+.card-content {
+
+  margin: auto;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+
+.card-body {
+  overflow: auto;
+}
+
+.row-category {
+  display: flex;
+}
+
+.category-button {
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.txt-head {
+  font-weight: bold;
+
+}
+
+.head-category {
+  margin-bottom: 15px;
+}
+
+
+.txt-empty {
+  font-weight: bold;
+  color: #A9A9A9;
+}
+
+.products-empty {
+  margin-left: 45%;
+}
+
+.textPath {
+  font-weight: bold;
+  color: #808080;
+  margin-left: 10px;
+}
+

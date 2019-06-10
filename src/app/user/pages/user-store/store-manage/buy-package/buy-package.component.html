@@ -1,0 +1,82 @@
+<div class="container">
+
+<div class="show-listPackage">
+    <div class="button_backpages">
+    <div class="row">
+      <button (click)="back_page()"
+              type="button" class="btn btn-warning">
+              <i class="fa fa-arrow-left"></i>
+              กลับไปจัดการร้านค้า
+      </button>
+    </div>
+
+  </div>
+  <hr>
+  <div class="body-selectPackage">
+    <div class="row">
+      <div class="card col-10" style="margin: auto;">
+        <div class="head-select">
+          <h5 class="txt-head">
+            โปรดเลือกเเพคเก็จ
+          </h5>
+        </div>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">เลือก</th>
+                <th scope="col">ชื่อ</th>
+                <th scope="col">ราคา</th>
+                <th scope="col">วัน</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of package_list; let i = index">
+                <th scope="row">
+                    <mat-radio-button (click)="click_first(p.id_package)"></mat-radio-button>
+                </th>
+                <td>{{p.package_name}}</td>
+                <td>{{p.price}}</td>
+                <td>{{p.day}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+          <mat-form-field>
+              <input #date
+              matInput [matDatepicker]="picker" placeholder="เริ่มวันที่">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <div class="action-button">
+                <button type="button"
+                (click)="add_package(date)"
+                [disabled]="!first_click"
+                class="btn btn-success">
+                  เลือกเเพคเก็จ
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+            </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="manage-package">
+  <div class="row">
+    <div class="card col-10" style="margin: auto;">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="เริ่มวันที่">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</div> -->
+
+</div>

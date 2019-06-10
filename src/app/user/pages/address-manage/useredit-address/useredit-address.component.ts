@@ -26,6 +26,8 @@ export class UsereditAddressComponent implements OnInit {
   postal_code: any;
   phone_receiver: any;
 
+  statusforBuy: any;
+
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -44,7 +46,18 @@ export class UsereditAddressComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.router.url);
+
+
+
     this.id_address = this.route.snapshot.paramMap.get('id');
+
+    if (this.router.url === ('/mado/manageAddress/editAddress/' + this.id_address)) {
+      this.statusforBuy = true;
+      // alert('sucess');
+    } else {
+      this.statusforBuy = false;
+    }
 
     // alert(this.id_address);
     this.on_getAddress();
@@ -96,6 +109,10 @@ export class UsereditAddressComponent implements OnInit {
         console.log('err_update', error);
       }
     );
+  }
+
+  go_manageAddress() {
+    this.router.navigate(['/mado/manageAddress']);
   }
 
 }

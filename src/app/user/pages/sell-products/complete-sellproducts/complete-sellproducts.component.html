@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let p of order_item;let i = index ">
+    <ng-container *ngFor="let p of order_item| paginate: { itemsPerPage: 10, currentPage: p1 };let i = index ">
     <tr>
       <td>{{name_products[i]}}</td>
       <td>{{reciever[i]}}</td>
@@ -36,6 +36,8 @@
 </ng-container>
   </tbody>
 </table>
+
+<pagination-controls (pageChange)="p1 = $event"></pagination-controls>
 </div>
 </div>
 

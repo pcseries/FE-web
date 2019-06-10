@@ -59,21 +59,24 @@
             <tr>
               <td>
                 <mat-form-field class="variation-group-table">
-                    <input matInput value="{{v.name}}"
+                    <input style="color: black"
+                    matInput value="{{v.name}}"
                     [disabled]="onedit !== i"
                       #name_variation>
                 </mat-form-field>
               </td>
               <td>
                   <mat-form-field class="variation-group-table">
-                      <input matInput value="{{v.price}}"
+                      <input style="color: black"
+                      matInput value="{{v.price}}"
                       [disabled]="onedit !== i"
                         #price_variation>
                   </mat-form-field>
               </td>
               <td>
                   <mat-form-field class="variation-group-table">
-                      <input matInput value="{{v.stock}}"
+                      <input style="color: black"
+                      matInput value="{{v.stock}}"
                       [disabled]="onedit !== i"
                         #stock_variation>
                   </mat-form-field>
@@ -92,6 +95,10 @@
                     <i class="fa fa-check btn-true"
                     (click)="edit_variation(name_variation,price_variation,stock_variation,v.id_variation)"
                       ></i>
+                  </div>
+                  <div class="col-sm  icon-variation" >
+                    <button (click)="promotion_manage(i)"
+                      type="button" class="btn btn-warning">โปรโมชั่น</button>
                   </div>
                 </div>
               </td>

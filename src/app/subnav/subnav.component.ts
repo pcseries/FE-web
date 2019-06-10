@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../services/core/store.service';
 import { ShopcartService } from '../services/core/shopcart.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { a } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-subnav',
@@ -17,17 +18,28 @@ export class SubnavComponent implements OnInit {
   show_shop:boolean = false;
 
   amont: any;
+  show_nav: any;
+
+  search_txts: any;
+
+  public id_product: any;
+
   constructor(private storeService: StoreService,
     private shopcartService: ShopcartService,
+    private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit() {
 
+    this.search_txts = this.route.snapshot.paramMap.get('cm');
+
+
+
     this.storeService.storeCheck().subscribe(
       res => {
         this.status = res['status'];
-        console.log('statusStore', this.status);
+        console.log('statusStore', res);
         if (this.status === 401) {
           console.log('statusStore', this.status);
         } else {
@@ -76,10 +88,8 @@ export class SubnavComponent implements OnInit {
   search_txt(txt: HTMLInputElement) {
 
     if (txt.value !== '') {
-      this.router.navigate(['mado/searchProducts/', txt.value]);
-      setTimeout(() => {
-      location.reload();
-      }, 100);
+      this.router.navigate(['searchProducts/', txt.value]);
+
 
     }
   }

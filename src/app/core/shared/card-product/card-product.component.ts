@@ -55,10 +55,13 @@ export class CardProductComponent implements OnInit {
   id_order: any;
   variation: any;
   edit_product: any;
-
   count_allow: any;
-
   id_shop: any;
+  donot_buy: any;
+
+  // ส่วนราคาใหม่
+  new_price: any;
+  switch_price: any;
 
   constructor(
     private productService: ProductsService,
@@ -74,13 +77,6 @@ export class CardProductComponent implements OnInit {
     this.count_allow = 0;
     this.productService.detailProduct(this.idProduct).subscribe(
       response => {
-        // this.nameProduct = response['body'].product[0].name_product;
-        // this.picTure = response['body'].product[0].product_pic[0].pic_product;
-        // this.price = response['body'].product[0].product_variation[0].price;
-        // this.descript = response['body'].product[0].description;
-        // alert(this.picTure);
-        // console.log('response', response);
-        // this.getImageFromService(this.idProduct , this.picTure);
 
         console.log("res", response);
        // console.log('id_product', this.idProduct);
@@ -88,7 +84,16 @@ export class CardProductComponent implements OnInit {
         this.description = response["body"][0].description;
         this.id_shop = response['body'][0].id_shop;
 
-        // console.log('picture', this.picTure);
+        // if else new price
+        this.new_price = response["body"][0]["variation"][0].new_price;
+        if (this.new_price === null) {
+          this.switch_price = false;
+        } else {
+          this.switch_price = true;
+         // alert(this.switch_price);
+        }
+
+
         this.price = response["body"][0]["variation"][0].price;
         this.basePrice = this.price;
         this.id_variation = response["body"][0]["variation"][0].id_variation;
@@ -101,7 +106,13 @@ export class CardProductComponent implements OnInit {
         this.amountAll = response["body"][0]["variation"][0].stock;
         this.selectedValue = 0;
 
-        // console.log('pic', response['body'][0]['pic']);
+        if (this.amountAll === 0) {
+          this.donot_buy = true;
+        } else {
+          this.donot_buy = false;
+        }
+
+
         if (response['body'][0]['pic'].length === 0) {
           this.imageToShow[0] = 'https://www.condo.fi/wp-content/uploads/2018/11/no-image.png';
           this.imageBigshow = this.imageToShow[0];
@@ -109,7 +120,7 @@ export class CardProductComponent implements OnInit {
         } else {
           for (let i = 0; i < response["body"][0]["pic"].length; i++) {
             this.picTure = response["body"][0]["pic"][i];
-            // console.log('pic', this.picTure.pic_product);
+
             this.getImageFromService(this.idProduct, this.picTure.pic_product, i);
           }
         }
@@ -193,6 +204,7 @@ export class CardProductComponent implements OnInit {
         },
         error => {
           console.log("err", error);
+          alert(error.error.msg);
         }
       );
     }
@@ -211,7 +223,8 @@ export class CardProductComponent implements OnInit {
         // this.shopCart = product['body']['order'];
         this.onAdd_order(true);
       }, error => {
-        console.log('err', error);
+        console.log('err', error.error);
+
       }
     );
 
@@ -219,37 +232,65 @@ export class CardProductComponent implements OnInit {
 }
 
   changeVariation() {
-    // alert(this.selectedValue);
-    // alert(this.selectedValue);
+
+
+
+    console.log('variation_select', this.variations[this.selectedValue]);
     this.id_variation = this.variation[this.selectedValue].id_variation;
-    this.price = this.variations[this.selectedValue].price;
-    this.amount = 1;
-    this.basePrice = this.price;
-   // alert('variation');
-    //console.log('priceVariation', this.price);
-    this.amountAll = this.variations[this.selectedValue].stock;
-    if (this.amount > this.amountAll) {
-      this.amount = this.amountAll;
+
+    if(this.variation[this.selectedValue].new_price === null) {
+      this.switch_price = false;
+    } else {
+      this.switch_price = true;
+    }
+
+    if (this.switch_price === false) {
+      this.price = this.variations[this.selectedValue].price;
+      this.amount = 1;
+      this.basePrice = this.price;
+
+      this.amountAll = this.variations[this.selectedValue].stock;
+      if (this.amount > this.amountAll) {
+        this.amount = this.amountAll;
+      }
+    } else {
+      this.new_price = this.variations[this.selectedValue].new_price;
+      this.amount = 1;
+      this.basePrice = this.new_price;
+      this.amountAll = this.variations[this.selectedValue].stock;
+      if (this.amount > this.amountAll) {
+        this.amount = this.amountAll;
+      }
     }
   }
 
   addAmount() {
+    console.log('variation_select', this.variations[this.selectedValue]);
     this.amount++;
     this.canReduce = true;
     if (this.amount > this.amountAll) {
       this.amount = this.amountAll;
     } else {
-      this.price = this.price + this.basePrice;
+      if (this.variations[this.selectedValue].new_price === null) {
+        this.price = this.price + this.basePrice;
+      } else {
+        this.new_price = this.new_price + this.basePrice;
+      }
     }
   }
 
   reduceAmount() {
+    console.log('variation_select', this.variations[this.selectedValue]);
     if (this.amount === 1) {
       this.canReduce = false;
       this.amount = 1;
     } else {
       this.amount--;
-      this.price = this.price - this.basePrice;
+      if (this.variations[this.selectedValue].new_price === null) {
+        this.price = this.price - this.basePrice;
+      } else {
+        this.new_price = this.new_price - this.basePrice;
+      }
     }
   }
 
@@ -290,7 +331,8 @@ export class CardProductComponent implements OnInit {
 
 
       }, err => {
-        console.log('err=>', err);
+        console.log('err=>', err.error.msg);
+        alert(err.error.msg);
       }
     );
 

@@ -283,3 +283,13 @@ hr {
 .section-comments{
   margin-bottom: 10px;
 }
+
+.oldPrice {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #D3D3D3;
+  text-decoration: line-through;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

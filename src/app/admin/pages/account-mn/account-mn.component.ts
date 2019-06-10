@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
-import { UserService } from 'src/app/services/admin/user.service';
-import { BackendService } from 'src/app/services/backend.service';
-import { LoginService } from 'src/app/services/login.service';
+
+import { Router } from '@angular/router';
+import { BusinessService } from 'src/app/services/admin/business.service';
+
 
 
 @Component({
@@ -13,38 +14,39 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class AccountMnComponent implements OnInit {
 
+
+
   userEdit: FormGroup;
   length: any;
 
   @Output() infoPass = new EventEmitter();
   @Output() editProfile = new EventEmitter();
 
-  displayedColumns = [ 'username' , 'name', 'sername', 'email', 'status', 'actionsColumn'];// column จากservice json
+  //  COLUMN FROM JSON SERVICE
+  displayedColumns = [ 'sequence','round', 'income', 'status', 'incomeReport', 'detail'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+
+
   constructor(
-    private myservice: BackendService,
-    private userService: UserService,
-    product: LoginService
-     , private fb: FormBuilder
+    private BusinessService: BusinessService,
+    private router: Router,
+
   ) { }
 
-  ngOnInit() {
 
-    this.userService.getAdmin().subscribe(
-      response => {
-        //alert(response['body']);
+
+  ngOnInit() {
+    console.log("TOKEN", localStorage.getItem('token'))
+
+    this.BusinessService.getIncome().subscribe(
+      response => { console.log("MY INCOME", response)
         this.dataSource = new MatTableDataSource(response['body']);
-        console.log(response['body']);
-        //console.log(this.myservice.getData());
-      },
-      error => {
-        //alert('error');
-        console.log('error', error);
       }
+      , error => { console.log("MY ERROR", error) }
     );
   }
 
@@ -52,53 +54,6 @@ export class AccountMnComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-
-  onDelete(getUsername: any) {
-    // ทำ confirm ให้ด้วยนาจาา
-    console.dir(getUsername);
-    let c = confirm('Are you sure delete');
-    if (c == true) {
-      //alert('delete complete');
-       this.userService.deleteUser(getUsername).subscribe(
-        response => {
-         console.log('response', response);
-         this.ngOnInit();
-       },
-       error => {
-         console.log('error', error);
-       }
-     );
-    }
-
-  }
-
-  checkStatus(status: any) {
-    if (status === 'ACTIVE') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
- // เหลือ put data
-  change(user: any) {
-     //alert(user);
-     this.userEdit = this.fb.group({
-      username: [user]
-     });
-     console.log(this.userEdit.value);
-      this.userService.blokUser(this.userEdit.value).subscribe(
-        response => {
-          console.log('response', response);
-          this.ngOnInit();
-        },
-        error => {
-          console.log('error', error);
-        }
-      );
-  }
-
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -109,37 +64,56 @@ export class AccountMnComponent implements OnInit {
 
   }
 
-
-  active(user: any) {
-    this.userEdit = this.fb.group({
-      username: [user]
-     });
-     this.userService.unblockUser(this.userEdit.value).subscribe(
-       response => {
-          console.log('response', response);
-          this.ngOnInit();
-       },
-       error => {
-          console.log('error', error);
-       }
-     );
+  onDetail(id) {
+    localStorage.setItem('incomeID', id);
+    this.router.navigate(['admin/business/accountDtail']);
   }
 
-  onInfo(name) {
-    const info = {
-      stat: true,
-      uName: name
-    };
-    this.infoPass.emit(info);
+  onDownload(incomeID, path) {
+    this.BusinessService.getIncomeReportByID(incomeID).subscribe(
+      response => { console.log(response);
+          /*
+          // It is necessary to create a new blob object with mime-type explicitly set
+          // otherwise only Chrome works like it should
+          var newBlob = new Blob([response], { type: "application/pdf" });
+
+          // IE doesn't allow using a blob object directly as link href
+          // instead it is necessary to use msSaveOrOpenBlob
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+              window.navigator.msSaveOrOpenBlob(newBlob);
+              return;
+          }
+
+          // For other browsers:
+          // Create a link pointing to the ObjectURL containing the blob.
+          const data = window.URL.createObjectURL(newBlob);
+
+          var link = document.createElement('a');
+          link.href = data;
+          link.download = "Je kar.pdf";
+          // this is necessary as link.click() does not work on the latest firefox
+          link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+          setTimeout(function () {
+              // For Firefox it is necessary to delay revoking the ObjectURL
+              window.URL.revokeObjectURL(data);
+              link.remove();
+          }, 100);
+          */
+
+          var blob = new Blob([response], {type: 'application/pdf'});
+
+          var downloadURL = window.URL.createObjectURL(response);
+          var link = document.createElement('a');
+          link.href = downloadURL;
+          link.download = path;
+          link.click();
+
+      }
+      , error => { console.log(error) }
+    );
   }
 
-  onEdit(name) {
-    const info = {
-      stat: true,
-      uName: name
-    };
-    this.editProfile.emit(info);
-  }
 
 
 }

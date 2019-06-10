@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/core/products.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-list-product',
@@ -27,9 +28,17 @@ export class ListProductComponent implements OnInit {
   imageToShow2: any = [];
   lastIndex: any;
 
-  constructor(private productService: ProductsService, private router: Router) { }
+  switch_price: any;
+  new_price: any;
+
+  rec_pdPro = [];
+  rec_pdNew = [];
+
+  constructor(private productService: ProductsService, private router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+
     this.productService.getnewProduct().subscribe(
       response => {
         // this.products = response['body'].product;
@@ -37,7 +46,7 @@ export class ListProductComponent implements OnInit {
         // productList.price = this.products[0].product_variation[0]['price'];
         // this.cart.push(productList);
         this.products = response['body'];
-        console.log('newPrice', response);
+        console.log('newProducts', this.products);
         // console.log('product' , this.products[0]['variation'][0].price);
 
         // get image แบบลูปและส่ง i ไปด้วย
@@ -57,6 +66,7 @@ export class ListProductComponent implements OnInit {
       },
       error => {
         console.log('error', error);
+        this.error_service();
       }
      );
 
@@ -65,9 +75,11 @@ export class ListProductComponent implements OnInit {
       response => {
         this.products2 = response['body'];
         // console.log('promo' , this.products);
-        console.log('oldprice', this.products2);
+
 
         for (let i = 0; i < this.products2.length; i++) {
+
+          console.log('promoProducts', this.products2[i]);
 
            this.namePic[i] = this.products2[i]['pic'][0];
            // console.log('picture', this.namePic[i].pic_product);
@@ -78,6 +90,7 @@ export class ListProductComponent implements OnInit {
         console.log('error', error);
       }
      );
+     this.remmove_path();
   }
 
   seeProduct(idProduct) {
@@ -131,6 +144,35 @@ createImageFromBlob2(image: Blob, i: any) {
   if (image) {
      reader.readAsDataURL(image);
   }
+}
+
+remmove_path() {
+  let size = parseInt(localStorage.getItem('c_pages'), 10);
+
+  for (let i = size; i >= 1; i--) {
+    localStorage.removeItem(i.toString());
+  }
+
+  localStorage.removeItem('c_pages');
+  localStorage.removeItem('path');
+}
+
+go_pageAllproducts() {
+  this.router.navigate(['mado/allProducts']);
+}
+
+go_pagerecAllproducts() {
+  this.router.navigate(['mado/allrecommend']);
+}
+
+go_pagePromoAllproducts() {
+  this.router.navigate(['mado/allPromo']);
+}
+
+error_service() {
+  this._snackBar.open('error service', 'close', {
+    duration: 2000,
+  });
 }
 
 }

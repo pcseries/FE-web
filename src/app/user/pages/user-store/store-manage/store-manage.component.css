@@ -49,7 +49,7 @@
 .card-title {
   margin-top: 10px;
   margin-left: 40%;
-  color: #A9A9A9;
+
 }
 
 .action-upload {
@@ -59,4 +59,17 @@
 
 .button-delete-product{
   margin-left: 90%;
+}
+
+
+.button_backpages {
+  margin-bottom: 20px;
+}
+
+.txt-package {
+  font-size: 15px;
+}
+
+.duration-date {
+  font-weight: bold;
 }

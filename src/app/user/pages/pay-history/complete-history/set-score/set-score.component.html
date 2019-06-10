@@ -1,0 +1,180 @@
+<div class="container">
+
+  <div class="section-backpage" style="margin-bottom: 15px;">
+    <div class="row">
+      <button (click)="on_backPage()"
+      type="button" class="btn btn-warning">
+        <i class="fa fa-arrow-circle-left"></i>
+        กลับไปหน้าก่อน
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="status_product" class="section-showScoreProduct">
+    <mat-card class="score-product">
+      <mat-card-header>
+        <mat-card-title>
+            <img src="https://img.icons8.com/bubbles/50/000000/product.png">
+            ให้คะแนนสินค้า
+        </mat-card-title>
+      </mat-card-header>
+      <hr>
+      <mat-card-content >
+        <div class="section-rating">
+            <ngb-rating
+            [readonly]="true"
+            [(rate)]="showrate_product">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star"  [class.filled]="fill === 100">&#9733;</span>
+            </ng-template>
+            </ngb-rating>
+          </div>
+          <div class="section-comment">
+            <mat-form-field class="example-full-width">
+              <textarea matInput
+                [disabled]="true"
+                style="color: black;"
+                [value]="showcontent_product"
+                class="area-txt" placeholder="แสดงความคิดเห็น"></textarea>
+            </mat-form-field>
+        </div>
+
+    </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngIf="status_shop" class="section-scoreshop">
+      <mat-card class="score-product">
+          <mat-card-header>
+            <mat-card-title>
+                <img style="width: 50px;" src="https://img.icons8.com/plasticine/100/000000/small-business.png">
+                ให้คะแนนร้านค้า
+            </mat-card-title>
+          </mat-card-header>
+          <hr>
+          <mat-card-content >
+            <div class="section-rating">
+                <ngb-rating
+                [readonly]="true"
+                [(rate)]="showrate_shop">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star"  [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+                </ngb-rating>
+              </div>
+              <div class="section-comment">
+                <mat-form-field class="example-full-width">
+                  <textarea matInput
+                    [disabled]="true"
+                    style="color: black;"
+                    [value]="showcontent_shop"
+                    class="area-txt" placeholder="แสดงความคิดเห็น"></textarea>
+                </mat-form-field>
+            </div>
+
+        </mat-card-content>
+        </mat-card>
+  </div>
+
+  <div *ngIf="!status_product" class="section-scoreproduct">
+    <mat-card class="score-product">
+      <mat-card-header>
+        <mat-card-title>
+            <mat-checkbox
+            [(ngModel)]="show_product"
+            >
+              ให้คะแนนสินค้า
+            </mat-checkbox>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="show_product">
+          <div class="section-rating">
+              <ngb-rating
+              [(rate)]="rate_product">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star"  [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+              </ngb-rating>
+            </div>
+            <div class="section-comment">
+              <mat-form-field class="example-full-width">
+                <textarea matInput
+                  #txt_product
+                  class="area-txt" placeholder="แสดงความคิดเห็น"></textarea>
+              </mat-form-field>
+          </div>
+
+          <div style="margin-top: 15px;" class="section-giveScore">
+            <div class="row">
+                <button style="margin: auto; width: 90%;"
+
+                type="button" class="btn btn-success"
+                (click)="on_setProduct(txt_product)"
+                >
+                  ให้คะแนนสินค้า
+                </button>
+            </div>
+          </div>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+
+
+  <div *ngIf="!status_shop" class="section-scoreshop">
+    <mat-card class="score-product">
+      <mat-card-header>
+        <mat-card-title>
+            <mat-checkbox
+            [(ngModel)]="show_shop"
+            >
+              ให้คะแนนร้านค้า
+            </mat-checkbox>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="show_shop">
+          <div class="section-rating">
+              <ngb-rating
+
+              [(rate)]="rate_shop">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star"  [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+              </ngb-rating>
+            </div>
+            <div class="section-comment">
+              <mat-form-field class="example-full-width">
+                <textarea matInput
+                  #txt_shop
+                  class="area-txt" placeholder="แสดงความคิดเห็น"></textarea>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 15px;" class="section-giveScore">
+              <div class="row">
+                  <button style="margin: auto; width: 90%;"
+
+                  type="button" class="btn btn-success"
+                  (click)="on_setShop(txt_shop)"
+                  >
+                    ให้คะแนนร้านค้า
+                  </button>
+              </div>
+            </div>
+      </mat-card-content>
+
+    </mat-card>
+
+    <!-- <div style="margin-top: 15px;" class="section-giveScore">
+      <div class="row">
+          <button style="margin: auto; width: 90%;"
+          [disabled]="!show_product && !show_shop"
+          type="button" class="btn btn-success"
+          (click)="on_setScore(txt_product,txt_shop)"
+          >
+            ให้คะแนน
+          </button>
+      </div>
+    </div> -->
+  </div>
+</div>

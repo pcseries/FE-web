@@ -28,6 +28,7 @@ export class DtailSellproductComponent implements OnInit {
   imageToShow: any;
 
   track_num: any;
+  num_order: any;
 
   constructor(
     private productsService: ProductsService,
@@ -42,6 +43,11 @@ export class DtailSellproductComponent implements OnInit {
     // console.log('select_url=>', this.selet_url);
     this.pre_page = parseInt(this.selet_url[0], 10);
     this.id_item = parseInt(this.selet_url[1]  , 10);
+    if(this.pre_page !== 5) {
+      this.num_order = this.selet_url[2];
+    } else {
+      this.num_order = this.selet_url[3]
+    }
     // alert(this.id_item);
      this.get_sellProduct();
   }

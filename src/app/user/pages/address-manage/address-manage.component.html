@@ -87,5 +87,18 @@
       </div>
     </div>
 
+
+  </div>
+
+  <div *ngIf="statusforBuy" class="section-sucess">
+    <div class="row">
+      <button type="button"
+      (click)="go_sellProducts()"
+      style="width: 35%; height: 50px; margin-bottom: 10px; margin-left: 64%;"
+      class="btn btn-success">
+        เลือกที่อยู่สำเร็จ
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
   </div>
 </div>

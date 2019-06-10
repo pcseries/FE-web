@@ -87,3 +87,218 @@
 }
 
 
+.product-ratings {
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+  border-radius: .125rem;
+  overflow: hidden;
+  background: #fff;
+  margin-top: .9375rem;
+  padding: 1.5625rem;
+}
+
+.product-ratings__header {
+  font-size: 1.125rem;
+  color: rgba(0,0,0,.87);
+  margin-bottom: 1em;
+  text-transform: capitalize;
+}
+
+.shopee-product-rating:first-child {
+  padding-top: 0;
+}
+
+.shopee-product-rating:first-child {
+  padding-top: 0;
+}
+.shopee-product-rating {
+  border-bottom: 1px solid rgba(0,0,0,.09);
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 1.25rem;
+}
+
+.shopee-product-rating__avatar {
+  width: 2.5rem;
+  margin-right: .625rem;
+  text-align: center;
+}
+
+
+.shopee-product-rating__avatar .shopee-avatar {
+  border: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.shopee-avatar {
+  display: inline-block;
+  width: 1.875rem;
+  height: 1.875rem;
+  position: relative;
+  border-radius: 50%;
+  border: .0625rem solid rgba(0,0,0,.09);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.shopee-product-rating__avatar {
+  width: 2.5rem;
+  margin-right: .625rem;
+  text-align: center;
+}
+
+.shopee-avatar__placeholder .icon-headshot {
+  stroke: #c6c6c6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+.shopee-svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  position: relative;
+}
+
+.shopee-avatar__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+.shopee-product-rating__main {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.shopee-product-rating__author-name {
+  text-decoration: none;
+  color: rgba(0,0,0,.8);
+  color: rgba(0,0,0,.87);
+  font-size: .75rem;
+}
+
+.shopee-product-rating__rating {
+  margin-top: .375rem;
+}
+
+.shopee-product-rating__rating .icon-rating-solid {
+  margin-right: .125rem;
+  color: #FFA500;
+}
+
+.shopee-product-rating__content {
+  margin-top: .875rem;
+  margin-bottom: .875rem;
+}
+
+.shopee-product-rating__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+
+.product-ratings__header {
+    font-weight: bold;
+    color: rgba(0,0,0,.87);
+    margin-bottom: 1em;
+    text-transform: capitalize;
+}
+
+
+.product-rating-overview {
+  background-color: #F5F5F5;
+  min-height: 5rem;
+  /* border: 1px solid #708090; */
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 2px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1.875rem;
+}
+
+.product-rating-overview__briefing {
+  text-align: center;
+  margin-right: 1.875rem;
+}
+
+.product-rating-overview__briefing {
+  text-align: center;
+  margin-right: 1.875rem;
+}
+
+.product-rating-overview__score-wrapper{
+
+  font-size: 1.125rem;
+}
+
+.product-rating-overview__rating-score {
+  font-size: 1.875rem;
+}
+
+.product-rating-overview__stars {
+
+  margin-top: .625rem;
+}
+
+
+.star {
+  font-size: 1.8rem;
+  color: #FAEBD7;
+
+}
+.filled {
+  color: 	#FFA500;
+}
+
+
+
+

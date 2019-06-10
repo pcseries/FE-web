@@ -78,3 +78,8 @@ h2.title::after{
   text-overflow: ellipsis;
 }
 
+.bestseller-section {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+

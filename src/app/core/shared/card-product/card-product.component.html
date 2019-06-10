@@ -52,7 +52,8 @@
     <div class="dtail-product">
       <div class="titleProduct">{{ nameProduct }}</div>
       <div class="descripProduct">{{ descript }}</div>
-      <div style="margin-top: 15px">
+
+      <div *ngIf="!switch_price" style="margin-top: 15px">
         <div class="flex flex-Price">
           <div class="flex flex-Price bg">
             <div class="flex item-center">
@@ -66,6 +67,31 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div *ngIf="switch_price" style="margin-top: 15px">
+          <div class="flex flex-Price">
+            <div class="flex flex-Price bg">
+              <div class="flex item-center">
+                <div class="flex items-center _2n_9_X" >
+
+                  <div  class="flex items-center">
+                    <div class="oldPrice">
+                      {{ price | currency: '฿' }}
+                    </div>
+                  </div>
+
+                  <div
+                  class="flex items-center" style="margin-left: 7px;">
+                    <div class="priceProduct">
+                      {{ new_price | currency: '฿' }}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
       <!--คำนวณ ปริมาณ  -->
@@ -94,13 +120,15 @@
         <div class="group-amount">
           <div style="margin-right: 15px">
             <div class="shopee-input-quantity">
-              <button class="shopee-button-outline" [disabled]="!canReduce"  (click)="reduceAmount()">
+              <button [disabled]="donot_buy"
+              class="shopee-button-outline" [disabled]="!canReduce"  (click)="reduceAmount()">
                 <svg class="shopee-svg-icon" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
                   <polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon>
                 </svg>
               </button>
               <input class="input-amount" type="text" value={{amount}} [disabled]="noKey">
-              <button class="shopee-button-outline" (click)="addAmount()">
+              <button [disabled]="donot_buy"
+              class="shopee-button-outline" (click)="addAmount()">
                 <svg class="shopee-svg-icon plus-icon" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0">
                   <polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon>
                 </svg>
@@ -118,11 +146,15 @@
       <div class="groupAction">
         <div class="group-btn">
           <div class="flex-btn">
-              <button mat-stroked-button color="primary" class="btn-add" (click)="addProduct()">
+              <button
+                [disabled]="donot_buy"
+               mat-stroked-button color="primary" class="btn-add" (click)="addProduct()">
                 <i class="fa fa-cart-plus" style="font-size:30px; cursor: pointer;" ></i>
                 เพิ่มไปยังรถเข็น
               </button>
-              <button mat-flat-button color="primary"
+              <button
+              [disabled]="donot_buy"
+              mat-flat-button color="primary"
                 class="btn-buy"
                 style="margin-left: 20px;"
                 (click)="onBuy_product()">ซื้อเลย</button>

@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { P } from '@angular/core/src/render3';
 import { ShopcartService } from 'src/app/services/core/shopcart.service';
 import { ProductsService } from 'src/app/services/core/products.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { MyShippingComponent } from './my-shipping/my-shipping.component';
 import { StoreService } from 'src/app/services/core/store.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,7 +31,7 @@ export class CheckOutComponent implements OnInit {
   res_data: any;
 
   shopCart: any;
-  id_order: any;
+
   imageToShow = [];
   selectProduct = [];
   pre_select: any;
@@ -80,6 +80,10 @@ export class CheckOutComponent implements OnInit {
   id_ship = [];
   id_address: any;
   id_pay: any;
+  load_checkpoint: any;
+
+  // จัดการโปรโมชั่น
+  switch_price = [];
 
   constructor(private userService: UserService,
     private shopcartService: ShopcartService,
@@ -88,11 +92,13 @@ export class CheckOutComponent implements OnInit {
     private storeService: StoreService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
     ) { }
 
 
   ngOnInit() {
+    this.load_checkpoint = false;
     this.id_order1 = parseInt(localStorage.getItem('id_order'), 10) ;
 
     this.access_update = 0;
@@ -122,7 +128,7 @@ export class CheckOutComponent implements OnInit {
         this.postal_code = this.res_data.postal_code;
         this.id_address = this.res_data.id_address;
         this.get_productOrders();
-        this.get_payingOrder();
+        // this.get_payingOrder();
       }, error => {
         console.log('error', error);
       }
@@ -130,9 +136,7 @@ export class CheckOutComponent implements OnInit {
 
 
 
-    setTimeout(() => {
-      this.on_firstUpdate();
-    }, 1200);
+
 
   }
 
@@ -144,20 +148,29 @@ export class CheckOutComponent implements OnInit {
         this.order_byid = res['body'].order[0];
         this.selectProduct = res['body'].order[0].order_item;
 
+
         for (let i = 0; i < this.selectProduct.length; i++) {
-          this.store_price[i] = this.selectProduct[i].price * this.selectProduct[i].quantity;
 
+          console.log('newPrice_selected', this.selectProduct[i].new_price);
 
-
+          if (this.selectProduct[i].new_price === undefined) {
+            this.switch_price[i] = false;
+            this.store_price[i] = this.selectProduct[i].price * this.selectProduct[i].quantity;
+          } else {
+            this.switch_price[i] = true;
+            this.store_price[i] = this.selectProduct[i].new_price * this.selectProduct[i].quantity;
+          }
 
           let id = this.selectProduct[i].id_product;
           let namePic = this.selectProduct[i].pic_product;
 
+          this.get_pay();
           this.get_shipping(id, i);
 
           this.getImageFromService(id, namePic, i);
           setTimeout(() => {
             this.onSet_other(this.selectProduct[i] , i);
+            this.get_payingOrder();
         }, 800);
 
         }
@@ -173,6 +186,21 @@ export class CheckOutComponent implements OnInit {
 
   }
 
+  get_pay() {
+    let pay: any;
+    this.productService.get_paying().subscribe(
+      res => {
+         console.log('Paying_all=>', res['body'][0]);
+         pay = res['body'][0];
+         this.id_pay = pay.id_type_payment;
+        this.name_paying = pay.name_type;
+
+
+      }, error => {
+        console.log('err_pay=>', error);
+      }
+    );
+  }
 
   get_shipping(id: any, ind: any) {
     this.storeService.get_shipping(id).subscribe(
@@ -292,7 +320,7 @@ this.count_update = this.count_update + 1;
     setTimeout(() => {
       this.get_formUpdate();
     }, 500);
-
+    // this.get_formUpdate();
 
 
 
@@ -306,21 +334,42 @@ this.count_update = this.count_update + 1;
     for ( let i = 1; i <  this.keep_orderitem.length; i++) {
       console.log('keep_item=>', this.keep_orderitem[i]);
       this.data_order.value['body'].order_item.push(this.keep_orderitem[i]);
+
     }
 
+  //   setTimeout(() => {
+  //     console.log('form_update=>', this.data_order.value);
 
-    console.log('form_update=>', this.data_order.value);
+  //   this.productService.update_order( this.data_order.value).subscribe(
+  //     res => {
+  //       console.log('update_order=>', res);
 
-    this.productService.update_order( this.data_order.value).subscribe(
-      res => {
-        console.log('update_order=>', res);
+  //     }, error => {
 
-      }, error => {
+  //       console.log('error_update=>', error);
+  //     }
 
-        console.log('error_update=>', error);
-      }
+  //   );
+  //  }, 500);
 
-    );
+
+   console.log('form_update=>', this.data_order.value);
+
+   this.productService.update_order( this.data_order.value).subscribe(
+     res => {
+       this.load_checkpoint = true;
+       console.log('update_order=>', res);
+    //  this.error_service();
+
+
+     }, error => {
+      this.load_checkpoint = true;
+       console.log('error_update=>', error);
+       this.error_service();
+     }
+
+   );
+
   }
 
   on_updateOrder(data: any) {
@@ -395,7 +444,7 @@ this.count_update = this.count_update + 1;
        this.data_order = this.fb.group(
         {
           body: {
-            id_order: this.id_order,
+            id_order: this.order_byid.id_order,
             order_status: 'ORDERING',
             order_item: [{
               id_item: item.id_item,
@@ -482,18 +531,24 @@ this.count_update = this.count_update + 1;
   }
 
   get_payingOrder() {
-    let pay: any;
-    this.productService.get_paying().subscribe(
-      res => {
-         console.log('Paying_all=>', res['body'][0]);
-         pay = res['body'][0];
-         this.id_pay = pay.id_type_payment;
-          this.name_paying = pay.name_type;
-      }, error => {
-        console.log('err_pay=>', error);
-      }
-    );
+
+
+
+    this.on_firstUpdate();
+
+
   }
 
+
+  onChange_address() {
+    console.log('route', this.router.url);
+    this.router.navigate(['mado/manageAddress']);
+  }
+
+  error_service() {
+    this._snackBar.open('error service', 'close', {
+      duration: 2000,
+    });
+  }
 
 }

@@ -17,6 +17,12 @@
         type="button" class="btn btn-success">
         เพิ่ม code
       </button>
+      <button mat-mini-fab
+      [disabled]="!track_enable"
+      (click)="on_trackData()"
+      color="warn">
+          <mat-icon aria-label="Example icon-button with a heart icon">place</mat-icon>
+      </button>
   </div>
   </div>
 

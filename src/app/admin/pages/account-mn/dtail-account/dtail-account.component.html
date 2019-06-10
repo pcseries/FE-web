@@ -1,0 +1,74 @@
+<!--
+<div class="top-box">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Results">
+  </mat-form-field>
+</div>
+-->
+
+<h6>รายการสรุปรายได้ตามรอบ</h6>
+
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="sequence">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ลำดับ</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row; let i=index">{{i+1}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อ - นามสกุล</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row; let i=index">{{user[i]}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="shop">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ชื่อร้าน</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row; let i=index"> {{shop[i]}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="moneyToBeTransferred">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>เงินที่ต้องโอน ( บาท )</mat-header-cell>
+    <mat-cell class="right" *matCellDef="let row"> {{row.SUM_balance}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="incomeReport">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>สรุปยอดการสั่ง</mat-header-cell>
+    <mat-cell class="mycolor2 center" *matCellDef="let row" >
+      <a *ngIf="row.path !== '-'" mat-button color="primary" routerLink="." (click)="onDownload(row.id_transfer, row.path)">{{row.path}}</a>
+      <a *ngIf="row.path === '-'" mat-button disabled color="primary" routerLink=".">{{row.path}}</a>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>สถานะ</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row"  >
+      <h6 *ngIf="row.status === 'TRANSFER'" style="color: green; font-weight: bold;" >{{row.status}} </h6>
+      <h6 *ngIf="row.status === 'WATTING'" style="color: red; font-weight: bold;" >{{row.status}} </h6>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>การจัดการ</mat-header-cell>
+    <mat-cell class="center" *matCellDef="let row; let i=index;">
+      <button *ngIf="row.status === 'TRANSFER'" disabled mat-flat-button>Confirmed</button>
+      <button *ngIf="row.status === 'WATTING'"  mat-flat-button color="primary" (click)="onPayment(row.id_transfer, i)">Confirm payment</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;">
+  </mat-row>
+</mat-table>
+
+<button (click)="onPreviousPage()"
+        type="button" class="btn btn-warning">
+        <i class="fa fa-arrow-left"></i>
+        กลับไปจัดการบัญชี
+</button>
+<!--
+<mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[2,5, 10, 25, 100]">
+</mat-paginator>
+-->
+
+
+
+

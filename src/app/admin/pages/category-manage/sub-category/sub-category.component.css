@@ -87,3 +87,10 @@ table.mat-table {
 .backPage-section {
   margin-bottom: 20px;
 }
+
+
+.textPath {
+  font-weight: bold;
+  color: #808080;
+  margin-left: 10px;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/services/core/store.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/core/products.service';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-shop-dtail',
@@ -23,12 +24,24 @@ export class ShopDtailComponent implements OnInit {
   imageToShow = [];
   isImageLoading: any;
 
+
+  mean_rate: any = 0;
+  p1: number = 1;
+
+  not_rate: any;
+  rate_stars = [];
+  comments_user: any;
+
   constructor(
+    config: NgbRatingConfig,
     private storeService: StoreService,
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private router: Router
-  ) { }
+    private router: Router,
+
+  ) {
+    config.max = 5;
+  }
 
   ngOnInit() {
     this.disable = true;
@@ -36,7 +49,11 @@ export class ShopDtailComponent implements OnInit {
 
     this.get_dtailShop();
     this.get_productsShop(this.id_shop);
+    this.get_commentsShop(this.id_shop);
+
   }
+
+
 
   get_dtailShop() {
     this.storeService.get_dtailbyid(this.id_shop).subscribe(
@@ -65,6 +82,29 @@ export class ShopDtailComponent implements OnInit {
         }
       }, err => {
         console.log('pdofshop=>', err);
+      }
+    );
+  }
+
+
+  get_commentsShop(id_shop: any) {
+    this.storeService.get_comments(id_shop).subscribe(
+      res => {
+        console.log('get_commentShop', res);
+
+        if (res['body'].length !== 0) {
+
+          this.comments_user = res['body'];
+          this.mean_rate = this.comments_user[0].mean;
+          for (let i = 0; i < this.comments_user.length; i++) {
+            this.rate_stars[i] = this.comments_user[i].rating;
+          }
+          this.not_rate = false;
+        } else {
+          this.not_rate = true;
+        }
+      }, err => {
+        console.log('err', err);
       }
     );
   }

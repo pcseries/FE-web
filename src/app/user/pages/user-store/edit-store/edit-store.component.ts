@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StoreService } from 'src/app/services/core/store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-store',
@@ -17,9 +18,11 @@ export class EditStoreComponent implements OnInit {
 
   store: any;
 
+
   constructor(
     private storeService: StoreService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
       this.data_store = this.fb.group({
         name_shop: [this.name_store ],
@@ -72,6 +75,20 @@ export class EditStoreComponent implements OnInit {
       shop_address: [this.address_store ]
     });
 
+
+  }
+
+  close_store() {
+    if(confirm('คุณต้องการปิดร้าน จริงหรือ')) {
+      this.storeService.close_store().subscribe(
+        res => {
+          console.log('res', res);
+          this.router.navigate(['/user/store']);
+        }, err => {
+          console.log('err', err);
+        }
+      );
+    }
 
   }
 

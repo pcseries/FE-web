@@ -26,6 +26,9 @@ export class CanceledHistoryComponent implements OnInit {
   count: any;
   not_loading: any;
 
+  p1: number = 1;
+  product_delete = [];
+
   constructor(
     private productsService: ProductsService,
     private router: Router,
@@ -78,6 +81,11 @@ export class CanceledHistoryComponent implements OnInit {
             }
             this.count_ind2 = this.count_ind2 + 1;
           }
+
+          // if (i === (res['body'].order.length - 1)) {
+          //   console.log('reverse');
+          //   this.order_item.reverse();
+          // }
         }
 
         if (this.count === 0) {
@@ -94,11 +102,14 @@ export class CanceledHistoryComponent implements OnInit {
     this.productsService.getImage(id, namePic).subscribe(
       data => {
         this.createImageFromBlob(data, i);
-
+        this.product_delete[i] = false;
       },
       error => {
 
         console.log(error);
+        this.product_delete[i] = true;
+        this.loading = true;
+        this.imageToShow[i] = 'https://www.lauriloewenberg.com/wp-content/uploads/2019/04/No_Image_Available.jpg';
       }
     );
   }
@@ -125,6 +136,11 @@ export class CanceledHistoryComponent implements OnInit {
     const go = 4 + '_' + this.order_item[ind].id_order + '_' + this.order_item[ind].id_item;
      this.router.navigate(['user/payHistory/dtail/', go]);
   }
+
+  see_shop(id_shop) {
+    // alert('ดูร้านค้า');
+     this.router.navigate(['mado/seeShop/', id_shop]);
+   }
 
 
 }

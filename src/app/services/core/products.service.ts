@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { ObserveOnSubscriber } from 'rxjs/internal/operators/observeOn';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class ProductsService {
 
   getImage(id: any, name: any): Observable<Blob> {
     let params1 = new HttpParams().set("id_product", id).set("filename", name);
-    return this.http.get(this.baseUrlC + 'download' , { responseType: 'blob' , params
+    return this.http.get('http://158.108.207.7:8080/ecom/api/eshop/' + 'download' , { responseType: 'blob' , params
     : params1 , headers:  this.Image()});
   }
 
@@ -109,6 +111,56 @@ export class ProductsService {
 
   searchProductbyProduct(product: any): Observable<any> {
     return this.http.get(this.baseUrlBS + 'products?name_product=' + product, this.authWeb());
+  }
+
+  get_productsSubcate(id: any): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'products?id_catagory=' + id, this.authWeb());
+  }
+
+
+  get_promotion(id: any): Observable<any> {
+    return this.http.get(this.baseUrlC + 'promotion/' + id , this.getAuth());
+  }
+
+  edit_promo(data: any): Observable<any> {
+    return this.http.put(this.baseUrlC + 'promotion', data , this.getAuth());
+  }
+
+  delete_promo(id: any): Observable<any> {
+    return this.http.delete(this.baseUrlC + 'promotion/' + id, this.getAuth());
+  }
+
+  addProduct_promotion(data: any): Observable<any> {
+    return this.http.post(this.baseUrlC + 'promotion', data, this.getAuth());
+  }
+
+  get_BSformonth(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'productpopmonth/10', this.authWeb());
+  }
+
+  get_BSforday(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'productpopday/10', this.authWeb());
+  }
+
+
+  get_BSforweek(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'productpopweek/10', this.authWeb());
+  }
+
+  get_reccomProducts(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'recproduct/10', this.authWeb());
+  }
+
+  get_allreccomProducts(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'recproduct/100', this.authWeb());
+  }
+
+  get_allPromoProduct(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'productpromo/100', this.authWeb());
+  }
+
+  get_allProducts(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'products', this.authWeb());
   }
 
 

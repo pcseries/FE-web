@@ -21,6 +21,13 @@ export class StoreManageComponent implements OnInit {
 
   fileToUpload: File = null;
 
+  time_start = [];
+  time_end= [];
+
+  can_buyPackage: any;
+  package_name: any;
+  day: any;
+  price: any;
 
   constructor(private route: ActivatedRoute
     , private storeService: StoreService,
@@ -29,8 +36,9 @@ export class StoreManageComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.can_buyPackage = false;
     this.idProduct = this.route.snapshot.paramMap.get('id');
-
+    this.get_package();
     // alert(this.idProduct);
 
     this.storeService.getproductbyID(this.idProduct).subscribe(
@@ -71,6 +79,25 @@ export class StoreManageComponent implements OnInit {
       }, error => {
       console.log(error);
     });
+  }
+
+  get_package() {
+    this.storeService.get_dtailPackageproduct(this.idProduct).subscribe(
+      res => {
+        console.log('dtailOk', res['body']);
+        let data = res['body'][0];
+        if (res['body'].length === 0) {
+          this.can_buyPackage = true;
+        }
+        this.package_name = data.package_name;
+        this.day = data.day;
+        this.price = data.price;
+        this.time_start = data.time_start.split('T');
+        this.time_end = data.time_end.split('T');
+      }, err => {
+        console.log('dtailErr', err);
+      }
+    );
   }
 
   createImageFromBlob(image: Blob, i: any) {
@@ -127,5 +154,14 @@ onRemove_product() {
 
 }
 
+back_page() {
+  this.router.navigate(['user/store']);
+}
+
+go_buyPackage() {
+  localStorage.setItem('backpage1', this.idProduct);
+
+  this.router.navigate(['user/store/buyPackage/', this.idProduct]);
+}
 
 }

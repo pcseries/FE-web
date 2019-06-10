@@ -79,9 +79,15 @@
           </div>
         </div>
 
-        <div class="cart-item__cell-unit-price">
+        <div *ngIf="!switch_price[i]" class="cart-item__cell-unit-price">
             <div class="price">
               {{p.price}}
+            </div>
+        </div>
+
+        <div *ngIf="switch_price[i]" class="cart-item__cell-unit-price">
+            <div class="price">
+              {{p.new_price}}
             </div>
         </div>
 
@@ -89,9 +95,13 @@
             {{ p.quantity }}
         </div>
 
-        <div class="cart-item__cell-total-price" >
+        <div *ngIf="!switch_price[i]" class="cart-item__cell-total-price" >
           {{ p.price*p.quantity }}
         </div>
+
+        <div *ngIf="switch_price[i]" class="cart-item__cell-total-price" >
+            {{ p.new_price*p.quantity }}
+          </div>
 
         <div class="cart-item__cell-actions">
           <button mat-icon-button  class="btn-shopDelete"  focusable="false" (click)="onDeleteProduct(p.id_item)" color="primary">

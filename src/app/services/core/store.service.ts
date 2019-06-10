@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,7 @@ export class StoreService {
     formData.append('id_product', idProduct);
     formData.append('file', fileToUpload, fileToUpload.name);
     console.log('formdata', formData);
-    return this.http.post(this.baseUrlC + 'upload/' , formData , this.getAuthImage());
+    return this.http.post('http://158.108.207.7:8080/ecom/api/eshop/' + 'upload/' , formData , this.getAuthImage());
   }
 
   get_shipping(id: any) {
@@ -82,7 +83,54 @@ export class StoreService {
     return this.http.get(this.baseUrlBS + 'products/byshop/' + id, this.getAuth_web());
   }
 
-  getAuth() {
+
+  get_package(): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'recpackage', this.getAuth_Catagory());
+  }
+
+  add_productPackage(data: any): Observable<any> {
+    return this.http.post(this.baseUrlBS + 'addrecproduct', data , this.getAuth());
+  }
+
+  pay_package(data: any): Observable<Blob> {
+    return this.http.post(this.baseUrlBS + 'recproductpaid', data, {responseType: 'blob', headers: this.getAuth_Image()});
+  }
+
+  get_stastusPaid(id: any): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'recproductid/' + id, this.getAuth_web());
+  }
+
+  get_dtailPackageproduct(id: any): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'recproductid/' + id, this.getAuth_web());
+  }
+
+  close_store(): Observable<any> {
+    return this.http.delete(this.baseUrlBS + 'shops', this.getAuth());
+  }
+
+  openStore_again(): Observable<any> {
+    return this.http.put(this.baseUrlBS + 'shops/open', null , this.getAuth());
+  }
+
+  set_rate(data: any): Observable<any> {
+    return this.http.post(this.baseUrlC + 'rating/shop/', data, this.getAuth());
+  }
+
+
+  get_rate(id: any): Observable<any> {
+    return this.http.get(this.baseUrlC + 'rating/shop/' + id , this.getAuth());
+  }
+
+  get_comments(id_shop: any): Observable<any> {
+    return this.http.get(this.baseUrlBS + 'shopcomment/' + id_shop , this.getAuth_web());
+  }
+
+  getShop() {
+    return this.http.get(this.baseUrlBS + 'shops' , this.getAuth_web());
+  }
+
+
+    getAuth() {
     const token = localStorage.getItem('token');
     const content = 'application/json; charset=utf-8';
     const httpheaders = new HttpHeaders({'Content-Type': content , 'token': token});
@@ -112,11 +160,20 @@ export class StoreService {
     return { headers: httpheaders };
   }
 
+  private getAuth_Image() {
+    const token = localStorage.getItem('token');
+    const httpheaders = new HttpHeaders({'token': token});
+    return  httpheaders ;
+  }
+
 
   getAuthDelete() {
     const token = localStorage.getItem('token');
     const httpheaders = new HttpHeaders({'Content-Type': 'application/json' , 'token': token});
     return  httpheaders;
   }
+
+
+
 
 }

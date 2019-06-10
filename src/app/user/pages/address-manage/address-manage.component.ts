@@ -15,17 +15,28 @@ export class AddressManageComponent implements OnInit {
   is_default: any;
   allow_delete: any;
 
+  statusforBuy: any;
+
   constructor(
     private userService: UserService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    console.log(this.router.url);
+    if (this.router.url === '/mado/manageAddress') {
+     // alert('success');
+      this.statusforBuy = true;
+    } else {
+      this.statusforBuy = false;
+    }
     this.allow_delete = false;
     this.get_address();
   }
 
   get_address() {
+
+
 
     this.userService.get_address().subscribe(
       res => {
@@ -49,7 +60,14 @@ export class AddressManageComponent implements OnInit {
   }
 
   on_goAddaddress() {
-    this.router.navigate(['/user/addressManage/addAddress']);
+
+// if else
+    if (this.statusforBuy) {
+      this.router.navigate(['/mado/manageAddress/add']);
+    } else {
+      this.router.navigate(['/user/addressManage/addAddress']);
+    }
+
   }
 
   on_deleteAddress(ind: any) {
@@ -70,8 +88,15 @@ export class AddressManageComponent implements OnInit {
   }
 
   on_editAddress(ind: any) {
+//if else
+
     // alert(this.data_address[ind].id_address);
-     this.router.navigate(['/user/addressManage/editAddress', this.data_address[ind].id_address]);
+    if (this.statusforBuy) {
+      this.router.navigate(['/mado/manageAddress/editAddress/', this.data_address[ind].id_address]);
+    } else {
+      this.router.navigate(['/user/addressManage/editAddress', this.data_address[ind].id_address]);
+    }
+
   }
 
 
@@ -86,6 +111,10 @@ export class AddressManageComponent implements OnInit {
         console.log('set_default=>', error);
       }
     );
+  }
+
+  go_sellProducts() {
+    this.router.navigate(['/mado/checkOut']);
   }
 
 }

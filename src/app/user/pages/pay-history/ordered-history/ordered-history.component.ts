@@ -99,7 +99,7 @@ export class OrderedHistoryComponent implements OnInit {
 
 
 
-               console.log('orders_show=>', this.order_shows[this.count_shows]);
+
 
                 if (this.count_shows !== 0) {
 
@@ -113,14 +113,14 @@ export class OrderedHistoryComponent implements OnInit {
                  }
                 }
 
-                console.log('count_shows=>', this.count_shows);
+               // console.log('count_shows=>', this.count_shows);
                 this.order_shows[this.count_shows] = this.products_ordered[this.count_ind2];
-              // console.log('product_presents=>', this.order_item[this.count_ind]);
 
+                console.log('order_show=>', this.order_shows[this.count_shows]);
               if( status_Count ) {
                 this.c_orders = this.c_orders + 1;
 
-                console.log('orders=>', this.products_ordered[this.count_ind2]);
+              //  console.log('orders=>', this.products_ordered[this.count_ind2]);
                 this.amount_ind[this.c_orders] = this.keep_ind;
                 this.order_ind[this.c_orders] = this.keep_ind;
 
@@ -130,7 +130,7 @@ export class OrderedHistoryComponent implements OnInit {
 
                 for (let i1 = 0; i1 < size; i1++) {
                   this.keep_ind = this.keep_ind + 1;
-                  console.log('count_keep=>', this.keep_ind);
+                //  console.log('count_keep=>', this.keep_ind);
 
                   // this.on_setImage(this.c_orders , i1 , this.products_ordered[this.count_ind2]);
                 }
@@ -159,9 +159,6 @@ export class OrderedHistoryComponent implements OnInit {
             }
 
             this.count_ind2 = this.count_ind2 + 1;
-          } else if (res['body'].order[i].order_status  === 'PAID') {
-
-              continue;
           }
 
           if (i === (res['body'].order.length - 1)) {
@@ -222,6 +219,8 @@ export class OrderedHistoryComponent implements OnInit {
       error => {
 
         console.log(error);
+        this.loading = true;
+        this.imageToShow[i] = 'https://www.lauriloewenberg.com/wp-content/uploads/2019/04/No_Image_Available.jpg';
       }
     );
   }
@@ -254,7 +253,7 @@ export class OrderedHistoryComponent implements OnInit {
   on_cancelProduct(ind: any) {
 
     // console.log('delete orders=>', this.order_shows[ind]);
-const c = confirm('คุณต้องการยกเลิกคำสั่งซื้อหรือไม่');
+const c = confirm('โปรดยืนยัน การยกเลิกคำสั่งซื้อหรือไม่');
 
         if (c) {
 

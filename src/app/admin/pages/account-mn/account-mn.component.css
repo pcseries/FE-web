@@ -57,3 +57,18 @@ mat-form-field {
 
 }
 
+
+.mat-header-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.right.mat-cell {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center.mat-cell {
+  display: flex;
+  justify-content: center;
+}
